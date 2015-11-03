@@ -17,6 +17,21 @@ if [ -f ~/.aliases ] ; then
 fi
 
 
+#----------------
+# Bash functions
+#----------------
+
+# Load common functions
+if [ -f ~/dotfiles/.functions ] ; then
+        source ~/dotfiles/.functions
+fi
+
+# Load machine-specific functions
+if [ -f ~/.functions ] ; then
+        source ~/.functions
+fi
+
+
 #---------
 # Git
 #---------
