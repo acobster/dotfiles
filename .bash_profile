@@ -76,7 +76,6 @@ fi
 
 # set up rbenv shims
 if [[ !  "$PATH" =~ "rbenv" ]] && [[ -d ~/.rbenv ]] ; then
-	echo 'Prepending ~/.rbenv/bin to PATH'
 	export PATH="$HOME/.rbenv/bin:$PATH"
 fi
 if [[ -d ~/.rbenv ]] ; then
