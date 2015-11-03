@@ -1,5 +1,6 @@
 # Set up aliases
 alias aliases='vim ~/dotfiles/.aliases'
+alias functions='vim ~/dotfiles/.functions'
 alias svb='vim ~/dotfiles/.bash_profile'
 alias vb='vim ~/.bash_profile'
 alias dtf='cd ~/dotfiles'
