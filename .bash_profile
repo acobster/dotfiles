@@ -63,6 +63,14 @@ shopt -s histappend
 
 
 #---------
+# WP CLI
+#---------
+
+if [ -f ~/dotfiles/wp-completion.bash ] ; then
+	source ~/dotfiles/wp-completion.bash
+fi
+
+#---------
 # Rubies
 #---------
 
