@@ -1,3 +1,7 @@
+h() {
+  history | grep $1
+}
+
 mc() {
 	mkdir $1 && cd $1
 }

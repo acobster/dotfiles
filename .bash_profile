@@ -75,10 +75,12 @@ fi
 #---------
 
 # set up rbenv shims
-if [[ !  "$PATH" =~ "rbenv" ]] ; then
+if [[ !  "$PATH" =~ "rbenv" ]] && [[ -d ~/.rbenv ]] ; then
 	echo 'Prepending ~/.rbenv/bin to PATH'
 	export PATH="$HOME/.rbenv/bin:$PATH"
 fi
-eval "$(rbenv init -)"
+if [[ -d ~/.rbenv ]] ; then
+	eval "$(rbenv init -)"
+fi
 
 
