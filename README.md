@@ -7,6 +7,8 @@ $ cd
 $ git clone git@github.com:acobster/dotfiles
 ```
 
+### `.bash_profile`
+
 In your `~/.bash_profile`, add the following:
 
 ```
@@ -20,5 +22,15 @@ This allows you to have machine-specific stuff in your `.bash_profile`. If you d
 ```
 $ ln -s dotfiles/.bash_profile .bash_profile
 ```
+
+### Other dotfiles
+
+To initialize other stuff with sane defaults, symlink 'em up:
+
+```
+$ ln -s dotfiles/.vimrc .vimrc
+$ ln -s dotfiles/.gitignore .gitignore
+$ git config --global core.excludesfile ~/.gitignore
+``` 
 
 **Note that this setup assumes you have these files in the `~/dotfiles` dir. It won't work otherwise.**
