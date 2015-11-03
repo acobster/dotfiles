@@ -23,6 +23,8 @@ fi
 
 # Git prompt
 if [ -f ~/dotfiles/git-prompt.bash ]; then
+	GIT_PS1_SHOWDIRTYSTATE=1
+	GIT_PS1_SHOWSTASHSTATE=1
 	source ~/dotfiles/git-prompt.bash
 	export PS1='\h\[\e[00m\]:\[\e[1;31m\]$(__git_ps1) \[\e[01;32m\]\w\[\e[00m\] \$ ' 
 fi
