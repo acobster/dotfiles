@@ -23,6 +23,7 @@ fi
 
 # Git prompt
 if [ -f ~/dotfiles/git-prompt.bash ]; then
+	GIT_PS1_SHOWUNTRACKEDFILES=1
 	GIT_PS1_SHOWDIRTYSTATE=1
 	GIT_PS1_SHOWSTASHSTATE=1
 	source ~/dotfiles/git-prompt.bash
