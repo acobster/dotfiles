@@ -11,3 +11,4 @@ set scrolloff=3			" Show 3 lines of context around the cursor.
 set number			" Show line numbers.
 set ruler			" Show cursor position.
 set visualbell			" No beeping.
+

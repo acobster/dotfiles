@@ -52,5 +52,10 @@ shopt -s histappend
 #---------
 
 # set up rbenv shims
-export PATH="$HOME/.rbenv/bin:$PATH"
+if [[ !  "$PATH" =~ "rbenv" ]] ; then
+	echo 'Prepending ~/.rbenv/bin to PATH'
+	export PATH="$HOME/.rbenv/bin:$PATH"
+fi
 eval "$(rbenv init -)"
+
+
