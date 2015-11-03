@@ -6,4 +6,3 @@ alias dtf='cd ~/dotfiles'
 alias reload='. ~/.bash_profile'
 alias ..='cd ..'
 
-
