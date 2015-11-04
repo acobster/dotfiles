@@ -36,6 +36,16 @@ fi
 # Git
 #---------
 
+# Alias: git last
+if [[ -z $(git config --global alias.last) ]] ; then
+  git config --global alias.last 'diff HEAD~1 HEAD'
+fi
+
+# Alias: git last-log
+if [[ -z $(git config --global alias.last-log) ]] ; then
+  git config --global alias.last-log 'log -1 HEAD'
+fi
+
 # Alias: git root
 if [[ -z $(git config --global alias.root) ]] ; then
   git config --global alias.root '!pwd'
