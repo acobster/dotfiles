@@ -8,6 +8,10 @@ global_ignore() {
   echo "$1" >> ~/.gitignore
 }
 
+# Grab/push files relative to Git root
+# from/to a configured remote server
+source ~/dotfiles/grab.bash
+
 
 #--------------------
 # Assorted functions
@@ -35,4 +39,25 @@ h() {
 
 mc() {
   mkdir $1 && cd $1
+}
+
+sql() {
+  mysql -u root -p $1
+}
+
+psgrep() {
+  ps aux | grep $1 | grep -v grep
+}
+
+grepkill() {
+  ps aux | grep $1 | grep -v grep | kill `awk '{print $2}'`
+}
+
+killzeus() {
+  grepkill zeus
+  rm .zeus.sock
+}
+
+mysql-src() {
+  mysql -u root -p $2 < $1
 }
