@@ -3,6 +3,15 @@
 
 
 #---------
+# PATH
+#---------
+
+if [[ -d "$HOME/bin" ]] && ! [[ $PATH =~ ":${HOME}\/bin:" ]] ; then
+  export PATH=~/bin:$PATH
+fi
+
+
+#---------
 # Aliases
 #---------
 
@@ -100,12 +109,12 @@ fi
 
 # set up rbenv shims
 if [[ !  "$PATH" =~ "rbenv" ]] && [[ -d ~/.rbenv ]] ; then
-	export PATH="$HOME/.rbenv/bin:$PATH"
+  export PATH="$HOME/.rbenv/bin:$PATH"
 fi
 
 # initialize rbenv
 if [[ -d ~/.rbenv ]] ; then
-	eval "$(rbenv init -)"
+  eval "$(rbenv init -)"
 fi
 
 
