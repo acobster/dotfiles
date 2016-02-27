@@ -33,6 +33,20 @@ fi
 
 
 #---------
+# Haskell
+#---------
+
+if [[ !  "$PATH" =~ "cabal" ]] && [[ -d $HOME/.cabal/bin ]] ; then
+  export PATH=$HOME/.cabal/bin:$PATH
+fi
+
+if [[ !  "$PATH" =~ "Library/Haskell" ]] && [[ -d $HOME/Library/Haskell/ghc-7.8.4/lib/snap-0.14.0.6/bin ]] ; then
+  export PATH=$HOME/Library/Haskell/ghc-7.8.4/lib/snap-0.14.0.6/bin:$PATH
+fi
+
+
+
+#---------
 # Git
 #---------
 
