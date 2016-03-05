@@ -3,6 +3,15 @@
 
 
 #---------
+# PATH
+#---------
+
+if [[ -d "$HOME/bin" ]] && ! [[ $PATH =~ ":${HOME}\/bin:" ]] ; then
+  export PATH=~/bin:$PATH
+fi
+
+
+#---------
 # Aliases
 #---------
 
@@ -30,6 +39,20 @@ fi
 if [ -f ~/.functions ] ; then
         source ~/.functions
 fi
+
+
+#---------
+# Haskell
+#---------
+
+if [[ !  "$PATH" =~ "cabal" ]] && [[ -d $HOME/.cabal/bin ]] ; then
+  export PATH=$HOME/.cabal/bin:$PATH
+fi
+
+if [[ !  "$PATH" =~ "Library/Haskell" ]] && [[ -d $HOME/Library/Haskell/ghc-7.8.4/lib/snap-0.14.0.6/bin ]] ; then
+  export PATH=$HOME/Library/Haskell/ghc-7.8.4/lib/snap-0.14.0.6/bin:$PATH
+fi
+
 
 
 #---------
@@ -100,12 +123,12 @@ fi
 
 # set up rbenv shims
 if [[ !  "$PATH" =~ "rbenv" ]] && [[ -d ~/.rbenv ]] ; then
-	export PATH="$HOME/.rbenv/bin:$PATH"
+  export PATH="$HOME/.rbenv/bin:$PATH"
 fi
 
 # initialize rbenv
 if [[ -d ~/.rbenv ]] ; then
-	eval "$(rbenv init -)"
+  eval "$(rbenv init -)"
 fi
 
 
