@@ -13,6 +13,42 @@ global_ignore() {
 source ~/dotfiles/grab.bash
 
 
+# WordPress
+
+wp-html-dir() {
+  root=`git root`
+  if [[ -d $root/html/wp ]] ; then
+    html=$root/html/wp
+  elif [[ -d $root/html ]] ; then
+    html=$root/html
+  elif [[ -d $root/wp ]] ; then
+    html=$root/wp
+  fi
+  echo $html
+}
+
+plugins() {
+  cd $(wp-html-dir)/wp-content/plugins
+}
+
+plugin() {
+  plugins && cd $1
+}
+
+themes() {
+  cd $(wp-html-dir)/wp-content/themes
+}
+
+theme() {
+  themes && cd $1
+}
+
+wpdebug() {
+  cd $(wp-html-dir)/wp-content
+  touch debug.log
+  tail -f debug.log
+}
+
 #--------------------
 # Assorted functions
 #--------------------
