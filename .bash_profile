@@ -56,6 +56,21 @@ fi
 
 
 #---------
+# Racket
+#---------
+
+if [[ ! $PATH =~ "Racket" ]] && [[ -d "/Applications/Racket v6.4" ]] ; then
+  export PATH="/Applications/Racket v6.4/bin":$PATH
+elif [[ ! $PATH =~ "Racket" ]] ; then
+  for f in /Applications/Racket*; do
+    [[ -e "$f" ]] && echo "Racket is not in your path but $f exists; you may want to update your path..."
+    break
+  done
+fi
+
+
+
+#---------
 # Git
 #---------
 
