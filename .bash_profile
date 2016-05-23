@@ -41,6 +41,17 @@ if [ -f ~/.functions ] ; then
 fi
 
 
+
+#------
+# Ruby
+#------
+
+if [[ ! "$PATH" =~ "rbenv/shims" ]] && [[ -d $HOME/.rbenv/shims ]] ; then
+  export PATH=$HOME/.rbenv/shims:$PATH
+fi
+
+
+
 #---------
 # Haskell
 #---------
