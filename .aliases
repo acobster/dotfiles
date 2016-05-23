@@ -7,5 +7,6 @@ alias svb='vim ~/dotfiles/.bash_profile'
 alias vb='vim ~/.bash_profile'
 alias dtf='cd ~/dotfiles'
 alias reload='. ~/.bash_profile'
+alias rc='. ~/.bashrc'
 alias ..='cd ..'
 
