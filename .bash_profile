@@ -42,16 +42,6 @@ fi
 
 
 
-#------
-# Ruby
-#------
-
-if [[ ! "$PATH" =~ "rbenv/shims" ]] && [[ -d $HOME/.rbenv/shims ]] ; then
-  export PATH=$HOME/.rbenv/shims:$PATH
-fi
-
-
-
 #---------
 # Haskell
 #---------
@@ -110,8 +100,8 @@ if [ -f ~/dotfiles/git-prompt.bash ]; then
 fi
 
 # Git completion
-if [ -f ~/dotfiles/gitcompletion.bash ]; then
-	source ~/dotfiles/gitcompletion.bash
+if [ -f ~/dotfiles/git-completion.bash ]; then
+	source ~/dotfiles/git-completion.bash
 fi
 
 
@@ -143,18 +133,23 @@ if [ -f ~/dotfiles/wp-completion.bash ] ; then
 	source ~/dotfiles/wp-completion.bash
 fi
 
-#---------
-# Rubies
-#---------
 
-# set up rbenv shims
-if [[ !  "$PATH" =~ "rbenv" ]] && [[ -d ~/.rbenv ]] ; then
+
+#------
+# Ruby
+#------
+
+if [[ ! "$PATH" =~ ".rbenv/bin" ]] && [[ -d $HOME/.rbenv/bin ]] ; then
   export PATH="$HOME/.rbenv/bin:$PATH"
 fi
 
 # initialize rbenv
-if [[ -d ~/.rbenv ]] ; then
+if [[ "$PATH" =~ ".rbenv/bin" ]] ; then
   eval "$(rbenv init -)"
+fi
+
+if [[ ! "$PATH" =~ ".rbenv/shims" ]] && [[ -d $HOME/.rbenv/shims ]] ; then
+  export PATH="$HOME/.rbenv/shims:$PATH"
 fi
 
 
