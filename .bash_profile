@@ -41,6 +41,46 @@ if [ -f ~/.functions ] ; then
 fi
 
 
+
+#------
+# Ruby
+#------
+
+if [[ ! "$PATH" =~ "rbenv/shims" ]] && [[ -d $HOME/.rbenv/shims ]] ; then
+  export PATH=$HOME/.rbenv/shims:$PATH
+fi
+
+
+
+#---------
+# Haskell
+#---------
+
+if [[ !  "$PATH" =~ "cabal" ]] && [[ -d $HOME/.cabal/bin ]] ; then
+  export PATH=$HOME/.cabal/bin:$PATH
+fi
+
+if [[ !  "$PATH" =~ "Library/Haskell" ]] && [[ -d $HOME/Library/Haskell/ghc-7.8.4/lib/snap-0.14.0.6/bin ]] ; then
+  export PATH=$HOME/Library/Haskell/ghc-7.8.4/lib/snap-0.14.0.6/bin:$PATH
+fi
+
+
+
+#---------
+# Racket
+#---------
+
+if [[ ! $PATH =~ "Racket" ]] && [[ -d "/Applications/Racket v6.4" ]] ; then
+  export PATH="/Applications/Racket v6.4/bin":$PATH
+elif [[ ! $PATH =~ "Racket" ]] ; then
+  for f in /Applications/Racket*; do
+    [[ -e "$f" ]] && echo "Racket is not in your path but $f exists; you may want to update your path..."
+    break
+  done
+fi
+
+
+
 #---------
 # Git
 #---------

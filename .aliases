@@ -1,10 +1,13 @@
 # Set up aliases
 alias aliases='vim ~/dotfiles/.aliases'
+alias al='vim ~/.aliases'
 alias functions='vim ~/dotfiles/.functions'
 alias ssh-config='vim ~/.ssh/config'
+alias fn='vim ~/.functions'
 alias svb='vim ~/dotfiles/.bash_profile'
 alias vb='vim ~/.bash_profile'
 alias dtf='cd ~/dotfiles'
 alias reload='. ~/.bash_profile'
+alias rc='. ~/.bashrc'
 alias ..='cd ..'
 alias drop='cd ~/Dropbox'
