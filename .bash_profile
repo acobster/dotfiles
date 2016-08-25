@@ -110,8 +110,8 @@ if [ -f ~/dotfiles/git-prompt.bash ]; then
 fi
 
 # Git completion
-if [ -f ~/dotfiles/gitcompletion.bash ]; then
-	source ~/dotfiles/gitcompletion.bash
+if [ -f ~/dotfiles/git-completion.bash ]; then
+	source ~/dotfiles/git-completion.bash
 fi
 
 
