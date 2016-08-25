@@ -42,16 +42,6 @@ fi
 
 
 
-#------
-# Ruby
-#------
-
-if [[ ! "$PATH" =~ "rbenv/shims" ]] && [[ -d $HOME/.rbenv/shims ]] ; then
-  export PATH=$HOME/.rbenv/shims:$PATH
-fi
-
-
-
 #---------
 # Haskell
 #---------
@@ -126,6 +116,7 @@ export HISTCONTROL=ignoreboth
 shopt -s histappend
 
 
+
 #---------
 # Window
 #---------
@@ -133,6 +124,7 @@ shopt -s histappend
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
+
 
 
 #---------
@@ -143,13 +135,19 @@ if [ -f ~/dotfiles/wp-completion.bash ] ; then
 	source ~/dotfiles/wp-completion.bash
 fi
 
+
+
 #---------
 # Rubies
 #---------
 
 # set up rbenv shims
-if [[ !  "$PATH" =~ "rbenv" ]] && [[ -d ~/.rbenv ]] ; then
+if [[ !  "$PATH" =~ "rbenv/bin" ]] && [[ -d ~/.rbenv/bin ]] ; then
   export PATH="$HOME/.rbenv/bin:$PATH"
+fi
+
+if [[ ! "$PATH" =~ "rbenv/shims" ]] && [[ -d $HOME/.rbenv/shims ]] ; then
+  export PATH=$HOME/.rbenv/shims:$PATH
 fi
 
 # initialize rbenv
