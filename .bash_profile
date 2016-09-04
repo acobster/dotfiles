@@ -32,12 +32,12 @@ fi
 
 # Load common functions
 if [ -f ~/dotfiles/.functions ] ; then
-        source ~/dotfiles/.functions
+  source ~/dotfiles/.functions
 fi
 
 # Load machine-specific functions
 if [ -f ~/.functions ] ; then
-        source ~/.functions
+  source ~/.functions
 fi
 
 
