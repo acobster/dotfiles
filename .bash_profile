@@ -91,6 +91,10 @@ if [[ -z $(git config --global alias.root) ]] ; then
 fi
 
 
+if [[ -f ~/dotfiles/git-prompt.bash ]]; then
+  . ~/dotfiles/git-prompt.bash
+fi
+
 
 __env_ps1() {
   local _live
@@ -121,7 +125,7 @@ __compose_ps1() {
     GIT_PS1_SHOWSTASHSTATE=1
     source ~/dotfiles/git-prompt.bash
 
-    git_prompt='\[\e[0;35m\]$(__git_ps1)\[\e[01;32m\]'
+    git_prompt='\[\e[1;35m\]$(__git_ps1)\[\e[01;32m\]'
   fi
 
   # Web-environment-based prompt:
@@ -132,10 +136,10 @@ __compose_ps1() {
   local env_ps1
   env_ps1='\[$(tput bold 1)\]\e[0:31m$(__env_ps1)\e[m\[$(tput sgr0)\]'
 
-  echo "\h${git_prompt} \w${env_ps1} \$ "
+  export PS1="\h${git_prompt} \w${env_ps1} \$ "
 }
 
-export PS1=$(__compose_ps1)
+__compose_ps1
 
 # Git completion
 if [ -f ~/dotfiles/git-completion.bash ]; then
