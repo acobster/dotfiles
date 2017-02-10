@@ -94,14 +94,56 @@ if [[ -z $(git config --global alias.root) ]] ; then
   git config --global alias.root '!pwd'
 fi
 
-# Git prompt
-if [ -f ~/dotfiles/git-prompt.bash ]; then
-	GIT_PS1_SHOWUNTRACKEDFILES=1
-	GIT_PS1_SHOWDIRTYSTATE=1
-	GIT_PS1_SHOWSTASHSTATE=1
-	source ~/dotfiles/git-prompt.bash
-	export PS1='\h\[\e[00m\]:\[\e[1;31m\]$(__git_ps1) \[\e[01;32m\]\w\[\e[00m\] \$ '
+
+if [[ -f ~/dotfiles/git-prompt.bash ]]; then
+  . ~/dotfiles/git-prompt.bash
 fi
+
+
+__env_ps1() {
+  local _live
+  _live=''
+
+  if [ -f $HOME/.live.env ] ; then
+    . $HOME/.live.env
+
+    for d in "${LIVE_DIRS[@]}" ; do
+      if [[ `pwd` =~ ^"$d".*$ ]] ; then
+        _live=' [!PRODUCTION!]'
+      fi
+    done
+  fi
+
+  echo "$_live"
+  return 0
+}
+
+
+__compose_ps1() {
+  # Git prompt
+  local git_prompt
+  git_prompt=''
+  if [ -f ~/dotfiles/git-prompt.bash ]; then
+    GIT_PS1_SHOWUNTRACKEDFILES=1
+    GIT_PS1_SHOWDIRTYSTATE=1
+    GIT_PS1_SHOWSTASHSTATE=1
+    source ~/dotfiles/git-prompt.bash
+
+    git_prompt='\[\e[1;35m\]$(__git_ps1)\[\e[01;32m\]'
+  fi
+
+  # Web-environment-based prompt:
+  # put your LIVE_DIRS array definition inside a file at ~/.live.env, e.g.:
+  #
+  #   LIVE_ENV=(/var/www/example.com /var/www/example2.com)
+  #
+  local env_ps1
+  env_ps1='\[$(tput bold 1)\]\e[0:31m$(__env_ps1)\e[m\[$(tput sgr0)\]'
+
+  export PS1="\h${git_prompt} \w${env_ps1} \$ "
+}
+
+__compose_ps1
 
 # Git completion
 if [ -f ~/dotfiles/git-completion.bash ]; then
