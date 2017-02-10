@@ -10,6 +10,10 @@ if [[ -d "$HOME/bin" ]] && ! [[ $PATH =~ ":${HOME}\/bin:" ]] ; then
   export PATH=~/bin:$PATH
 fi
 
+if [[ -d "/usr/local/mysql/bin" ]] && ! [[ $PATH =~ ":mysql\/bin:" ]] ; then
+  export PATH=/usr/local/mysql/bin:$PATH
+fi
+
 
 #---------
 # Aliases
