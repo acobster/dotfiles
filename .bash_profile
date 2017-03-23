@@ -89,10 +89,21 @@ if [[ -z $(git config --global alias.last-log) ]] ; then
   git config --global alias.last-log 'log -1 HEAD'
 fi
 
-# Alias: git root
-if [[ -z $(git config --global alias.root) ]] ; then
-  git config --global alias.root '!pwd'
+# Alias: git cache
+if [[ -z $(git config --global alias.cache) ]] ; then
+  git config --global alias.cache 'diff --name-only --cached'
 fi
+
+# Alias: git rs
+if [[ -z $(git config --global alias.rs) ]] ; then
+  git config --global alias.rs 'reset --hard HEAD'
+fi
+
+# Alias: git cl
+if [[ -z $(git config --global alias.cl) ]] ; then
+  git config --global alias.cl 'clean -fd'
+fi
+
 
 
 if [[ -f ~/dotfiles/git-prompt.bash ]]; then
