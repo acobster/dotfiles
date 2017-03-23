@@ -23,6 +23,8 @@ wp-html-dir() {
     html=$root/html
   elif [[ -d $root/wp ]] ; then
     html=$root/wp
+  elif [[ -f $root/wp-config.php ]] ; then
+    html=$root
   fi
   echo $html
 }
