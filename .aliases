@@ -16,5 +16,10 @@ alias pub='pbcopy < ~/.ssh/key2.pub'
 alias p='pushd .'
 alias pp='popd'
 
+# Docker shortcuts
+alias dc='docker-compose'
+alias dw='docker-compose exec web'
+alias dwp='docker-compose exec web wp --allow-root'
+
 # Sublime shortcuts
 alias sp='subl *.sublime-project'
