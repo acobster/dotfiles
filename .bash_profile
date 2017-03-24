@@ -14,11 +14,14 @@ __env_ps1() {
   local _live
   _live=''
 
+  # the .live.env config file defines the LIVE_DIRS variable,
+  # which tells us which directory trees to "prompt" as production
   if [ -f $HOME/.live.env ] ; then
     . $HOME/.live.env
 
     for d in "${LIVE_DIRS[@]}" ; do
       if [[ `pwd` =~ ^"$d".*$ ]] ; then
+        # we're in a prod subtree. prompt accordingly!
         _live=' [!PRODUCTION!]'
       fi
     done
@@ -29,6 +32,12 @@ __env_ps1() {
 }
 
 __compose_ps1() {
+  MAGENTA='\e[1;35m'
+  GREEN='\e[01;32m'
+
+  BOLD='$(tput bold 1)'
+  RESET='$(tput sgr0)'
+
   # Git prompt
   local git_prompt
   git_prompt=''
@@ -38,7 +47,7 @@ __compose_ps1() {
     GIT_PS1_SHOWSTASHSTATE=1
     source ~/dotfiles/git-prompt.bash
 
-    git_prompt='\[\e[1;35m\]$(__git_ps1)\[\e[01;32m\]'
+    git_prompt="$(__git_ps1)"
   fi
 
   # Web-environment-based prompt:
@@ -47,9 +56,30 @@ __compose_ps1() {
   #   LIVE_ENV=(/var/www/example.com /var/www/example2.com)
   #
   local env_ps1
-  env_ps1='\[$(tput bold 1)\]\e[0:31m$(__env_ps1)\e[m\[$(tput sgr0)\]'
+  env_ps1="\$(__env_ps1)"
 
-  export PS1="\h${git_prompt} \w${env_ps1} \$ "
+  local pwd_length=40
+  local workingDir="${PWD/#$HOME/~}"
+  if [[ $(echo -n $workingDir | wc -c | tr -d " ") -gt $pwd_length ]]
+    then wd="▶ $(echo -n $workingDir | sed -e "s/.*\(.\{$pwd_length\}\)/\1/")"
+    else wd="$(echo -n $workingDir)"
+      # ‹€⁄€¡™£¢∞§¶•ªº–≠«»“øˆ¨¥†®´∑œåß∂ƒ©˙∆ÅÍÎÏ©ÓÔ˚Ò…ÆÆÚÒÔÓ˝ÏÎÍÅŒ„´‰˚¬…æ…¬¬˚
+  fi
+
+  dt=$(date '+%m%d')
+  if [[ $dt == '0314' ]] ; then
+    s='π'
+  elif [[ $dt == '0628' ]] ; then
+    s='τ'
+  elif [[ $dt -gt 1201 ]] ; then
+    s='🎄 '
+  elif [[ $dt == '0809' ]] ; then
+    s='🍕 '
+  else
+    s='\$'
+  fi
+
+  export PS1="\u\[$BOLD\]\[$MAGENTA\]${git_prompt} \[$GREEN\]${wd}${env_ps1}\[$RESET\] $s "
 }
 
 __compose_ps1
