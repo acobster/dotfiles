@@ -43,13 +43,15 @@ __env_ps1() {
 #
 __cwd_ps1() {
   local pwd_length=40
-  local workingDir="${PWD/#$HOME/~}"
+  local home_pattern=$(echo $HOME | sed 's/\//\\\//g')
+  local workingDir=$(echo $PWD | sed "s/$home_pattern/~/")
   if [[ $(echo -n $workingDir | wc -c | tr -d " ") -gt $pwd_length ]]
     then wd="...$(echo -n $workingDir | sed -e "s/.*\(.\{$pwd_length\}\)/\1/")"
     else wd="$(echo -n $workingDir)"
   fi
 
   echo $wd
+  return 0
 }
 
 __compose_ps1() {
@@ -97,7 +99,7 @@ __compose_ps1() {
     s='\$'
   fi
 
-  export PS1="\u\[$BOLD\]\[$MAGENTA\]${git_prompt} \[$GREEN\]\$(__cwd_ps1)\$(__env_ps1)\[$RESET\] $s "
+  export PS1="\u@\h\[$BOLD\]\[$MAGENTA\]${git_prompt} \[$GREEN\]\$(__cwd_ps1)\$(__env_ps1)\[$RESET\] $s "
 }
 
 __compose_ps1
