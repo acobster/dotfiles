@@ -47,7 +47,7 @@ __compose_ps1() {
     GIT_PS1_SHOWSTASHSTATE=1
     source ~/dotfiles/git-prompt.bash
 
-    git_prompt="$(__git_ps1)"
+    git_prompt="\$(__git_ps1)"
   fi
 
   # Web-environment-based prompt:
@@ -63,7 +63,6 @@ __compose_ps1() {
   if [[ $(echo -n $workingDir | wc -c | tr -d " ") -gt $pwd_length ]]
     then wd="▶ $(echo -n $workingDir | sed -e "s/.*\(.\{$pwd_length\}\)/\1/")"
     else wd="$(echo -n $workingDir)"
-      # ‹€⁄€¡™£¢∞§¶•ªº–≠«»“øˆ¨¥†®´∑œåß∂ƒ©˙∆ÅÍÎÏ©ÓÔ˚Ò…ÆÆÚÒÔÓ˝ÏÎÍÅŒ„´‰˚¬…æ…¬¬˚
   fi
 
   dt=$(date '+%m%d')
