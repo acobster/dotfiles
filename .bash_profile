@@ -74,6 +74,10 @@ __compose_ps1() {
     s='🎄 '
   elif [[ $dt == '0809' ]] ; then
     s='🍕 '
+  elif [[ $dt == '0201' ]] ; then
+    s='🍆 '
+  elif [[ $dt == '0115' ]] ; then
+    s='🥕 '
   else
     s='\$'
   fi
