@@ -10,6 +10,13 @@ if [[ -f ~/dotfiles/git-prompt.bash ]]; then
   . ~/dotfiles/git-prompt.bash
 fi
 
+
+#
+# Web-environment-based prompt:
+# put your LIVE_DIRS array definition inside a file at ~/.live.env, e.g.:
+#
+#   LIVE_ENV=(/var/www/example.com /var/www/example2.com)
+#
 __env_ps1() {
   local _live
   _live=''
@@ -31,6 +38,20 @@ __env_ps1() {
   return 0
 }
 
+#
+# include the current working dir in the prompt, abbreviating if necessary
+#
+__cwd_ps1() {
+  local pwd_length=40
+  local workingDir="${PWD/#$HOME/~}"
+  if [[ $(echo -n $workingDir | wc -c | tr -d " ") -gt $pwd_length ]]
+    then wd="...$(echo -n $workingDir | sed -e "s/.*\(.\{$pwd_length\}\)/\1/")"
+    else wd="$(echo -n $workingDir)"
+  fi
+
+  echo $wd
+}
+
 __compose_ps1() {
   MAGENTA='\e[1;35m'
   GREEN='\e[01;32m'
@@ -50,26 +71,20 @@ __compose_ps1() {
     git_prompt="\$(__git_ps1)"
   fi
 
-  # Web-environment-based prompt:
-  # put your LIVE_DIRS array definition inside a file at ~/.live.env, e.g.:
-  #
-  #   LIVE_ENV=(/var/www/example.com /var/www/example2.com)
-  #
-  local env_ps1
-  env_ps1="\$(__env_ps1)"
-
-  local pwd_length=40
-  local workingDir="${PWD/#$HOME/~}"
-  if [[ $(echo -n $workingDir | wc -c | tr -d " ") -gt $pwd_length ]]
-    then wd="▶ $(echo -n $workingDir | sed -e "s/.*\(.\{$pwd_length\}\)/\1/")"
-    else wd="$(echo -n $workingDir)"
-  fi
-
+  # Easter eggs!
   dt=$(date '+%m%d')
   if [[ $dt == '0314' ]] ; then
     s='π'
   elif [[ $dt == '0628' ]] ; then
     s='τ'
+  elif [[ $dt == '' ]] ; then
+    s='🌎 '
+  elif [[ $dt == '0316' ]] ; then
+    s='⚾️ '
+  elif [[ $dt == '0317' ]] ; then
+    s='🍀 '
+  elif [[ $dt == '1031' ]] ; then
+    s='🎃 '
   elif [[ $dt -gt 1201 ]] ; then
     s='🎄 '
   elif [[ $dt == '0809' ]] ; then
@@ -82,7 +97,7 @@ __compose_ps1() {
     s='\$'
   fi
 
-  export PS1="\u\[$BOLD\]\[$MAGENTA\]${git_prompt} \[$GREEN\]${wd}${env_ps1}\[$RESET\] $s "
+  export PS1="\u\[$BOLD\]\[$MAGENTA\]${git_prompt} \[$GREEN\]\$(__cwd_ps1)\$(__env_ps1)\[$RESET\] $s "
 }
 
 __compose_ps1
