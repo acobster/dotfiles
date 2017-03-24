@@ -15,3 +15,6 @@ alias drop='cd ~/Dropbox'
 alias pub='pbcopy < ~/.ssh/key2.pub'
 alias p='pushd .'
 alias pp='popd'
+
+# Sublime shortcuts
+alias sp='subl *.sublime-project'
