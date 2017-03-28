@@ -74,26 +74,27 @@ __compose_ps1() {
   fi
 
   # Easter eggs!
-  dt=$(date '+%m%d')
-  if [[ $dt == '0314' ]] ; then
+  # strip leading zero from mmdd date
+  dt=$(date '+%m%d' | sed 's/^0//')
+  if [[ $dt == '314' ]] ; then
     s='π'
-  elif [[ $dt == '0628' ]] ; then
+  elif [[ $dt == '628' ]] ; then
     s='τ'
-  elif [[ $dt == '' ]] ; then
+  elif [[ $dt == '422' ]] ; then
     s='🌎 '
-  elif [[ $dt == '0316' ]] ; then
+  elif [[ $dt == '316' ]] ; then
     s='⚾️ '
-  elif [[ $dt == '0317' ]] ; then
+  elif [[ $dt == '317' ]] ; then
     s='🍀 '
   elif [[ $dt == '1031' ]] ; then
     s='🎃 '
   elif [[ $dt -gt 1201 ]] ; then
     s='🎄 '
-  elif [[ $dt == '0809' ]] ; then
+  elif [[ $dt == '809' ]] ; then
     s='🍕 '
-  elif [[ $dt == '0201' ]] ; then
+  elif [[ $dt == '201' ]] ; then
     s='🍆 '
-  elif [[ $dt == '0115' ]] ; then
+  elif [[ $dt == '115' ]] ; then
     s='🥕 '
   else
     s='\$'
