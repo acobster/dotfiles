@@ -14,6 +14,10 @@ alias drop='cd ~/Dropbox'
 alias pub='pbcopy < ~/.ssh/key2.pub'
 alias p='pushd .'
 alias pp='popd'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
 
 # Docker shortcuts
 alias dc='docker-compose'
