@@ -86,11 +86,21 @@ h() {
 }
 
 mc() {
-  mkdir $1 && cd $1
+  mkdir -p $1 && cd $1
 }
 
 sql() {
   mysql -u root -p $1
+}
+
+grephp() {
+  if [[ -z $2 ]] ; then
+    dir=.
+  else
+    dir=$2
+  fi
+
+  grep --include=*.php -r "$1" $dir
 }
 
 psgrep() {
