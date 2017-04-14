@@ -183,6 +183,11 @@ fi
 # Git
 #---------
 
+# Alias: git root
+if [[ -z $(git config --global alias.root) ]] ; then
+  git config --global alias.root 'rev-parse --show-toplevel'
+fi
+
 # Alias: git last
 if [[ -z $(git config --global alias.last) ]] ; then
   git config --global alias.last 'diff HEAD~1 HEAD'
