@@ -119,6 +119,21 @@ if [[ -d "/usr/local/mysql/bin" ]] && ! [[ $PATH =~ ":mysql\/bin:" ]] ; then
 fi
 
 
+
+#----------
+# SSH Keys
+#----------
+
+if [[ -z $ADDED_DEFAULT_KEYS && -f ~/.ssh/default-keys ]] ; then
+  cat ~/.ssh/default-keys | while read k ; do
+    if [[ -z $(ssh-add -l | grep $k) ]] ; then
+      ssh-add $k
+    fi
+  done
+  export ADDED_DEFAULT_KEYS=1
+fi
+
+
 #---------
 # Aliases
 #---------
