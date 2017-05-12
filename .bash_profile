@@ -199,6 +199,11 @@ fi
 # Git
 #---------
 
+# Global .gitignore
+if [[ -z $(git config --global core.excludesfile) ]] ; then
+  git config --global core.excludesfile '~/.gitignore'
+fi
+
 # Alias: git root
 if [[ -z $(git config --global alias.root) ]] ; then
   git config --global alias.root 'rev-parse --show-toplevel'
