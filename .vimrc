@@ -21,8 +21,22 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'scrooloose/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'vim-syntastic/syntastic'
 
 call plug#end()
+
+set statusline=%t\ %y%=%c,%l/%L\ %P
+
+" put symbols in the sign column
+hi clear SignColumn
+
+" ----- scrooloose/syntastic settings -----
+let g:syntastic_error_symbol = '✘'
+let g:syntastic_warning_symbol = "▲"
+augroup mySyntastic
+  au!
+  au FileType tex let b:syntastic_mode = "passive"
+augroup END
 
 " Coloring for 80-char column
 if (exists('+colorcolumn'))
