@@ -7,6 +7,12 @@ echo setting up vim...
 ~/dotfiles/vim-setup.bash
 
 echo linking config files
-ln -s ~/dotfiles/.gitignore ~/.gitignore
+if [[ ! -f ~/.gitignore ]] ; then
+  ln -s ~/dotfiles/.gitignore ~/.gitignore
+fi
+
+if [[ -d ~/.hammerspoon ]] && [[ ! -f ~/.hammerspoon/init.lua ]] ; then
+  ln -s ~/dotfiles/init.lua ~/.hammerspoon/init.lua
+fi
 
 echo 'done! 👍 🍅 🍕 🚀 🎸 '
