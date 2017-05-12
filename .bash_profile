@@ -208,6 +208,21 @@ if [[ -z $(git config --global core.excludesfile) ]] ; then
   git config --global core.excludesfile '~/.gitignore'
 fi
 
+# Alias: git aa
+if [[ -z $(git config --global alias.aa) ]] ; then
+  git config --global alias.aa 'add --all'
+fi
+
+# Alias: git co
+if [[ -z $(git config --global alias.co) ]] ; then
+  git config --global alias.co 'checkout'
+fi
+
+# Alias: git ci
+if [[ -z $(git config --global alias.ci) ]] ; then
+  git config --global alias.ci 'commit'
+fi
+
 # Alias: git root
 if [[ -z $(git config --global alias.root) ]] ; then
   git config --global alias.root 'rev-parse --show-toplevel'
