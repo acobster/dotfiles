@@ -118,6 +118,10 @@ if [[ -d "/usr/local/mysql/bin" ]] && ! [[ $PATH =~ ":mysql\/bin:" ]] ; then
   export PATH=/usr/local/mysql/bin:$PATH
 fi
 
+if ! [[ $PATH =~ ":dotfiles\/bin:" ]] ; then
+  export PATH=$HOME/dotfiles/bin:$PATH
+fi
+
 
 
 #----------
@@ -198,6 +202,41 @@ fi
 #---------
 # Git
 #---------
+
+# Global .gitignore
+if [[ -z $(git config --global core.excludesfile) ]] ; then
+  git config --global core.excludesfile '~/.gitignore'
+fi
+
+# Alias: git st
+if [[ -z $(git config --global alias.st) ]] ; then
+  git config --global alias.st 'status'
+fi
+
+# Alias: git sh
+if [[ -z $(git config --global alias.sh) ]] ; then
+  git config --global alias.sh 'status'
+fi
+
+# Alias: git aa
+if [[ -z $(git config --global alias.aa) ]] ; then
+  git config --global alias.aa 'add --all'
+fi
+
+# Alias: git co
+if [[ -z $(git config --global alias.co) ]] ; then
+  git config --global alias.co 'checkout'
+fi
+
+# Alias: git ci
+if [[ -z $(git config --global alias.ci) ]] ; then
+  git config --global alias.ci 'commit'
+fi
+
+# Alias: git cam
+if [[ -z $(git config --global alias.cam) ]] ; then
+  git config --global alias.cam 'commit -am'
+fi
 
 # Alias: git root
 if [[ -z $(git config --global alias.root) ]] ; then
