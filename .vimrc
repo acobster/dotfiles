@@ -35,6 +35,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 
+" Multiple cursors
+Plug 'terryma/vim-multiple-cursors'
+
 call plug#end()
 
 set laststatus=2
