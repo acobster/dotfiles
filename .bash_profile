@@ -208,6 +208,16 @@ if [[ -z $(git config --global core.excludesfile) ]] ; then
   git config --global core.excludesfile '~/.gitignore'
 fi
 
+# Alias: git st
+if [[ -z $(git config --global alias.st) ]] ; then
+  git config --global alias.st 'status'
+fi
+
+# Alias: git sh
+if [[ -z $(git config --global alias.sh) ]] ; then
+  git config --global alias.sh 'status'
+fi
+
 # Alias: git aa
 if [[ -z $(git config --global alias.aa) ]] ; then
   git config --global alias.aa 'add --all'
@@ -221,6 +231,11 @@ fi
 # Alias: git ci
 if [[ -z $(git config --global alias.ci) ]] ; then
   git config --global alias.ci 'commit'
+fi
+
+# Alias: git cam
+if [[ -z $(git config --global alias.cam) ]] ; then
+  git config --global alias.cam 'commit -am'
 fi
 
 # Alias: git root
