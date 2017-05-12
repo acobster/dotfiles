@@ -101,6 +101,16 @@ let g:vim_markdown_folding_disabled = 1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CUSTOM MAPPINGS!
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Shift+Enter to insert newline above (without insert mode)
+nmap <C-o> O<Esc>
+" Plain ol' Enter to insert newline below (ditto)
+nmap <CR> o<Esc>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " INLINE VARIABLE (SKETCHY)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! InlineVariable()
