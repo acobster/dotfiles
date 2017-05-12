@@ -30,7 +30,6 @@ To initialize other stuff with sane defaults, symlink 'em up:
 ```
 $ ln -s dotfiles/.vimrc .vimrc
 $ ln -s dotfiles/.gitignore .gitignore
-$ git config --global core.excludesfile ~/.gitignore
 ``` 
 
 **Note that this setup assumes you have these files in the `~/dotfiles` dir. It won't work otherwise.**

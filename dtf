@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -e
+
+# setup vim
+echo setting up vim...
+~/dotfiles/vim-setup.bash
+
+echo linking config files
+#ln -s dotfiles/.vimrc ~/.vimrc
+#ln -s dotfiles/.gitignore ~/.gitignore
+
+echo 'done! 👍 🍅 🍕 🚀 🎸 '
