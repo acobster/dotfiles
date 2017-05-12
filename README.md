@@ -5,6 +5,7 @@
 ```
 $ cd
 $ git clone git@github.com:acobster/dotfiles
+$ dotfiles/dtf # setup and symlink stuff
 ```
 
 ### `.bash_profile`
