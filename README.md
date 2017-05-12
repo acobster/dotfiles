@@ -8,6 +8,8 @@ $ git clone git@github.com:acobster/dotfiles
 $ dotfiles/dtf # setup and symlink stuff
 ```
 
+## The slow way
+
 ### `.bash_profile`
 
 In your `~/.bash_profile`, add the following:
