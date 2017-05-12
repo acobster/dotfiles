@@ -118,6 +118,10 @@ if [[ -d "/usr/local/mysql/bin" ]] && ! [[ $PATH =~ ":mysql\/bin:" ]] ; then
   export PATH=/usr/local/mysql/bin:$PATH
 fi
 
+if ! [[ $PATH =~ ":dotfiles\/bin:" ]] ; then
+  export PATH=$HOME/dotfiles/bin:$PATH
+fi
+
 
 
 #----------
