@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+#
+# Summarize changes since a given commit
+#
+
+set -e
+
+function main {
+  start=`git rev-parse "$1"`
+  end=`git rev-parse "$2"`
+
+  git log --format=%B "$start..$end" | grep -v "^$" | grep -v "^Merge" | sort
+}
+
+function usage {
+  echo "
+usage: changes START [END]
+
+Summarize changes since a given commit START, optionally providing an END commit
+"
+}
+
+if [[ -z $1 ]] ; then
+  usage
+elif [[ -z $2 ]] ; then
+  main $1 HEAD
+else
+  main $1 $2
+fi
