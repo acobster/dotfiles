@@ -6,3 +6,4 @@ bower_components/
 .otto/
 .zeus.sock
 zeus.json
+*.swp
