@@ -31,6 +31,10 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
+" Markdown
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+
 call plug#end()
 
 set laststatus=2
@@ -78,3 +82,5 @@ map <C-n> :NERDTreeToggle<CR>
 " close vim if NERDTree is the only tab left open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+" Markdown config
+let g:vim_markdown_folding_disabled = 1
