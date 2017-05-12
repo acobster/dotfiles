@@ -21,6 +21,8 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'scrooloose/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'lumiliet/vim-twig'
+Plug 'terryma/vim-multiple-cursors'
 
 call plug#end()
 
