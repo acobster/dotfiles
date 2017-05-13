@@ -330,3 +330,8 @@ if [[ ! "$PATH" =~ ".rbenv/shims" ]] && [[ -d $HOME/.rbenv/shims ]] ; then
 fi
 
 
+#-------
+# Misc.
+#-------
+
+export EDITOR=vim
