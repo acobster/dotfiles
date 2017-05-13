@@ -10,7 +10,7 @@ function main {
   start=`git rev-parse "$1"`
   end=`git rev-parse "$2"`
 
-  git log --format=%B "$start..$end" | grep -v "^$" | grep -v "^Merge" | sort
+  git log --format=%s "$start..$end" | grep -v "^$" | grep -v "^Merge" | sort
 }
 
 function usage {
