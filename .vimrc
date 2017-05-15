@@ -15,35 +15,41 @@ set expandtab
 set tabstop=2
 set shiftwidth=2
 
-call plug#begin('~/.vim/plugged')
+filetype off
 
-Plug 'altercation/vim-colors-solarized'
-Plug 'bronson/vim-trailing-whitespace'
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'bronson/vim-trailing-whitespace'
 
 " Navigation
-Plug 'scrooloose/nerdtree'
-Plug 'ctrlpvim/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 " Syntax
-Plug 'lumiliet/vim-twig'
-Plug 'vim-syntastic/syntastic'
+Plugin 'lumiliet/vim-twig'
+Plugin 'vim-syntastic/syntastic'
 
 " Fancy-ass statusline
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 " Git
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
 
 " Markdown
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 
 " Multiple cursors
-Plug 'terryma/vim-multiple-cursors'
+Plugin 'terryma/vim-multiple-cursors'
 
-call plug#end()
+call vundle#end()
+
+filetype plugin indent on
 
 set laststatus=2
 
@@ -97,6 +103,16 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 " Markdown config
 let g:vim_markdown_folding_disabled = 1
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CUSTOM MAPPINGS!
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Shift+Enter to insert newline above (without insert mode)
+nmap <C-o> O<Esc>
+" Plain ol' Enter to insert newline below (ditto)
+nmap <CR> o<Esc>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

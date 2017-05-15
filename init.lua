@@ -1,5 +1,3 @@
-require 'lfs'
-
 -- general purpose function for Growl notifications
 function notify(message)
 	hs.applescript('display notification "'..message..'"')
