@@ -58,6 +58,11 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let syntastic_mode_map = { 'passive_filetypes': ['html'] }
+let g:syntastic_twig_checkers = ['twig']
+let g:syntastic_html_tidy_ignore_errors = [
+  \ 'plain text isn''t allowed in <head> elements',
+  \ '<img> escaping malformed URI reference'
+  \ ]
 
 " In vim-airline, only display "hunks" if the diff is non-zero
 let g:airline#extensions#hunks#non_zero_only = 1
@@ -99,6 +104,16 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 " Markdown config
 let g:vim_markdown_folding_disabled = 1
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CUSTOM MAPPINGS!
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Shift+Enter to insert newline above (without insert mode)
+nmap <C-o> O<Esc>
+" Plain ol' Enter to insert newline below (ditto)
+nmap <CR> o<Esc>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
