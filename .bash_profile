@@ -223,6 +223,21 @@ if [[ -z $(git config --global alias.aa) ]] ; then
   git config --global alias.aa 'add --all'
 fi
 
+# Alias: git dc
+if [[ -z $(git config --global alias.dc) ]] ; then
+  git config --global alias.dc 'diff --cached'
+fi
+
+# Alias: git files
+if [[ -z $(git config --global alias.files) ]] ; then
+  git config --global alias.files 'diff --name-only'
+fi
+
+# Alias: git ha - add hunks interactively
+if [[ -z $(git config --global alias.ha) ]] ; then
+  git config --global alias.ha 'add --all -p'
+fi
+
 # Alias: git co
 if [[ -z $(git config --global alias.co) ]] ; then
   git config --global alias.co 'checkout'
@@ -271,6 +286,16 @@ fi
 # Alias: git cl
 if [[ -z $(git config --global alias.cl) ]] ; then
   git config --global alias.cl 'clean -fd'
+fi
+
+# Alias: git b
+if [[ -z $(git config --global alias.b) ]] ; then
+  git config --global alias.b 'branch'
+fi
+
+# Alias: git ff
+if [[ -z $(git config --global alias.ff) ]] ; then
+  git config --global alias.ff 'merge --ff-only'
 fi
 
 
@@ -335,3 +360,8 @@ if [[ ! "$PATH" =~ ".rbenv/shims" ]] && [[ -d $HOME/.rbenv/shims ]] ; then
 fi
 
 
+#-------
+# Misc.
+#-------
+
+export EDITOR=vim

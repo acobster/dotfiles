@@ -53,10 +53,26 @@ filetype plugin indent on
 
 set laststatus=2
 
+" File/Tab navigation
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+cnoremap n tab new<Space>
+nnoremap <C-l> :tabnext<CR>
+nnoremap <C-h> :tabprevious<CR>
+
+" Configure split behavior
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+set splitbelow
+set splitright
+
+" Syntax highlighting/linting
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let syntastic_mode_map = { 'passive_filetypes': ['html'] }
 let g:syntastic_twig_checkers = ['twig']
 let g:syntastic_html_tidy_ignore_errors = [
   \ 'plain text isn''t allowed in <head> elements',
