@@ -223,6 +223,21 @@ if [[ -z $(git config --global alias.aa) ]] ; then
   git config --global alias.aa 'add --all'
 fi
 
+# Alias: git dc
+if [[ -z $(git config --global alias.dc) ]] ; then
+  git config --global alias.dc 'diff --cached'
+fi
+
+# Alias: git files
+if [[ -z $(git config --global alias.files) ]] ; then
+  git config --global alias.files 'diff --name-only'
+fi
+
+# Alias: git ha - add hunks interactively
+if [[ -z $(git config --global alias.ha) ]] ; then
+  git config --global alias.ha 'add --all -p'
+fi
+
 # Alias: git co
 if [[ -z $(git config --global alias.co) ]] ; then
   git config --global alias.co 'checkout'
