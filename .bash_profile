@@ -283,6 +283,16 @@ if [[ -z $(git config --global alias.cl) ]] ; then
   git config --global alias.cl 'clean -fd'
 fi
 
+# Alias: git b
+if [[ -z $(git config --global alias.b) ]] ; then
+  git config --global alias.b 'branch'
+fi
+
+# Alias: git ff
+if [[ -z $(git config --global alias.ff) ]] ; then
+  git config --global alias.ff 'merge --ff-only'
+fi
+
 
 # Git completion
 if [ -f ~/dotfiles/git-completion.bash ]; then
