@@ -53,6 +53,12 @@ filetype plugin indent on
 
 set laststatus=2
 
+" File/Tab navigation
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+cnoremap n tab new<Space>
+nnoremap <C-l> :tabnext<CR>
+nnoremap <C-h> :tabprevious<CR>
+
 " Configure split behavior
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
