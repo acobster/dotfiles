@@ -55,7 +55,7 @@ set laststatus=2
 
 " File/Tab navigation
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
-cnoremap n tab new<Space>
+cnoremap N% tab new<Space>
 nnoremap <C-l> :tabnext<CR>
 nnoremap <C-h> :tabprevious<CR>
 
