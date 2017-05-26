@@ -253,6 +253,11 @@ if [[ -z $(git config --global alias.cam) ]] ; then
   git config --global alias.cam 'commit -am'
 fi
 
+# Alias: git files
+if [[ -z $(git config --global alias.files) ]] ; then
+  git config --global alias.files 'diff --name-only'
+fi
+
 # Alias: git root
 if [[ -z $(git config --global alias.root) ]] ; then
   git config --global alias.root 'rev-parse --show-toplevel'
