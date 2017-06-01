@@ -33,6 +33,10 @@ if [[ ! -f ~/.gitignore ]] ; then
   ln -s ~/dotfiles/.gitignore ~/.gitignore
 fi
 
+if [[ ! -f ~/.railsrc ]] ; then
+  ln -s ~/dotfiles/.railsrc ~/.railsrc
+fi
+
 if [[ -d ~/.hammerspoon ]] && [[ ! -f ~/.hammerspoon/init.lua ]] ; then
   ln -s ~/dotfiles/init.lua ~/.hammerspoon/init.lua
 fi

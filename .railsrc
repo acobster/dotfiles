@@ -1,0 +1,4 @@
+--database postgres
+--skip-action-cable
+--skip-javascript
+
