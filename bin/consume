@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -e
+
+if [[ -z $1 ]] ; then
+  echo ya gotta name yr pipe
+  exit 1
+fi
+
+if [[ ! -f $1 ]] ; then
+  mkfifo $1
+fi
+
+while true; do
+  sh -c "$(cat $1)"
+done
+
