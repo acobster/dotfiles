@@ -7,8 +7,8 @@ if [[ -z $1 ]] ; then
   exit 1
 fi
 
-if [[ ! -f $1 ]] ; then
-  mkfifo $1
+if ! [[ -p "$1" ]] ; then
+  mkfifo "$1"
 fi
 
 while true; do
