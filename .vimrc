@@ -15,6 +15,8 @@ set expandtab
 set tabstop=2
 set shiftwidth=2
 
+let mapleader=","
+
 filetype off
 
 " set the runtime path to include Vundle and initialize
