@@ -1,4 +1,5 @@
---database postgres
+--database mysql
 --skip-action-cable
 --skip-javascript
-
+--skip-spring
+--template ~/dotfiles/rails/puma-rails5.rb
