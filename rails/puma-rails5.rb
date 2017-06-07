@@ -23,6 +23,8 @@ replace_readme do
 end
 
 
+#prompt_for_rspec
+#TODO capture generators to run after bundle install
 prompt_for_user_scaffold
 prompt_for_additional_scaffolds
 
@@ -38,7 +40,7 @@ replace_gemfile do
   add_source 'https://rubygems.org'
 
   gem 'rails', '~> 5.1'
-  gem 'mysql2', '>= 0.3'
+  gem 'sqlite3', '~> 1.3'
   gem 'puma', '~> 3.7'
   gem 'bcrypt', '~> 3.1'
   gem 'slim', '~> 3.0'
@@ -52,7 +54,7 @@ replace_gemfile do
     gem 'rspec-rails', '~> 3.6'
     gem 'webmock', '~> 3.0'
     gem 'vcr', '~> 3.0'
-    gem 'capybara-webkit', '~> 1.14'
+    #gem 'capybara-webkit', '~> 1.14'
   end
 end
 

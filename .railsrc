@@ -1,5 +1,8 @@
---database mysql
+--database sqlite3
+--skip-yarn
 --skip-action-cable
 --skip-javascript
 --skip-spring
+--skip-test
+--skip-keeps
 --template ~/dotfiles/rails/puma-rails5.rb

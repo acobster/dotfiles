@@ -32,9 +32,25 @@ def overwrite_with_skeleton!(root)
 end
 
 
+def prompt_for_rspec
+  if yes?('install rspec?')
+    generate('rspec:install')
+  end
+end
+
+
 def prompt_for_user_scaffold
   if yes?('generate user scaffold? (y/n)')
-    generate(:scaffold, 'user', 'first_name:string', 'last_name:string', 'email:string', 'username:string')
+    generate(:scaffold,
+             'user',
+             'first_name:string',
+             'last_name:string',
+             'email:string',
+             'username:string',
+             '--no-api',
+             '--no-assets',
+             '--no-stylesheets',
+             '--no-javascripts')
   end
 end
 
@@ -42,6 +58,12 @@ end
 def prompt_for_additional_scaffolds
   until (scaffold_name = ask('enter any additional scaffold name (enter to continue):')).blank?
     columns = ask('enter space-separated columns (e.g. "foo:string bar:integer")')
+    args = columns.split(' ')
+    # default args, unless user has explicitly contradicts the defaults
+    args << '--no-api' unless args.include? '--api'
+    args << '--no-assets' unless args.include? '--assets'
+    args << '--no-stylesheets' unless args.include? '--stylesheets'
+    args << '--no-javascripts' unless args.include? '--javascripts'
     send(:generate, :scaffold, scaffold_name, *columns.split(' '))
   end
 end
