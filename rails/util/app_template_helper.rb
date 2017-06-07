@@ -47,6 +47,7 @@ def prompt_for_user_scaffold
              'last_name:string',
              'email:string',
              'username:string',
+             'password_digest:string',
              '--no-api',
              '--no-assets',
              '--no-stylesheets',
