@@ -125,6 +125,16 @@ fi
 
 
 #----------
+# Binaries
+#----------
+
+if [[ -f /System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc ]] && ! [[ -f $HOME/dotfiles/bin/jsc ]] ; then
+  ln -s /System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc $HOME/dotfiles/bin/jsc
+fi
+
+
+
+#----------
 # SSH Keys
 #----------
 
