@@ -233,6 +233,11 @@ if [[ -z $(git config --global alias.aa) ]] ; then
   git config --global alias.aa 'add --all'
 fi
 
+# Alias: git d
+if [[ -z $(git config --global alias.d) ]] ; then
+  git config --global alias.d 'diff'
+fi
+
 # Alias: git dc
 if [[ -z $(git config --global alias.dc) ]] ; then
   git config --global alias.dc 'diff --cached'
