@@ -23,10 +23,10 @@ replace_readme do
 end
 
 
-#prompt_for_rspec
-#TODO capture generators to run after bundle install
-prompt_for_user_scaffold
-prompt_for_additional_scaffolds
+install_rspec = prompt_for_rspec
+generate_user_scaffold = prompt_for_user_scaffold
+generate_scaffolds = prompt_for_additional_scaffolds
+setup_rails_admin_routes = prompt_for_rails_admin
 
 
 # Prompt to overwrite arbitrary files with those present in a skeleton directory
@@ -54,9 +54,19 @@ replace_gemfile do
     gem 'rspec-rails', '~> 3.6'
     gem 'webmock', '~> 3.0'
     gem 'vcr', '~> 3.0'
+    # TODO y
     #gem 'capybara-webkit', '~> 1.14'
   end
 end
 
+
+after_bundle do
+  install_rspec.call unless install_rspec.nil?
+  generate_user_scaffold.call unless generate_user_scaffold.nil?
+  generate_scaffolds.call unless generate_scaffolds.nil?
+  setup_rails_admin_routes.call unless setup_rails_admin_routes.nil?
+  rails_command 'db:migrate'
+  rails_command 'db:test:prepare'
+end
 
 # TODO prompt for initializers?
