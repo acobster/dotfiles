@@ -30,11 +30,11 @@ setup_rails_admin_routes = prompt_for_rails_admin
 
 
 # Prompt to overwrite arbitrary files with those present in a skeleton directory
-unless (skeleton = ask('use skeleton files? (enter to skip)')).blank?
+#unless (skeleton = ask('use skeleton files? (enter to skip)')).blank?
   SKELETON_ROOT = File.expand_path(File.dirname(__FILE__))+'/app-skeletons'
-  overwrite_with_skeleton!(SKELETON_ROOT+'/'+skeleton)
-end
-
+#  overwrite_with_skeleton!(SKELETON_ROOT+'/'+skeleton)
+#end
+overwrite_with_skeleton!(SKELETON_ROOT+'/test-rm')
 
 replace_gemfile do
   add_source 'https://rubygems.org'

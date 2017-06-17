@@ -23,11 +23,38 @@ end
 
 def overwrite_with_skeleton!(root)
   cwd = Dir.getwd
-  Dir.glob(root+'/**/*.*').each do |filepath|
-    puts project_filepath = filepath.sub(root, cwd)
+  puts "overwriting w/ #{root}"
+
+  # Get the list of removals to process
+  removals = []
+  removals_filepath = root+'/.remove'
+  if File.file?(removals_filepath)
+    removals = File.readlines(removals_filepath)
+  end
+
+  # Recurse normally through the project tree
+  # exclude the removals file
+  Dir.glob(root+'/**/*.*').reject do |filepath|
+    filepath == removals_filepath
+  end.each do |filepath|
+    project_filepath = filepath.sub(root, cwd)
+    puts "        placing #{project_filepath}"
 
     # copy the skeleton file into the project tree
     run "cp #{filepath} #{project_filepath}"
+  end
+
+  after_bundle do
+    # Process removals
+    removals.each do |pattern|
+      puts cwd+pattern
+      puts Dir.glob(cwd+pattern).join("\n")
+      puts Dir.glob(pattern).join("\n")
+      Dir.glob(cwd+pattern).each do |filepath|
+        puts "        removing #{filepath}"
+        remove_file(filepath)
+      end
+    end
   end
 end
 
