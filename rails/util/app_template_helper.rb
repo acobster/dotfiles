@@ -21,38 +21,40 @@ def replace_gemfile(&block)
 end
 
 
-def overwrite_with_skeleton!(root)
-  cwd = Dir.getwd
-  puts "overwriting w/ #{root}"
+def prompt_for_skeleton()
+  unless (skeleton = ask('use skeleton files? (enter to skip)')).blank?
+    skeleton_root = File.expand_path(File.dirname(__FILE__)+'/..')+'/app-skeletons/'+
+      skeleton
 
-  # Get the list of removals to process
-  removals = []
-  removals_filepath = root+'/.remove'
-  if File.file?(removals_filepath)
-    removals = File.readlines(removals_filepath)
-  end
+    cwd = Dir.getwd
 
-  # Recurse normally through the project tree
-  # exclude the removals file
-  Dir.glob(root+'/**/*.*').reject do |filepath|
-    filepath == removals_filepath
-  end.each do |filepath|
-    project_filepath = filepath.sub(root, cwd)
-    puts "        placing #{project_filepath}"
+    # Get the list of removals to process
+    removals = []
+    removals_filepath = skeleton_root+'/.remove'
+    if File.file?(removals_filepath)
+      removals = File.readlines(removals_filepath).
+        map(&:strip).
+        reject(&:empty?)
+    end
 
-    # copy the skeleton file into the project tree
-    run "cp #{filepath} #{project_filepath}"
-  end
+    Proc.new do
+      puts 'placing files from '+skeleton_root
+      # Recurse normally through the project tree
+      # exclude the removals file
+      Dir.glob(skeleton_root+'/**/*.*').reject do |filepath|
+        filepath == removals_filepath
+      end.each do |filepath|
+        project_filepath = filepath.sub(skeleton_root, cwd)
 
-  after_bundle do
-    # Process removals
-    removals.each do |pattern|
-      puts cwd+pattern
-      puts Dir.glob(cwd+pattern).join("\n")
-      puts Dir.glob(pattern).join("\n")
-      Dir.glob(cwd+pattern).each do |filepath|
-        puts "        removing #{filepath}"
-        remove_file(filepath)
+        # copy the skeleton file into the project tree
+        run "cp #{filepath} #{project_filepath}"
+      end
+
+      # Process removals
+      removals.each do |pattern|
+        Dir.glob(cwd+'/'+pattern).each do |filepath|
+          remove_file(filepath)
+        end
       end
     end
   end
