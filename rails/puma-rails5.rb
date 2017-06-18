@@ -67,8 +67,8 @@ after_bundle do
   rails_command 'db:test:prepare'
   run 'npm install' if yes?('install npm dependencies? (y/n)')
   git :init
-  git 'add --all'
-  git 'commit -m initial'
+  git add: '--all'
+  git commit: '-m initial'
 end
 
 # TODO prompt for initializers?

@@ -145,7 +145,7 @@ end
 
 
 def prompt_for_root_route
-  if root_route = ask('route root to: (enter to skip)')
+  unless (root_route = ask('route root to: (enter to skip)')).blank?
     Proc.new do
       puts "      configuring root route..."
       route "root to: '#{root_route}'"
