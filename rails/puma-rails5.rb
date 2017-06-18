@@ -27,6 +27,7 @@ install_rspec = prompt_for_rspec
 generate_user_scaffold = prompt_for_user_scaffold
 generate_scaffolds = prompt_for_additional_scaffolds
 setup_rails_admin_routes = prompt_for_rails_admin
+setup_root_route = prompt_for_root_route
 overwrite_with_skeleton = prompt_for_skeleton
 
 
@@ -41,6 +42,8 @@ replace_gemfile do
   gem 'dotenv', '~> 2.2'
   gem 'rails_admin', '~> 1.2'
   gem 'listen', '~> 3.1'
+  gem 'cancancan', '~> 1.10'
+  gem 'devise', '~> 4.3'
 
   gem_group :development, :test do
     gem 'byebug', '~> 9.0'
@@ -58,10 +61,14 @@ after_bundle do
   generate_user_scaffold.call unless generate_user_scaffold.nil?
   generate_scaffolds.call unless generate_scaffolds.nil?
   setup_rails_admin_routes.call unless setup_rails_admin_routes.nil?
+  setup_root_route.call unless setup_root_route.nil?
   overwrite_with_skeleton.call unless overwrite_with_skeleton.nil?
   rails_command 'db:migrate'
   rails_command 'db:test:prepare'
-  run 'npm install'
+  run 'npm install' if yes?('install npm dependencies? (y/n)')
+  git :init
+  git 'add --all'
+  git 'commit -m initial'
 end
 
 # TODO prompt for initializers?

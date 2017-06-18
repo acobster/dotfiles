@@ -70,21 +70,31 @@ end
 
 def prompt_for_user_scaffold
   if yes?('generate user scaffold? (y/n)')
-   # return a callback for generating the user scaffold later
-    Proc.new do
-      puts 'generating user scaffold...'
-      generate(:scaffold,
-               'user',
-               'first_name:string',
-               'last_name:string',
-               'email:string',
-               'username:string',
-               '--no-api',
-               '--no-assets',
-               '--no-stylesheets',
-               '--no-javascripts',
-               '--no-helper',
-               '--no-routing-specs')
+    if yes?('use devise? (y/n)')
+      Proc.new do
+        puts 'generating devise scaffold...'
+        generate('devise:install')
+        generate('devise', 'user')
+        # TODO add customized views to skeleton
+        generate('devise:views')
+      end
+    else
+      # return a callback for generating the user scaffold later
+      Proc.new do
+        puts 'generating user scaffold...'
+        generate(:scaffold,
+                 'user',
+                 'first_name:string',
+                 'last_name:string',
+                 'email:string',
+                 'username:string',
+                 '--no-api',
+                 '--no-assets',
+                 '--no-stylesheets',
+                 '--no-javascripts',
+                 '--no-helper',
+                 '--no-routing-specs')
+      end
     end
   end
 end
@@ -112,9 +122,19 @@ def prompt_for_additional_scaffolds
 
   # return a callback for generating scaffolds later
   Proc.new do
-    puts "generating additional scaffolds..." unless generate_calls.empty?
+    puts "      generating additional scaffolds..." unless generate_calls.empty?
     generate_calls.each do |gen_args|
       generate :scaffold, *gen_args
+    end
+  end
+end
+
+
+def prompt_for_root_route
+  if root_route = ask('route root to: (enter to skip)')
+    Proc.new do
+      puts "      configuring root route..."
+      route "root to: '#{root_route}'"
     end
   end
 end
@@ -123,7 +143,7 @@ end
 def prompt_for_rails_admin
   if yes?('setup rails_admin routes? (y/n)')
     Proc.new do
-      puts "setting up rails_admin routes..."
+      puts "      setting up rails_admin routes..."
       gsub_file 'config/routes.rb',
         /^Rails\.application\.routes\.draw do$/,
         "Rails.application.routes.draw do\nmount RailsAdmin::Engine => '/admin', as: 'rails_admin'"
