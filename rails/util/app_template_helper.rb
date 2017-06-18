@@ -44,9 +44,18 @@ def prompt_for_skeleton()
 
     # Get the list of removals to process
     removals = []
-    removals_filepath = skeleton_root+'/.remove'
+    removals_filepath = File.expand_path('.remove', skeleton_root)
     if File.file?(removals_filepath)
       removals = File.readlines(removals_filepath).
+        map(&:strip).
+        reject(&:empty?)
+    end
+
+    # Get the list of skeleton files to ignore
+    ignores = []
+    ignores_filepath = File.expand_path('.skeltonignore', skeleton_root)
+    if File.file?(ignores_filepath)
+      ignores = File.readlines(ignores_filepath).
         map(&:strip).
         reject(&:empty?)
     end
@@ -54,9 +63,9 @@ def prompt_for_skeleton()
     Proc.new do
       puts '      placing files from '+skeleton_root
       # Recurse normally through the project tree
-      # exclude the removals file
+      # exclude the removals file and any ignored files
       Dir.glob(skeleton_root+'/**/*.*').reject do |filepath|
-        filepath == removals_filepath
+        filepath == removals_filepath or ignores.include?(filepath)
       end.each do |filepath|
         project_filepath = filepath.sub(skeleton_root, cwd)
 
