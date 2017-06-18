@@ -65,6 +65,7 @@ after_bundle do
   overwrite_with_skeleton.call unless overwrite_with_skeleton.nil?
   rails_command 'db:migrate'
   rails_command 'db:test:prepare'
+  rails_command 'db:seed'
   run 'npm install' if yes?('install npm dependencies? (y/n)')
   git :init
   git add: '--all'

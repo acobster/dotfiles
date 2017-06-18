@@ -100,6 +100,9 @@ def prompt_for_user_scaffold
         generate('devise', 'user')
         # TODO add customized views to skeleton
         generate('devise:views')
+        generate(:migration,
+                 'AddRoleToUsers',
+                 'role:string')
       end
     else
       # return a callback for generating the user scaffold later
