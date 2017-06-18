@@ -1,3 +1,5 @@
+require 'dotenv'
+
 # Helper functions for app templates
 #
 def replace_readme(&block)
@@ -23,8 +25,20 @@ end
 
 def prompt_for_skeleton()
   unless (skeleton = ask('use skeleton files? (enter to skip)')).blank?
-    skeleton_root = File.expand_path(File.dirname(__FILE__)+'/..')+'/app-skeletons/'+
-      skeleton
+    Dotenv.load(File.expand_path('.skeletons', Dir.home))
+
+    unless Dir.exist?(ENV['SKELETONS_PATH'])
+      puts 'no valid SKELETONS_PATH set, skipping skeletons...'
+      return
+    end
+
+    skeleton_root = File.expand_path(skeleton, ENV['SKELETONS_PATH'])
+
+    until Dir.exist?(skeleton_root) or skeleton.empty?
+      puts "#{skeleton_root} not found."
+      skeleton = ask('Try again? (enter to skip)')
+      skeleton_root = File.expand_path(skeleton, ENV['SKELETONS_PATH'])
+    end
 
     cwd = Dir.getwd
 
@@ -38,7 +52,7 @@ def prompt_for_skeleton()
     end
 
     Proc.new do
-      puts 'placing files from '+skeleton_root
+      puts '      placing files from '+skeleton_root
       # Recurse normally through the project tree
       # exclude the removals file
       Dir.glob(skeleton_root+'/**/*.*').reject do |filepath|
