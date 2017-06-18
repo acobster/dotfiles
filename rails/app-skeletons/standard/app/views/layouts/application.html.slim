@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Starfruit</title>
-    <%= csrf_meta_tags %>
+doctype html
+html
+  head
+    title MY APPLICATION
+    == csrf_meta_tags
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-  </head>
-
-  <body>
-    <%= yield %>
-  </body>
-</html>
+  body
+    == yield
