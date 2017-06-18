@@ -61,6 +61,7 @@ after_bundle do
   overwrite_with_skeleton.call unless overwrite_with_skeleton.nil?
   rails_command 'db:migrate'
   rails_command 'db:test:prepare'
+  run 'npm install'
 end
 
 # TODO prompt for initializers?
