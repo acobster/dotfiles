@@ -41,4 +41,8 @@ if [[ -d ~/.hammerspoon ]] && [[ ! -f ~/.hammerspoon/init.lua ]] ; then
   ln -s ~/dotfiles/init.lua ~/.hammerspoon/init.lua
 fi
 
+if ! [[ -f ~/.tmux.conf ]] ; then
+  ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
+fi
+
 echo 'done! 👍 🍅 🍕 🚀 🎸 '
