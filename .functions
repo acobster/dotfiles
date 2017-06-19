@@ -51,6 +51,14 @@ wpdebug() {
   tail -f debug.log
 }
 
+pantheon() {
+  if [[ -d ~/Kalabox/$1/code ]] ; then
+    cd ~/Kalabox/$1/code
+  else
+    cd ~/Kalabox
+  fi
+}
+
 #--------------------
 # Assorted functions
 #--------------------
@@ -105,6 +113,10 @@ grephp() {
 
 psgrep() {
   ps aux | grep $1 | grep -v grep
+}
+
+portgrep() {
+  sudo netstat -tulpn | grep $1 | grep -v grep
 }
 
 grepkill() {
