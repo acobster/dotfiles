@@ -22,6 +22,8 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
+alias t='tmux a -t'
+alias tn='tmux new -s'
 
 # Docker shortcuts
 alias dc='docker-compose'
