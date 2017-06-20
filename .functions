@@ -112,7 +112,7 @@ grephp() {
 }
 
 psgrep() {
-  ps aux | grep $1 | grep -v grep
+  ps aux | grep -i $1 | grep -v grep
 }
 
 portgrep() {

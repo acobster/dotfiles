@@ -163,6 +163,16 @@ if [ -f ~/.aliases ] ; then
 fi
 
 
+#--------
+# Colors
+#--------
+
+if [[ -f ~/.dir_colors/dircolors ]] ; then
+  eval `dircolors ~/.dir_colors/dircolors`
+fi
+
+
+
 #----------------
 # Bash functions
 #----------------
