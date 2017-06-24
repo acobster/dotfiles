@@ -5,4 +5,4 @@
 --skip-spring
 --skip-test
 --skip-keeps
---template ~/dotfiles/rails/puma-rails5.rb
+--template ~/rails-app-templates/puma-rails5.rb
