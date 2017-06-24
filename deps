@@ -6,3 +6,9 @@ echo setting up rbenv...
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 
+echo setting up custom Rails stuff...
+git clone git@github.com:acobster/rails-app-templates.git ~/rails-app-templates
+git clone git@github.com:acobster/rails-skeletons ~/rails-skeletons
+echo "SKELTONS_PATH=$HOME/rails-skeletons" > ~/.skeletons
+
+echo 'workflow dependencies installed! 😎 🍪 🎉 🌮 '
