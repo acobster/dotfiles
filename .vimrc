@@ -33,6 +33,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 " Syntax
 Plugin 'lumiliet/vim-twig'
 Plugin 'vim-syntastic/syntastic'
+Plugin 'bkad/vim-stylus'
 
 " Fancy-ass statusline
 Plugin 'vim-airline/vim-airline'
