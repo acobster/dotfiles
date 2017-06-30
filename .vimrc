@@ -130,10 +130,10 @@ let g:vim_markdown_folding_disabled = 1
 " CUSTOM MAPPINGS!
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Shift+Enter to insert newline above (without insert mode)
-nmap <C-o> O<Esc>
-" Plain ol' Enter to insert newline below (ditto)
-nmap <CR> o<Esc>
+nmap <leader>r :w\|:!rspec spec/routing<cr>
+nmap <leader>c :w\|:!rspec spec/controllers<cr>
+nmap <leader>m :w\|:!rspec spec/models<cr>
+nmap <leader>l :w\|:!rspec spec/lib<cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
