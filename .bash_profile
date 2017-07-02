@@ -235,7 +235,7 @@ fi
 
 # Alias: git sh
 if [[ -z $(git config --global alias.sh) ]] ; then
-  git config --global alias.sh 'status'
+  git config --global alias.sh 'stash'
 fi
 
 # Alias: git aa
