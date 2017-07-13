@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -e
+
+if [[ -z $2 ]] ; then
+  echo specify two line numbers
+  exit 1
+fi
+
+# get the number of lines to display
+num_lines=`expr $2 - $1 + 1`
+
+# pipe stdin
+head -$2 |
+  tail -$num_lines
+
