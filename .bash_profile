@@ -323,6 +323,37 @@ if [[ -z $(git config --global alias.ff) ]] ; then
   git config --global alias.ff 'merge --ff-only'
 fi
 
+# Fancy logging.
+# Stolen from https://github.com/garybernhardt/dotfiles/blob/master/.gitconfig
+#   h = head
+#   hp = head with patch
+#   r = recent commits, only current branch
+#   ra = recent commits, all reachable refs
+#   l = all commits, only current branch
+#   la = all commits, all reachable refs
+
+if [[ -z $(git config --global alias.head) ]] ; then
+  git config --global alias.head '!git r -1'
+fi
+if [[ -z $(git config --global alias.h) ]] ; then
+  git config --global alias.h '!git head'
+fi
+if [[ -z $(git config --global alias.hp) ]] ; then
+  git config --global alias.hp '!. ~/.githelpers && show_git_head'
+fi
+if [[ -z $(git config --global alias.r) ]] ; then
+  git config --global alias.r '!GIT_NO_PAGER=1 git l -30'
+fi
+if [[ -z $(git config --global alias.ra) ]] ; then
+  git config --global alias.ra '!git r --all'
+fi
+if [[ -z $(git config --global alias.l) ]] ; then
+  git config --global alias.l '"!. ~/.githelpers && pretty_git_log'
+fi
+if [[ -z $(git config --global alias.la) ]] ; then
+  git config --global alias.la '!git l --all'
+fi
+
 
 # Git completion
 if [ -f ~/dotfiles/git-completion.bash ]; then

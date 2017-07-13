@@ -33,6 +33,10 @@ if [[ ! -f ~/.gitignore ]] ; then
   ln -s ~/dotfiles/.gitignore ~/.gitignore
 fi
 
+if [[ ! -f ~/.githelpers ]] ; then
+  ln -s ~/dotfiles/.githelpers ~/.githelpers
+fi
+
 if [[ ! -f ~/.railsrc ]] ; then
   ln -s ~/dotfiles/.railsrc ~/.railsrc
 fi
