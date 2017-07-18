@@ -1,0 +1,36 @@
+{
+  "hotkey": "ctrl+alt+space",
+  "theme": "tinytacoteam/zazu-dark-theme",
+  "displayOn": "detect",
+  "disableAnalytics": true,
+  "plugins": [
+    "chrishelgert/zazu-hacker-news",
+    "tinytacoteam/zazu-system",
+    "tinytacoteam/zazu-calculator",
+    "tinytacoteam/zazu-template",
+    "tinytacoteam/zazu-package-manager",
+    "iansinnott/zazu-emoji",
+    {
+      "name": "tinytacoteam/zazu-clipboard",
+      "variables": {
+        "ClipboardKey": "cmd+shift+v"
+      }
+    },
+    "tinytacoteam/zazu-file-finder",
+    {
+      "name": "tinytacoteam/zazu-fallback",
+      "variables": {
+        "rootSearches": [
+          "duck",
+          "giphy",
+          "wiki",
+          "npm",
+          "packagist",
+          "youtube",
+          "thing",
+          "wolf"
+        ]
+      }
+    }
+  ]
+}
