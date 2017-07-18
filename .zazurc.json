@@ -6,6 +6,7 @@
   "plugins": [
     "chrishelgert/zazu-hacker-news",
     "tinytacoteam/zazu-system",
+    "tinytacoteam/zazu-file-finder",
     "tinytacoteam/zazu-calculator",
     "tinytacoteam/zazu-template",
     "tinytacoteam/zazu-package-manager",
@@ -16,7 +17,6 @@
         "ClipboardKey": "cmd+shift+v"
       }
     },
-    "tinytacoteam/zazu-file-finder",
     {
       "name": "tinytacoteam/zazu-fallback",
       "variables": {
@@ -31,6 +31,9 @@
           "wolf"
         ]
       }
-    }
+    },
+    "tinytacoteam/zazu-ascii-search",
+    "gabrielpoca/zazu-caniuse",
+    "puyt/zazu-utime"
   ]
 }
