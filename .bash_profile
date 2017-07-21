@@ -253,6 +253,11 @@ if [[ -z $(git config --global alias.dc) ]] ; then
   git config --global alias.dc 'diff --cached'
 fi
 
+# Alias: git dw
+if [[ -z $(git config --global alias.dw) ]] ; then
+  git config --global alias.dw 'diff -w'
+fi
+
 # Alias: git files
 if [[ -z $(git config --global alias.files) ]] ; then
   git config --global alias.files 'diff --name-only'
