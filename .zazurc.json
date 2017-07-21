@@ -4,9 +4,9 @@
   "displayOn": "detect",
   "disableAnalytics": true,
   "plugins": [
-    "chrishelgert/zazu-hacker-news",
     "tinytacoteam/zazu-system",
     "tinytacoteam/zazu-file-finder",
+    "chrishelgert/zazu-hacker-news",
     "tinytacoteam/zazu-calculator",
     "tinytacoteam/zazu-template",
     "tinytacoteam/zazu-package-manager",
@@ -34,6 +34,8 @@
     },
     "tinytacoteam/zazu-ascii-search",
     "gabrielpoca/zazu-caniuse",
-    "puyt/zazu-utime"
+    "puyt/zazu-utime",
+    "blainesch/zazu-weather",
+    "brpaz/zazu-hash"
   ]
 }
