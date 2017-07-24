@@ -13,13 +13,13 @@ function init_panes() {
   # create a new session named $SESSION
   tmux new-session -d -s $SESSION
   # send it the command
-  send_cmd $CMD
+  send_cmd "$CMD"
 
   # select/split the window
   tmux select-window -t $SESSION:0
   tmux split-window -v
   # send it the command
-  send_cmd $CMD
+  send_cmd "$CMD"
 
   # finally, attach to the new session
   tmux attach-session -t $SESSION
@@ -39,7 +39,7 @@ if [[ -d $2 ]] ; then
   CMD="cd $2"
 elif ! [[ -z $2 ]] ; then
   # a command was specified; execute it directly
-  CMD=$2
+  CMD="$2"
 fi
 
 
