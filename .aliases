@@ -24,8 +24,9 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
-alias t='tmux a -t'
-alias tn='tmux new -s'
+alias tk='tmux kill-session -t'
+alias tkall='tmux list-sessions | awk "{print \$1}" | sed "s/://" | while read sess; do tmux kill-session -t $sess; done'
+alias tl='tmux list-sessions'
 
 # Docker shortcuts
 alias dc='docker-compose'
