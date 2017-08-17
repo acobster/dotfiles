@@ -65,10 +65,10 @@ nnoremap <C-l> :tabnext<CR>
 nnoremap <C-h> :tabprevious<CR>
 
 " Configure split behavior
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+nnoremap <C-J> :vertical resize +5<cr>
+nnoremap <C-K> :vertical resize -5<cr>
+nnoremap <C-H> :resize +5<cr>
+nnoremap <C-L> :resize -5<cr>
 set splitbelow
 set splitright
 
