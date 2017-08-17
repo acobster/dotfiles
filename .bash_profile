@@ -359,6 +359,31 @@ if [[ -z $(git config --global alias.la) ]] ; then
   git config --global alias.la '!git l --all'
 fi
 
+# Alias: git l1
+if [[ -z $(git config --global alias.l1) ]] ; then
+  git config --global alias.l1 '!. ~/.githelpers && pretty_git_log -1'
+fi
+
+# Alias: git l2
+if [[ -z $(git config --global alias.l2) ]] ; then
+  git config --global alias.l2 '!. ~/.githelpers && pretty_git_log -2'
+fi
+
+# Alias: git l3
+if [[ -z $(git config --global alias.l3) ]] ; then
+  git config --global alias.l3 '!. ~/.githelpers && pretty_git_log -3'
+fi
+
+# Alias: git l4
+if [[ -z $(git config --global alias.l4) ]] ; then
+  git config --global alias.l4 '!. ~/.githelpers && pretty_git_log -4'
+fi
+
+# Alias: git l5
+if [[ -z $(git config --global alias.l5) ]] ; then
+  git config --global alias.l5 'l -5'
+fi
+
 
 # Git completion
 if [ -f ~/dotfiles/git-completion.bash ]; then
