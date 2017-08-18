@@ -381,7 +381,7 @@ fi
 
 # Alias: git l5
 if [[ -z $(git config --global alias.l5) ]] ; then
-  git config --global alias.l5 'l -5'
+  git config --global alias.l5 '!. ~/.githelpers && pretty_git_log -5'
 fi
 
 
