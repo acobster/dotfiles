@@ -72,6 +72,9 @@ nnoremap <C-L> :resize -5<cr>
 set splitbelow
 set splitright
 
+" Shell behavior
+set shell=/bin/bash\ -i
+
 " Syntax highlighting/linting
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
