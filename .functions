@@ -129,6 +129,16 @@ grephp() {
   grep --include=*.php -r "$1" $dir
 }
 
+greptwig() {
+  if [[ -z $2 ]] ; then
+    dir=.
+  else
+    dir=$2
+  fi
+
+  grep --include=*.twig -r "$1" $dir
+}
+
 psgrep() {
   ps aux | grep -i $1 | grep -v grep
 }
