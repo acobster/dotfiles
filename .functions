@@ -59,6 +59,24 @@ pantheon() {
   fi
 }
 
+
+
+#-----------------------------------------------------
+# Run arbitrary commands in a running Vagrant machine
+#-----------------------------------------------------
+
+# vagrant cmd
+vc() {
+  vagrant ssh -c "$1"
+}
+
+# run wp cmd $2 in dir $1
+vwp() {
+  vagrant ssh -c "cd $1 && wp $2"
+}
+
+
+
 #--------------------
 # Assorted functions
 #--------------------
