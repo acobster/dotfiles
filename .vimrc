@@ -27,8 +27,8 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'bronson/vim-trailing-whitespace'
 
 " Navigation
-Plugin 'scrooloose/nerdtree'
-Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'vim-scripts/L9' " FuzzyFinder dependency
+Plugin 'vim-scripts/FuzzyFinder'
 
 " Syntax
 Plugin 'lumiliet/vim-twig'
@@ -138,6 +138,10 @@ nmap <leader>c :w\|:!rspec --format=d spec/controllers<cr>
 nmap <leader>m :w\|:!rspec --format=d spec/models<cr>
 nmap <leader>l :w\|:!rspec --format=d spec/lib<cr>
 
+" File buffering
+nmap ,ff :FufFileWithCurrentBufferDir<CR>
+nmap ,fb :FufBuffer<CR>
+nmap ,ft :FufTaggedFile<CR>
 
 
 
