@@ -1,0 +1,30 @@
+#!/bin/bash
+
+set -e
+
+# NOTES:
+#  * there will be false positives.
+#  * only works for languages with `public function` syntax, b/c #getshitdone
+
+
+# sanity check, brah
+if [[ -z $1 ]] ; then
+  echo ya gotta specify a file, brah
+fi
+
+file=$1
+
+# find the name of all public functions defined in arg file
+grep 'public function' $file | \
+  # remove leading whitespace
+  sed 's/.*public function//'| \
+  # remove argument list - opening paren onwards
+  sed 's/(.*$//'| \
+  # banish all other whitespace
+  sed 's/ //'| \
+  # now we have a list of public function names...
+  while read fn; do
+    # search the rest of the of codebase for calls to each function
+    grep --include=*.php --exclude="$(basename $file)" -r $fn .
+  done
+
