@@ -34,6 +34,7 @@ Plugin 'vim-scripts/FuzzyFinder'
 Plugin 'lumiliet/vim-twig'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'bkad/vim-stylus'
+Plugin 'posva/vim-vue'
 
 " Fancy-ass statusline
 Plugin 'vim-airline/vim-airline'
