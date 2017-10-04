@@ -179,12 +179,18 @@ nnoremap <leader>. :call OpenTestAlternate()<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RUNNING TESTS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Start an editor command to set up the mapping for executing stuff in named
+" pipe
+cnoremap <c-P> nmap ,t w\\|:silent !echo 'phpunit' > .test.pipe<c-v>u003Ccr>:redraw!<c-v>u003Ccr>
+
+" Gary's weird stuff....
 function! MapCR()
   nnoremap <cr> :call RunTestFile()<cr>
 endfunction
-call MapCR()
-nnoremap <leader>t :call RunNearestTest()<cr>
-nnoremap <leader>a :call RunTests('')<cr>
+"call MapCR()
+"nnoremap <leader>t :call RunNearestTest()<cr>
+"nnoremap <leader>a :call RunTests('')<cr>
 
 function! RunTestFile(...)
     if a:0
