@@ -1,17 +1,24 @@
 #!/bin/bash
 
-set -e
-
 if [[ -z $1 ]] ; then
   echo ya gotta name yr pipe
   exit 1
 fi
 
-if ! [[ -p "$1" ]] ; then
-  mkfifo "$1"
+pipe=$1
+
+trap 'rm -f "$pipe"' EXIT     # ignore exit and delete messages until the end
+
+if [[ ! -p $pipe ]]; then   # if the pipe doesn't exist, create it
+    mkfifo $pipe
 fi
 
-while true; do
-  sh -c "$(cat $1)"
-done
+while true                  # cycle eternally..
+do
+    if read line < $pipe; then
+        echo                # a line break should be used because of the prompt 
+        eval $line          # run the line: as this script should be started
+    fi                          # in the target terminal,
+done                            # the line will be run there.
 
+echo 'Bye bye!'
