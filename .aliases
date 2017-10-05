@@ -29,6 +29,7 @@ alias b='cd -'
 alias tk='tmux kill-session -t'
 alias tkall='tmux list-sessions | awk "{print \$1}" | sed "s/://" | while read sess; do tmux kill-session -t $sess; done'
 alias tl='tmux list-sessions'
+alias tree='tree -I "vendor|node_modules"'
 
 # Docker shortcuts
 alias dc='docker-compose'
