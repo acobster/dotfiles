@@ -14,6 +14,8 @@ set visualbell			" No beeping.
 set expandtab
 set tabstop=2
 set shiftwidth=2
+set incsearch " incremental search
+set hlsearch  " hilight search terms
 
 let mapleader=","
 
@@ -51,11 +53,18 @@ Plugin 'plasticboy/vim-markdown'
 " Multiple cursors
 Plugin 'terryma/vim-multiple-cursors'
 
+" Sessions
+Plugin 'tpope/vim-obsession'
+Plugin 'mhinz/vim-startify'
+
 call vundle#end()
 
 filetype plugin indent on
 
 set laststatus=2
+
+" ,h redraws the screen and removes any search highlighting.
+nnoremap <leader>h :nohlsearch<cr>
 
 " File/Tab navigation
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
@@ -182,7 +191,8 @@ nnoremap <leader>. :call OpenTestAlternate()<cr>
 
 " Start an editor command to set up the mapping for executing stuff in named
 " pipe
-cnoremap <c-P> nmap ,t w\\|:silent !echo 'phpunit' > .test.pipe<c-v>u003Ccr>:redraw!<c-v>u003Ccr>
+cnoremap <c-P><c-P> nmap ,t :w\\|:silent !echo 'bin/phpunit' > test.pipe<c-v>u003Ccr>:redraw!<c-v>u003Ccr>
+cnoremap <c-P><c-W> nmap ,t :w\\|:silent !echo 'docker-compose exec web bin/phpunit' > test.pipe<c-v>u003Ccr>:redraw!<c-v>u003Ccr>
 
 " Gary's weird stuff....
 function! MapCR()
