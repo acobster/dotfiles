@@ -15,6 +15,7 @@ alias lz='ls -Z'
 alias drop='cd ~/Dropbox'
 alias pub='pbcopy < ~/.ssh/key2.pub'
 alias vs='vagrant ssh'
+alias v='vim'
 alias r='reload'
 alias rr='reload && clear'
 alias rrr='reload && cd && clear'
@@ -30,12 +31,15 @@ alias b='cd -'
 alias tk='tmux kill-session -t'
 alias tkall='tmux list-sessions | awk "{print \$1}" | sed "s/://" | while read sess; do tmux kill-session -t $sess; done'
 alias tl='tmux list-sessions'
+alias tconf='vim ~/.tmux.conf'
+alias tmuxconf='vim ~/.tmux.conf'
 alias tree='tree -I "vendor|node_modules"'
 
 # Docker shortcuts
 alias dc='docker-compose'
 alias dw='docker-compose exec web'
 alias dwp='docker-compose exec web wp --allow-root'
+alias up='docker-compose up -d'
 
 # Sublime shortcuts
 alias sp='subl *.sublime-project'
