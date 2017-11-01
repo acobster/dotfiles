@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# EXAMPLE:
+# $ reflog | tail -5
+# 5 months ago 6954984 pantheon and netstat fun
+# 5 months ago 5d76924 tmux aliases
+# 5 months ago f844ae2 tmux config
+# 5 months ago 8c75194 seed rails db, run AddRoleToUsers migration automatically with devise
+# 5 months ago ba657e6 git d alias
+# $
+
 set -e
 
 FORMAT="$1"
