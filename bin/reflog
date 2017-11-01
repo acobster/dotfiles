@@ -1,13 +1,26 @@
 #!/bin/bash
 
 # EXAMPLE:
-# $ reflog | tail -5
+#
+# $ reflog
 # 5 months ago 6954984 pantheon and netstat fun
 # 5 months ago 5d76924 tmux aliases
 # 5 months ago f844ae2 tmux config
 # 5 months ago 8c75194 seed rails db, run AddRoleToUsers migration automatically with devise
 # 5 months ago ba657e6 git d alias
-# $
+#
+# You may specify a custom "pretty format" per git docs:
+# https://git-scm.com/docs/pretty-formats
+#
+# EXAMPLE:
+#
+# $ reflog '%ae %H'
+# ctamayo@sitecrafting.com 6954984da29618d1eef7f9a3d41263379426e45a
+# ctamayo@sitecrafting.com 5d7692443e43b135a5b7f231482459866b64d856
+# ctamayo@sitecrafting.com f844ae2d842a4466754f4b6848006a9476f6b4c8
+# acobster@gmail.com 8c75194e65cf400d3e6d05c582e8e297f0c96eb4
+# ctamayo@sitecrafting.com ba657e6234f701a6490150c340634b6944e71cee
+#
 
 set -e
 
