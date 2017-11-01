@@ -328,6 +328,12 @@ if [[ -z $(git config --global alias.ff) ]] ; then
   git config --global alias.ff 'merge --ff-only'
 fi
 
+# Alias: git where
+# which branches is this hash on?
+if [[ -z $(git config --global alias.where) ]]; then
+  git config --global alias.where 'branch --contains'
+fi
+
 # Fancy logging.
 # Stolen from https://github.com/garybernhardt/dotfiles/blob/master/.gitconfig
 #   h = head
