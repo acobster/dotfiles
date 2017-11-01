@@ -9,7 +9,7 @@ if [[ -z $FORMAT ]]; then
 fi
 
 git reflog | \
-  awk {'print $1}' | \
+  awk '{print $1}' | \
   while read hash; do
     git log -1 --format="$FORMAT" $hash;
   done
