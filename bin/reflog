@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -e
+
+FORMAT="$1"
+
+if [[ -z $FORMAT ]]; then
+  FORMAT='%ar %h %s'
+fi
+
+git reflog | \
+  awk {'print $1}' | \
+  while read hash; do
+    git log -1 --format="$FORMAT" $hash;
+  done
