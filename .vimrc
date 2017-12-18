@@ -21,6 +21,10 @@ let mapleader=","
 
 filetype off
 
+" Project stuff
+cmap ~tour ~/workspace/docker/tourusa/
+cmap ~mod ~/workspace/docker/tourusa/local/modules/TourUsa/
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -66,19 +70,21 @@ set laststatus=2
 " ,h redraws the screen and removes any search highlighting.
 nnoremap <leader>h :nohlsearch<cr>
 
+" ctags
+set tags=./tags;/,tags;/
+
 " File/Tab navigation
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 cnoremap N% tab new<Space>
 cnoremap S% split<Space>
 cnoremap V% vert new<Space>
 nnoremap <C-l> :tabnext<CR>
-nnoremap <C-h> :tabprevious<CR>
+"nnoremap <C-h> :tabprevious<CR>
 
 " Configure split behavior
-nnoremap <C-J> :vertical resize +5<cr>
-nnoremap <C-K> :vertical resize -5<cr>
-nnoremap <C-H> :resize +5<cr>
-nnoremap <C-L> :resize -5<cr>
+nnoremap <c-w>h :vertical resize -5<cr>
+nnoremap <c-l> :vertical resize +5<cr>
+nnoremap <c-w>l :vertical resize +5<cr>
 set splitbelow
 set splitright
 
@@ -96,6 +102,8 @@ let g:syntastic_html_tidy_ignore_errors = [
   \ 'plain text isn''t allowed in <head> elements',
   \ '<img> escaping malformed URI reference'
   \ ]
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exe = 'eslint'
 
 " In vim-airline, only display "hunks" if the diff is non-zero
 let g:airline#extensions#hunks#non_zero_only = 1
