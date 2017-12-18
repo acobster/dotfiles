@@ -151,7 +151,7 @@ if [[ -d "/usr/local/mysql/bin" ]] && ! [[ $PATH =~ ":mysql\/bin:" ]] ; then
   export PATH=/usr/local/mysql/bin:$PATH
 fi
 
-if ! [[ $PATH =~ ":dotfiles\/bin:" ]] ; then
+if [[ ! $PATH =~ "dotfiles/bin:" ]] ; then
   export PATH=$HOME/dotfiles/bin:$PATH
 fi
 
@@ -343,7 +343,7 @@ fi
 
 # Alias: git rs
 if [[ -z $(git config --global alias.rs) ]] ; then
-  git config --global alias.rs 'reset --hard HEAD'
+  git config --global alias.rs 'reset'
 fi
 
 # Alias: git cl
@@ -471,18 +471,30 @@ if [[ !  "$PATH" =~ ".rbenv/bin" ]] && [[ -d ~/.rbenv/bin ]] ; then
   export PATH="$HOME/.rbenv/bin:$PATH"
 fi
 
-if [[ ! "$PATH" =~ ".rbenv/shims" ]] && [[ -d $HOME/.rbenv/shims ]] ; then
-  export PATH=$HOME/.rbenv/shims:$PATH
-fi
-
 # initialize rbenv
-if [[ "$PATH" =~ ".rbenv/bin" ]] ; then
-  eval "$(rbenv init -)"
-fi
-
 if [[ ! "$PATH" =~ ".rbenv/shims" ]] && [[ -d $HOME/.rbenv/shims ]] ; then
   export PATH="$HOME/.rbenv/shims:$PATH"
 fi
+
+
+#--------
+# Golang
+#--------
+
+if [[ ! "$PATH" =~ "/usr/local/go/bin:" ]] && [[ -d /usr/local/go ]] ; then
+  export PATH="/usr/local/go/bin:$PATH"
+fi
+
+
+
+#------
+# Rust
+#------
+
+if [[ ! "$PATH" =~ "cargo/bin" ]] && [[ -d $HOME/.cargo/bin ]] ; then
+  export PATH="$HOME/.cargo/bin:$PATH"
+fi
+
 
 
 #-------
