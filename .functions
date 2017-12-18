@@ -126,7 +126,17 @@ grephp() {
     dir=$2
   fi
 
-  grep --include=*.php -r "$1" $dir
+  grep --include=*.php -r --color "$1" $dir
+}
+
+grepjs() {
+  if [[ -z $2 ]] ; then
+    dir=.
+  else
+    dir=$2
+  fi
+
+  grep --include=*.js -r "$1" $dir
 }
 
 greptwig() {
