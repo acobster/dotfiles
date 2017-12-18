@@ -10,3 +10,5 @@ bower_components/
 zeus.json
 *.swp
 bin/jsc
+# ctags files at root only
+/tags
