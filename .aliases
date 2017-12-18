@@ -35,6 +35,9 @@ alias tconf='vim ~/.tmux.conf'
 alias tmuxconf='vim ~/.tmux.conf'
 alias tree='tree -I "vendor|node_modules"'
 
+# Stack Exchange code snippetz
+alias socode='sed "s/^/    /"|x'
+
 # Docker shortcuts
 alias dc='docker-compose'
 alias dw='docker-compose exec web'
