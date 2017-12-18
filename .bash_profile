@@ -54,29 +54,32 @@ __cwd_ps1() {
   return 0
 }
 
-__compose_ps1() {
-  MAGENTA='\e[1;35m'
-  GREEN='\e[01;32m'
 
-  BOLD='$(tput bold 1)'
-  RESET='$(tput sgr0)'
+__user_host_ps1() {
 
-  # Git prompt
-  local git_prompt
-  git_prompt=''
-  if [ -f ~/dotfiles/git-prompt.bash ]; then
-    GIT_PS1_SHOWUNTRACKEDFILES=1
-    GIT_PS1_SHOWDIRTYSTATE=1
-    GIT_PS1_SHOWSTASHSTATE=1
-    source ~/dotfiles/git-prompt.bash
+  # abbreviate username/hostname combos on normal machines
+  user_host="$(whoami)@$(hostname)"
 
-    git_prompt="\$(__git_ps1)"
-  fi
+  user_host="$(echo $user_host | sed 's/ctamayo@ctamayo-sitecrafting/⚙/')"
+  user_host="$(echo $user_host | sed 's/acobster@tomato/ 🍅 /i')"
 
+  echo " $user_host"
+  return 0
+}
+
+
+__ps1_symbol() {
   # Easter eggs!
   # strip leading zero from mmdd date
   dt=$(date '+%m%d' | sed 's/^0//')
-  if [[ $dt == '314' ]] ; then
+
+  # same for time
+  t=$(date '+%H' | sed 's/^0//')
+
+  if [[ $(hostname) == 'ctamayo-sitecrafting' ]] && [[ $t -gt 16 ]] ; then
+    # LOG YOUR TIME
+    s='🕓 '
+  elif [[ $dt == '314' ]] ; then
     s='π'
   elif [[ $dt == '628' ]] ; then
     s='τ'
@@ -100,7 +103,37 @@ __compose_ps1() {
     s='\$'
   fi
 
-  export PS1="\u@\h\[$BOLD\]\[$MAGENTA\]${git_prompt} \[$GREEN\]\$(__cwd_ps1)\$(__env_ps1)\[$RESET\] $s "
+  echo "$s"
+  return 0
+}
+
+
+__compose_ps1() {
+  MAGENTA='\e[1;35m'
+  GREEN='\e[01;32m'
+
+  BOLD='$(tput bold 1)'
+  RESET='$(tput sgr0)'
+
+  # Git prompt
+  local git_prompt
+  git_prompt=''
+  if [ -f ~/dotfiles/git-prompt.bash ]; then
+    GIT_PS1_SHOWUNTRACKEDFILES=1
+    GIT_PS1_SHOWDIRTYSTATE=1
+    GIT_PS1_SHOWSTASHSTATE=1
+    source ~/dotfiles/git-prompt.bash
+
+    git_prompt="\$(__git_ps1)"
+
+    # abbreviate git branch names!
+    git_prompt="\$(echo $git_prompt | sed 's/feature\\//✔ /')"
+    git_prompt="\$(echo $git_prompt | sed 's/experiment\\//🔬 /')"
+    git_prompt="\$(echo $git_prompt | sed 's/bugfix\\//🐛 /')"
+    git_prompt="\$(echo $git_prompt | sed 's/test\\//❓ /')"
+  fi
+
+  export PS1="\$(__user_host_ps1) \[$BOLD\]\[$MAGENTA\]${git_prompt} \[$GREEN\]\$(__cwd_ps1)\$(__env_ps1)\[$RESET\] $(__ps1_symbol) "
 }
 
 __compose_ps1
