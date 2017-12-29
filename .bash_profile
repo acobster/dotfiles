@@ -92,6 +92,8 @@ __ps1_symbol() {
     s='🍀 '
   elif [[ $dt == '1031' ]] ; then
     s='🎃 '
+  elif [[ $dt == '1231' ]] || [[ $dt == '101' ]] ; then
+    s='🎉 '
   elif [[ $dt -gt 1201 ]] ; then
     s='🎄 '
   elif [[ $dt == '809' ]] ; then
