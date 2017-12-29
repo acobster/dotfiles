@@ -61,7 +61,7 @@ __user_host_ps1() {
   user_host="$(whoami)@$(hostname)"
 
   user_host="$(echo $user_host | sed 's/ctamayo@ctamayo-sitecrafting/⚙/')"
-  user_host="$(echo $user_host | sed 's/acobster@tomato/ 🍅 /i')"
+  user_host="$(echo $user_host | sed 's/acobster@tomato/ 🍅 /')"
 
   echo " $user_host"
   return 0
