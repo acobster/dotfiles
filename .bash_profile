@@ -60,11 +60,11 @@ __user_host_ps1() {
   # abbreviate username/hostname combos on normal machines
   user_host="$(whoami)@$(hostname)"
 
-  user_host="$(echo $user_host | sed 's/ctamayo@ctamayo-sitecrafting/ ⚙/')"
+  user_host="$(echo $user_host | sed 's/ctamayo@ctamayo-sitecrafting/⚙/')"
   user_host="$(echo $user_host | sed 's/acobster@Tomato.domain/🍅/')"
   user_host="$(echo $user_host | sed 's/acobster@CobyTamsMacBook.domain/🍅/')"
 
-  echo "$user_host "
+  echo "$user_host"
   return 0
 }
 
