@@ -36,3 +36,7 @@ $ ln -s dotfiles/.gitignore .gitignore
 ```
 
 **Note that this setup assumes you have these files in the `~/dotfiles` dir. It won't work otherwise.**
+
+## TODO
+
+* modularize .bash_profile
