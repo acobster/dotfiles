@@ -18,6 +18,7 @@ function init_panes() {
   # select/split the window
   tmux select-window -t $SESSION:0
   tmux split-window -v
+  tmux split-window -h
   # send it the command
   send_cmd "$CMD"
 
