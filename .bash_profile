@@ -101,7 +101,7 @@ __ps1_symbol() {
   elif [[ $dt == '201' ]] ; then
     s='🍆 '
   elif [[ $dt == '115' ]] ; then
-    s='🥕 '
+    s='🐦 '
   else
     s='\$'
   fi
