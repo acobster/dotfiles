@@ -298,3 +298,6 @@ function! InlineVariable()
 endfunction
 nnoremap <leader>ri :call InlineVariable()<cr>
 
+
+" Include machine-specific .vimrc
+so ~/.local.vimrc
