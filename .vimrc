@@ -35,6 +35,7 @@ Plugin 'bronson/vim-trailing-whitespace'
 " Navigation
 Plugin 'vim-scripts/L9' " FuzzyFinder dependency
 Plugin 'vim-scripts/FuzzyFinder'
+Plugin 'wesQ3/vim-windowswap'
 
 " Syntax
 Plugin 'lumiliet/vim-twig'
