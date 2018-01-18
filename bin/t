@@ -15,11 +15,12 @@ function init_panes() {
   # send it the command
   send_cmd "$CMD"
 
-  # select/split the window
+  # select/split the window, sending each the command
   tmux select-window -t $SESSION:0
   tmux split-window -v
+  send_cmd "$CMD"
+
   tmux split-window -h
-  # send it the command
   send_cmd "$CMD"
 
   # finally, attach to the new session
