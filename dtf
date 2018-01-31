@@ -58,4 +58,9 @@ if ! [[ -f ~/.tmux.conf ]] ; then
   ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 fi
 
+if ! [[ -f ~/.tmux.local.conf ]] ; then
+  echo creating local tmux config
+  touch ~/.tmux.local.conf
+fi
+
 echo 'done! 👍 🍅 🍕 🚀 🎸 '
