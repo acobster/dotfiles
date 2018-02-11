@@ -42,7 +42,16 @@ themes() {
 }
 
 theme() {
-  themes && cd $1
+  theme=$(wp-html-dir)/wp-content/themes/$1
+  if [[ -d "$theme" ]] ; then
+    cd $theme
+  elif [[ -d $(dirname "$theme") ]] ; then
+    echo "No such theme: $1"
+    cd $(dirname "$theme")
+  else
+    echo "Couldn't find themes directory. Are you in a WP directory tree?"
+    exit 1
+  fi
 }
 
 wpdebug() {
