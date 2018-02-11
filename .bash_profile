@@ -319,6 +319,11 @@ if [[ -z $(git config --global alias.cam) ]] ; then
   git config --global alias.cam 'commit -am'
 fi
 
+# Alias: git amend
+if [[ -z $(git config --global alias.amend) ]] ; then
+  git config --global alias.amend 'commit --amend'
+fi
+
 # Alias: git files
 if [[ -z $(git config --global alias.files) ]] ; then
   git config --global alias.files 'diff --name-only'
