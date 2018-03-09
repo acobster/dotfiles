@@ -13,6 +13,17 @@ global_ignore() {
 source ~/dotfiles/grab.bash
 
 
+# Vim
+
+vms() {
+  if [[ -z $1 ]] ; then
+    echo you gotta specify a session
+  fi
+
+  vim -S ~/.vim/session/$1.vim
+}
+
+
 # WordPress
 
 wp-html-dir() {
