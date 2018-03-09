@@ -140,33 +140,29 @@ sql() {
 }
 
 grephp() {
-  if [[ -z $2 ]] ; then
-    dir=.
-  else
-    dir=$2
-  fi
-
-  grep --include=*.php -r --color "$1" $dir
+  grepext "*.php" "$1" "$2"
 }
 
 grepjs() {
-  if [[ -z $2 ]] ; then
-    dir=.
-  else
-    dir=$2
-  fi
-
-  grep --include=*.js -r "$1" $dir
+  grepext "*.js" "$1" "$2"
 }
 
 greptwig() {
-  if [[ -z $2 ]] ; then
+  grepext "*.twig" "$1" "$2"
+}
+
+grepless() {
+  grepext "*.less" "$1" "$2"
+}
+
+grepext() {
+  if [[ -z $3 ]] ; then
     dir=.
   else
-    dir=$2
+    dir="$3"
   fi
 
-  grep --include=*.twig -r "$1" $dir
+  grep --include=$1 -r "$2" "$dir"
 }
 
 psgrep() {
