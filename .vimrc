@@ -74,6 +74,9 @@ nnoremap <leader>h :nohlsearch<cr>
 " ctags
 set tags=./tags;/,tags;/
 
+" tabs n spaces
+autocmd FileType make setlocal noexpandtab
+
 " File/Tab navigation
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 cnoremap N% tab new<Space>
@@ -120,6 +123,11 @@ augroup mySyntastic
   au FileType tex let b:syntastic_mode = "passive"
 augroup END
 
+" Toggle paste mode easily
+" Useful for pasting code without autoformatting
+set pastetoggle=<F3>
+
+
 " Coloring for 80-char column
 if (exists('+colorcolumn'))
   set colorcolumn=80
@@ -152,7 +160,9 @@ nmap <leader>m :w\|:!rspec --format=d spec/models<cr>
 nmap <leader>l :w\|:!rspec --format=d spec/lib<cr>
 
 " File buffering
-nmap ,ff :FufFileWithCurrentBufferDir<CR>
+nmap ,ff :FufCoverageFile<CR>
+nmap ,fl :FufFile<CR>
+nmap ,fd :FufFileWithCurrentBufferDir<CR>
 nmap ,fb :FufBuffer<CR>
 nmap ,ft :FufTaggedFile<CR>
 
