@@ -1,7 +1,78 @@
 #!/bin/bash
 
-set -e
+usage() {
+  echo 'usage: t DIR1[:CMD1] [DIR2[:CMD2]] [DIR3[:CMD3]] [-v|--verbose] [-h|--help]'
+}
 
+POSITIONAL=()
+while [[ $# -gt 0 ]] ; do
+  key="$1"
+
+  case $key in
+    -h|--help)
+			# just help and nothin' else
+			usage
+			exit
+			shift
+			;;
+		-v|--verbose)
+			VERBOSE="1"
+			shift # next opt
+			;;
+    -n|--dry-run)
+			DRY_RUN="1"
+			shift # next opt
+			;;
+		*) # default case:
+		POSITIONAL+=("$1") # this is a positional arg; save it for later
+			shift
+			;;
+  esac
+done
+
+# restore positional args
+set -- "${POSITIONAL[@]}"
+
+
+
+main() {
+
+	# initialize the session name
+	SESSION=${POSITIONAL[0]:-'default'}
+
+	#TODO refactor this with a loop?
+	CMD1="${POSITIONAL[1]}"
+	CMD2="${POSITIONAL[2]:-$CMD1}"
+	CMD3="${POSITIONAL[3]:-$CMD1}"
+
+	# if any command is a directory, just cd into it
+	if [[ -d "$CMD1" ]] ; then
+		CMD1="cd '$CMD1'"
+	fi
+	if [[ -d "$CMD2" ]] ; then
+		CMD2="cd '$CMD2'"
+	fi
+	if [[ -d "$CMD3" ]] ; then
+		CMD3="cd '$CMD3'"
+	fi
+
+	if [[ $DRY_RUN ]] || [[ $VERBOSE ]] ; then
+		echo SESSION=$SESSION
+		echo CMD1=$CMD1
+		echo CMD2=$CMD2
+		echo CMD3=$CMD3
+	fi
+
+	if [[ $DRY_RUN ]] ; then
+		exit
+	fi
+
+	# catch `tmux attach` errors, initializing a new session if necessary
+	trap 'init_panes $SESSION $CMD1 $CMD2 $CMD3' EXIT
+	tmux attach -t $SESSION
+}
+
+# Send an arbitrary command to the current window
 function send_cmd() {
   if ! [[ -z $1 ]] ; then
     tmux send-keys "$1" 'C-m'
@@ -13,15 +84,15 @@ function init_panes() {
   # create a new session named $SESSION
   tmux new-session -d -s $SESSION
   # send it the command
-  send_cmd "$CMD"
+  send_cmd "$CMD1"
 
   # select/split the window, sending each the command
   tmux select-window -t $SESSION:0
   tmux split-window -v
-  send_cmd "$CMD"
+  send_cmd "$CMD2"
 
   tmux split-window -h
-  send_cmd "$CMD"
+  send_cmd "$CMD3"
 
   # finally, attach to the new session
   tmux attach-session -t $SESSION
@@ -29,23 +100,5 @@ function init_panes() {
 }
 
 
-# initialize the session name
-if [[ -z $1 ]] ; then
-  SESSION='default'
-else
-  SESSION=$1
-fi
 
-if [[ -d $2 ]] ; then
-  # a directory was specified; define command to move to it
-  CMD="cd $2"
-elif ! [[ -z $2 ]] ; then
-  # a command was specified; execute it directly
-  CMD="$2"
-fi
-
-
-# catch `tmux attach` errors, initializing a new session if necessary
-trap 'init_panes $SESSION $CMD' EXIT
-tmux attach -t $SESSION
-
+main
