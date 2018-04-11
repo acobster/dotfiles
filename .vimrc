@@ -6,7 +6,7 @@ set ignorecase			" Case-insensitive searching
 set smartcase			" But case-sensitive if expression contains a capital
 set showcmd			" Display incomplete commands
 set showmode			" Display the current mode
-set backspace=indent,eol,start	" Intuitive backspacing.
+
 set scrolloff=3			" Show 3 lines of context around the cursor.
 set number			" Show line numbers.
 set ruler			" Show cursor position.
@@ -24,6 +24,7 @@ filetype off
 " Project stuff
 cmap ~tour ~/workspace/docker/tourusa/
 cmap ~mod ~/workspace/docker/tourusa/local/modules/TourUsa/
+cmap ~vs ~/.vim/session/
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -36,12 +37,19 @@ Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'vim-scripts/L9' " FuzzyFinder dependency
 Plugin 'vim-scripts/FuzzyFinder'
 Plugin 'wesQ3/vim-windowswap'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'Shougo/unite.vim'
+Plugin 'rking/ag.vim'
 
 " Syntax
 Plugin 'lumiliet/vim-twig'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'bkad/vim-stylus'
 Plugin 'posva/vim-vue'
+Plugin 'elmcast/elm-vim'
+
+" Formatting
+Plugin 'junegunn/vim-easy-align'
 
 " Fancy-ass statusline
 Plugin 'vim-airline/vim-airline'
@@ -76,6 +84,7 @@ set tags=./tags;/,tags;/
 
 " tabs n spaces
 autocmd FileType make setlocal noexpandtab
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " File/Tab navigation
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
@@ -83,7 +92,26 @@ cnoremap N% tab new<Space>
 cnoremap S% split<Space>
 cnoremap V% vert new<Space>
 nnoremap <C-l> :tabnext<CR>
-"nnoremap <C-h> :tabprevious<CR>
+nnoremap <C-h> :tabprevious<CR>
+
+" configure unite file search
+let g:unite_source_history_yank_enable = 1
+try
+  let g:unite_source_rec_async_command='ag --nocolor --nogroup -g ""'
+  call unite#filters#matcher_default#use(['matcher_fuzzy'])
+catch
+endtry
+" search a file in the filetree
+nnoremap <space><space> :<C-u>Unite -start-insert file_rec/async<cr>
+" reset not it is <C-l> normally
+nnoremap <space>r <Plugin>(unite_restart)
+
+
+" type & to searh the word in all files in the current dir
+nmap & :Ag <c-r>=expand("<cword>")<cr><cr>
+" Trailing space is necessary:
+nnoremap <space>/ :Ag 
+
 
 " Configure split behavior
 nnoremap <c-w>h :vertical resize -5<cr>
@@ -111,6 +139,9 @@ let g:syntastic_javascript_eslint_exe = 'eslint'
 
 " In vim-airline, only display "hunks" if the diff is non-zero
 let g:airline#extensions#hunks#non_zero_only = 1
+
+" Easy align interactive
+vnoremap <silent> <Enter> :EasyAlign<cr>
 
 " put symbols in the sign column
 hi clear SignColumn

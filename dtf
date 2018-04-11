@@ -36,6 +36,11 @@ fi
 echo installing all the vim plugins...
 vim +PluginInstall +qall
 
+if ! [[ $(ls ~/.vim/bundle/vimproc.vim/lib/vimproc_* 2>/dev/null) ]] ; then
+  echo building vimproc...
+  $(cd ~/.vim/bundle/vimproc.vim && make 2>/dev/null > /dev/null)
+fi
+
 
 
 echo linking config files
