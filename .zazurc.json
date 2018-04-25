@@ -12,6 +12,13 @@
     "tinytacoteam/zazu-package-manager",
     "iansinnott/zazu-emoji",
     {
+      "name": "jnstr/zazu-password",
+      "variables": {
+        "length": 16,
+        "strength": "hard"
+      }
+    },
+    {
       "name": "tinytacoteam/zazu-clipboard",
       "variables": {
         "ClipboardKey": "cmd+shift+v"
