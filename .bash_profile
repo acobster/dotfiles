@@ -314,6 +314,11 @@ if [[ -z $(git config --global alias.ci) ]] ; then
   git config --global alias.ci 'commit'
 fi
 
+# Alias: git m
+if [[ -z $(git config --global alias.m) ]] ; then
+  git config --global alias.m 'commit -m'
+fi
+
 # Alias: git cam
 if [[ -z $(git config --global alias.cam) ]] ; then
   git config --global alias.cam 'commit -am'
