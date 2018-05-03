@@ -47,6 +47,7 @@ Plugin 'vim-syntastic/syntastic'
 Plugin 'bkad/vim-stylus'
 Plugin 'posva/vim-vue'
 Plugin 'elmcast/elm-vim'
+Plugin 'wlangstroth/vim-racket'
 
 " Formatting
 Plugin 'junegunn/vim-easy-align'
@@ -136,6 +137,12 @@ let g:syntastic_html_tidy_ignore_errors = [
   \ ]
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe = 'eslint'
+
+if has("autocmd")
+  au BufReadPost *.rkt,*.rktl set filetype=racket
+  au filetype racket set lisp
+  au filetype racket set autoindent
+endif
 
 " In vim-airline, only display "hunks" if the diff is non-zero
 let g:airline#extensions#hunks#non_zero_only = 1
