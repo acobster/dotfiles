@@ -242,8 +242,8 @@ nnoremap <leader>. :call OpenTestAlternate()<cr>
 
 " Start an editor command to set up the mapping for executing stuff in named
 " pipe
-cnoremap <c-P><c-P> nmap ,t :w\\|:silent !echo 'bin/phpunit' > test.pipe<c-v>u003Ccr>:redraw!<c-v>u003Ccr>
-cnoremap <c-P><c-W> nmap ,t :w\\|:silent !echo 'docker-compose exec web bin/phpunit' > test.pipe<c-v>u003Ccr>:redraw!<c-v>u003Ccr>
+cnoremap <c-P><c-P> nmap ,t :w\\|:silent !echo 'lando unit' > test.pipe<c-v>u003Ccr>:redraw!<c-v>u003Ccr>
+cnoremap <c-P><c-W> nmap ,s :w\\|:silent !echo 'lando sniff' > test.pipe<c-v>u003Ccr>:redraw!<c-v>u003Ccr>
 
 " Gary's weird stuff....
 function! MapCR()
