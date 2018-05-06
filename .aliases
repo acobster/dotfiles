@@ -34,6 +34,8 @@ alias tl='tmux list-sessions'
 alias tconf='vim ~/.tmux.conf'
 alias tmuxconf='vim ~/.tmux.conf'
 alias tree='tree -I "vendor|node_modules"'
+# be nice to me when i make typos ok plz
+alias tig='git'
 
 # Stack Exchange code snippetz
 alias socode='sed "s/^/    /"|x'
