@@ -67,9 +67,12 @@ main() {
 		exit
 	fi
 
-	# catch `tmux attach` errors, initializing a new session if necessary
-	trap 'init_panes $SESSION $CMD1 $CMD2 $CMD3' EXIT
+	# attempt to attach to an existing session,
+  # initializing a new one if necessary
 	tmux attach -t $SESSION
+  if [[ "$?" != '0' ]] ; then
+    init_panes
+  fi
 }
 
 # Send an arbitrary command to the current window
