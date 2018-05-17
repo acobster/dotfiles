@@ -198,11 +198,11 @@ nmap <leader>m :w\|:!rspec --format=d spec/models<cr>
 nmap <leader>l :w\|:!rspec --format=d spec/lib<cr>
 
 " File buffering
-nmap ,ff :FufCoverageFile<CR>
-nmap ,fl :FufFile<CR>
-nmap ,fd :FufFileWithCurrentBufferDir<CR>
-nmap ,fb :FufBuffer<CR>
-nmap ,ft :FufTaggedFile<CR>
+nmap <leader>ff :FufCoverageFile<CR>
+nmap <leader>fl :FufFile<CR>
+nmap <leader>fd :FufFileWithCurrentBufferDir<CR>
+nmap <leader>fb :FufBuffer<CR>
+nmap <leader>ft :FufTaggedFile<CR>
 
 
 
