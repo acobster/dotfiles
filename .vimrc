@@ -45,6 +45,7 @@ Plugin 'bkad/vim-stylus'
 Plugin 'posva/vim-vue'
 Plugin 'elmcast/elm-vim'
 Plugin 'wlangstroth/vim-racket'
+Plugin 'StanAngeloff/php.vim'
 
 " Markdown
 Plugin 'plasticboy/vim-markdown'
