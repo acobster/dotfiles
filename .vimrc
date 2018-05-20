@@ -46,6 +46,9 @@ Plugin 'posva/vim-vue'
 Plugin 'elmcast/elm-vim'
 Plugin 'wlangstroth/vim-racket'
 
+" Markdown
+Plugin 'plasticboy/vim-markdown'
+
 " Formatting
 Plugin 'junegunn/vim-easy-align'
 
@@ -56,13 +59,6 @@ Plugin 'vim-airline/vim-airline-themes'
 " Git
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
-
-" Markdown
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-
-" Multiple cursors
-Plugin 'terryma/vim-multiple-cursors'
 
 " Sessions
 Plugin 'tpope/vim-obsession'
