@@ -165,6 +165,13 @@ augroup END
 " Useful for pasting code without autoformatting
 set pastetoggle=<F3>
 
+" Highlight current line in active window
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
+
 
 " Coloring for 80-char column
 if (exists('+colorcolumn'))
