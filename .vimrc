@@ -37,13 +37,10 @@ Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'vim-scripts/L9' " FuzzyFinder dependency
 Plugin 'vim-scripts/FuzzyFinder'
 Plugin 'wesQ3/vim-windowswap'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'Shougo/unite.vim'
-Plugin 'rking/ag.vim'
 
 " Syntax
-Plugin 'lumiliet/vim-twig'
 Plugin 'vim-syntastic/syntastic'
+Plugin 'lumiliet/vim-twig'
 Plugin 'bkad/vim-stylus'
 Plugin 'posva/vim-vue'
 Plugin 'elmcast/elm-vim'
