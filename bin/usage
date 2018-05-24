@@ -6,10 +6,16 @@ set -e
 #  * there will be false positives.
 #  * only works for languages with `public function` syntax, b/c #getshitdone
 
+function usage() {
+  echo 'Find calls to public methods defined in file.php:'
+  echo
+  echo 'usage /path/to/file.php'
+}
 
 # sanity check, brah
 if [[ -z $1 ]] ; then
-  echo ya gotta specify a file, brah
+  usage
+  exit
 fi
 
 file=$1
