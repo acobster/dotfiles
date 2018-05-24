@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+function main() {
+  install_neovim
+  install_dotfiles
+}
+
+function install_neovim() {
+  nvim=$(which nvim)
+  if [[ -z "$nvim" ]] ; then
+    read -p 'no neovim detected! install? [y/N] ' install
+    if [[ "$install" = 'y' ]] ; then
+      echo 'adding neovim repository...'
+      sudo add-apt-repository ppa:neovim-ppa/stable
+      echo 'updating neovim repositories...'
+      sudo apt-get update
+      echo 'installing neovim...'
+      sudo apt-get install -y neovim
+    fi
+
+    nvim=$(which nvim)
+    if [[ -z "$nvim" ]] ; then
+      echo "neovim is now installed at $nvim"
+    fi
+  fi
+}
+
+function install_dotfiles() {
+  echo 'setting up dotfiles...'
+  $HOME/dotfiles/dtf
+}
+
+
+main
+
