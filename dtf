@@ -33,6 +33,19 @@ if [[ ! -d $HOME/.vim/bundle/Vundle.vim ]] ; then
   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
 
+if [[ "$(which nvim)" ]] ; then
+  echo setting up nvim...
+  if [[ ! -f $HOME/.nvimrc ]] ; then
+    echo symlinking ~/.nvimrc
+    ln -s $HOME/dotfiles/.vimrc $HOME/.nvimrc
+  fi
+
+  if [[ ! -f $HOME/.nvim ]] ; then
+    echo symlinking ~/.nvim
+    ln -s $HOME/dotfiles/.vim $HOME/.nvim
+  fi
+fi
+
 echo installing all the vim plugins...
 vim +PluginInstall +qall
 
