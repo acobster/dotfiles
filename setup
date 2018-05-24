@@ -1,13 +1,45 @@
 #!/usr/bin/env bash
 
 function main() {
+  install_ruby
   install_neovim
   install_dotfiles
 }
 
+function install_ruby() {
+  if [[ -z $(which rbenv) ]] ; then
+    git clone https://github.com/rbenv/rbenv.git $HOME/.rbenv
+    # redirect stuff to stderr to avoid evaluating output
+    echo 'installing rbenv...'
+    $(
+      cd $HOME/.rbenv
+      src/configure >&2
+      make -C src >&2
+    )
+
+    export PATH="$HOME/.rbenv/bin:$PATH"
+  fi
+
+  if ! [[ -d "$(rbenv root)"/plugins ]] ; then
+    mkdir -p "$(rbenv root)"/plugins
+    git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
+  fi
+
+  rbenv install -l
+  read -p 'pick a version of ruby to install: (2.5.1) ' RBVER
+  rbenv install "$RBVER"
+  rbenv global "$RBVER"
+  rbenv rehash
+
+  echo
+  echo 'Done!'
+  echo
+  echo "rbenv global: $(rbenv global)"
+  echo
+}
+
 function install_neovim() {
-  nvim=$(which nvim)
-  if [[ -z "$nvim" ]] ; then
+  if [[ -z "$(which nvim)" ]] ; then
     read -p 'no neovim detected! install? [y/N] ' install
     if [[ "$install" = 'y' ]] ; then
       echo 'adding neovim repository...'
@@ -18,9 +50,8 @@ function install_neovim() {
       sudo apt-get install -y neovim
     fi
 
-    nvim=$(which nvim)
-    if [[ -z "$nvim" ]] ; then
-      echo "neovim is now installed at $nvim"
+    if [[ "$(which nvim)" ]] ; then
+      echo "neovim is now installed at $(which nvim)"
     fi
   fi
 }
