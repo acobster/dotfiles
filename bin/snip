@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+SNIPPETS_DIR=${SNIPPETS_DIR:-"${HOME}/dotfiles/snippets"}
+
+snippet="${SNIPPETS_DIR}/${1}"
+if ! [[ -f "$snippet" ]] ; then
+  echo "snippet not found: $snippet"
+  exit 1
+fi
+
+cat "$snippet"
