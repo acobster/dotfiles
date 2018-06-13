@@ -41,6 +41,9 @@ alias tig='git'
 # Stack Exchange code snippetz
 alias socode='sed "s/^/    /"|x'
 
+# List snippets available within my dotfiles
+alias snippets='ls ~/dotfiles/snippets'
+
 # Docker shortcuts
 alias dc='docker-compose'
 alias dw='docker-compose exec web'
