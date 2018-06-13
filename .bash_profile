@@ -494,8 +494,20 @@ fi
 # Golang
 #--------
 
-if [[ ! "$PATH" =~ "/usr/local/go/bin:" ]] && [[ -d /usr/local/go ]] ; then
-  export PATH="/usr/local/go/bin:$PATH"
+if [[ -d /usr/local/go ]] ; then
+  export GOROOT='/usr/local/go'
+
+  if [[ ! "$PATH" =~ "/usr/local/go/bin:" ]] ; then
+    export PATH="/usr/local/go/bin:$PATH"
+  fi
+fi
+
+if [[ -d "${HOME}/go" ]] ; then
+  export GOPATH="${HOME}/go"
+
+  if [[ ! "$PATH" =~ "{$HOME}/go/bin:" ]] ; then
+    export PATH="${HOME}/go/bin:$PATH"
+  fi
 fi
 
 
