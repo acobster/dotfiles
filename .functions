@@ -41,11 +41,28 @@ wp-html-dir() {
 }
 
 plugins() {
+  echo 'deprecated! use `plugin` instead'
   cd $(wp-html-dir)/wp-content/plugins
 }
 
 plugin() {
-  plugins && cd $1
+  wp_root=$(wp-html-dir)
+  if [[ -z "$wp_root" ]] ; then
+    echo 'Not in a WordPress directory tree!'
+    exit 1
+  fi
+
+  cd "$wp_root/wp-content/plugins/$1"
+}
+
+muplugin() {
+  wp_root=$(wp-html-dir)
+  if [[ -z "$wp_root" ]] ; then
+    echo 'Not in a WordPress directory tree!'
+    exit 1
+  fi
+
+  cd "$wp_root/wp-content/mu-plugins/$1"
 }
 
 themes() {
