@@ -35,12 +35,12 @@ fi
 
 if [[ "$(which nvim)" ]] ; then
   echo setting up nvim...
-  if [[ ! -f $HOME/.nvimrc ]] ; then
+  if ! [[ -f $HOME/.nvimrc ]] ; then
     echo symlinking ~/.nvimrc
     ln -s $HOME/dotfiles/.vimrc $HOME/.nvimrc
   fi
 
-  if [[ ! -f $HOME/.nvim ]] ; then
+  if ! [[ -L "$HOME/.nvim" ]] && ! [[ -d "$HOME/.nvim" ]] ; then
     echo symlinking ~/.nvim
     ln -s $HOME/dotfiles/.vim $HOME/.nvim
   fi
