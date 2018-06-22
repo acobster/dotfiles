@@ -443,6 +443,11 @@ if [ -f ~/dotfiles/git-completion.bash ]; then
 fi
 
 
+# Search
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+
 #---------
 # History
 #---------
