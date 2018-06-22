@@ -34,9 +34,8 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'bronson/vim-trailing-whitespace'
 
 " Navigation
-Plugin 'vim-scripts/L9' " FuzzyFinder dependency
-Plugin 'vim-scripts/FuzzyFinder'
 Plugin 'wesQ3/vim-windowswap'
+Plugin 'junegunn/fzf.vim'
 
 " Syntax
 Plugin 'vim-syntastic/syntastic'
@@ -179,12 +178,14 @@ nmap <leader>c :w\|:!rspec --format=d spec/controllers<cr>
 nmap <leader>m :w\|:!rspec --format=d spec/models<cr>
 nmap <leader>l :w\|:!rspec --format=d spec/lib<cr>
 
-" File buffering
-nmap <leader>ff :FufCoverageFile<CR>
-nmap <leader>fl :FufFile<CR>
-nmap <leader>fd :FufFileWithCurrentBufferDir<CR>
-nmap <leader>fb :FufBuffer<CR>
-nmap <leader>ft :FufTaggedFile<CR>
+" Search config
+set rtp+=~/.fzf
+nmap <leader>ff :Files<cr>
+nmap <leader>af :Ag<cr>
+
+let g:fzf_action = {
+  \ 'ctrl-k': 'vsplit',
+  \ 'ctrl-l': 'tab split' }
 
 
 
