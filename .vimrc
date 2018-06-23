@@ -181,7 +181,7 @@ nmap <leader>l :w\|:!rspec --format=d spec/lib<cr>
 " Search config
 set rtp+=~/.fzf
 nmap <leader>ff :Files<cr>
-nmap <leader>af :Ag<cr>
+nmap <leader>ag :Ag<cr>
 
 let g:fzf_action = {
   \ 'ctrl-k': 'vsplit',
