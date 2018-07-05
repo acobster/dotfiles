@@ -52,3 +52,7 @@ alias up='docker-compose up -d'
 
 # Sublime shortcuts
 alias sp='subl *.sublime-project'
+
+if [[ $(which pbcopy) ]] ; then
+  alias x='pbcopy'
+fi
