@@ -26,7 +26,14 @@ function install_ruby() {
   fi
 
   rbenv install -l
-  read -p 'pick a version of ruby to install: (2.5.1) ' RBVER
+  DEFAULT_RUBY=${DEFAULT_RUBY:-'2.5.1'}
+  read -p "pick a version of ruby to install: (${DEFAULT_RUBY}/\"none\" to skip) " -t 10 RBVER
+
+  if [[ "$RBVER" = "none" ]] ; then
+    return
+  fi
+  RBENV=${RBVER:-"$DEFAULT_RUBY"}
+
   rbenv install "$RBVER"
   rbenv global "$RBVER"
   rbenv rehash
