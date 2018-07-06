@@ -1,0 +1,17 @@
+language: node_js
+before_install:
+- sudo apt-get update
+
+install:
+- ./setup
+- ./dtf
+- . .bash_profile
+
+script:
+- ruby
+- $(which nvim)
+- snip bashargs
+
+env:
+- DEFAULT_RUBY=2.5.1
+- SKIP_INSTALL_NEOVIM=1
