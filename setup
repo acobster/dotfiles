@@ -46,7 +46,7 @@ function install_ruby() {
 }
 
 function install_neovim() {
-  if [[ -z "$(which nvim)" ]] ; then
+  if [[ -z "$(which nvim)" ]] && [[ -z "$SKIP_INSTALL_NEOVIM" ]] ; then
     read -p 'no neovim detected! install? [y/N] ' install
     if [[ "$install" = 'y' ]] ; then
       echo 'adding neovim repository...'
