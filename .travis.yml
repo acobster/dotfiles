@@ -4,7 +4,6 @@ before_install:
 
 install:
 - ./setup --ruby-version 2.5.1 --skip-neovim
-- ./dtf
 - . .bash_profile
 
 script:
