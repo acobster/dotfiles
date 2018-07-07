@@ -7,7 +7,7 @@ install:
 - . .bash_profile
 
 script:
-- ruby
+- ruby -v
 - $(which nvim)
 - snip bashargs
 
