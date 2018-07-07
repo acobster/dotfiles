@@ -1,5 +1,39 @@
 #!/usr/bin/env bash
 
+DOTFILES_DIR=$(dirname $0)
+
+DEFAULT_RUBY='2.5.1'
+
+POSITIONAL=()
+while [[ $# -gt 0 ]]
+do
+key="$1"
+
+case $key in
+    -h|--help)
+    # show usage and bail
+    usage
+    exit
+    ;;
+    --skip-neovim)
+    SKIP_INSTALL_NEOVIM=1
+    shift # past argument
+    shift # past value
+    ;;
+    -r|--ruby-version)
+    RUBY_VERSION="$2"
+    shift # past argument
+    shift # past value
+    ;;
+    *)
+    POSITIONAL+=("$1") # save it in an array for later
+    shift # past argument
+    ;;
+esac
+done
+set -- "${POSITIONAL[@]}" # restore positional parameters
+
+
 function main() {
   install_ruby
   install_neovim
@@ -25,17 +59,21 @@ function install_ruby() {
     git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
   fi
 
-  rbenv install -l
-  DEFAULT_RUBY=${DEFAULT_RUBY:-'2.5.1'}
-  read -p "pick a version of ruby to install: (${DEFAULT_RUBY}/\"none\" to skip) " -t 10 RBVER
+  if [[ -z "$RUBY_VERSION" ]] ; then
+    # no --ruby-version opt given
 
-  if [[ "$RBVER" = "none" ]] ; then
-    return
+    rbenv install -l
+    read -p "pick a version of ruby to install: (${DEFAULT_RUBY}/\"none\" to skip) " -t 10 RUBY_VERSION
+
+    if [[ "$RUBY_VERSION" = "none" ]] ; then
+      return
+    fi
+    RUBY_VERSION=${RUBY_VERSION:-"$DEFAULT_RUBY"}
   fi
-  RBENV=${RBVER:-"$DEFAULT_RUBY"}
 
-  rbenv install "$RBVER"
-  rbenv global "$RBVER"
+  echo "Installing ruby ${RUBY_VERSION}..."
+  rbenv install "$RUBY_VERSION"
+  rbenv global "$RUBY_VERSION"
   rbenv rehash
 
   echo
@@ -65,7 +103,7 @@ function install_neovim() {
 
 function install_dotfiles() {
   echo 'setting up dotfiles...'
-  $HOME/dotfiles/dtf
+  $DOTFILES_DIR/dtf
 }
 
 

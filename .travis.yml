@@ -3,7 +3,7 @@ before_install:
 - sudo apt-get update
 
 install:
-- ./setup
+- ./setup --ruby-version 2.5.1 --skip-neovim
 - ./dtf
 - . .bash_profile
 
@@ -12,6 +12,3 @@ script:
 - $(which nvim)
 - snip bashargs
 
-env:
-- DEFAULT_RUBY=2.5.1
-  SKIP_INSTALL_NEOVIM=1
