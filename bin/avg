@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+def main args
+  unless args.all? { |arg| is_numeric?(arg) }
+    puts 'All args must be ints!'
+    exit
+  end
+
+  nums = args.map(&:to_i)
+
+  nums.sum / nums.length
+end
+
+def is_numeric? str
+  true if Float(str) rescue false
+end
+
+
+puts main(ARGV)
