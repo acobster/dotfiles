@@ -259,6 +259,11 @@ fi
 # Git
 #---------
 
+# Alias git -> hub
+if [[ $(which hub) ]] ; then
+  alias git='hub'
+fi
+
 # Global .gitignore
 if [[ -z $(git config --global core.excludesfile) ]] ; then
   git config --global core.excludesfile '~/.gitignore'
