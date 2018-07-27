@@ -48,6 +48,9 @@ Plugin 'elmcast/elm-vim'
 Plugin 'wlangstroth/vim-racket'
 Plugin 'StanAngeloff/php.vim'
 
+" Case
+Plugin 'tpope/vim-abolish'
+
 " Markdown
 Plugin 'plasticboy/vim-markdown'
 
