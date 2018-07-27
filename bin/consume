@@ -1,11 +1,10 @@
 #!/bin/bash
 
 if [[ -z $1 ]] ; then
-  echo ya gotta name yr pipe
-  exit 1
+  echo 'no pipe name specified; defaulting to "test.pipe"'
 fi
 
-pipe=$1
+pipe=${1:-'test.pipe'}
 
 trap 'rm -f "$pipe"' EXIT     # ignore exit and delete messages until the end
 
