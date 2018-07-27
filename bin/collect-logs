@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+if [[ $# -lt 2 ]] ; then
+  echo usage collect-logs SITE_ID ENV
+  exit 1
+fi
+
+SITE_UUID="$1"
+ENV="$2"
+
+LOCAL_LOG_DIR=${3:-'./logs'}
+
+for app_server in `dig +short appserver.$ENV.$SITE_UUID.drush.in`;
+do
+  rsync -rlvz \
+    --size-only \
+    --ipv4 --progress \
+    -e 'ssh -p 2222' \
+    $ENV.$SITE_UUID@appserver.$ENV.$SITE_UUID.drush.in:logs/* \
+    "$LOCAL_LOG_DIR"
+done
