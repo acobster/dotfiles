@@ -412,6 +412,9 @@ fi
 if [[ -z $(git config --global alias.l) ]] ; then
   git config --global alias.l '!. ~/.githelpers && pretty_git_log'
 fi
+if [[ -z $(git config --global alias.links) ]] ; then
+  git config --global alias.la '!git-links'
+fi
 if [[ -z $(git config --global alias.la) ]] ; then
   git config --global alias.la '!git l --all'
 fi

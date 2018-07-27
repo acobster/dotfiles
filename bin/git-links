@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+#
+# Get links to commits in BitBucket, matching PATTERN
+#
+#  git-links PATTERN
+#
+
+if [[ -z "$1" ]] ; then
+  echo no pattern specified
+  exit 1
+fi
+
+git log --pretty=oneline |
+  egrep "$1" |
+  while read line; do
+    hash=$(echo $line|field 1)
+    msg=$(echo $line|cut -d' ' -f 2-)
+    echo "[$msg|https://bitbucket.org/sitecrafting/fmca-pantheon/commits/$hash]"
+  done
