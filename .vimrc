@@ -25,6 +25,8 @@ filetype off
 cmap ~tour ~/workspace/docker/tourusa/
 cmap ~mod ~/workspace/docker/tourusa/local/modules/TourUsa/
 cmap ~vs ~/.vim/session/
+cmap ~fac ~/workspace/fmca/wp-content/plugins/fmca-find-a-coach/
+cmap ~fmca ~/workspace/fmca/
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
