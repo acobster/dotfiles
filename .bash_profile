@@ -453,7 +453,10 @@ fi
 
 # Search
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+if [[ -f ~/.fzf.bash ]] ; then
+  source ~/.fzf.bash
+  export FZF_DEFAULT_COMMAND="find . -path '*/\.*' -type d -prune -o -type f -print -o -type l -print 2> /dev/null | sed s/^..//"
+fi
 
 
 #---------
