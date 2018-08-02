@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# put a bullet on it
+sed 's/^/* /'
