@@ -279,6 +279,16 @@ if [[ -z $(git config --global alias.sh) ]] ; then
   git config --global alias.sh 'stash'
 fi
 
+# Alias: git pop
+if [[ -z $(git config --global alias.pop) ]] ; then
+  git config --global alias.pop 'stash pop'
+fi
+
+# Alias: git local
+if [[ -z $(git config --global alias.local) ]] ; then
+  git config --global alias.local '!git l $(git current-remote-branch)..HEAD'
+fi
+
 # Alias: git aa
 if [[ -z $(git config --global alias.aa) ]] ; then
   git config --global alias.aa 'add --all'
@@ -287,6 +297,11 @@ fi
 # Alias: git d
 if [[ -z $(git config --global alias.d) ]] ; then
   git config --global alias.d 'diff'
+fi
+
+# Alias: git d1
+if [[ -z $(git config --global alias.d1) ]] ; then
+  git config --global alias.d1 '!git diff $1~1 $1'
 fi
 
 # Alias: git dc
@@ -369,6 +384,26 @@ if [[ -z $(git config --global alias.cl) ]] ; then
   git config --global alias.cl 'clean -fd'
 fi
 
+# Alias: git current-branch
+if [[ -z $(git config --global alias.current-branch) ]] ; then
+  git config --global alias.current-branch 'rev-parse --abbrev-ref HEAD'
+fi
+
+# Alias: git cb
+if [[ -z $(git config --global alias.cb) ]] ; then
+  git config --global alias.cb 'rev-parse --abbrev-ref HEAD'
+fi
+
+# Alias: git current-remote-branch
+if [[ -z $(git config --global alias.current-remote-branch) ]] ; then
+  git config --global alias.current-remote-branch '!echo origin/$(git current-branch)'
+fi
+
+# Alias: git cr
+if [[ -z $(git config --global alias.cr) ]] ; then
+  git config --global alias.cr '!echo origin/$(git current-branch)'
+fi
+
 # Alias: git b
 if [[ -z $(git config --global alias.b) ]] ; then
   git config --global alias.b 'branch'
@@ -419,6 +454,11 @@ if [[ -z $(git config --global alias.la) ]] ; then
   git config --global alias.la '!git l --all'
 fi
 
+# Alias: git continue
+if [[ -z $(git config --global alias.continue) ]] ; then
+  git config --global alias.continue 'rebase --continue'
+fi
+
 # Alias: git l1
 if [[ -z $(git config --global alias.l1) ]] ; then
   git config --global alias.l1 '!. ~/.githelpers && pretty_git_log -1'
@@ -442,6 +482,11 @@ fi
 # Alias: git l5
 if [[ -z $(git config --global alias.l5) ]] ; then
   git config --global alias.l5 '!. ~/.githelpers && pretty_git_log -5'
+fi
+
+# Alias: git rbi
+if [[ -z $(git config --global alias.rbi) ]] ; then
+  git config --global alias.rbi 'rebase -i'
 fi
 
 
