@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+cp ~/.aliases /keybase/private/acobster/.aliases
+cp ~/.functions /keybase/private/acobster/.functions
+cp ~/.tmux.local.conf /keybase/private/acobster/.tmux.local.conf
