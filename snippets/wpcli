@@ -1,0 +1,28 @@
+  /**
+   * DESCRIPTION
+   *
+   * DETAILED_DESCRIPTION
+   *
+   * ## OPTIONS
+   *
+   * <ARG>
+   * : ARG_DESCRIPTION
+   *
+   * [--format=<format>]
+   * : The format to print the profile data in
+   * ---
+   * default: yaml
+   * options:
+   *   - yaml
+   *   - csv
+   *   - json
+   * ---
+   *
+   * ## EXAMPLES
+   *
+   *     wp COMMAND ARG 123
+   *
+   * @subcommand COMMAND
+   * @alias ALIAS
+   * @when after_wp_load
+   */
