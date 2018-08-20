@@ -27,6 +27,8 @@ cmap ~mod ~/workspace/docker/tourusa/local/modules/TourUsa/
 cmap ~vs ~/.vim/session/
 cmap ~fac ~/workspace/fmca/wp-content/plugins/fmca-find-a-coach/
 cmap ~fmca ~/workspace/fmca/
+cmap ~gr ~/workspace/groot/
+cmap ~con ~/workspace/conifer/
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -183,6 +185,10 @@ nmap <leader>c :w\|:!rspec --format=d spec/controllers<cr>
 nmap <leader>m :w\|:!rspec --format=d spec/models<cr>
 nmap <leader>l :w\|:!rspec --format=d spec/lib<cr>
 
+" js (mocha) tests
+imap <c-t><c-d> describe('', () => {<cr><cr>})<esc>kkf'a
+imap <c-t><c-i> it('', () => {<cr><cr>})<esc>kkf'a
+
 " Search config
 set rtp+=~/.fzf
 nmap <leader>ff :Files<cr>
@@ -192,6 +198,13 @@ let g:fzf_action = {
   \ 'ctrl-k': 'vsplit',
   \ 'ctrl-l': 'tab split' }
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CUSTOM MAPPINGS!
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+command Php r!snip phpclass
 
 
 
