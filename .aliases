@@ -38,6 +38,7 @@ alias tree='tree -I "vendor|node_modules"'
 alias minute='date +%Y%m%d%I%M'
 alias hour='date +%Y%m%d%I'
 alias day='date +%Y%m%d'
+alias master='git checkout master'
 # be nice to me when i make typos ok plz
 alias tig='git'
 
