@@ -34,6 +34,10 @@ case $key in
     shift # past option
     shift # past value
     ;;
+    --skip-packages)
+    SKIP_PACKAGES=1
+    shift # past option
+    ;;
     --skip-docker)
     SKIP_DOCKER=1
     shift # past option
@@ -44,6 +48,10 @@ case $key in
     ;;
     --skip-zazu)
     SKIP_ZAZU=1
+    shift # past option
+    ;;
+    --skip-keybase)
+    SKIP_KEYBASE=1
     shift # past option
     ;;
     *)
@@ -64,6 +72,7 @@ function main() {
   install_docker
   install_lando
   install_zazu
+  install_keybase
   install_dotfiles
   configure_git
 }
@@ -169,6 +178,10 @@ function install_hub() {
 }
 
 function install_packages() {
+  if [[ "$SKIP_PACKAGES" ]] ; then
+    return
+  fi
+
   if [[ "$(which apt-get)" ]] ; then
     echo 'installing Linux packages...'
     sudo apg-get update
@@ -216,6 +229,18 @@ function install_zazu() {
   wget https://github.com/tinytacoteam/zazu/releases/download/v0.5.2/zazu_0.5.2_amd64.deb
   sudo dpkg -i zazu_0.5.2_amd64.deb
   rm zazu_0.5.2_amd64.deb
+}
+
+function install_keybase() {
+  if [[ -z "$(which keybase)" ]] ; then
+    echo 'installing keybase...'
+    curl -O https://prerelease.keybase.io/keybase_amd64.deb
+    sudo dpkg -i keybase_amd64.deb
+    sudo apt-get install -f
+    run_keybase
+    rm keybase_amd64.deb
+    echo "keybase is now installed at $(which keybase)"
+  fi
 }
 
 function install_dotfiles() {
