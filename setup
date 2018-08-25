@@ -39,6 +39,7 @@ function main() {
   install_neovim
   install_golang
   install_dotfiles
+  configure_git
 }
 
 function install_ruby() {
@@ -124,6 +125,16 @@ function install_golang() {
 function install_dotfiles() {
   echo 'setting up dotfiles...'
   $DOTFILES_DIR/dtf
+}
+
+function configure_git() {
+  if [[ -z "$(git config --global user.email)" ]] ; then
+    echo 'configuring git...'
+    git config --global user.email acobster@gmail.com
+  fi
+  if [[ -z "$(git config --global user.name)" ]] ; then
+    git config --global user.name 'Coby Tamayo'
+  fi
 }
 
 
