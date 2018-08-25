@@ -47,6 +47,7 @@ function main() {
   install_ruby
   install_neovim
   install_golang
+  install_hub
   install_dotfiles
   configure_git
 }
@@ -133,6 +134,21 @@ function install_golang() {
       echo 'no go binary detected after install process!!'
     fi
 
+  fi
+}
+
+function install_hub() {
+  if [[ -z "$(which hub)" ]] ; then
+    echo 'installing hub to help you win at git...'
+
+    wget https://github.com/github/hub/releases/download/v2.5.1/hub-linux-amd64-2.5.1.tgz
+    tar -xzvf hub-linux-amd64-2.5.1.tgz
+    sudo mv hub-linux-amd64-2.5.1/bin/hub /usr/local/bin/hub
+    rm -rf hub-linux-amd64-2.5.1.tgz hub-linux-amd64-2.5.1
+
+    if [[ "$(which hub)" ]] ; then
+      echo "hub is now installed at $(which hub)"
+    fi
   fi
 }
 
