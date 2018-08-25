@@ -34,6 +34,10 @@ case $key in
     shift # past option
     shift # past value
     ;;
+    --skip-docker)
+    SKIP_DOCKER=1
+    shift # past option
+    ;;
     *)
     POSITIONAL+=("$1") # save it in an array for later
     shift # past argument
@@ -48,6 +52,8 @@ function main() {
   install_neovim
   install_golang
   install_hub
+  install_packages
+  install_docker
   install_dotfiles
   configure_git
 }
@@ -149,6 +155,24 @@ function install_hub() {
     if [[ "$(which hub)" ]] ; then
       echo "hub is now installed at $(which hub)"
     fi
+  fi
+}
+
+function install_packages() {
+  if [[ "$(which apt-get)" ]] ; then
+    echo 'installing Linux packages...'
+    sudo apg-get update
+    sudo apt-get install -y \
+      xclip \
+      tree
+  fi
+}
+
+function install_docker() {
+  if [[ -z $SKIP_DOCKER ]] && [[ -z $(which docker) ]]; then
+    echo 'installing Docker CE...'
+    DIR=$(dirname $0)
+    $DIR/install-docker-ce.sh
   fi
 }
 
