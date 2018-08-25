@@ -9,6 +9,12 @@ while [[ $# -gt 0 ]]
 do
 key="$1"
 
+usage() {
+  echo
+  echo '  setup [-h|--help] [--skip-neovim] [--skip-ruby] [-r|--ruby-version=<RUBY_VERSION>]'
+  echo
+}
+
 case $key in
     -h|--help)
     # show usage and bail
@@ -17,12 +23,15 @@ case $key in
     ;;
     --skip-neovim)
     SKIP_INSTALL_NEOVIM=1
-    shift # past argument
-    shift # past value
+    shift # past option
+    ;;
+    --skip-ruby)
+    RUBY_VERSION='none'
+    shift # past option
     ;;
     -r|--ruby-version)
     RUBY_VERSION="$2"
-    shift # past argument
+    shift # past option
     shift # past value
     ;;
     *)
@@ -72,6 +81,11 @@ function install_ruby() {
       return
     fi
     RUBY_VERSION=${RUBY_VERSION:-"$DEFAULT_RUBY"}
+  fi
+
+  # if ruby version was instead set by a CLI arg
+  if [[ "$RUBY_VERSION" = "none" ]] ; then
+    return
   fi
 
   echo "Installing ruby ${RUBY_VERSION}..."
