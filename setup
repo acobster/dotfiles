@@ -34,6 +34,10 @@ case $key in
     shift # past option
     shift # past value
     ;;
+    --skip-node)
+    SKIP_NODE=1
+    shift # past option
+    ;;
     --skip-packages)
     SKIP_PACKAGES=1
     shift # past option
@@ -68,6 +72,7 @@ function main() {
   install_vim
   install_golang
   install_hub
+  install_node
   install_packages
   install_docker
   install_lando
@@ -172,6 +177,16 @@ function install_hub() {
     if [[ "$(which hub)" ]] ; then
       echo "hub is now installed at $(which hub)"
     fi
+  fi
+}
+
+function install_node() {
+  if [[ -z "$SKIP_NODE" ]] && [[ -z "$(which node)" ]] ; then
+    echo 'installing nodejs...'
+    curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+    sudo apt-get install -y nodejs npm
+
+    echo "node $(node --version) is now installed"
   fi
 }
 
