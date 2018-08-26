@@ -11,7 +11,7 @@ key="$1"
 
 usage() {
   echo
-  echo '  setup [-h|--help] [--skip-neovim] [--skip-ruby] [-r|--ruby-version=<RUBY_VERSION>]'
+  echo '  setup [-h|--help] [--skip-vim] [--skip-ruby] [-r|--ruby-version=<RUBY_VERSION>]'
   echo
 }
 
@@ -21,8 +21,8 @@ case $key in
     usage
     exit
     ;;
-    --skip-neovim)
-    SKIP_INSTALL_NEOVIM=1
+    --skip-vim)
+    SKIP_INSTALL_VIM=1
     shift # past option
     ;;
     --skip-ruby)
@@ -65,7 +65,7 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 
 function main() {
   install_ruby
-  install_neovim
+  install_vim
   install_golang
   install_hub
   install_packages
@@ -126,20 +126,18 @@ function install_ruby() {
   echo
 }
 
-function install_neovim() {
-  if [[ -z "$(which nvim)" ]] && [[ -z "$SKIP_INSTALL_NEOVIM" ]] ; then
-    read -p 'no neovim detected! install? [y/N] ' install
+function install_vim() {
+  if [[ -z "$(which vim)" ]] && [[ -z "$SKIP_INSTALL_VIM" ]] ; then
+    read -p 'no vim detected! install? [y/N] ' install
     if [[ "$install" = 'y' ]] ; then
-      echo 'adding neovim repository...'
-      sudo add-apt-repository ppa:neovim-ppa/stable
-      echo 'updating neovim repositories...'
+      echo 'updating vim repositories...'
       sudo apt-get update
-      echo 'installing neovim...'
-      sudo apt-get install -y neovim
+      echo 'installing vim...'
+      sudo apt-get install -y vim
     fi
 
-    if [[ "$(which nvim)" ]] ; then
-      echo "neovim is now installed at $(which nvim)"
+    if [[ "$(which vim)" ]] ; then
+      echo "vim is now installed at $(which vim)"
     fi
   fi
 }

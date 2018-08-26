@@ -174,6 +174,9 @@ try
 catch
 endtry
 
+" https://superuser.com/questions/895180/solarized-dark-gnome-terminal-vim-vim-airline
+let &t_Co=256
+
 " Markdown config
 let g:vim_markdown_folding_disabled = 1
 
