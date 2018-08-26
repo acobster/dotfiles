@@ -219,8 +219,10 @@ command Php r!snip phpclass
 
 " Start an editor command to set up the mapping for executing stuff in named
 " pipe
-cnoremap <c-P><c-P> nmap ,t :w\\|:silent !echo 'lando unit' > test.pipe<c-v>u003Ccr>:redraw!<c-v>u003Ccr>
-cnoremap <c-P><c-W> nmap ,s :w\\|:silent !echo 'lando sniff' > test.pipe<c-v>u003Ccr>:redraw!<c-v>u003Ccr>
+cnoremap <c-P><c-P> nmap ,t :w\\|:silent !echo 'test_cmd' > test.pipe<c-v>u003Ccr>:redraw!<c-v>u003Ccr>
+cnoremap <c-P><c-R> nmap ,r :w\\|:silent !echo 'command' > test.pipe<c-v>u003Ccr>:redraw!<c-v>u003Ccr>
+cnoremap <c-P><c-E> nmap ,e :w\\|:silent !echo 'command' > test.pipe<c-v>u003Ccr>:redraw!<c-v>u003Ccr>
+cnoremap <c-P><c-W> nmap ,s :w\\|:silent !echo 'command' > test.pipe<c-v>u003Ccr>:redraw!<c-v>u003Ccr>
 
 
 
