@@ -25,6 +25,10 @@ case $key in
     SKIP_INSTALL_VIM=1
     shift # past option
     ;;
+    --skip-dotfiles)
+    SKIP_DOTFILES=1
+    shift # past option
+    ;;
     --skip-ruby)
     RUBY_VERSION='none'
     shift # past option
