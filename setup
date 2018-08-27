@@ -58,6 +58,10 @@ case $key in
     SKIP_KEYBASE=1
     shift # past option
     ;;
+    --skip-dropbox)
+    SKIP_DROPBOX=1
+    shift # past option
+    ;;
     *)
     POSITIONAL+=("$1") # save it in an array for later
     shift # past argument
@@ -79,6 +83,8 @@ function main() {
   install_zazu
   install_keybase
   install_dotfiles
+
+  configure_dropbox
   configure_git
 }
 
@@ -258,8 +264,33 @@ function install_keybase() {
 }
 
 function install_dotfiles() {
-  echo 'setting up dotfiles...'
-  $DOTFILES_DIR/dtf
+  if [[ -z "$SKIP_DOTFILES" ]] ; then
+    echo 'setting up dotfiles...'
+    $DOTFILES_DIR/dtf
+  fi
+}
+
+function configure_dropbox() {
+  if [[ -z "$SKIP_DROPBOX" ]] ; then
+    echo 'configuring Dropbox...'
+
+    # configure dropbox daemon to be run by current user on startup
+    if ! [[ $(sudo ls /etc/init/dropbox.override 2>/dev/null) ]] ; then
+      OVERRIDE=$(dirname $0)/dropbox/dropbox.override
+      echo "env RUNAS=$(whoami)" > "$OVERRIDE"
+      sudo cp "$OVERRIDE" /etc/init/
+    fi
+
+    # copy helper script for stalling Docker until all mounts are finished
+    if ! [[ -f '/usr/local/bin/dropbox-wait-mount' ]] ; then
+      sudo cp "$(dirname $0)/dropbox/dropbox-wait-mount" /usr/local/bin/dropbox-wait-mount
+    fi
+
+    # copy upstart config
+    if ! [[ -f '/etc/init/dropbox.conf' ]] ; then
+      sudo cp "$(dirname $0)/dropbox/dropbox.conf" /etc/init/dropbox.conf
+    fi
+  fi
 }
 
 function configure_git() {

@@ -1,0 +1,29 @@
+#!/usr/bin/env sh
+
+#
+# Wait until fm mounts are completed before starting Dropbox
+# https://superuser.com/questions/622739/dropbox-on-nfs-mounted-folder
+#
+
+runas={$1:-root}
+mpid=`pidof mountall`
+if [ -z "$mpid" ] ; then
+	mountall --daemon --no-events -q
+	mpid=`pidof mountall`
+else
+	echo mountall is running, going to notify it to mount shares
+fi
+
+kill -USR1 $mpid # see /etc/init/mountall-net.conf and mountall(8)
+mpid=`pidof mountall`
+
+while [ -n "$mpid" ]; do
+	echo waiting for all mounts
+	sleep 30
+	kill -USR1 $mpid # see /etc/init/mountall-net.conf and mountall(8)
+	sleep 1
+	mpid=`pidof mountall`
+done
+
+echo should be safe to run dropbox now
+exec su $runas -c /home/$runas/.dropbox-dist/dropboxd
