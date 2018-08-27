@@ -294,6 +294,8 @@ function configure_dropbox() {
     if ! [[ -f '/etc/init/dropbox.conf' ]] ; then
       sudo cp "$(dirname $0)/dropbox/dropbox.conf" /etc/init/dropbox.conf
     fi
+
+    echo 'Dropbox is configured to wait for mountall(8)! Restart recommended.'
   fi
 }
 
