@@ -194,6 +194,9 @@ nmap <leader>l :w\|:!rspec --format=d spec/lib<cr>
 imap <c-t><c-d> describe('', () => {<cr><cr>})<esc>kkf'a
 imap <c-t><c-i> it('', () => {<cr><cr>})<esc>kkf'a
 
+" bash text completion
+imap <c-b><c-i> if [[ X ]] ; then<cr><cr>fi<esc>kkfXs
+
 " Search config
 set rtp+=~/.fzf
 nmap <leader>ff :Files<cr>
