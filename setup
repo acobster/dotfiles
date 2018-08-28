@@ -22,7 +22,7 @@ case $key in
     exit
     ;;
     --skip-fzf)
-    SKIP_INSTALL_FZF=1
+    SKIP_FZF=1
     shift # past option
     ;;
     --skip-vim)
@@ -142,7 +142,7 @@ function install_ruby() {
 }
 
 function install_fzf() {
-  if [[ -z "$(which fzf)" ]] ; then
+  if [[ -z "$(which fzf)" ]] && [[ -z "$SKIP_FZF" ]] ; then
     echo 'Installing fzf...'
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
