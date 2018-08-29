@@ -33,6 +33,14 @@ case $key in
     SKIP_INSTALL_VIM=1
     shift # past option
     ;;
+    --skip-golang)
+    SKIP_GOLANG=1
+    shift # past option
+    ;;
+    --skip-hub)
+    SKIP_HUB=1
+    shift # past option
+    ;;
     --skip-dotfiles)
     SKIP_DOTFILES=1
     shift # past option
@@ -187,7 +195,7 @@ function install_vim() {
 }
 
 function install_golang() {
-  if [[ -z "$(which go)" ]] ; then
+  if [[ -z "$(which go)" ]] && [[ -z "$SKIP_GOLANG" ]] ; then
     echo 'installing go...'
 
     wget https://dl.google.com/go/go1.11.linux-amd64.tar.gz
@@ -205,7 +213,7 @@ function install_golang() {
 }
 
 function install_hub() {
-  if [[ -z "$(which hub)" ]] ; then
+  if [[ -z "$(which hub)" ]] && [[ -z "$SKIP_HUB" ]] ; then
     echo 'installing hub to help you win at git...'
 
     wget https://github.com/github/hub/releases/download/v2.5.1/hub-linux-amd64-2.5.1.tgz
