@@ -241,7 +241,8 @@ function install_packages() {
       xclip \
       tree \
       tmux \
-      php
+      php \
+      php-xml
   fi
 }
 
