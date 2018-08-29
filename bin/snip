@@ -2,6 +2,12 @@
 
 SNIPPETS_DIR=${SNIPPETS_DIR:-"${HOME}/dotfiles/snippets"}
 
+if [[ -z "$1" ]] ; then
+  echo 'available snippets:'
+  ls "$HOME/dotfiles/snippets"
+  exit
+fi
+
 snippet="${SNIPPETS_DIR}/${1}"
 if ! [[ -f "$snippet" ]] ; then
   echo "snippet not found: $snippet"
