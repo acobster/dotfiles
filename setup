@@ -21,6 +21,10 @@ case $key in
     usage
     exit
     ;;
+    --skip-composer)
+    SKIP_COMPOSER=1
+    shift # past option
+    ;;
     --skip-fzf)
     SKIP_FZF=1
     shift # past option
@@ -77,6 +81,7 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 
 function main() {
   install_ruby
+  install_composer
   install_fzf
   install_vim
   install_golang
@@ -139,6 +144,17 @@ function install_ruby() {
   echo
   echo "rbenv global: $(rbenv global)"
   echo
+}
+
+function install_composer() {
+  if [[ -z "$(which composer)" ]] && [[ -z "$SKIP_COMPOSER" ]] ; then
+    echo 'Installing composer...'
+    php install-composer.php
+    chmod a+x composer.phar
+    sudo mv composer.phar /usr/local/bin/composer
+
+    echo "Composer is now installed at $(which composer)"
+  fi
 }
 
 function install_fzf() {
