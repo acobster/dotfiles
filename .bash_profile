@@ -534,8 +534,18 @@ shopt -s checkwinsize
 # WP CLI
 #---------
 
-if [ -f ~/dotfiles/wp-completion.bash ] ; then
+if [[ -f ~/dotfiles/wp-completion.bash ]] ; then
 	source ~/dotfiles/wp-completion.bash
+fi
+
+
+
+#---------
+# Terminus
+#---------
+
+if [[ !  "$PATH" =~ "$HOME/vendor/bin" ]] && [[ -d "$HOME/vendor/bin" ]] ; then
+  export PATH="$PATH:$HOME/vendor/bin"
 fi
 
 
