@@ -50,6 +50,10 @@ case $key in
     SKIP_NODE=1
     shift # past option
     ;;
+    --skip-yarn)
+    SKIP_YARN=1
+    shift # past option
+    ;;
     --skip-packages)
     SKIP_PACKAGES=1
     shift # past option
@@ -87,6 +91,7 @@ function main() {
   install_golang
   install_hub
   install_node
+  install_yarn
   install_packages
   install_docker
   install_lando
@@ -226,6 +231,21 @@ function install_node() {
     sudo apt-get install -y nodejs npm
 
     echo "node $(node --version) is now installed"
+  fi
+}
+
+function install_yarn() {
+  if [[ -z "$SKIP_YARN" ]] ; then
+    if [[ -z "$(which node)" ]] ; then
+      echo 'no npm detected...skipping yarn'
+      return
+    fi
+
+    if [[ -z "$(which yarn)" ]] && [[ -z "$SKIP_YARN" ]] ; then
+      echo 'installing yarn...'
+      sudo npm install -g yarn
+      echo "yarn is now installed at $(which yarn)"
+    fi
   fi
 }
 
