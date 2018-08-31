@@ -262,7 +262,8 @@ function install_packages() {
       tree \
       tmux \
       php \
-      php-xml
+      php-xml \
+      jq
   fi
 }
 
