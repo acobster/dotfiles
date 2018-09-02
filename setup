@@ -277,7 +277,8 @@ function install_packages() {
       tmux \
       php \
       php-xml \
-      jq
+      jq \
+      net-tools
   fi
 }
 
