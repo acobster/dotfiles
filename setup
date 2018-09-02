@@ -41,6 +41,10 @@ case $key in
     RUBY_VERSION='none'
     shift # past option
     ;;
+    --skip-rust)
+    SKIP_RUST=1
+    shift # past option
+    ;;
     -r|--ruby-version)
     RUBY_VERSION="$2"
     shift # past option
@@ -85,6 +89,7 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 
 function main() {
   install_ruby
+  install_rust
   install_composer
   install_fzf
   install_vim
@@ -149,6 +154,15 @@ function install_ruby() {
   echo
   echo "rbenv global: $(rbenv global)"
   echo
+}
+
+function install_rust() {
+  if [[ -z "$(which rustc)" ]] && [[ -z "$SKIP_RUST" ]] ; then
+    echo 'Installing rust...'
+    wget -O rustup-init.sh https://sh.rustup.rs
+    sudo sh rustup-init.sh -y
+    rm rustup-init.sh
+  fi
 }
 
 function install_composer() {
