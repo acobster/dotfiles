@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+#
+# tick: put tickmarks around a string
+#
+
+echo '`'"$1"'`'
