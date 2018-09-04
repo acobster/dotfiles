@@ -1,0 +1,3 @@
+PROJ='work PROJ'
+PROJtheme='work PROJ/wp-content/themes/PROJ'
+tPROJ='t PROJ "PROJ && vms PROJ.vim" "PROJ && lando start" "PROJ"'
