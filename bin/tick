@@ -4,4 +4,9 @@
 # tick: put tickmarks around a string
 #
 
-echo '`'"$1"'`'
+if [[ "$1" ]] ; then
+  echo '`'"$str"'`'
+else
+  while read line; do echo '`'"$line"'`'; done
+fi
+
