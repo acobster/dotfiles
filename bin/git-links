@@ -6,15 +6,74 @@
 #  git-links PATTERN
 #
 
-if [[ -z "$1" ]] ; then
-  echo no pattern specified
+
+usage() {
+  echo
+  echo 'usage: git-links [--markdown] <pattern> <base_url>'
+  echo
+  echo 'pattern: the pattern to search for in commit messages'
+  echo 'base_url: the base URL to use when generating link URLs'
+  echo
+}
+
+
+POSITIONAL=()
+while [[ $# -gt 0 ]]
+do
+key="$1"
+
+case $key in
+    -h|--help)
+    # show usage and bail
+    usage
+    exit 1
+    ;;
+    -g|--github)
+    BASE_URL="https://github.com/${2}/commit"
+    shift # past option
+    shift # past argument
+    ;;
+    -b|--bitbucket)
+    BASE_URL="https://bitbucket.org/${2}/commits"
+    shift # past option
+    shift # past argument
+    ;;
+    -m|--markdown)
+    MARKDOWN=1
+    shift # past option
+    ;;
+    *)
+    POSITIONAL+=("$1") # save it in an array for later
+    shift # past argument
+    ;;
+esac
+done
+set -- "${POSITIONAL[@]}" # restore positional parameters
+
+
+if [[ -z "$2" ]] && [[ -z "$BASE_URL" ]] ; then
+  usage
   exit 1
 fi
 
-git log --pretty=oneline |
-  egrep "$1" |
-  while read line; do
-    hash=$(echo $line|field 1)
-    msg=$(echo $line|cut -d' ' -f 2-)
-    echo "[$msg|https://bitbucket.org/sitecrafting/fmca-pantheon/commits/$hash]"
-  done
+main() {
+  BASE_URL=${BASE_URL:-"$2"}
+  git log --pretty=oneline |
+    egrep "$1" |
+    while read line; do
+      hash=$(echo $line|field 1)
+      msg=$(echo $line|cut -d' ' -f 2-)
+      link "$msg" "$BASE_URL" "$hash"
+    done
+}
+
+link() {
+  if [[ $MARKDOWN ]] ; then
+    echo "[$1]($2/$3)"
+  else
+    echo "[$1|$2/$3]"
+  fi
+}
+
+
+main $@
