@@ -132,7 +132,7 @@ __compose_ps1() {
     git_prompt="\$(echo $git_prompt | sed 's/feature\\//✔ /')"
     git_prompt="\$(echo $git_prompt | sed 's/experiment\\//🔬 /')"
     git_prompt="\$(echo $git_prompt | sed 's/bugfix\\//🐛 /')"
-    git_prompt="\$(echo $git_prompt | sed 's/test\\//❓ /')"
+    git_prompt="\$(echo $git_prompt | sed 's/test\\//❔ /')"
   fi
 
   export PS1="\$(__user_host_ps1) \[$BOLD\]\[$MAGENTA\]${git_prompt} \[$GREEN\]\$(__cwd_ps1)\$(__env_ps1)\[$RESET\] $(__ps1_symbol) "

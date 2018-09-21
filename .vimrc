@@ -279,6 +279,10 @@ endfunction
 
 command Php r!snip phpclass
 
+" start/end replacements
+nnoremap <leader>se 5send<esc>
+nnoremap <leader>es 3sstart<esc>
+
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
