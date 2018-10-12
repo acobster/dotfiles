@@ -193,6 +193,7 @@ nmap <leader>l :w\|:!rspec --format=d spec/lib<cr>
 " js (mocha) tests
 imap <c-t><c-d> describe('', () => {<cr><cr>})<esc>kkf'a
 imap <c-t><c-i> it('', () => {<cr><cr>})<esc>kkf'a
+imap <c-t><c-e> beforeEach(() => {<cr>})<esc>O
 
 " bash text completion
 imap <c-b><c-i> if [[ X ]] ; then<cr><cr>fi<esc>kkfXs
