@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+require 'csv'
+require 'date'
+
+txs = CSV.read(ARGV[0])
+
+# ignore header line
+txs.shift
+
+ledger_txs = txs.map do |tx|
+  # a date looks like m/d/yy
+  # convert to yyyy-mm-dd
+  date = Date.strptime(tx[0], '%m/%d/%y').to_s
+
+  # Get amount
+  amount = tx[3].to_f
+
+  # Is this transaction a Credit or a Debit?
+  type = tx[4]
+  amount = -amount if type.match?(/credit/i)
+
+  payee = tx[1]
+  note = tx[2]
+
+  "#{date},#{amount},#{payee},#{note}"
+end
+
+puts "date,amount,payee,note"
+puts ledger_txs
