@@ -96,12 +96,11 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 cnoremap N% tab new<Space>
 cnoremap S% split<Space>
 cnoremap V% vert new<Space>
-nnoremap <C-l> :tabnext<CR>
-nnoremap <C-h> :tabprevious<CR>
+nnoremap <c-l> :tabnext<CR>
+nnoremap <c-h> :tabprevious<CR>
 
 " Configure split behavior
 nnoremap <c-w>h :vertical resize -5<cr>
-nnoremap <c-l> :vertical resize +5<cr>
 nnoremap <c-w>l :vertical resize +5<cr>
 set splitbelow
 set splitright
