@@ -51,6 +51,7 @@ Plugin 'posva/vim-vue'
 Plugin 'elmcast/elm-vim'
 Plugin 'wlangstroth/vim-racket'
 Plugin 'StanAngeloff/php.vim'
+Plugin 'slim-template/vim-slim.git'
 
 " Case
 Plugin 'tpope/vim-abolish'
