@@ -1,0 +1,73 @@
+#!/usr/bin/env ruby
+
+require 'date'
+require 'optparse'
+require 'tmpdir'
+
+options = {}
+
+parser = OptionParser.new do |opts|
+  opts.banner = 'Usage: tx AMT PAYEE NOTE [options]'
+
+  opts.on '-d', '--date=MM/DD', 'Transaction date' do |d|
+    options[:date] = Date.strptime(d, '%m/%d').to_s
+  end
+
+  opts.on '-v', '--visa', 'Record a visa transaction' do |v|
+    options[:visa] = v
+  end
+
+  opts.on '-f', '--file', 'Ledger file' do |f|
+    options[:file] = f
+  end
+end
+
+parser.parse!
+
+# default to today
+options[:date] ||= DateTime.now.strftime '%Y-%m-%d'
+
+# default ledger file
+options[:file] ||= File.realpath 'ledger/ledger.dat', Dir.home
+
+# require at least 2 positional args, AMT and PAYEE
+if ARGV.length < 2
+  # display usage
+  puts parser
+  exit
+end
+
+# map arguments to vars
+amount, payee, note = ARGV
+
+# create a 2-line csv
+csv = "date,amount,payee,note
+#{options[:date]},#{amount},#{payee},#{note}"
+
+# determine the debited account
+account = if options[:visa]
+            'assets:visa'
+          else
+            'assets:checking'
+          end
+
+# build a command and execute it
+entry = `/bin/bash -c "ledger -f ~/ledger/ledger.dat \
+  -a #{account} \
+  convert <(echo '#{csv}')"`
+
+TX_START_LINE = ";;; TRANSACTIONS ;;;\n"
+
+# find where transactions start using special delimiter
+ledger_lines = File.readlines(options[:file])
+
+# find where to start in the file
+start = (ledger_lines.index TX_START_LINE)
+
+# get ledger file lines with new entry inserted
+ledger_lines = ledger_lines.insert(start + 1, "\n\n", entry, "\n\n")
+
+# write changes to ledger file
+File.open(options[:file], File::RDWR) do |f|
+  f.write ledger_lines.join
+end
