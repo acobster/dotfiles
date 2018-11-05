@@ -20,6 +20,10 @@ parser = OptionParser.new do |opts|
   opts.on '-f', '--file', 'Ledger file' do |f|
     options[:file] = f
   end
+
+  opts.on '--dry-run', 'Output entry, do not write to ledger file' do |dr|
+    options[:dry_run] = dr
+  end
 end
 
 parser.parse!
@@ -42,7 +46,7 @@ amount, payee, note = ARGV
 
 # create a 2-line csv
 csv = "date,amount,payee,note
-#{options[:date]},#{amount},#{payee},#{note}"
+#{options[:date]},#{amount},#{payee},#{note.gsub(',', ';')}"
 
 # determine the debited account
 account = if options[:visa]
@@ -56,6 +60,16 @@ entry = `/bin/bash -c "ledger -f ~/ledger/ledger.dat \
   -a #{account} \
   convert <(echo '#{csv}')"`
 
+if entry.empty?
+  puts "Unable to generate ledger entry"
+  exit
+end
+
+if options[:dry_run]
+  puts entry
+  exit
+end
+
 TX_START_LINE = ";;; TRANSACTIONS ;;;\n"
 
 # find where transactions start using special delimiter
@@ -65,7 +79,7 @@ ledger_lines = File.readlines(options[:file])
 start = (ledger_lines.index TX_START_LINE)
 
 # get ledger file lines with new entry inserted
-ledger_lines = ledger_lines.insert(start + 1, "\n\n", entry, "\n\n")
+ledger_lines = ledger_lines.insert(start + 1, "\n\n", entry)
 
 # write changes to ledger file
 File.open(options[:file], File::RDWR) do |f|
