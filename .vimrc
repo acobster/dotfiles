@@ -208,6 +208,10 @@ let g:fzf_action = {
   \ 'ctrl-k': 'vsplit',
   \ 'ctrl-l': 'tab split' }
 
+" Assets - display assets from Ledger-CLI
+
+command Assets r!date '+;; \%Y-\%m-\%d ALL ACCOUNTS BALANCED'; echo ';;'; ledger -f ~/ledger/ledger.dat balance assets --cleared | sed -s 's/^/;; /'
+
 
 
 " Rename.vim  -  Rename a buffer within Vim and on the disk
