@@ -3,11 +3,10 @@ before_install:
 - sudo apt-get update
 
 install:
-- ./setup --ruby-version 2.5.1 --skip-neovim
+- ./setup --ruby-version 2.5.1 --skip-zazu --skip-golang --skip-hub --skip-docker --skip-keybase
 - . .bash_profile
 
 script:
 - ruby -v
-- $(which nvim)
 - snip bashargs
 
