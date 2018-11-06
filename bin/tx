@@ -24,6 +24,10 @@ parser = OptionParser.new do |opts|
   opts.on '--dry-run', 'Output entry, do not write to ledger file' do |dr|
     options[:dry_run] = dr
   end
+
+  opts.on '-c', '--credit', 'Record a credit to your account' do |c|
+    options[:credit] = c
+  end
 end
 
 parser.parse!
@@ -42,7 +46,12 @@ if ARGV.length < 2
 end
 
 # map arguments to vars
-amount, payee, note = ARGV
+amount = ARGV[0].to_f
+payee  = ARGV[1]
+note   = ARGV[2] || ''
+
+# is this a credit to one of your accounts?
+amount *= -1 if options[:credit]
 
 # create a 2-line csv
 csv = "date,amount,payee,note
