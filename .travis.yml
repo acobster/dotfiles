@@ -12,6 +12,5 @@ install:
 - . .bash_profile
 
 script:
-- ruby -v
-- snip bashargs
+- echo $PATH
 
