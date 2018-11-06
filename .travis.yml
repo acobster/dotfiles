@@ -13,4 +13,5 @@ install:
 
 script:
 - echo $PATH
+- which ruby
 
