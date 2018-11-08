@@ -61,6 +61,7 @@ Plugin 'plasticboy/vim-markdown'
 
 " Formatting
 Plugin 'junegunn/vim-easy-align'
+Plugin 'editorconfig/editorconfig-vim'
 
 " Fancy-ass statusline
 Plugin 'vim-airline/vim-airline'
