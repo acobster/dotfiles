@@ -486,6 +486,31 @@ if [[ -z $(git config --global alias.l5) ]] ; then
   git config --global alias.l5 '!. ~/.githelpers && pretty_git_log -5'
 fi
 
+# Alias: git l6
+if [[ -z $(git config --global alias.l6) ]] ; then
+  git config --global alias.l6 '!. ~/.githelpers && pretty_git_log -6'
+fi
+
+# Alias: git l7
+if [[ -z $(git config --global alias.l7) ]] ; then
+  git config --global alias.l7 '!. ~/.githelpers && pretty_git_log -7'
+fi
+
+# Alias: git l8
+if [[ -z $(git config --global alias.l8) ]] ; then
+  git config --global alias.l8 '!. ~/.githelpers && pretty_git_log -8'
+fi
+
+# Alias: git l9
+if [[ -z $(git config --global alias.l9) ]] ; then
+  git config --global alias.l9 '!. ~/.githelpers && pretty_git_log -9'
+fi
+
+# Alias: git l10
+if [[ -z $(git config --global alias.l10) ]] ; then
+  git config --global alias.l10 '!. ~/.githelpers && pretty_git_log -10'
+fi
+
 # Alias: git rbi
 if [[ -z $(git config --global alias.rbi) ]] ; then
   git config --global alias.rbi 'rebase -i'
