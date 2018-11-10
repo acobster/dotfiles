@@ -12,6 +12,9 @@ key="$1"
 usage() {
   echo
   echo '  setup [-h|--help] [--skip-vim] [--skip-ruby] [-r|--ruby-version=<RUBY_VERSION>]'
+  echo '        [--skip-composer] [--skip-fzf] [--skip-golang] [--skip-hub]'
+  echo '        [--skip-keybase] [--skip-rust] [--skip-node] [--skip-yarn]'
+  echo '        [--skip-packages] [--skip-docker] [--skip-zazu] [--skip-keybase]'
   echo
 }
 
