@@ -1,7 +1,7 @@
 #!/bin/bash
 
 usage() {
-  echo 'usage: t CMD1 CMD2 CMD3 [-v|--verbose] [-h|--help]'
+  echo 'usage: t CMD1 [CMD2 [CMD3]] [-1|-2] [-v|--verbose] [-h|--help]'
 }
 
 POSITIONAL=()
@@ -17,6 +17,14 @@ while [[ $# -gt 0 ]] ; do
 			;;
 		-v|--verbose)
 			VERBOSE="1"
+			shift # next opt
+			;;
+    -1)
+			NUM_PANES=1
+			shift # next opt
+			;;
+    -2)
+			NUM_PANES=2
 			shift # next opt
 			;;
     -n|--dry-run)
@@ -84,18 +92,25 @@ function send_cmd() {
 
 function init_panes() {
 
+  # default to 3 panes
+  NUM_PANES=$(expr ${NUM_PANES:-3})
+
   # create a new session named $SESSION
   tmux new-session -d -s $SESSION
   # send it the command
   send_cmd "$CMD1"
 
-  # select/split the window, sending each the command
-  tmux select-window -t $SESSION:0
-  tmux split-window -v
-  send_cmd "$CMD2"
+  if [[ $NUM_PANES -gt 1 ]] ; then
+    # select/split the window, sending each the command
+    tmux select-window -t $SESSION:0
+    tmux split-window -v
+    send_cmd "$CMD2"
+  fi
 
-  tmux split-window -h
-  send_cmd "$CMD3"
+  if [[ $NUM_PANES -gt 2 ]] ; then
+    tmux split-window -h
+    send_cmd "$CMD3"
+  fi
 
   # finally, attach to the new session
   tmux attach-session -t $SESSION
