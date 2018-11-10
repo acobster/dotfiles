@@ -15,6 +15,7 @@ usage() {
   echo '        [--skip-composer] [--skip-fzf] [--skip-golang] [--skip-hub]'
   echo '        [--skip-keybase] [--skip-rust] [--skip-node] [--skip-yarn]'
   echo '        [--skip-packages] [--skip-docker] [--skip-zazu] [--skip-keybase]'
+  echo '        [--skip-racket]'
   echo
 }
 
@@ -89,6 +90,10 @@ case $key in
     SKIP_KEYBASE=1
     shift # past option
     ;;
+     --skip-racket)
+    SKIP_RACKET=1
+    shift # past option
+    ;;
     *)
     POSITIONAL+=("$1") # save it in an array for later
     shift # past argument
@@ -113,6 +118,7 @@ function main() {
   install_lando
   install_zazu
   install_keybase
+  install_racket
   install_dotfiles
 
   configure_git
@@ -342,6 +348,17 @@ function install_keybase() {
     run_keybase
     rm keybase_amd64.deb
     echo "keybase is now installed at $(which keybase)"
+  fi
+}
+
+function install_racket() {
+  if [[ -z "$SKIP_RACKET" ]] ; then
+    echo 'intalling racket...'
+    sudo add-apt-repository ppa:plt/racket --yes
+    sudo apt-get update
+    sudo apt-get install racket -y
+
+    echo "racket is now installed at $(which racket)"
   fi
 }
 
