@@ -13,5 +13,7 @@ install:
 
 script:
 - echo $PATH
-- ruby -v
+- php -r 'echo "Running PHP!";'
+- echo '{"hello":"goodbye"}' | jq .
+- which ruby
 

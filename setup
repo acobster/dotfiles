@@ -278,7 +278,7 @@ function install_packages() {
 
   if [[ "$(which apt-get)" ]] ; then
     echo 'installing Linux packages...'
-    sudo apg-get update
+    sudo apt-get update
     sudo apt-get install -y \
       xclip \
       tree \
