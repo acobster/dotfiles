@@ -3,6 +3,11 @@
 require 'csv'
 require 'date'
 
+if ARGV[0].nil?
+  puts 'ledger-csv <file>'
+  exit
+end
+
 txs = CSV.read(ARGV[0])
 
 # ignore header line
