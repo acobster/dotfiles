@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+#
+# Reads URLs from STDIN, one URL per, outputting each URL that 404s
+#
+
+while read url
+do
+  http_status=$(curl -s -o /dev/null -w '%{http_code}' "$url")
+  if [[ $http_status = '404' ]] ; then
+    echo "$url"
+  fi
+done
