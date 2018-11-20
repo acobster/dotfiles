@@ -21,6 +21,10 @@ parser = OptionParser.new do |opts|
     options[:file] = f
   end
 
+  opts.on '-p', '--pending', 'Create a pending transaction' do |d|
+    options[:pending] = d
+  end
+
   opts.on '--dry-run', 'Output entry, do not write to ledger file' do |dr|
     options[:dry_run] = dr
   end
@@ -73,6 +77,9 @@ if entry.empty?
   puts "Unable to generate ledger entry"
   exit
 end
+
+# pending transaction?
+entry.sub! '*', '!' if options[:pending]
 
 if options[:dry_run]
   puts entry
