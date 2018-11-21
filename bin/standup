@@ -4,6 +4,8 @@
 # if there's more than one colon, ignore the second one anything past it
 yesterday, today, note = ARGV.join(' ').split(':').map(&:strip)
 
+prev_business_day = Time.new.monday? ? 'Friday' : 'Yesterday'
+
 # output some nicely formatted markdown
-puts "*Yesterday:* #{yesterday}\n*Today:* #{today}"
+puts "*#{prev_business_day}:* #{yesterday}\n*Today:* #{today}"
 puts "*#{note}*" if note
