@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+tmux list-sessions 2>/dev/null
+
+if [[ $? != 0 ]]
+then
+  echo no tmux sessions
+fi
