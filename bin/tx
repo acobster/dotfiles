@@ -36,6 +36,10 @@ parser = OptionParser.new do |opts|
   opts.on '-c', '--credit', 'Record a credit to your account' do |c|
     options[:credit] = c
   end
+
+  opts.on '-a', '--account=<account>', 'Specify expense account directly' do |a|
+    options[:account] = a
+  end
 end
 
 parser.parse!
@@ -86,6 +90,9 @@ end
 
 # pending transaction?
 entry.sub! '*', '!' if options[:pending]
+
+# specify expense account directly
+entry.sub!(/spending:[^\s]+/, options[:account]) if options[:account]
 
 if options[:dry_run]
   puts entry
