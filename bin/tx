@@ -13,6 +13,10 @@ parser = OptionParser.new do |opts|
     options[:date] = Date.strptime(d, '%m/%d').to_s
   end
 
+  opts.on '-k', '--kitsap', 'Record a Kistap CU Visa Gold cc transaction' do |k|
+    options[:kitsap] = k
+  end
+
   opts.on '-v', '--visa', 'Record a visa transaction' do |v|
     options[:visa] = v
   end
@@ -64,6 +68,8 @@ csv = "date,amount,payee,note
 # determine the debited account
 account = if options[:visa]
             'assets:visa'
+          elsif options[:kitsap]
+            'assets:kitsapcu:visa'
           else
             'assets:checking'
           end
