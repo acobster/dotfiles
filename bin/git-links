@@ -61,7 +61,7 @@ main() {
   git log --pretty=oneline |
     egrep "$1" |
     while read line; do
-      hash=$(echo $line|field 1)
+      hash=$(echo $line|awk '{print $1}')
       msg=$(echo $line|cut -d' ' -f 2-)
       link "$msg" "$BASE_URL" "$hash"
     done
