@@ -15,7 +15,7 @@ usage() {
   echo '        [--skip-composer] [--skip-fzf] [--skip-golang] [--skip-hub]'
   echo '        [--skip-keybase] [--skip-rust] [--skip-node] [--skip-yarn]'
   echo '        [--skip-packages] [--skip-docker] [--skip-zazu] [--skip-keybase]'
-  echo '        [--skip-racket]'
+  echo '        [--skip-racket] [--skip-bat] [--skip-dotfiles]'
   echo
 }
 
