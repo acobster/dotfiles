@@ -380,5 +380,12 @@ function configure_git() {
 }
 
 
+# Download and install a .deb package from a URL
+function __deb_install() {
+  deb_file=/tmp/$(basename "$1")
+  wget -O "$deb_file" "$1" && sudo dpkg -i "$deb_file"
+}
+
+
 main
 
