@@ -15,7 +15,8 @@ usage() {
   echo '        [--skip-composer] [--skip-fzf] [--skip-golang] [--skip-hub]'
   echo '        [--skip-keybase] [--skip-rust] [--skip-node] [--skip-yarn]'
   echo '        [--skip-packages] [--skip-docker] [--skip-zazu] [--skip-keybase]'
-  echo '        [--skip-racket] [--skip-bat] [--skip-dotfiles]'
+  echo '        [--skip-racket] [--skip-bat] [--skip-dotfiles] [--skip-java]'
+  echo '        [--skip-clojure]'
   echo
 }
 
@@ -98,6 +99,14 @@ case $key in
     SKIP_RACKET=1
     shift # past option
     ;;
+     --skip-java)
+    SKIP_JAVA=1
+    shift # past option
+    ;;
+     --skip-clojure)
+    SKIP_CLOJURE=1
+    shift # past option
+    ;;
     *)
     POSITIONAL+=("$1") # save it in an array for later
     shift # past argument
@@ -124,6 +133,8 @@ function main() {
   install_zazu
   install_keybase
   install_racket
+  install_java
+  install_clojure
   install_dotfiles
 
   configure_git
@@ -375,6 +386,43 @@ function install_racket() {
     sudo apt-get install racket -y
 
     echo "racket is now installed at $(which racket)"
+  fi
+}
+
+function install_java() {
+  if [[ -z "$SKIP_JAVA" && -z "$(which java)" ]]
+  then
+    sudo apt-get install --yes default-jre default-jdk
+    echo "Java is now installed at $(which java)"
+  fi
+}
+
+function install_clojure() {
+  if [[ -z "$SKIP_CLOJURE" && -z "$(which clojure)" ]]
+  then
+    CLJ_VERSION='1.9.0.397'
+    echo "Installing Clojure ${CLJ_VERSION}..."
+    installer_file="linux-install-${CLJ_VERSION}.sh"
+
+    wget -O "/tmp/${installer_file}" "https://download.clojure.org/install/${installer_file}"
+    chmod +x "/tmp/${installer_file}"
+    sudo "/tmp/${installer_file}"
+
+    echo "Clojure binaries are now installed at:"
+    echo "    $(which clojure)"
+    echo "    $(which clj)"
+  fi
+
+  if [[ -z "$SKIP_CLOJURE" && -z "$(which lein)" ]]
+  then
+    echo 'Installing lein...'
+
+    sudo wget -O /usr/local/bin/lein 'https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein'
+    sudo chmod a+x /usr/local/bin/lein
+    sudo lein
+
+    echo
+    echo "Leiningen is now installed at $(which lein)"
   fi
 }
 
