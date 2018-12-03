@@ -298,11 +298,6 @@ if [[ -z $(git config --global alias.d) ]] ; then
   git config --global alias.d 'diff'
 fi
 
-# Alias: git d1
-if [[ -z $(git config --global alias.d1) ]] ; then
-  git config --global alias.d1 '!git diff $1~1 $1'
-fi
-
 # Alias: git dc
 if [[ -z $(git config --global alias.dc) ]] ; then
   git config --global alias.dc 'diff --cached'
@@ -459,6 +454,31 @@ fi
 # Alias: git continue
 if [[ -z $(git config --global alias.continue) ]] ; then
   git config --global alias.continue 'rebase --continue'
+fi
+
+# Alias: git d1
+if [[ -z $(git config --global alias.d1) ]] ; then
+  git config --global alias.d1 'diff HEAD~2 HEAD~1'
+fi
+
+# Alias: git d2
+if [[ -z $(git config --global alias.d2) ]] ; then
+  git config --global alias.d2 'diff HEAD~3 HEAD~2'
+fi
+
+# Alias: git d3
+if [[ -z $(git config --global alias.d3) ]] ; then
+  git config --global alias.d3 'diff HEAD~3 HEAD~2'
+fi
+
+# Alias: git d4
+if [[ -z $(git config --global alias.d4) ]] ; then
+  git config --global alias.d4 'diff HEAD~5 HEAD~4'
+fi
+
+# Alias: git d5
+if [[ -z $(git config --global alias.d5) ]] ; then
+  git config --global alias.d5 'diff HEAD~6 HEAD~5'
 fi
 
 # Alias: git l1
