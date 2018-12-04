@@ -9,7 +9,19 @@ if [[ -z "$1" ]] ; then
 fi
 
 snippet="${SNIPPETS_DIR}/${1}"
-if ! [[ -f "$snippet" ]] ; then
+if [[ -d "$snippet" ]]
+then
+  if [[ "$2" ]]
+  then
+    dest="$2"
+  else
+    dest="$1"
+  fi
+
+  rsync -a "$snippet/" "./$dest/"
+  exit 0
+elif ! [[ -f "$snippet" ]]
+then
   echo "snippet not found: $snippet"
   exit 1
 fi
