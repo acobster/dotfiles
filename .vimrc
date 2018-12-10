@@ -303,6 +303,8 @@ cnoremap <c-P><c-R> nmap ,r :w\\|:silent !echo 'command' > test.pipe<c-v>u003Ccr
 cnoremap <c-P><c-E> nmap ,e :w\\|:silent !echo 'command' > test.pipe<c-v>u003Ccr>:redraw!<c-v>u003Ccr>
 cnoremap <c-P><c-W> nmap ,s :w\\|:silent !echo 'command' > test.pipe<c-v>u003Ccr>:redraw!<c-v>u003Ccr>
 
+cnoremap <c-P>a nmap ,a :w\\|:silent !echo 'ledger -f ~/ledger/ledger.dat balance assets' > test.pipe<c-v>u003Ccr>:redraw!<c-v>u003Ccr>
+
 
 
 " Include machine-specific .vimrc
