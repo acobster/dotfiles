@@ -12,3 +12,4 @@ zeus.json
 bin/jsc
 # ctags files at root only
 /tags
+*.deb
