@@ -323,7 +323,8 @@ function install_packages() {
       php-xml \
       jq \
       net-tools \
-      docker-compose
+      docker-compose \
+      httpie
   fi
 }
 
