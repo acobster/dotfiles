@@ -6,6 +6,9 @@ require 'tmpdir'
 
 options = {}
 
+amount = nil
+payee  = nil
+
 parser = OptionParser.new do |opts|
   opts.banner = 'Usage: tx AMT PAYEE NOTE [options]'
 
@@ -29,7 +32,7 @@ parser = OptionParser.new do |opts|
     options[:pending] = d
   end
 
-  opts.on '--dry-run', 'Output entry, do not write to ledger file' do |dr|
+  opts.on '-y', '--dry-run', 'Output entry, do not write to ledger file' do |dr|
     options[:dry_run] = dr
   end
 
@@ -39,6 +42,19 @@ parser = OptionParser.new do |opts|
 
   opts.on '-a', '--account=<account>', 'Specify expense account directly' do |a|
     options[:account] = a
+  end
+
+  opts.on '--fm', 'equivalent to `[amount] "Fred Meyer"`' do ||
+    payee = 'Fred Meyer'
+  end
+
+  opts.on '--cc', 'equivalent to `[amount] "Costco"`' do ||
+    payee = 'Costco'
+  end
+
+  opts.on '--sc', 'equivalent to `[amount] "SiteCrafting" --credit`' do ||
+    options[:credit] = true
+    payee = 'SiteCrafting'
   end
 end
 
@@ -50,17 +66,17 @@ options[:date] ||= DateTime.now.strftime '%Y-%m-%d'
 # default ledger file
 options[:file] ||= File.realpath 'ledger/ledger.dat', Dir.home
 
+# map arguments to vars
+amount ||= ARGV[0].to_f
+payee  ||= ARGV[1]
+note   = ARGV[2] || ''
+
 # require at least 2 positional args, AMT and PAYEE
-if ARGV.length < 2
+if amount.nil? or payee.nil?
   # display usage
   puts parser
   exit
 end
-
-# map arguments to vars
-amount = ARGV[0].to_f
-payee  = ARGV[1]
-note   = ARGV[2] || ''
 
 # is this a credit to one of your accounts?
 amount *= -1 if options[:credit]
