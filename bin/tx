@@ -12,8 +12,15 @@ payee  = nil
 parser = OptionParser.new do |opts|
   opts.banner = 'Usage: tx AMT PAYEE NOTE [options]'
 
-  opts.on '-d', '--date=MM/DD', 'Transaction date' do |d|
-    options[:date] = Date.strptime(d, '%m/%d').to_s
+  opts.on '-d', '--date=<MM/DD|YYYY-MM-DD>', 'Transaction date' do |d|
+    date = Date.strptime(d, '%m/%d')
+
+    # if date is more than six months out, assume we meant from *last* year
+    if date > (Date.today >> 6)
+      date = date << 12 # same date last year
+    end
+
+    options[:date] = date.to_s
   end
 
   opts.on '-k', '--kitsap', 'Record a Kistap CU Visa Gold cc transaction' do |k|
