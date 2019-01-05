@@ -16,7 +16,7 @@ usage() {
   echo '        [--skip-keybase] [--skip-rust] [--skip-node] [--skip-yarn]'
   echo '        [--skip-packages] [--skip-docker] [--skip-zazu] [--skip-keybase]'
   echo '        [--skip-racket] [--skip-bat] [--skip-dotfiles] [--skip-java]'
-  echo '        [--skip-clojure] [--skip-mariadb] [--skip-kubectl] [--skip-package-updates]'
+  echo '        [--skip-clojure] [--skip-mariadb] [--skip-kubectl] [--skip-update]'
   echo
 }
 
@@ -26,7 +26,7 @@ case $key in
     usage
     exit
     ;;
-    --skip-package-updates)
+    --skip-update)
     SKIP_PACKAGE_UPDATES=1
     shift # past option
     ;;
@@ -115,6 +115,10 @@ case $key in
     SKIP_MARIADB=1
     shift # past option
     ;;
+     --skip-kubectl)
+    SKIP_KUBECTL=1
+    shift # past option
+    ;;
     *)
     POSITIONAL+=("$1") # save it in an array for later
     shift # past argument
@@ -149,6 +153,7 @@ function main() {
   install_java
   install_clojure
   setup_mariadb
+  install_kubectl
   install_dotfiles
 
   configure_git
@@ -396,7 +401,7 @@ function install_keybase() {
 }
 
 function install_racket() {
-  if [[ -z "$SKIP_RACKET" ]] ; then
+  if [[ -z "$SKIP_RACKET" && -z $(which racket) ]] ; then
     echo 'intalling racket...'
     sudo add-apt-repository ppa:plt/racket --yes
     sudo apt-get install racket -y
@@ -446,6 +451,16 @@ function setup_mariadb() {
   if [[ -z "$SKIP_MARIADB" ]]
   then
     sudo mysql_secure_installation
+  fi
+}
+
+function install_kubectl() {
+  if [[ -z "$SKIP_KUBECTL" && -z $(which kubectl) ]]
+  then
+    curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+    echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+    sudo apt-get update
+    sudo apt-get install -y kubectl
   fi
 }
 
