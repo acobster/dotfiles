@@ -55,6 +55,10 @@ parser = OptionParser.new do |opts|
     payee = 'Fred Meyer'
   end
 
+  opts.on '--wf', 'equivalent to `[amount] "Whole Foods"`' do ||
+    payee = 'Whole Foods'
+  end
+
   opts.on '--cc', 'equivalent to `[amount] "Costco"`' do ||
     payee = 'Costco'
   end
