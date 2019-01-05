@@ -16,7 +16,7 @@ usage() {
   echo '        [--skip-keybase] [--skip-rust] [--skip-node] [--skip-yarn]'
   echo '        [--skip-packages] [--skip-docker] [--skip-zazu] [--skip-keybase]'
   echo '        [--skip-racket] [--skip-bat] [--skip-dotfiles] [--skip-java]'
-  echo '        [--skip-clojure]'
+  echo '        [--skip-clojure] [--skip-mariadb]'
   echo
 }
 
@@ -107,6 +107,10 @@ case $key in
     SKIP_CLOJURE=1
     shift # past option
     ;;
+     --skip-mariadb)
+    SKIP_MARIADB=1
+    shift # past option
+    ;;
     *)
     POSITIONAL+=("$1") # save it in an array for later
     shift # past argument
@@ -135,6 +139,7 @@ function main() {
   install_racket
   install_java
   install_clojure
+  setup_mariadb
   install_dotfiles
 
   configure_git
@@ -321,10 +326,15 @@ function install_packages() {
       tmux \
       php \
       php-xml \
+      php-mysql \
+      mariadb-server \
+      mariadb-client \
       jq \
       net-tools \
       docker-compose \
-      httpie
+      httpie \
+      inotify-tools \
+      xdotool
   fi
 }
 
@@ -425,6 +435,13 @@ function install_clojure() {
 
     echo
     echo "Leiningen is now installed at $(which lein)"
+  fi
+}
+
+function setup_mariadb() {
+  if [[ -z "$SKIP_MARIADB" ]]
+  then
+    sudo mysql_secure_installation
   fi
 }
 
