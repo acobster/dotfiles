@@ -1,0 +1,29 @@
+#!/usr/bin/env php
+<?php
+
+$USAGE = <<<EOF
+usage:
+
+  php-tokens <file.php>
+
+EOF;
+
+isset($argv[1]) or die($USAGE);
+
+$code = file_get_contents($argv[1]);
+
+$tokens = array_map(function($token) {
+  if (is_string($token)) {
+    return $token;
+  }
+
+  // whitespace?
+  if ($token[0] === T_WHITESPACE) {
+    return 'T_WHITESPACE';
+  }
+
+  $name = token_name($token[0]);
+  return "{$name}\n{$token[1]}";
+}, token_get_all($code));
+
+echo implode("\n", $tokens);
