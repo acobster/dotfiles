@@ -20,6 +20,8 @@ vms() {
     echo you gotta specify a session
   fi
 
+  find . -regextype sed -regex ".*\.sw\(p\|o\|n\)" | xargs rm
+
   vim -S ~/.vim/session/$1.vim
 }
 

@@ -54,6 +54,9 @@ Plugin 'StanAngeloff/php.vim'
 Plugin 'slim-template/vim-slim.git'
 Plugin 'elzr/vim-json'
 
+" Lisp-y stuff
+Plugin 'jpalardy/vim-slime'
+
 " Case
 Plugin 'tpope/vim-abolish'
 
@@ -117,6 +120,9 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let syntastic_mode_map = { 'passive_filetypes': ['html'] }
 let g:syntastic_twig_checkers = ['twig']
+" WiP - ignore racket check warning
+let g:syntastic_quiet_messages = {
+  \ "regex": '.*racket: checks disabled for security reasons.*' }
 let g:syntastic_html_tidy_ignore_errors = [
   \ 'plain text isn''t allowed in <head> elements',
   \ '<img> escaping malformed URI reference'
@@ -129,6 +135,9 @@ if has("autocmd")
   au filetype racket set lisp
   au filetype racket set autoindent
 endif
+
+" Slime config
+let g:slime_target = "tmux"
 
 " In vim-airline, only display "hunks" if the diff is non-zero
 let g:airline#extensions#hunks#non_zero_only = 1
@@ -197,6 +206,7 @@ nmap <leader>l :w\|:!rspec --format=d spec/lib<cr>
 imap <c-t><c-d> describe('', () => {<cr><cr>})<esc>kkf'a
 imap <c-t><c-i> it('', () => {<cr><cr>})<esc>kkf'a
 imap <c-t><c-e> beforeEach(() => {<cr>})<esc>O
+imap <c-t><c-b> before(() => {<cr>})<esc>O
 
 " bash text completion
 imap <c-b><c-i> if [[ X ]] ; then<cr><cr>fi<esc>kkfXs
@@ -285,10 +295,14 @@ endfunction
 
 
 command Php r!snip phpclass
+command Bashargs r!snip bashargs
 
-" start/end replacements
+" 'start'/'end' replacements
 nnoremap <leader>se 5send<esc>
 nnoremap <leader>es 3sstart<esc>
+" 'first'/'last' replacements
+nnoremap <leader>fl 5slast<esc>
+nnoremap <leader>lf 4sfirst<esc>
 
 
 

@@ -56,7 +56,9 @@ alias socode='sed "s/^/    /"|x'
 # List snippets available within my dotfiles
 alias snippets='ls ~/dotfiles/snippets'
 
-# Docker shortcuts
+# Docker/Lando shortcuts
+alias posts='lando wp post list'
+alias wpusers='lando wp user list'
 alias dc='docker-compose'
 alias dw='docker-compose exec web'
 alias dwp='docker-compose exec web wp --allow-root'
