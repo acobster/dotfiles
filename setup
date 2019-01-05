@@ -16,7 +16,7 @@ usage() {
   echo '        [--skip-keybase] [--skip-rust] [--skip-node] [--skip-yarn]'
   echo '        [--skip-packages] [--skip-docker] [--skip-zazu] [--skip-keybase]'
   echo '        [--skip-racket] [--skip-bat] [--skip-dotfiles] [--skip-java]'
-  echo '        [--skip-clojure] [--skip-mariadb]'
+  echo '        [--skip-clojure] [--skip-mariadb] [--skip-kubectl] [--skip-package-updates]'
   echo
 }
 
@@ -25,6 +25,10 @@ case $key in
     # show usage and bail
     usage
     exit
+    ;;
+    --skip-package-updates)
+    SKIP_PACKAGE_UPDATES=1
+    shift # past option
     ;;
     --skip-composer)
     SKIP_COMPOSER=1
@@ -121,6 +125,11 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 
 
 function main() {
+  if [[ -z "$SKIP_PACKAGE_UPDATES" ]]
+  then
+    sudo apt-get update
+  fi
+
   install_ruby
   install_rust
   install_bat
@@ -242,8 +251,6 @@ function install_vim() {
   if [[ -z "$(which vim)" ]] && [[ -z "$SKIP_INSTALL_VIM" ]] ; then
     read -p 'no vim detected! install? [y/N] ' install
     if [[ "$install" = 'y' ]] ; then
-      echo 'updating vim repositories...'
-      sudo apt-get update
       echo 'installing vim...'
       sudo apt-get install -y vim
     fi
@@ -319,7 +326,6 @@ function install_packages() {
 
   if [[ "$(which apt-get)" ]] ; then
     echo 'installing Linux packages...'
-    sudo apt-get update
     sudo apt-get install -y \
       xclip \
       tree \
@@ -370,7 +376,6 @@ function install_zazu() {
 
   echo 'installing zazu...'
 
-  sudo apt-get update
   sudo apt-get install -y libgconf-2-4 gconf-service-backend gconf-service gconf2 libindicator7 libappindicator1
 
   wget https://github.com/tinytacoteam/zazu/releases/download/v0.5.2/zazu_0.5.2_amd64.deb
@@ -394,7 +399,6 @@ function install_racket() {
   if [[ -z "$SKIP_RACKET" ]] ; then
     echo 'intalling racket...'
     sudo add-apt-repository ppa:plt/racket --yes
-    sudo apt-get update
     sudo apt-get install racket -y
 
     echo "racket is now installed at $(which racket)"
