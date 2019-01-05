@@ -1,0 +1,112 @@
+#!/bin/bash
+
+
+POSITIONAL=()
+while [[ $# -gt 0 ]]
+do
+key="$1"
+
+case $key in
+    -h|--help)
+    # show usage and bail
+    usage
+    exit
+    ;;
+    -v|--verbose)
+    # tell the user all the things
+    VERBOSE="1"
+    shift # past argument
+    ;;
+    -x|--xdotool)
+    # use xdotool to refresh the browser
+    ENABLE_XDO="1"
+    shift # past argument
+    ;;
+    -b|--browser)
+    # define the browser tab <title> to search for among open windows
+    # for automatic browser refreshing
+    BROWSER_TAB="$2"
+    shift # past argument
+    shift # past value
+    ;;
+    -S|--no-switch)
+    # don't switch to the browser window; only refresh
+    SWITCH='0'
+    shift # past argument
+    ;;
+    *)
+    POSITIONAL+=("$1") # save it in an array for later
+    shift # past argument
+    ;;
+esac
+done
+set -- "${POSITIONAL[@]}" # restore positional parameters
+
+
+if [[ $ENABLE_XDO ]]
+then
+  BROWSER_TAB=${BROWSER_TAB:-'Firefox'}
+
+  if [[ $SWITCH != '0' ]]
+  then
+    SWITCH=1
+  fi
+fi
+
+
+entrypoint="$1"
+if [[ -z "$entrypoint" ]] || ! [[ -f "$entrypoint" ]]
+then
+  echo 'No file specified, defaulting to ./main.rkt'
+  entrypoint='main.rkt'
+fi
+
+function get_timestamps {
+    # Find all racket files in the current directory and its subdirectories,
+    # then 'return' their respective modification times using stat.
+    find . -type f -name '*.rkt' -print0 |
+        xargs -0 stat --format '%Y'
+}
+
+timestamps="$(get_timestamps)"
+while true; do
+
+    # Start the racket program.
+    # Note: replace 'server.rkt' with the name of your program.
+    racket "$entrypoint" &
+    pid=$!
+
+    # only do browser stuff on subsequent starts, i.e., not the first one
+    if [[ $subsequent && $ENABLE_XDO ]]
+    then
+      wid=$(xdotool search --limit 1 --sync --name "$BROWSER_TAB")
+
+      if [[ $wid && "$BROWSER_TAB" ]]
+      then
+        if [[ $SWITCH = 1 ]]
+        then
+          xdotool windowactivate --sync $wid
+        fi
+
+        xdotool key --clearmodifiers --delay 200 F5 $wid
+      fi
+    fi
+
+    # going forward, all server starts are *subsequent*
+    subsequent=1
+
+    # Block while waiting for file changes.
+    while true; do
+        # Check for file changes.
+        current_timestamps="$(get_timestamps)"
+        if [ "${current_timestamps}" != "${timestamps}" ]; then
+            timestamps="${current_timestamps}"
+            break
+        fi
+
+        sleep 0.2  # So that we do not loop too fast.
+    done
+
+    # Stop the racket program because file changes have been detected.
+    kill -SIGINT ${pid}  # Equivalent to pressing ctrl-c.
+done
