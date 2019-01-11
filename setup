@@ -338,6 +338,7 @@ function install_packages() {
       php \
       php-xml \
       php-mysql \
+      php-mbstring \
       mariadb-server \
       mariadb-client \
       jq \
