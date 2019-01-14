@@ -51,6 +51,14 @@ parser = OptionParser.new do |opts|
     options[:account] = a
   end
 
+  opts.on '--amazon', 'equivalent to `[amount] "Amazon.com"`' do ||
+    payee = 'Amazon.com'
+  end
+
+  opts.on '--pse', 'equivalent to `[amount] "Puget Sound Energy"`' do ||
+    payee = 'Puget Sound Energy'
+  end
+
   opts.on '--fm', 'equivalent to `[amount] "Fred Meyer"`' do ||
     payee = 'Fred Meyer'
   end
