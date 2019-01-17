@@ -45,6 +45,11 @@ alias day='date +%Y%m%d'
 alias gigs='du . -h | grep "[0-9\.]\+G"'
 
 # Git stuff
+if [[ $(which hub) ]]
+then
+  alias git='hub'
+fi
+
 alias g='git'
 alias master='git checkout master'
 # be nice to me when i make typos ok plz
