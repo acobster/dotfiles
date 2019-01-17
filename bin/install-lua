@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+
+LUA_VERSION=${1:-'5.3.5'}
+
+# 5.3.5 -> 5.3
+LUA_INCLUDE_VERSION=$(echo "$LUA_VERSION" | cut -d'.' -f'1-2')
+# install header files here and keep track of the path so we can use it
+# to configure the package manager later
+LUA_INCLUDE=${2:-"/usr/local/include/lua/${LUA_INCLUDE_VERSION}/"}
+
+# download it
+curl -R -O "http://www.lua.org/ftp/lua-${LUA_VERSION}.tar.gz"
+tar zxf "lua-${LUA_VERSION}.tar.gz"
+
+# build in place
+echo $(cd "lua-${LUA_VERSION}" && make linux test)
+
+# move libs into place
+sudo mkdir -p /usr/local/include/lua
+# e.g. mv lua-5.3.5/src /usr/local/include/lua/5.3
+sudo mv "lua-${LUA_VERSION}/src/" "${LUA_INCLUDE}/"
+
+# link binaries
+sudo echo $(
+  ln -s "${LUA_INCLUDE}/lua" /usr/local/bin/lua \
+  && ln -s "${LUA_INCLUDE}/luac" /usr/local/bin/luac
+)
+
+
+# clean up
+rm -rf "lua-${LUA_VERSION}/" "lua-${LUA_VERSION}.tar.gz"
+
+echo "Lua is now installed at $(which lua)"

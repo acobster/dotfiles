@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# install-luarocks [<version> [<lua-include]]
+
+LUAROCKS_VERSION=${1:-'3.0.4'}
+LUA_VERSION=${2:-'5.3'}
+WITH_LUA=${3:-"/usr/local/"}
+
+# ensure we have a valid *minor* Lua version, e.g. 5.3
+LUA_VERSION=$(echo "$LUA_VERSION" | cut -d'.' -f'1-2')
+
+wget "https://luarocks.org/releases/luarocks-${LUAROCKS_VERSION}.tar.gz"
+tar zxpf "luarocks-${LUAROCKS_VERSION}.tar.gz"
+
+echo $(
+  cd "luarocks-${LUAROCKS_VERSION}" \
+    && ./configure --with-lua="$WITH_LUA" --lua-version="$LUA_VERSION" \
+  && make build \
+  && sudo make install
+)
+
+rm -rf luarocks-*
+
+echo "luarocks is now installed at $(which luarocks)"

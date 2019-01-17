@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+CLJ_VERSION=${1:-'1.10.0.411'}
+
+echo "Installing Clojure ${CLJ_VERSION}..."
+installer_file="linux-install-${CLJ_VERSION}.sh"
+
+wget -O "/tmp/${installer_file}" "https://download.clojure.org/install/${installer_file}"
+chmod +x "/tmp/${installer_file}"
+sudo "/tmp/${installer_file}"
+
+echo "Clojure binaries are now installed at:"
+echo "    $(which clojure)"
+echo "    $(which clj)"

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+echo 'Installing lein...'
+
+sudo wget -O /usr/local/bin/lein 'https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein'
+sudo chmod a+x /usr/local/bin/lein
+sudo lein
+
+echo
+echo "Leiningen is now installed at $(which lein)"
