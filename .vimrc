@@ -28,14 +28,6 @@ filetype off
 
 
 
-" Project stuff
-cmap ~vs ~/.vim/session/
-cmap ~gr ~/projects/groot/
-cmap ~con ~/projects/conifer/
-
-
-
-
 " PLUGINZ
 
 " set the runtime path to include Vundle and initialize
@@ -238,6 +230,14 @@ nmap <leader>ag :Ag<cr>
 let g:fzf_action = {
   \ 'ctrl-k': 'vsplit',
   \ 'ctrl-l': 'tab split' }
+
+
+
+
+" Project path stuff
+cmap ~vs ~/.vim/session/
+cmap ~gr ~/projects/groot/
+cmap ~con ~/projects/conifer/
 
 
 
