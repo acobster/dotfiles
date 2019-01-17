@@ -55,9 +55,13 @@ Plugin 'wlangstroth/vim-racket'
 Plugin 'StanAngeloff/php.vim'
 Plugin 'slim-template/vim-slim.git'
 Plugin 'elzr/vim-json'
+Plugin 'tpope/vim-surround'
 
 " Lisp-y stuff
 Plugin 'jpalardy/vim-slime'
+Plugin 'guns/vim-clojure-static'
+Plugin 'tpope/vim-fireplace'
+Plugin 'junegunn/rainbow_parentheses.vim'
 
 " Case
 Plugin 'tpope/vim-abolish'
