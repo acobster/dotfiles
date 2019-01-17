@@ -63,7 +63,7 @@ Plugin 'jpalardy/vim-slime'
 Plugin 'tpope/vim-abolish'
 
 " Markdown
-Plugin 'plasticboy/vim-markdown'
+Plugin 'junegunn/goyo.vim'
 
 " Formatting
 Plugin 'junegunn/vim-easy-align'
@@ -146,6 +146,11 @@ if has("autocmd")
   au filetype racket set lisp
   au filetype racket set autoindent
 endif
+
+
+" Markdown
+nmap <leader>gg :Goyo<cr>
+
 
 " Slime config
 let g:slime_target = "tmux"
