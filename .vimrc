@@ -17,25 +17,27 @@ set shiftwidth=2
 set incsearch " incremental search
 set hlsearch  " hilight search terms
 
+
+
 let mapleader=","
 
+
+
+" what does this even
 filetype off
 
-" Project stuff
-cmap ~tour ~/workspace/docker/tourusa/
-cmap ~mod ~/workspace/docker/tourusa/local/modules/TourUsa/
-cmap ~vs ~/.vim/session/
-cmap ~fac ~/workspace/fmca/wp-content/plugins/fmca-find-a-coach/
-cmap ~fmca ~/workspace/fmca/
-cmap ~gr ~/workspace/groot/
-cmap ~con ~/workspace/conifer/
+
+
+" PLUGINZ
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+
 Plugin 'VundleVim/Vundle.vim'
 
+" The colors, Duke! The colors!
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bronson/vim-trailing-whitespace'
 
@@ -53,15 +55,19 @@ Plugin 'wlangstroth/vim-racket'
 Plugin 'StanAngeloff/php.vim'
 Plugin 'slim-template/vim-slim.git'
 Plugin 'elzr/vim-json'
+Plugin 'tpope/vim-surround'
 
 " Lisp-y stuff
 Plugin 'jpalardy/vim-slime'
+Plugin 'guns/vim-clojure-static'
+Plugin 'tpope/vim-fireplace'
+Plugin 'junegunn/rainbow_parentheses.vim'
 
 " Case
 Plugin 'tpope/vim-abolish'
 
 " Markdown
-Plugin 'plasticboy/vim-markdown'
+Plugin 'junegunn/goyo.vim'
 
 " Formatting
 Plugin 'junegunn/vim-easy-align'
@@ -81,9 +87,14 @@ Plugin 'mhinz/vim-startify'
 
 call vundle#end()
 
+
 filetype plugin indent on
 
+
+
+" ???
 set laststatus=2
+
 
 " ,h redraws the screen and removes any search highlighting.
 nnoremap <leader>h :nohlsearch<cr>
@@ -110,8 +121,12 @@ nnoremap <c-w>l :vertical resize +5<cr>
 set splitbelow
 set splitright
 
+
+
 " Shell behavior
 set shell=/bin/bash\ -i
+
+
 
 " Syntax highlighting/linting
 let g:syntastic_always_populate_loc_list = 1
@@ -135,6 +150,11 @@ if has("autocmd")
   au filetype racket set lisp
   au filetype racket set autoindent
 endif
+
+
+" Markdown
+nmap <leader>gg :Goyo<cr>
+
 
 " Slime config
 let g:slime_target = "tmux"
@@ -220,9 +240,21 @@ let g:fzf_action = {
   \ 'ctrl-k': 'vsplit',
   \ 'ctrl-l': 'tab split' }
 
+
+
+
+" Project path stuff
+cmap ~vs ~/.vim/session/
+cmap ~gr ~/projects/groot/
+cmap ~con ~/projects/conifer/
+
+
+
+
 " Assets - display assets from Ledger-CLI
 
 command Assets r!date '+;; \%Y-\%m-\%d ALL ACCOUNTS BALANCED'; echo ';;'; ledger -f ~/ledger/ledger.dat balance assets --cleared | sed -s 's/^/;; /'
+
 
 
 
@@ -294,8 +326,13 @@ endfunction
 " end Rename
 
 
+
+
 command Php r!snip phpclass
 command Bashargs r!snip bashargs
+command Wpcli r!snip wpcli
+
+
 
 " 'start'/'end' replacements
 nnoremap <leader>se 5send<esc>
@@ -303,6 +340,8 @@ nnoremap <leader>es 3sstart<esc>
 " 'first'/'last' replacements
 nnoremap <leader>fl 5slast<esc>
 nnoremap <leader>lf 4sfirst<esc>
+
+
 
 
 
@@ -318,6 +357,8 @@ cnoremap <c-P><c-E> nmap ,e :w\\|:silent !echo 'command' > test.pipe<c-v>u003Ccr
 cnoremap <c-P><c-W> nmap ,s :w\\|:silent !echo 'command' > test.pipe<c-v>u003Ccr>:redraw!<c-v>u003Ccr>
 
 cnoremap <c-P>a nmap ,a :w\\|:silent !echo 'ledger -f ~/ledger/ledger.dat balance assets' > test.pipe<c-v>u003Ccr>:redraw!<c-v>u003Ccr>
+
+
 
 
 

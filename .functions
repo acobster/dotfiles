@@ -1,4 +1,4 @@
-
+#!/usr/bin/env bash
 
 #--------------------
 # Git functions
@@ -23,6 +23,17 @@ vms() {
   find . -regextype sed -regex ".*\.sw\(p\|o\|n\)" | xargs rm
 
   vim -S ~/.vim/session/$1.vim
+}
+
+
+# Misc projects
+
+proj() {
+  if [[ -d "~/projects/$1" ]] ; then
+    cd "~/projects/$1"
+  else
+    cd ~/projects
+  fi
 }
 
 
