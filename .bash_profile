@@ -273,6 +273,11 @@ if [[ -z $(git config --global alias.st) ]] ; then
   git config --global alias.st 'status'
 fi
 
+# Alias: git churn
+if [[ -z $(git config --global alias.churn) ]] ; then
+  git config --global alias.churn '!git-churn'
+fi
+
 # Alias: git sh
 if [[ -z $(git config --global alias.sh) ]] ; then
   git config --global alias.sh 'stash'
