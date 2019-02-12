@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+if [[ "$(which apt-get)" ]] ; then
+  echo 'installing Linux packages...'
+  sudo apt-get install -y \
+    xclip \
+    tree \
+    tmux \
+    php \
+    php-xml \
+    php-mysql \
+    php-mbstring \
+    mariadb-server \
+    mariadb-client \
+    jq \
+    net-tools \
+    docker-compose \
+    httpie \
+    inotify-tools \
+    xdotool \
+    expect
+fi
