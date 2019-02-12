@@ -51,6 +51,7 @@ then
 fi
 
 alias g='git'
+alias m='git commit -m'
 alias master='git checkout master'
 # be nice to me when i make typos ok plz
 alias tig='git'
