@@ -2,7 +2,7 @@
 
 usage() {
   echo '
-get-pantheon-site <site_name> <email> [<dir>]
+get-pantheon-site <site_name> [<email> [<dir>]]
 
 site_name: the name (or ID) of the Pantheon site
 email:     the email to add as a team member on the site
@@ -13,10 +13,22 @@ dir:       the directory to clone into; defaults to the directory from the
 
 main() {
   site_name="$1"
-  email="$2"
+  email="${2:-$(git config user.email)}"
+
+  if [[ -z "$email" ]]
+  then
+    echo 'unable to detect email'
+    usage
+    exit 1
+  fi
 
   # add to team
   terminus site:team:add "$site_name" "$email"
+
+  if [[ $? != '0' ]]
+  then
+    exit 1
+  fi
 
   # get repo URL from connection info
   site_env="${site_name}.dev"
@@ -32,7 +44,7 @@ main() {
 }
 
 
-if [[ -z "$2" ]] ; then
+if [[ -z "$1" ]] ; then
   usage
   exit 1
 fi
