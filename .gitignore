@@ -13,3 +13,6 @@ bin/jsc
 # ctags files at root only
 /tags
 *.deb
+
+# misc WordPress stuff
+/wp-content/uploads/
