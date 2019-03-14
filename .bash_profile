@@ -320,7 +320,7 @@ fi
 
 # Alias: git ha - add hunks interactively
 if [[ -z $(git config --global alias.ha) ]] ; then
-  git config --global alias.ha 'add --all -p'
+  git config --global alias.ha 'add --all --patch'
 fi
 
 # Alias: git co
