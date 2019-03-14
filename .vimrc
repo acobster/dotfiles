@@ -120,6 +120,10 @@ nnoremap <c-w>h :vertical resize -5<cr>
 nnoremap <c-w>l :vertical resize +5<cr>
 set splitbelow
 set splitright
+" Move tabs how I want, when I want
+cnoremap <c-t><c-t> tabm<Space>0<cr>
+cnoremap <c-t><c-h> tabm<Space>-<cr>
+cnoremap <c-t><c-l> tabm<Space>+<cr>
 
 " THE LOZENGE ◊
 imap <c-l> ◊
