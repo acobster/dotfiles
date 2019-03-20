@@ -58,8 +58,8 @@ Plugin 'elzr/vim-json'
 Plugin 'tpope/vim-surround'
 
 " Lisp-y stuff
-Plugin 'jpalardy/vim-slime'
 Plugin 'guns/vim-clojure-static'
+Plugin 'guns/vim-sexp'
 Plugin 'tpope/vim-fireplace'
 Plugin 'junegunn/rainbow_parentheses.vim'
 
@@ -145,6 +145,11 @@ let g:syntastic_html_tidy_ignore_errors = [
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe = 'eslint'
 
+augroup rainbow_lisp
+  autocmd!
+  autocmd FileType lisp,clojure,scheme RainbowParentheses
+augroup END
+
 if has("autocmd")
   au BufReadPost *.rkt,*.rktl set filetype=racket
   au filetype racket set lisp
@@ -155,12 +160,6 @@ endif
 " Markdown
 nmap <leader>gg :Goyo<cr>
 
-
-" Slime config
-let g:slime_target = "tmux"
-
-" In vim-airline, only display "hunks" if the diff is non-zero
-let g:airline#extensions#hunks#non_zero_only = 1
 
 " Easy align interactive
 vnoremap <silent> <Enter> :EasyAlign<cr>
