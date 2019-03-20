@@ -121,7 +121,8 @@ nnoremap <c-w>l :vertical resize +5<cr>
 set splitbelow
 set splitright
 
-
+" THE LOZENGE ◊
+imap <c-l> ◊
 
 " Shell behavior
 set shell=/bin/bash\ -i
@@ -216,10 +217,12 @@ let g:vim_markdown_folding_disabled = 1
 " CUSTOM MAPPINGS!
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-nmap <leader>r :w\|:!rspec --format=d spec/routing<cr>
-nmap <leader>c :w\|:!rspec --format=d spec/controllers<cr>
-nmap <leader>m :w\|:!rspec --format=d spec/models<cr>
-nmap <leader>l :w\|:!rspec --format=d spec/lib<cr>
+nmap <leader>c :w<cr>cpr
+
+"nmap <leader>r :w\|:!rspec --format=d spec/routing<cr>
+"nmap <leader>c :w\|:!rspec --format=d spec/controllers<cr>
+"nmap <leader>m :w\|:!rspec --format=d spec/models<cr>
+"nmap <leader>l :w\|:!rspec --format=d spec/lib<cr>
 
 " js (mocha) tests
 imap <c-t><c-d> describe('', () => {<cr><cr>})<esc>kkf'a
