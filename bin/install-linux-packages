@@ -18,5 +18,6 @@ if [[ "$(which apt-get)" ]] ; then
     httpie \
     inotify-tools \
     xdotool \
-    expect
+    expect \
+    silversearcher-ag
 fi
