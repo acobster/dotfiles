@@ -61,6 +61,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'guns/vim-clojure-static'
 Plugin 'guns/vim-sexp'
 Plugin 'tpope/vim-fireplace'
+Plugin 'clojure-vim/vim-cider'
 Plugin 'junegunn/rainbow_parentheses.vim'
 
 " Case
@@ -149,6 +150,8 @@ let g:syntastic_html_tidy_ignore_errors = [
   \ ]
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe = 'eslint'
+
+let g:sexp_enable_insert_mode_mappings = 0
 
 augroup rainbow_lisp
   autocmd!
