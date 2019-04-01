@@ -5,4 +5,5 @@
 --skip-spring
 --skip-test
 --skip-keeps
+--skip-bootsnap
 --template ~/rails-app-templates/puma-rails5.rb
