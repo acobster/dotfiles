@@ -115,6 +115,10 @@ cnoremap S% split<Space>
 cnoremap V% vert new<Space>
 nnoremap <c-l> :tabnext<CR>
 nnoremap <c-h> :tabprevious<CR>
+" Move current buffer one tab to the left
+nmap <leader>z :tabprevious<cr>:vert<space>new<cr>,ww:tabnext<cr>,ww:q<cr>:tabprevious<cr>
+" Move current buffer one tab to the right
+nmap <leader>v :tabnext<cr>:vert<space>new<cr>,ww:tabprevious<cr>,ww:q<cr>:tabnext<cr>
 
 " Configure split behavior
 nnoremap <c-w>h :vertical resize -5<cr>
