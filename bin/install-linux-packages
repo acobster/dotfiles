@@ -14,6 +14,7 @@ if [[ "$(which apt-get)" ]] ; then
     mariadb-server \
     mariadb-client \
     jq \
+    nodejs \
     net-tools \
     docker-compose \
     httpie \

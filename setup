@@ -13,7 +13,7 @@ usage() {
   echo
   echo '  setup [-h|--help] [--skip-ruby] [-r|--ruby-version=<RUBY_VERSION>]'
   echo '        [--skip-composer] [--skip-fzf] [--skip-golang] [--skip-hub]'
-  echo '        [--skip-keybase] [--skip-rust] [--skip-node] [--skip-yarn]'
+  echo '        [--skip-keybase] [--skip-rust] [--skip-yarn]'
   echo '        [--skip-packages] [--skip-docker] [--skip-zazu] [--skip-keybase]'
   echo '        [--skip-racket] [--skip-bat] [--skip-dotfiles] [--skip-java]'
   echo '        [--skip-clojure] [--skip-mariadb] [--skip-kubectl] [--skip-update]'
@@ -67,10 +67,6 @@ case $key in
     RUBY_VERSION="$2"
     shift # past option
     shift # past value
-    ;;
-    --skip-node)
-    SKIP_NODE=1
-    shift # past option
     ;;
     --skip-yarn)
     SKIP_YARN=1
@@ -146,7 +142,6 @@ function main() {
   install_fzf
   install_golang
   install_hub
-  install_node
   install_yarn
   install_packages
   install_docker
@@ -266,16 +261,6 @@ function install_golang() {
 function install_hub() {
   if [[ -z "$(which hub)" ]] && [[ -z "$SKIP_HUB" ]] ; then
     install-hub
-  fi
-}
-
-function install_node() {
-  if [[ -z "$SKIP_NODE" ]] && [[ -z "$(which node)" ]] ; then
-    echo 'installing nodejs...'
-    curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-    sudo apt-get install -y nodejs npm
-
-    echo "node $(node --version) is now installed"
   fi
 }
 
