@@ -266,16 +266,7 @@ function install_hub() {
 
 function install_yarn() {
   if [[ -z "$SKIP_YARN" ]] ; then
-    if [[ -z "$(which node)" ]] ; then
-      echo 'no npm detected...skipping yarn'
-      return
-    fi
-
-    if [[ -z "$(which yarn)" ]] && [[ -z "$SKIP_YARN" ]] ; then
-      echo 'installing yarn...'
-      sudo npm install -g yarn
-      echo "yarn is now installed at $(which yarn)"
-    fi
+    install-yarn
   fi
 }
 
@@ -312,13 +303,7 @@ function install_zazu() {
     fi
   fi
 
-  echo 'installing zazu...'
-
-  sudo apt-get install -y libgconf-2-4 gconf-service-backend gconf-service gconf2 libindicator7 libappindicator1
-
-  wget https://github.com/tinytacoteam/zazu/releases/download/v0.5.2/zazu_0.5.2_amd64.deb
-  sudo dpkg -i zazu_0.5.2_amd64.deb
-  rm zazu_0.5.2_amd64.deb
+  install-zazu
 }
 
 function install_keybase() {
