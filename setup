@@ -364,12 +364,7 @@ function install_zazu() {
 function install_keybase() {
   if [[ -z "$(which keybase)" ]] ; then
     echo 'installing keybase...'
-    curl -O https://prerelease.keybase.io/keybase_amd64.deb
-    sudo dpkg -i keybase_amd64.deb
-    sudo apt-get install -f
-    run_keybase
-    rm keybase_amd64.deb
-    echo "keybase is now installed at $(which keybase)"
+    install-keybase
   fi
 }
 
