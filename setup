@@ -326,8 +326,7 @@ function install_packages() {
 function install_docker() {
   if [[ -z $SKIP_DOCKER ]] && [[ -z $(which docker) ]]; then
     echo 'installing Docker CE...'
-    DIR=$(dirname $0)
-    $DIR/install-docker-ce.sh
+    install-docker
   fi
 }
 
