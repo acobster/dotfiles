@@ -259,19 +259,7 @@ function install_fzf() {
 
 function install_golang() {
   if [[ -z "$(which go)" ]] && [[ -z "$SKIP_GOLANG" ]] ; then
-    echo 'installing go...'
-
-    wget https://dl.google.com/go/go1.11.linux-amd64.tar.gz
-    sudo tar -C /usr/local -xzvf go1.11.linux-amd64.tar.gz
-    export PATH=/usr/local/go/bin:$PATH
-    rm go1.11.linux-amd64.tar.gz
-
-    if [[ "$(which go)" ]] ; then
-      echo "go is not installed at $(which go)"
-    else
-      echo 'no go binary detected after install process!!'
-    fi
-
+    install-golang
   fi
 }
 
