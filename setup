@@ -332,11 +332,7 @@ function install_docker() {
 
 function install_lando() {
   if [[ -z $(which lando) ]] ; then
-    echo 'installing Lando beta.47...'
-    wget https://github.com/lando/lando/releases/download/v3.0.0-beta.47/lando-v3.0.0-beta.47.deb
-    sudo dpkg -i lando-v3.0.0-beta.47.deb
-    rm lando-v3.0.0-beta.47.deb
-    echo "lando version $(lando version) is now installed at $(which lando)"
+    install-lando
   fi
 }
 
