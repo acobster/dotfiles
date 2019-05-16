@@ -3,6 +3,7 @@
 if [[ "$(which apt-get)" ]] ; then
   echo 'installing Linux packages...'
   sudo apt-get install -y \
+    vim \
     xclip \
     tree \
     tmux \

@@ -11,7 +11,7 @@ key="$1"
 
 usage() {
   echo
-  echo '  setup [-h|--help] [--skip-vim] [--skip-ruby] [-r|--ruby-version=<RUBY_VERSION>]'
+  echo '  setup [-h|--help] [--skip-ruby] [-r|--ruby-version=<RUBY_VERSION>]'
   echo '        [--skip-composer] [--skip-fzf] [--skip-golang] [--skip-hub]'
   echo '        [--skip-keybase] [--skip-rust] [--skip-node] [--skip-yarn]'
   echo '        [--skip-packages] [--skip-docker] [--skip-zazu] [--skip-keybase]'
@@ -37,10 +37,6 @@ case $key in
     ;;
     --skip-fzf)
     SKIP_FZF=1
-    shift # past option
-    ;;
-    --skip-vim)
-    SKIP_INSTALL_VIM=1
     shift # past option
     ;;
     --skip-golang)
@@ -148,7 +144,6 @@ function main() {
   install_bat
   install_composer
   install_fzf
-  install_vim
   install_golang
   install_hub
   install_node
@@ -259,20 +254,6 @@ function install_fzf() {
     ~/.fzf/install --completion --key-bindings --no-update-rc
 
     echo "fzf installed at $(which fzf)"
-  fi
-}
-
-function install_vim() {
-  if [[ -z "$(which vim)" ]] && [[ -z "$SKIP_INSTALL_VIM" ]] ; then
-    read -p 'no vim detected! install? [y/N] ' install
-    if [[ "$install" = 'y' ]] ; then
-      echo 'installing vim...'
-      sudo apt-get install -y vim
-    fi
-
-    if [[ "$(which vim)" ]] ; then
-      echo "vim is now installed at $(which vim)"
-    fi
   fi
 }
 
