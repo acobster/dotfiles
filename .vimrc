@@ -17,6 +17,9 @@ set shiftwidth=2
 set incsearch " incremental search
 set hlsearch  " hilight search terms
 
+" https://en.parceljs.org/hmr.html#safe-write
+set backupcopy=yes
+
 
 
 let mapleader=","
