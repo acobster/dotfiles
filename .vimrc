@@ -30,6 +30,11 @@ let mapleader=","
 filetype off
 
 
+" Persistent undo!
+set undodir=~/.vim/undodir
+set undofile
+
+
 
 " PLUGINZ
 
