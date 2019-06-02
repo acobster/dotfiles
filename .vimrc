@@ -20,6 +20,9 @@ set hlsearch  " hilight search terms
 " https://en.parceljs.org/hmr.html#safe-write
 set backupcopy=yes
 
+" don't redraw in the middle of macros
+set lazyredraw
+
 
 
 let mapleader=","
