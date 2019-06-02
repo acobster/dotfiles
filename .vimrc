@@ -53,8 +53,11 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'bronson/vim-trailing-whitespace'
 
 " Navigation
-Plugin 'wesQ3/vim-windowswap'
-Plugin 'junegunn/fzf.vim'
+Plugin 'wesQ3/vim-windowswap' " ,ww for swapping buffers
+Plugin 'junegunn/fzf.vim' " the best file search
+
+" Undo
+Plugin 'mbbill/undotree'
 
 " Syntax
 Plugin 'vim-syntastic/syntastic'
@@ -67,6 +70,7 @@ Plugin 'StanAngeloff/php.vim'
 Plugin 'slim-template/vim-slim.git'
 Plugin 'elzr/vim-json'
 Plugin 'tpope/vim-surround'
+Plugin 'machakann/vim-swap' " swap fn args
 
 " Lisp-y stuff
 Plugin 'guns/vim-clojure-static'
