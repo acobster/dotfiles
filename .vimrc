@@ -353,6 +353,9 @@ nnoremap <leader>es 3sstart<esc>
 " 'first'/'last' replacements
 nnoremap <leader>fl 5slast<esc>
 nnoremap <leader>lf 4sfirst<esc>
+" 'create'/'update' replacements
+nnoremap <leader>cu 3supd<esc>
+nnoremap <leader>uc 3scre<esc>
 
 
 
