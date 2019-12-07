@@ -65,7 +65,7 @@ Plugin 'lumiliet/vim-twig'
 Plugin 'bkad/vim-stylus'
 Plugin 'posva/vim-vue'
 Plugin 'elmcast/elm-vim'
-Plugin 'wlangstroth/vim-racket'
+"Plugin 'wlangstroth/vim-racket'
 Plugin 'StanAngeloff/php.vim'
 Plugin 'slim-template/vim-slim.git'
 Plugin 'elzr/vim-json'
@@ -161,8 +161,8 @@ let g:syntastic_check_on_wq = 0
 let syntastic_mode_map = { 'passive_filetypes': ['html'] }
 let g:syntastic_twig_checkers = ['twig']
 " WiP - ignore racket check warning
-let g:syntastic_quiet_messages = {
-  \ "regex": '.*racket: checks disabled for security reasons.*' }
+"let g:syntastic_quiet_messages = {
+"  \ "regex": '.*racket: checks disabled for security reasons.*' }
 let g:syntastic_html_tidy_ignore_errors = [
   \ 'plain text isn''t allowed in <head> elements',
   \ '<img> escaping malformed URI reference'
