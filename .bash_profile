@@ -202,8 +202,20 @@ fi
 # Colors
 #--------
 
-if [[ -f ~/.dir_colors/dircolors ]] ; then
-  eval `dircolors ~/.dir_colors/dircolors`
+#
+# Provide an ergonomic way to switch between light/dark solarized themes
+#
+
+if [[ -f "${HOME}/.dir_colors/theme" ]] ; then
+  export GNOME_TERMINAL_SOLARIZED_THEME=$(cat "${HOME}/.dir_colors/theme")
+else
+  # default to dark
+  export GNOME_TERMINAL_SOLARIZED_THEME=dark
+fi
+
+# Set an environment variable that tools like Vim can detect
+if [[ -f "${HOME}/.dir_colors/dircolors.${GNOME_TERMINAL_SOLARIZED_THEME}" ]] ; then
+  eval `dircolors "${HOME}/.dir_colors/dircolors.${GNOME_TERMINAL_SOLARIZED_THEME}"`
 fi
 
 
