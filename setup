@@ -286,13 +286,7 @@ function install_hub() {
 }
 
 function install_node() {
-  if [[ -z "$SKIP_NODE" ]] && [[ -z "$(which node)" ]] ; then
-    echo 'installing nodejs...'
-    curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-    sudo apt-get install -y nodejs npm
-
-    echo "node $(node --version) is now installed"
-  fi
+  install-node
 }
 
 function install_yarn() {
