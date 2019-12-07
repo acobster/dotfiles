@@ -361,6 +361,12 @@ endfunction
 " end Rename
 
 
+function Catw() range
+  echo a:firstline
+  echo a:lastline
+endfunction
+
+
 
 
 command Php r!snip phpclass
