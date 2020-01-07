@@ -17,3 +17,6 @@ bin/jsc
 # misc WordPress stuff
 /wp-content/uploads/
 /wp-content/debug.log
+*.code-workspace
+.nrepl-port
+.shadow-cljs/
