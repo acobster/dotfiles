@@ -1,6 +1,6 @@
 {
   "hotkey": "ctrl+space",
-  "theme": "tinytacoteam/zazu-playful-theme",
+  "theme": "marcpaul/zazu-solarized-light-theme",
   "displayOn": "detect",
   "disableAnalytics": true,
   "plugins": [

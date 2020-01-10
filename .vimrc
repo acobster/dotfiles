@@ -17,6 +17,12 @@ set shiftwidth=2
 set incsearch " incremental search
 set hlsearch  " hilight search terms
 
+" https://en.parceljs.org/hmr.html#safe-write
+set backupcopy=yes
+
+" don't redraw in the middle of macros
+set lazyredraw
+
 
 
 let mapleader=","
@@ -25,6 +31,11 @@ let mapleader=","
 
 " what does this even
 filetype off
+
+
+" Persistent undo!
+set undodir=~/.vim/undodir
+set undofile
 
 
 
@@ -42,8 +53,11 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'bronson/vim-trailing-whitespace'
 
 " Navigation
-Plugin 'wesQ3/vim-windowswap'
-Plugin 'junegunn/fzf.vim'
+Plugin 'wesQ3/vim-windowswap' " ,ww for swapping buffers
+Plugin 'junegunn/fzf.vim' " the best file search
+
+" Undo
+Plugin 'mbbill/undotree'
 
 " Syntax
 Plugin 'vim-syntastic/syntastic'
@@ -51,11 +65,12 @@ Plugin 'lumiliet/vim-twig'
 Plugin 'bkad/vim-stylus'
 Plugin 'posva/vim-vue'
 Plugin 'elmcast/elm-vim'
-Plugin 'wlangstroth/vim-racket'
+"Plugin 'wlangstroth/vim-racket'
 Plugin 'StanAngeloff/php.vim'
 Plugin 'slim-template/vim-slim.git'
 Plugin 'elzr/vim-json'
 Plugin 'tpope/vim-surround'
+Plugin 'machakann/vim-swap' " swap fn args
 
 " Lisp-y stuff
 Plugin 'guns/vim-clojure-static'
@@ -146,8 +161,8 @@ let g:syntastic_check_on_wq = 0
 let syntastic_mode_map = { 'passive_filetypes': ['html'] }
 let g:syntastic_twig_checkers = ['twig']
 " WiP - ignore racket check warning
-let g:syntastic_quiet_messages = {
-  \ "regex": '.*racket: checks disabled for security reasons.*' }
+"let g:syntastic_quiet_messages = {
+"  \ "regex": '.*racket: checks disabled for security reasons.*' }
 let g:syntastic_html_tidy_ignore_errors = [
   \ 'plain text isn''t allowed in <head> elements',
   \ '<img> escaping malformed URI reference'
@@ -209,7 +224,14 @@ endif
 if has('gui_running')
   set background=light
 else
-  set background=dark
+  " Detect environment variable for solarized theme
+  let profile_theme = $GNOME_TERMINAL_SOLARIZED_THEME
+
+  if profile_theme == 'light'
+    set background=light
+  else
+    set background=dark
+  endif
 endif
 
 try
@@ -337,6 +359,12 @@ function! Rename(name, bang)
 endfunction
 
 " end Rename
+
+
+function Catw() range
+  echo a:firstline
+  echo a:lastline
+endfunction
 
 
 

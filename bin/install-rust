@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [[ -z "$(which rustc)" ]] && [[ -z "$SKIP_RUST" ]] ; then
+  echo 'Installing rust...'
+  wget -O /tmp/rustup-init.sh https://sh.rustup.rs
+  sh /tmp/rustup-init.sh -y
+fi

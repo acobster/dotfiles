@@ -209,12 +209,7 @@ function install_ruby() {
 }
 
 function install_rust() {
-  if [[ -z "$(which rustc)" ]] && [[ -z "$SKIP_RUST" ]] ; then
-    echo 'Installing rust...'
-    wget -O rustup-init.sh https://sh.rustup.rs
-    sudo sh rustup-init.sh -y
-    rm rustup-init.sh
-  fi
+  install-rust
 }
 
 function install_bat() {
@@ -262,6 +257,10 @@ function install_hub() {
   if [[ -z "$(which hub)" ]] && [[ -z "$SKIP_HUB" ]] ; then
     install-hub
   fi
+}
+
+function install_node() {
+  install-node
 }
 
 function install_yarn() {

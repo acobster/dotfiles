@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+set-solarized-theme() {
+  mkdir -p ~/.dir_colors
+  echo "$1" > ~/.dir_colors/theme
+}
+
 #--------------------
 # Git functions
 #--------------------
