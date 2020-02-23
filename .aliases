@@ -42,7 +42,7 @@ alias tree='tree -I "vendor|node_modules"'
 alias minute='date +%Y%m%d%I%M'
 alias hour='date +%Y%m%d%I'
 alias day='date +%Y%m%d'
-alias gigs='du . -h | grep "[0-9\.]\+G"'
+alias gigs='du . -h | grep "[0-9]\+\(\.[0-9]\+\)G"'
 
 # Git stuff
 if [[ $(which hub) ]]

@@ -23,6 +23,7 @@ case $key in
     shift # past argument
     ;;
 esac
+
 done
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
