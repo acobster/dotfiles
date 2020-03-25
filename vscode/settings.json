@@ -1,0 +1,70 @@
+{
+    "window.zoomLevel": -1,
+    "yaml.schemas": {
+        "file:///home/ctamayo/.vscode/extensions/atlassian.atlascode-2.4.10/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    },
+    "atlascode.jira.jqlList": [
+        {
+            "enabled": true,
+            "id": "85128cb4-5ccc-4f99-aa6f-1c0ca6facc13",
+            "monitor": true,
+            "name": "My sitecrafting Issues",
+            "query": "assignee = currentUser() ORDER BY lastViewed DESC ",
+            "siteId": "4e979854-bfa9-4498-9c6c-c786bec79220"
+        },
+        {
+            "enabled": true,
+            "id": "ff449c8f-2af1-460b-848b-07db235bd192",
+            "monitor": true,
+            "name": "GEPL  - My Open Issues",
+            "query": "project = \"GEPL\" AND resolution = Unresolved AND assignee = currentUser() ORDER BY priority DESC",
+            "siteId": "4e979854-bfa9-4498-9c6c-c786bec79220"
+        }
+    ],
+    "atlascode.jira.lastCreateSiteAndProject": {
+        "siteId": "4e979854-bfa9-4498-9c6c-c786bec79220",
+        "projectKey": "DFD"
+    },
+    "vim.leader": ",",
+    "vim.normalModeKeyBindings": [
+        {
+            "before": ["<leader>", "<space>"],
+            "commands": ["calva.evaluateSelection"],
+            "when": "editorTextFocus && editorLangId == 'clojure'"
+        },
+        {
+            "before": ["<leader>", "l"],
+            "commands": ["calva.loadFile"]
+        },
+        {
+            "before": ["<leader>", "p", "r"],
+            "commands": ["better-phpunit.run"]
+        },
+        {
+            "before": ["<leader>", "p", "f"],
+            "commands": ["better-phpunit.run-file"]
+        },
+        {
+            "before": ["<leader>", "p", "p"],
+            "commands": ["better-phpunit.run-previous"]
+        }
+    ],
+    "calva.paredit.defaultKeyMap": "original",
+    "files.watcherExclude": {
+        "**/.cljs_nashorn_repl/**": true,
+        "**/.shadow-cljs/**": true,
+        "**/cljs-runtime/**": true,
+        "**/nashorn_code_cache/**": true,
+        "**/public/js/out/**": true,
+        "**/vendor/**": true,
+        "**/wp-admin/**": true,
+        "**/wp-content/uploads/**": true,
+        "**/wp-includes/**": true
+    },
+    "git.autofetch": true,
+    "editor.minimap.enabled": false,
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "workbench.startupEditor": "none",
+    "editor.tabSize": 2
+}
