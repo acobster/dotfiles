@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -e
+
+echo 'installing nvm...'
+
+wget -q -O /tmp/install_nvm.sh https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh
+bash /tmp/install_nvm.sh
+
+echo " ⚠️  SEE ABOVE INSTRUCTIONS FOR USING nvm RIGHT AWAY ⚠️ "
