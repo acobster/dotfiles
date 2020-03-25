@@ -27,7 +27,7 @@ main() {
 
   if [[ $? != '0' ]]
   then
-    exit 1
+    echo "Skipped adding ${email} to ${site_name}."
   fi
 
   # get repo URL from connection info
