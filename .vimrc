@@ -37,6 +37,9 @@ filetype off
 set undodir=~/.vim/undodir
 set undofile
 
+" make Parcel work
+set backupcopy=yes
+
 
 
 " PLUGINZ
@@ -384,6 +387,9 @@ nnoremap <leader>lf 4sfirst<esc>
 " 'create'/'update' replacements
 nnoremap <leader>cu 3supd<esc>
 nnoremap <leader>uc 3scre<esc>
+" 'true'/'false' replacements
+nnoremap <leader>tf 4sfalse<esc>
+nnoremap <leader>ft 5strue<esc>
 
 
 

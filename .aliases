@@ -1,3 +1,27 @@
+# Navigational aliases
+alias ..='upandaway 1'
+alias ...='upandaway 2'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+
+upandaway() {
+  if [[ $1 = 1 ]] ; then
+    updir='../'
+  elif [[ $1 = 2 ]] ; then
+    updir='../../'
+  elif [[ $1 = 3 ]] ; then
+    updir='../../../'
+  elif [[ $1 = 4 ]] ; then
+    updir='../../../../'
+  elif [[ $1 = 5 ]] ; then
+    updir='../../../../../'
+  fi
+
+  cd "$updir$2"
+}
+
+
 # Set up aliases
 alias aliases='vim ~/dotfiles/.aliases'
 alias al='vim ~/.aliases'
@@ -10,7 +34,6 @@ alias vimrc='vim ~/.vimrc'
 alias zazurc='vim ~/.zazurc.json'
 alias dtf='cd ~/dotfiles'
 alias dtfbin='cd ~/dotfiles/bin'
-alias ..='cd ..'
 alias l='ls -la'
 alias lz='ls -Z'
 alias drop='cd ~/Dropbox'
@@ -23,10 +46,6 @@ alias r='reload'
 alias rr='reload && clear'
 alias rrr='reload && cd && clear'
 alias rmswp='find . -regextype sed -regex ".*\\.sw\(p\|o\|n\)" | xargs rm'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
-alias ......='cd ../../../../..'
 alias cd-='cd -'
 alias dot='cd ~/dotfiles'
 alias p='tmux send-keys -t cmus c'

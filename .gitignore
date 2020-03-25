@@ -1,5 +1,7 @@
 *.swo
 *.swp
+*.swn
+*.code-workspace
 *.sublime-project
 *.sublime-workspace
 .DS_Store
@@ -17,6 +19,11 @@ bin/jsc
 # misc WordPress stuff
 /wp-content/uploads/
 /wp-content/debug.log
+
+# editor/dev env stuff
 *.code-workspace
 .nrepl-port
 .shadow-cljs/
+
+# Local Lando files
+.lando.local.yml

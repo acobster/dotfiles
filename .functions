@@ -175,29 +175,19 @@ sql() {
 }
 
 grephp() {
-  grepext "*.php" "$1" "$2"
+  grep --recursive --include=*.php "$@"
 }
 
 grepjs() {
-  grepext "*.js" "$1" "$2"
+  grep --recursive --include=*.js "$@"
 }
 
 greptwig() {
-  grepext "*.twig" "$1" "$2"
+  grep --recursive --include=*.twig "$@"
 }
 
 grepless() {
-  grepext "*.less" "$1" "$2"
-}
-
-grepext() {
-  if [[ -z $3 ]] ; then
-    dir=.
-  else
-    dir="$3"
-  fi
-
-  grep --include=$1 -r "$2" "$dir"
+  grep --recursive --include=*.less "$@"
 }
 
 psgrep() {
