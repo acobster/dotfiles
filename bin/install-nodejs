@@ -21,7 +21,7 @@ case $key in
     ;;
     -f|--force)
     FORCE=true
-    exit
+    shift
     ;;
     -v|--version)
     VERSION="$2"
@@ -46,6 +46,8 @@ main() {
     sudo apt-get install -y nodejs npm
 
     echo "node $(node --version) is now installed"
+  else
+    echo "node $(node --version) is already installed"
   fi
 }
 
