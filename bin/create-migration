@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+if [[ -z $1 ]]
+then
+  echo 'Migration name required. Example:'
+  echo 'create-migration create-users-table'
+fi
+
+timestamp=$(date +%Y%m%d%k%M%S)
+up_name="${timestamp}-$1.up.sql"
+down_name="${timestamp}-$1.up.sql"
+
+path=${2:-'.'}
+
+echo "creating $path/$up_name..."
+touch "$path/$up_name"
+
+echo "creating $path/$down_name"
+touch "$path/$down_name"
