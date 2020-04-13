@@ -8,12 +8,16 @@ fi
 
 timestamp=$(date +%Y%m%d%k%M%S)
 up_name="${timestamp}-$1.up.sql"
-down_name="${timestamp}-$1.up.sql"
+down_name="${timestamp}-$1.down.sql"
 
 path=${2:-'.'}
+if [[ ! -d $path ]]
+then
+  mkdir -p $path
+fi
 
 echo "creating $path/$up_name..."
 touch "$path/$up_name"
 
-echo "creating $path/$down_name"
+echo "creating $path/$down_name..."
 touch "$path/$down_name"
