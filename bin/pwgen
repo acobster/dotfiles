@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# Get the number of bytes from the first CLI arg
+len=${1:-64}
+
+head /dev/urandom | tr -dc A-Za-z0-9 | head -c $len ; echo ''
