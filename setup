@@ -13,9 +13,9 @@ usage() {
   echo
   echo '  setup [-h|--help] [-r|--install-ruby <RUBY_VERSION>]'
   echo '        [--skip-clojure] [--skip-composer] [--skip-fzf] [--skip-golang] [--skip-hub]'
-  echo '        [--skip-keybase] [--skip-rust] [--skip-yarn] [--skip-update]'
+  echo '        [--skip-keybase] [--skip-yarn] [--skip-update] [--skip-racket]'
   echo '        [--skip-packages] [--skip-docker] [--skip-keybase] [--skip-babashka]'
-  echo '        [--skip-racket] [--skip-bat] [--skip-dotfiles] [--skip-java]'
+  echo '        [--skip-bat] [--skip-dotfiles] [--skip-java] [--install-rust]'
   echo '        [--install-zazu] [--install-mariadb] [--install-kubectl]'
   echo '        [--install-lua]'
   echo
@@ -70,10 +70,6 @@ case $key in
     SKIP_DOCKER=1
     shift # past option
     ;;
-    --skip-zazu)
-    SKIP_ZAZU=1
-    shift # past option
-    ;;
     --skip-keybase)
     SKIP_KEYBASE=1
     shift # past option
@@ -97,6 +93,10 @@ case $key in
     #
     # support installing additional software
     #
+    --install-zazu)
+    INSTALL_ZAZU=1
+    shift # past option
+    ;;
     --install-ruby)
     RUBY_VERSION="$2"
     shift # past option
@@ -282,11 +282,10 @@ function install_lando() {
 }
 
 function install_zazu() {
-  if [[ "$SKIP_ZAZU" = 1 ]] ; then
-    return
+  if [[ "$INSTALL_ZAZU" ]] ; then
+    install-zazu
   fi
 
-  install-zazu
 }
 
 function install_keybase() {
