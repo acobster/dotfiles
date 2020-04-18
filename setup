@@ -14,7 +14,7 @@ usage() {
   echo '  setup [-h|--help] [-r|--install-ruby <RUBY_VERSION>]'
   echo '        [--skip-clojure] [--skip-composer] [--skip-fzf] [--skip-golang] [--skip-hub]'
   echo '        [--skip-keybase] [--skip-rust] [--skip-yarn] [--skip-update]'
-  echo '        [--skip-packages] [--skip-docker] [--skip-keybase]'
+  echo '        [--skip-packages] [--skip-docker] [--skip-keybase] [--skip-babashka]'
   echo '        [--skip-racket] [--skip-bat] [--skip-dotfiles] [--skip-java]'
   echo '        [--install-zazu] [--install-mariadb] [--install-kubectl]'
   echo '        [--install-lua]'
@@ -90,6 +90,10 @@ case $key in
     SKIP_CLOJURE=1
     shift # past option
     ;;
+     --skip-babashka)
+    SKIP_BABASHKA=1
+    shift # past option
+    ;;
     #
     # support installing additional software
     #
@@ -145,6 +149,7 @@ function main() {
   install_racket
   install_java
   install_clojure
+  install_babashka
   setup_mariadb
   install_kubectl
   install_lua
@@ -319,6 +324,13 @@ function install_clojure() {
   if [[ -z "$SKIP_CLOJURE" && -z "$(which lein)" ]]
   then
     install-lein
+  fi
+}
+
+function install_babashka() {
+  if [[ -z "$SKIP_BABASHKA" && -z "$(which bb)" ]]
+  then
+    install-babashka
   fi
 }
 
