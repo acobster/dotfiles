@@ -1,16 +1,71 @@
 #!/usr/bin/env bash
 
-echo 'installing zazu...'
 
-sudo apt-get install -y \
-  libgconf-2-4 \
-  gconf-service-backend \
-  gconf-service \
-  gconf2 \
-  libindicator7 \
-  libappindicator1
+usage() {
+  echo 'usage: install-zazu [--force] [-v|--version <version>] [--deps]'
+  echo
+  echo '  --force : force install even if zazu is already installed'
+  echo '  -v|--version : specify a zazu version (without the "v", e.g. 0.6.0)'
+  echo '  --deps : install dependencies otherwise covered in install-linux-packages'
+}
 
-wget https://github.com/tinytacoteam/zazu/releases/download/v0.5.2/zazu_0.5.2_amd64.deb
-sudo dpkg -i zazu_0.5.2_amd64.deb
-rm zazu_0.5.2_amd64.deb
+
+POSITIONAL=()
+while [[ $# -gt 0 ]]
+do
+key="$1"
+
+case $key in
+    -h|--help)
+    # show usage and bail
+    usage
+    exit
+    ;;
+    --force)
+    FORCE='1'
+    shift # past argument
+    ;;
+    --deps)
+    INSTALL_DEPS='1'
+    shift # past argument
+    ;;
+    -v|--version)
+    ZAZU_VERSION="$2"
+    shift # past argument
+    shift # past value
+    ;;
+    *)
+    POSITIONAL+=("$1") # save it in an array for later
+    shift # past argument
+    ;;
+esac
+
+done
+set -- "${POSITIONAL[@]}" # restore positional parameters
+
+
+if [[ -z "$FORCE" && $(which zazu) ]]
+then
+  echo "Zazu is already installed at $(which zazu)"
+  exit
+fi
+
+
+ZAZU_VERSION=${ZAZU_VERSION:-'0.6.0'}
+
+echo "installing zazu v${ZAZU_VERSION}..."
+
+if [[ "$INSTALL_DEPS" ]]
+then
+  sudo apt-get install -y \
+    libgconf-2-4 \
+    gconf-service-backend \
+    gconf-service \
+    gconf2 \
+    libindicator7 \
+    libappindicator1
+fi
+
+curl -o /tmp/zazu.deb "https://github.com/tinytacoteam/zazu/releases/download/v0.6.0/zazu_0.6.0_amd64.deb"
+sudo dpkg -i /tmp/zazu.deb
 

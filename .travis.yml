@@ -8,12 +8,11 @@ before_install:
 - sudo apt-get update
 
 install:
-- ./setup --ruby-version 2.5.1 --skip-zazu --skip-golang --skip-hub --skip-docker --skip-keybase
+- ./setup --skip-golang --skip-hub --skip-docker --skip-keybase
 - . .bash_profile
 
 script:
 - echo $PATH
 - php -r 'echo "Running PHP!";'
 - echo '{"hello":"goodbye"}' | jq .
-- which ruby
 

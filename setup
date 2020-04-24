@@ -11,13 +11,13 @@ key="$1"
 
 usage() {
   echo
-  echo '  setup [-h|--help] [--skip-ruby] [-r|--ruby-version=<RUBY_VERSION>]'
-  echo '        [--skip-composer] [--skip-fzf] [--skip-golang] [--skip-hub]'
-  echo '        [--skip-keybase] [--skip-rust] [--skip-yarn]'
-  echo '        [--skip-packages] [--skip-docker] [--skip-zazu] [--skip-keybase]'
-  echo '        [--skip-racket] [--skip-bat] [--skip-dotfiles] [--skip-java]'
-  echo '        [--skip-clojure] [--skip-mariadb] [--skip-kubectl] [--skip-update]'
-  echo '        [--skip-lua]'
+  echo '  setup [-h|--help] [-r|--install-ruby <RUBY_VERSION>]'
+  echo '        [--skip-clojure] [--skip-composer] [--skip-fzf] [--skip-golang] [--skip-hub]'
+  echo '        [--skip-keybase] [--skip-yarn] [--skip-update] [--skip-racket]'
+  echo '        [--skip-packages] [--skip-docker] [--skip-keybase] [--skip-babashka]'
+  echo '        [--skip-bat] [--skip-dotfiles] [--skip-java] [--install-rust]'
+  echo '        [--install-zazu] [--install-mariadb] [--install-kubectl]'
+  echo '        [--install-lua]'
   echo
 }
 
@@ -27,8 +27,15 @@ case $key in
     usage
     exit
     ;;
+    #
+    # Support skipping default actions
+    #
     --skip-update)
     SKIP_PACKAGE_UPDATES=1
+    shift # past option
+    ;;
+    --skip-packages)
+    SKIP_PACKAGES=1
     shift # past option
     ;;
     --skip-composer)
@@ -51,41 +58,16 @@ case $key in
     SKIP_DOTFILES=1
     shift # past option
     ;;
-    --skip-ruby)
-    RUBY_VERSION='none'
-    shift # past option
-    ;;
-    --skip-rust)
-    SKIP_RUST=1
-    shift # past option
-    ;;
     --skip-bat)
     SKIP_BAT=1
     shift # past option
-    ;;
-    -r|--ruby-version)
-    RUBY_VERSION="$2"
-    shift # past option
-    shift # past value
     ;;
     --skip-yarn)
     SKIP_YARN=1
     shift # past option
     ;;
-    --skip-packages)
-    SKIP_PACKAGES=1
-    shift # past option
-    ;;
     --skip-docker)
     SKIP_DOCKER=1
-    shift # past option
-    ;;
-    --install-zazu)
-    INSTALL_ZAZU=1
-    shift # past option
-    ;;
-    --skip-zazu)
-    SKIP_ZAZU=1
     shift # past option
     ;;
     --skip-keybase)
@@ -104,20 +86,36 @@ case $key in
     SKIP_CLOJURE=1
     shift # past option
     ;;
-     --skip-mariadb)
-    SKIP_MARIADB=1
+     --skip-babashka)
+    SKIP_BABASHKA=1
     shift # past option
     ;;
-     --skip-kubectl)
-    SKIP_KUBECTL=1
+    #
+    # support installing additional software
+    #
+    --install-zazu)
+    INSTALL_ZAZU=1
     shift # past option
     ;;
-     --skip-lua)
-    SKIP_LUA=1
+    --install-ruby)
+    RUBY_VERSION="$2"
+    shift # past option
+    shift # past value
+    ;;
+    --install-rust)
+    INSTALL_RUST=1
     shift # past option
     ;;
-     --skip-lua-packages)
-    SKIP_LUA_PACKAGES=1
+     --install-mariadb)
+    INSTALL_MARIADB=1
+    shift # past option
+    ;;
+     --install-lua)
+    INSTALL_LUA=1
+    shift # past option
+    ;;
+     --install-kubectl)
+    INSTALL_KUBECTL=1
     shift # past option
     ;;
     *)
@@ -151,6 +149,7 @@ function main() {
   install_racket
   install_java
   install_clojure
+  install_babashka
   setup_mariadb
   install_kubectl
   install_lua
@@ -160,6 +159,10 @@ function main() {
 }
 
 function install_ruby() {
+  if [[ -z "$RUBY_VERSION" ]] ; then
+    return
+  fi
+
   if [[ -z $(which rbenv) ]] ; then
     git clone https://github.com/rbenv/rbenv.git $HOME/.rbenv
     # redirect stuff to stderr to avoid evaluating output
@@ -177,18 +180,6 @@ function install_ruby() {
     echo 'installing ruby-build...'
     mkdir -p "$(rbenv root)"/plugins
     git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
-  fi
-
-  if [[ -z "$RUBY_VERSION" ]] ; then
-    # no --ruby-version opt given
-
-    rbenv install -l
-    read -p "pick a version of ruby to install: (${DEFAULT_RUBY}/\"none\" to skip) " -t 10 RUBY_VERSION
-
-    if [[ "$RUBY_VERSION" = "none" ]] ; then
-      return
-    fi
-    RUBY_VERSION=${RUBY_VERSION:-"$DEFAULT_RUBY"}
   fi
 
   # if ruby version was instead set by a CLI arg
@@ -291,18 +282,10 @@ function install_lando() {
 }
 
 function install_zazu() {
-  if [[ "$SKIP_ZAZU" = 1 ]] ; then
-    return
+  if [[ "$INSTALL_ZAZU" ]] ; then
+    install-zazu
   fi
 
-  if [[ -z "$INSTALL_ZAZU" ]] ; then
-    read -p 'Install Zazu? (y/N) ' INSTALL_ZAZU
-    if ! [[ "$INSTALL_ZAZU" = 'y' ]] ; then
-      return
-    fi
-  fi
-
-  install-zazu
 }
 
 function install_keybase() {
@@ -343,8 +326,15 @@ function install_clojure() {
   fi
 }
 
+function install_babashka() {
+  if [[ -z "$SKIP_BABASHKA" && -z "$(which bb)" ]]
+  then
+    install-babashka
+  fi
+}
+
 function setup_mariadb() {
-  if [[ -z "$SKIP_MARIADB" ]]
+  if [[ ! -z "$INSTALL_MARIADB" ]]
   then
     sudo mysql_secure_installation
   fi
@@ -361,12 +351,12 @@ function install_kubectl() {
 }
 
 function install_lua() {
-  if [[ -z "$SKIP_LUA" && -z $(which lua) ]]
+  if [[ "$INSTALL_LUA" && -z $(which lua) ]]
   then
     install-lua
   fi
 
-  if [[ -z "$SKIP_LUA" && -z $(which luarocks) ]]
+  if [[ "$INSTALL_LUA" && -z $(which luarocks) ]]
   then
     install-luarocks
   fi

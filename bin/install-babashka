@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+curl -s https://raw.githubusercontent.com/borkdude/babashka/master/install -o /tmp/install-babashka
+chmod +x /tmp/install-babashka
+/tmp/install-babashka
+which bb | bb -i '(println "bb is now installed at" (first *input*))'

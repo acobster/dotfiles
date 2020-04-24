@@ -66,5 +66,10 @@
     "workbench.editor.enablePreview": false,
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.startupEditor": "none",
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
+    "workbench.colorTheme": "Visual Studio Dark",
+    "extensions.ignoreRecommendations": false,
+    "[sql]": {
+        "editor.defaultFormatter": "bradymholt.pgformatter"
+    }
 }

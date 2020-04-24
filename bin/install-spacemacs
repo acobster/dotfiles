@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if [[ -d ~/.emacs.d ]]
+then
+  echo '~/.emacs.d already exists!'
+else
+  echo 'Installing spacemacs! 🚀'
+  git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+fi

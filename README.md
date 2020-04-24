@@ -1,5 +1,7 @@
 # My dotfiles.
 
+![Travis Build status](https://api.travis-ci.org/acobster/dotfiles.svg?branch=master)
+
 ## The fast, hacky way
 
 ```
