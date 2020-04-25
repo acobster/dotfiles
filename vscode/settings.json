@@ -1,5 +1,5 @@
 {
-    "window.zoomLevel": -1,
+    "window.zoomLevel": 0,
     "yaml.schemas": {
         "file:///home/ctamayo/.vscode/extensions/atlassian.atlascode-2.4.10/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
     },
@@ -71,5 +71,7 @@
     "extensions.ignoreRecommendations": false,
     "[sql]": {
         "editor.defaultFormatter": "bradymholt.pgformatter"
-    }
+    },
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": true
 }
