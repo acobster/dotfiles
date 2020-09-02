@@ -1,3 +1,11 @@
+usage() {
+  echo "usage: $(basename $0) [-h|--help]"
+  echo
+  echo "  OPTIONS:"
+  echo
+  echo "  -h|--help show this help text"
+}
+
 POSITIONAL=()
 while [[ $# -gt 0 ]]
 do
