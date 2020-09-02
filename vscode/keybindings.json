@@ -137,5 +137,45 @@
     {
         "key": "ctrl+a z",
         "command": "workbench.action.toggleMaximizedPanel"
+    },
+    {
+        "key": "backspace",
+        "command": "-paredit.deleteBackward",
+        "when": "calva:replWindowActive || editorTextFocus && !editorHasMultipleSelections && !editorReadOnly && editorLangId == 'clojure' && paredit:keyMap == 'strict'"
+    },
+    {
+        "key": "backspace",
+        "command": "-paredit.deleteBackward",
+        "when": "calva:replWindowActive || editorTextFocus && !editorHasMultipleSelections && !editorReadOnly && editorLangId == 'clojure' && paredit:keyMap == 'strict'"
+    },
+    {
+        "key": "backspace",
+        "command": "-paredit.deleteBackward",
+        "when": "calva:replWindowActive || editorTextFocus && !editorHasMultipleSelections && !editorReadOnly && editorLangId == 'clojure' && paredit:keyMap == 'strict'"
+    },
+    {
+        "key": "backspace",
+        "command": "-paredit.deleteBackward",
+        "when": "calva:replWindowActive || editorTextFocus && !editorHasMultipleSelections && !editorReadOnly && editorLangId == 'clojure' && paredit:keyMap == 'strict'"
+    },
+    {
+        "key": "ctrl+alt+backspace ctrl+alt+backspace",
+        "command": "paredit.deleteBackward",
+        "when": "calva:replWindowActive || editorTextFocus && !editorHasMultipleSelections && !editorReadOnly && editorLangId == 'clojure' && paredit:keyMap == 'strict'"
+    },
+    {
+        "key": "backspace",
+        "command": "-paredit.deleteBackward",
+        "when": "calva:replWindowActive || editorTextFocus && !editorHasMultipleSelections && !editorReadOnly && editorLangId == 'clojure' && paredit:keyMap == 'strict'"
+    },
+    {
+        "key": "ctrl+backspace",
+        "command": "calva.clearInlineResults",
+        "when": "editorTextFocus && !editorHasMultipleSelections && !editorHasSelection && !editorReadOnly && !hasOtherSuggestions && !parameterHintsVisible && !selectionAnchorSet && !suggestWidgetVisible && editorLangId == 'clojure'"
+    },
+    {
+        "key": "escape",
+        "command": "-calva.clearInlineResults",
+        "when": "editorTextFocus && !editorHasMultipleSelections && !editorHasSelection && !editorReadOnly && !hasOtherSuggestions && !parameterHintsVisible && !selectionAnchorSet && !suggestWidgetVisible && editorLangId == 'clojure'"
     }
 ]
