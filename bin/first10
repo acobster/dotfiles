@@ -1,0 +1,159 @@
+#!/usr/bin/env bash
+
+#
+# Based on "My first 10 minutes on a server - Primer for securing Ubuntu"
+# https://jacyhong.wordpress.com/2016/06/27/my-first-10-minutes-on-a-server-primer-for-securing-ubuntu/
+#
+
+
+usage() {
+  echo "usage: $(basename $0) [-h|--help]"
+  echo
+  echo "  OPTIONS:"
+  echo
+  echo "  -h|--help show this help text"
+}
+
+POSITIONAL=()
+while [[ $# -gt 0 ]]
+do
+key="$1"
+
+case $key in
+    -h|--help)
+    # show usage and bail
+    usage
+    exit
+    ;;
+    -x|--option-arg)
+    SOMETHING="some value"
+    shift # past argument
+    ;;
+    -y|--arg-with-value)
+    VALARG="$2"
+    shift # past argument
+    shift # past value
+    ;;
+    *)
+    POSITIONAL+=("$1") # save it in an array for later
+    shift # past argument
+    ;;
+esac
+
+done
+set -- "${POSITIONAL[@]}" # restore positional parameters
+
+# Check system for compatibilty
+if [[ -z $(uname -a|grep -i ubuntu) ]]
+then
+  echo 'WARNING: It looks like this might not be an Ubuntu system. Expect stuff to break!'
+fi
+exit
+
+
+if [[ $(whoami) = 'root' ]]
+then
+  passwd
+fi
+
+useradd tamayo
+mkdir -p /home/tamayo/.ssh
+chmod 700 /home/tamayo/.ssh
+chown -R tamayo:tamayo /home/tamayo
+usermod -s $(which bash) tamayo
+
+echo 'Setting up password for user tamayo...'
+passwd tamayo
+
+read -p 'Public key: ' PUBKEY
+if [[ "$PUBKEY" ]]
+then
+  echo "$PUBKEY" > /home/tamayo/.ssh/authorized_keys
+fi
+chmod 400 /home/tamayo/.ssh/authorized_keys
+chown -R tamayo:tamayo /home/tamayo/.ssh
+
+echo 'OK, time to set up the sudoers file.'
+echo "You may want this:"
+echo
+echo '# root can do whatever'
+echo 'root    ALL=(ALL) ALL'
+echo '# anyone in the sudo group'
+echo '%sudo   ALL=(ALL:ALL) ALL'
+echo
+
+read -p "Hit enter when ready..."
+
+visudo
+usermod -aG sudo tamayo
+
+echo 'Time to configure ssh.'
+echo "You'll want this:"
+echo
+echo 'PermitRootLogin no'
+echo 'PasswordAuthentication no'
+echo
+echo '# For VPN:'
+echo '#AllowUsers deploy@(your-VPN-or-static-IP)'
+echo '#AddressFamily inet'
+echo
+
+read -p "Hit enter when ready..."
+vim /etc/ssh/sshd_config
+service ssh restart
+
+echo 'Setting up firewall...'
+ufw allow 80
+ufw allow 443
+#restart
+ufw disable
+ufw enable
+
+apt update
+apt upgrade
+
+apt install unattended-upgrades
+
+echo 'Time to configure unattended upgrades.'
+echo "You'll want this:"
+echo
+echo 'APT::Periodic::Update-Package-Lists "1";'
+echo 'APT::Periodic::Download-Upgradeable-Packages "1";'
+echo 'APT::Periodic::AutocleanInterval "7";'
+echo 'APT::Periodic::Unattended-Upgrade "1";'
+echo
+
+read -p "Hit enter when ready..."
+vim /etc/apt/apt.conf.d/10periodic
+
+echo "But wait, there's more!"
+echo "You'll want this:"
+echo
+echo 'Unattended-Upgrade::Allowed-Origins {'
+echo '  "Ubuntu lucid-security";'
+echo '  //"Ubuntu lucid-updates";'
+echo '};'
+echo
+
+read -p "Hit enter when ready..."
+vim /etc/apt/apt.conf.d/50periodic
+
+apt install fail2ban
+
+echo 'Almost done...'
+echo 'Just need to configure unattended upgrades!'
+echo "You'll want this (NOTE: update email address as necessary):"
+echo
+echo '/usr/sbin/logwatch -output mail -mailto coby@tamayo.email -detail high'
+echo
+
+read -p "Hit enter when ready..."
+vim /etc/cron.daily/00logwatch
+
+
+echo
+echo "You're all set! Run:"
+echo
+echo '  exec su -l tamayo'
+echo
+echo 'to switch to your new user!'
