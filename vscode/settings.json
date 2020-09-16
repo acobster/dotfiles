@@ -1,7 +1,7 @@
 {
     "window.zoomLevel": 0,
     "yaml.schemas": {
-        "file:///home/ctamayo/.vscode/extensions/atlassian.atlascode-2.4.10/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+        "file:///home/ctamayo/.vscode/extensions/atlassian.atlascode-2.8.0/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
     },
     "atlascode.jira.jqlList": [
         {
@@ -74,4 +74,10 @@
     },
     "editor.fontFamily": "Fira Code",
     "editor.fontLigatures": true
+    "better-phpunit.phpunitBinary": "lando unit",
+    "better-phpunit.docker.command": "",
+    "editor.renderWhitespace": "none",
+    "breadcrumbs.enabled": true,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.columnSelection": false
 }

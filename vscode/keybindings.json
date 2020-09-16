@@ -60,7 +60,8 @@
     },
     {
         "key": "ctrl+l",
-        "command": "workbench.action.nextEditorInGroup"
+        "command": "workbench.action.nextEditorInGroup",
+        "when": "editorFocus"
     },
     {
         "key": "ctrl+k ctrl+pagedown",
