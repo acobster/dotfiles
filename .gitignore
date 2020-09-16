@@ -28,3 +28,5 @@ bin/jsc
 # Local Lando files
 .lando.local.yml
 .vscode
+
+/*.ignore/
