@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 usage() {
-  echo 'Usage: ./install-nodejs [--version VERSION]'
+  echo 'Usage: ./install-nodejs [-v|--version VERSION] [-f|--force] [-h|--help]'
   echo
   echo '  VERSION: major version number without minor/patch decimal places, e.g.'
   echo '  "10" or "12". Defaults to "12".'
