@@ -239,6 +239,10 @@ endif
 
 try
   colorscheme solarized
+
+  " transparent background
+  " https://stackoverflow.com/questions/37712730/set-vim-background-transparent
+  hi Normal guibg=NONE ctermbg=NONE
 catch
 endtry
 
