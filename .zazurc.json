@@ -10,6 +10,7 @@
     "tinytacoteam/zazu-calculator",
     "tinytacoteam/zazu-template",
     "tinytacoteam/zazu-package-manager",
+    "halvves/zazu-colors",
     "iansinnott/zazu-emoji",
     {
       "name": "jnstr/zazu-password",
@@ -43,7 +44,6 @@
     "tinytacoteam/zazu-ascii-search",
     "gabrielpoca/zazu-caniuse",
     "puyt/zazu-utime",
-    "blainesch/zazu-weather",
     "brpaz/zazu-hash"
   ]
 }
