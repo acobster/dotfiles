@@ -2,6 +2,8 @@
 *.swp
 *.swn
 *.code-workspace
+.idea
+*.iml
 *.sublime-project
 *.sublime-workspace
 .DS_Store
