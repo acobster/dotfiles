@@ -157,6 +157,10 @@ if [[ ! $PATH =~ "dotfiles/bin:" ]] ; then
   export PATH=$HOME/dotfiles/bin:$PATH
 fi
 
+if [[ -d "${HOME}/.linkerd2/bin" ]] && ! [[ $PATH =~ "${HOME}/.linkerd2/bin:" ]] ; then
+  export PATH=$HOME/.linkerd2/bin:$PATH
+fi
+
 
 
 #----------
