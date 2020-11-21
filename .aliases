@@ -1,9 +1,9 @@
 # Navigational aliases
 alias ..='upandaway 1'
 alias ...='upandaway 2'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
-alias ......='cd ../../../../..'
+alias ....='upandaway 3'
+alias .....='upandaway 4'
+alias ......='upandaway 5'
 
 upandaway() {
   if [[ $1 = 1 ]] ; then
