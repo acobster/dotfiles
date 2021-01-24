@@ -27,7 +27,7 @@ vms() {
 
   find . -regextype sed -regex ".*\.sw\(p\|o\|n\)" | xargs rm
 
-  vim -S ~/.vim/session/$1.vim
+  nvim -S ~/.vim/session/$1.vim
 }
 
 
@@ -172,6 +172,14 @@ mc() {
 
 sql() {
   mysql -u root -p $1
+}
+
+grepclj() {
+  grep --recursive --include=*.clj "$@"
+}
+
+grepcljs() {
+  grep --recursive --include=*.cljs "$@"
 }
 
 grephp() {

@@ -145,6 +145,10 @@ __compose_ps1
 # PATH
 #---------
 
+if [[ -d "${HOME}/apps" ]] && ! [[ $PATH =~ "${HOME}/apps:" ]] ; then
+  export PATH=$HOME/apps:$PATH
+fi
+
 if [[ -d "$HOME/bin" ]] && ! [[ $PATH =~ ":${HOME}\/bin:" ]] ; then
   export PATH=~/bin:$PATH
 fi
@@ -159,6 +163,11 @@ fi
 
 if [[ -d "${HOME}/.linkerd2/bin" ]] && ! [[ $PATH =~ "${HOME}/.linkerd2/bin:" ]] ; then
   export PATH=$HOME/.linkerd2/bin:$PATH
+fi
+
+# https://docs.radicle.xyz/docs/getting-started
+if [[ -d "${HOME}/.radicle/bin" ]] && ! [[ $PATH =~ "${HOME}/.radicle/bin:" ]] ; then
+  export PATH=$HOME/.radicle/bin:$PATH
 fi
 
 

@@ -135,9 +135,6 @@ entry.sub!(/spending:[^\s]+/, options[:account]) if options[:account]
 
 if options[:dry_run]
   puts entry
-  if options[:print_assets]
-    `/bin/bash -c "ledger -f ~/ledger/ledger.dat balance assets"`
-  end
   exit
 end
 
@@ -158,5 +155,5 @@ File.open(options[:file], File::RDWR) do |f|
 end
 
 if options[:print_assets]
-  `/bin/bash -c "ledger -f ~/ledger/ledger.dat balance assets"`
+  puts `/bin/bash -c "ledger -f ~/ledger/ledger.dat balance assets"`
 end
