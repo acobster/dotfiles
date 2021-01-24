@@ -241,6 +241,8 @@ let g:fzf_action = {
   \ 'ctrl-k': 'vsplit',
   \ 'ctrl-l': 'tab split' }
 
+let g:fzf_layout = { 'window': 'split enew' }
+
 " Project path stuff
 cmap ~vs ~/.vim/session/
 
