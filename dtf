@@ -68,6 +68,15 @@ if ! [[ -f ~/.tmux.conf ]] ; then
   ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 fi
 
+if ! [[ -f ~/.muttrc ]] ; then
+  ln -s ~/dotfiles/.muttrc ~/.muttrc
+fi
+
+if ! [[ -f ~/.mutt/signature ]] ; then
+  mkdir -p ~/.mutt
+  ln -s ~/dotfiles/.mutt/signature ~/.mutt/signature
+fi
+
 if ! [[ -f ~/.tmux.local.conf ]] ; then
   echo creating local tmux config
   touch ~/.tmux.local.conf
