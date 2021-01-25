@@ -24,6 +24,7 @@ set backupcopy=yes
 set lazyredraw
 
 let mapleader=","
+let maplocalleader=","
 
 " what does this even
 filetype off
@@ -191,14 +192,30 @@ let g:vim_markdown_folding_disabled = 1
 " CUSTOM MAPPINGS!
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Conjure! 🔮
 nmap <leader><Space> :ConjureEvalCurrentForm<Enter>
 nmap <leader><Enter> :ConjureEvalBuf<Enter>
+nmap <leader>cc :ConjureConnect<Enter>
+nmap <leader>cw :ConjureEvalWord<Enter>
+nmap <leader>cr :ConjureEvalReplaceForm<Enter>
+nmap <leader>cll :ConjureLogSplit<Enter>
+nmap <leader>clc :ConjureLogCloseVisible<Enter>
+nmap <leader>clv :ConjureLogVSplit<Enter>
+nmap <leader>clr :ConjureLogResetSoft<Enter>
+nmap <leader>ma :ConjureEvalMark<Enter>
+
+" Sex, pee (sexp)
+nmap <leader>( cse(a
+nmap <leader>[ cse[a
+nmap <leader>{ cse{a
 
 " File/Tab navigation
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 cnoremap N% tab new<Space>
 cnoremap S% split<Space>
 cnoremap V% vert new<Space>
+cnoremap NN tab new<Space>
+cnoremap VV vert new<Space>
 nnoremap <c-l> :tabnext<CR>
 nnoremap <c-h> :tabprevious<CR>
 " Move current buffer one tab to the left
@@ -209,6 +226,10 @@ nmap <leader>v :tabnext<cr>:vert<space>new<cr>,ww:tabprevious<cr>,ww:q<cr>:tabne
 " Configure split behavior
 nnoremap <c-w>h :vertical resize -5<cr>
 nnoremap <c-w>l :vertical resize +5<cr>
+" k as in "move the line down"
+nnoremap <c-w>k :resize +5<cr>
+" j as in "move the line up"
+nnoremap <c-w>j :resize -5<cr>
 set splitbelow
 set splitright
 " Move tabs how I want, when I want
@@ -219,8 +240,8 @@ cnoremap <c-t><c-l> tabm<Space>+<cr>
 " THE LOZENGE ◊
 imap <c-l> ◊
 
-" ,h redraws the screen and removes any search highlighting.
-nnoremap <leader>h :nohlsearch<cr>
+" ,n redraws the screen and removes any search highlighting.
+nmap <leader>n :nohlsearch<cr>
 
 " Markdown
 nmap <leader>gg :Goyo<cr>
