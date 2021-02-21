@@ -681,4 +681,4 @@ fi
 # Misc.
 #-------
 
-export EDITOR=vim
+export EDITOR=nvim
