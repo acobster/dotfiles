@@ -25,15 +25,6 @@ case $key in
     usage
     exit
     ;;
-    -x|--option-arg)
-    SOMETHING="some value"
-    shift # past argument
-    ;;
-    -y|--arg-with-value)
-    VALARG="$2"
-    shift # past argument
-    shift # past value
-    ;;
     *)
     POSITIONAL+=("$1") # save it in an array for later
     shift # past argument
