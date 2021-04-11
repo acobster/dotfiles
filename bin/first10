@@ -35,15 +35,13 @@ done
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
 # Check system for compatibilty
-if [[ -z $(uname -a|grep -i ubuntu) ]]
-then
+if [[ -z $(uname -a|grep -i ubuntu) ]] ; then
   echo 'WARNING: It looks like this might not be an Ubuntu system. Expect stuff to break!'
+  exit 1
 fi
-exit
 
 
-if [[ $(whoami) = 'root' ]]
-then
+if [[ $(whoami) = 'root' ]] ; then
   passwd
 fi
 
@@ -57,8 +55,7 @@ echo 'Setting up password for user tamayo...'
 passwd tamayo
 
 read -p 'Public key: ' PUBKEY
-if [[ "$PUBKEY" ]]
-then
+if [[ "$PUBKEY" ]] ; then
   echo "$PUBKEY" > /home/tamayo/.ssh/authorized_keys
 fi
 chmod 400 /home/tamayo/.ssh/authorized_keys
