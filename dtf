@@ -8,9 +8,9 @@ if [[ ! -f $HOME/.vimrc ]] ; then
   ln -s $HOME/dotfiles/.vimrc $HOME/.vimrc
 fi
 
-if [[ ! -f $HOME/.local.vimrc ]] ; then
-  echo setting machine-specific .local.vimrc
-  touch $HOME/.local.vimrc
+if [[ ! -f $HOME/.vimrc.local ]] ; then
+  echo setting machine-specific .vimrc.local
+  touch $HOME/.vimrc.local
 fi
 
 if [[ ! -d $HOME/.vim/autoload ]] ; then
@@ -35,14 +35,10 @@ fi
 
 if [[ "$(which nvim)" ]] ; then
   echo setting up nvim...
-  if ! [[ -f $HOME/.nvimrc ]] ; then
-    echo symlinking ~/.nvimrc
-    ln -s $HOME/dotfiles/.vimrc $HOME/.nvimrc
-  fi
-
-  if ! [[ -L "$HOME/.nvim" ]] && ! [[ -d "$HOME/.nvim" ]] ; then
-    echo symlinking ~/.nvim
-    ln -s $HOME/dotfiles/.vim $HOME/.nvim
+  if ! [[ -f $HOME/.config/nvim/init.vim ]] ; then
+    echo symlinking ~/.config/nvim/init.vim
+    mkdir -p $HOME/.config/nvim
+    ln -s $HOME/dotfiles/.config/nvim/init.vim $HOME/.config/nvim/init.vim
   fi
 fi
 
