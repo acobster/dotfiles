@@ -80,6 +80,7 @@ echo "You'll want this:"
 echo
 echo 'PermitRootLogin no'
 echo 'PasswordAuthentication no'
+echo 'PublicKeyAuthentication yes'
 echo
 echo '# For VPN:'
 echo '#AllowUsers deploy@(your-VPN-or-static-IP)'
@@ -91,6 +92,7 @@ vim /etc/ssh/sshd_config
 service ssh restart
 
 echo 'Setting up firewall...'
+ufw allow 22
 ufw allow 80
 ufw allow 443
 #restart
