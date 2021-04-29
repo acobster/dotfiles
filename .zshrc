@@ -103,6 +103,13 @@ fi
 source ~/dotfiles/.aliases
 source ~/dotfiles/.functions
 
+if [[ -f ~/dotfiles/.aliases ]] ;then
+  source ~/.aliases
+fi
+if [[ -f ~/dotfiles/.functions ]] ;then
+  source ~/.functions
+fi
+
 alias r='source ~/.zshrc'
 alias rr='r && clear'
 alias rrr='r && cd && clear'
