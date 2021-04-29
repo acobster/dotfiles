@@ -6,6 +6,7 @@ if [[ "$(which apt-get)" ]] ; then
     docker-compose \
     expect \
     fonts-firacode \
+    fonts-powerline \
     gconf-service \
     gconf-service-backend \
     gconf2 \
@@ -28,5 +29,6 @@ if [[ "$(which apt-get)" ]] ; then
     tree \
     vim \
     xclip \
-    xdotool
+    xdotool \
+    zsh
 fi
