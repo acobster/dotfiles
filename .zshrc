@@ -119,4 +119,4 @@ alias rrr='r && cd && clear'
 # PATH
 #---------
 
-export PATH=$HOME/dotfiles/bin:$PATH
+export PATH=$HOME/.rbenv/bin:$HOME/.rbenv/shims:$HOME/dotfiles/bin:$PATH
