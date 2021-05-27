@@ -115,8 +115,19 @@ alias rr='r && clear'
 alias rrr='r && cd && clear'
 
 
+# Git completion
+# TODO
+#if [ -f ~/dotfiles/git-completions.zsh ]; then
+#	source ~/dotfiles/git-completions.zsh
+#fi
+
+
 #---------
 # PATH
 #---------
 
-export PATH=$HOME/.rbenv/bin:$HOME/.rbenv/shims:$HOME/dotfiles/bin:$PATH
+# rbenv + shims
+export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$HOME/dotfiles/bin:$PATH"
+
+# yarn
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
