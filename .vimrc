@@ -227,8 +227,9 @@ endif
 if has('gui_running')
   set background=light
 else
-  " Detect environment variable for solarized theme
-  let profile_theme = $GNOME_TERMINAL_SOLARIZED_THEME
+  " Detect environment variable for solarized theme.
+  " This is the same env variable that Zsh uses.
+  let profile_theme = $SOLARIZED_THEME
 
   if profile_theme == 'light'
     set background=light
