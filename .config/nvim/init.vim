@@ -40,9 +40,8 @@ set backupcopy=yes
 " PLUGINZ
 
 " set the runtime path to include Vundle and initialize
-"set rtp+=~/.vim/bundle/Vundle.vim
-"call vundle#begin()
 
+" https://stackoverflow.com/questions/48700563/how-do-i-install-plugins-in-neovim-correctly
 " https://github.com/junegunn/vim-plug#usage
 call plug#begin(stdpath('data') . '/plugged')
 
@@ -82,7 +81,6 @@ Plug 'mhinz/vim-startify'
 
 " Initialize plugin system
 call plug#end()
-"call vundle#end()
 
 " https://vi.stackexchange.com/a/10125/14583
 filetype plugin indent on
