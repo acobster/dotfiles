@@ -251,7 +251,7 @@ vnoremap <silent> <Enter> :EasyAlign<cr>
 "nmap <leader>c :w<cr>cpr
 
 " bash text completion
-imap <c-b><c-i> if [[ X ]] ; then<cr><cr>fi<esc>kkfXs
+imap <c-b><c-i> if [[ X ]] ; then<cr><cr>fi<esc><<kkfXs
 
 " Search config
 nmap <leader>ff :Files<cr>
