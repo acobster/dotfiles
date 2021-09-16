@@ -272,6 +272,11 @@ if [[ $(which hub) ]] ; then
   alias git='hub'
 fi
 
+# Default branch
+if [[ -z $(git config --global init.defaultBranch) ]] ; then
+  git config --global init.defaultBranch main
+fi
+
 # Global .gitignore
 if [[ -z $(git config --global core.excludesfile) ]] ; then
   git config --global core.excludesfile '~/.gitignore'
