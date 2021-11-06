@@ -4,6 +4,12 @@
 # Based on "My first 10 minutes on a server - Primer for securing Ubuntu"
 # https://jacyhong.wordpress.com/2016/06/27/my-first-10-minutes-on-a-server-primer-for-securing-ubuntu/
 #
+# Quick start on a new server:
+#
+# $ curl --silent https://raw.githubusercontent.com/acobster/dotfiles/main/bin/first10 > first10
+# $ chmod +x ./first10
+# $ ./first10
+#
 
 
 usage() {
