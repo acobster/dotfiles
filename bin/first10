@@ -86,7 +86,7 @@ echo "You'll want this:"
 echo
 echo 'PermitRootLogin no'
 echo 'PasswordAuthentication no'
-echo 'AuthenticationMethod publickey'
+echo 'AuthenticationMethods publickey'
 echo
 echo '# For VPN:'
 echo '#AllowUsers deploy@(your-VPN-or-static-IP)'
