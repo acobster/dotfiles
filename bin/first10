@@ -126,8 +126,9 @@ echo "But wait, there's more!"
 echo "You'll want this:"
 echo
 echo 'Unattended-Upgrade::Allowed-Origins {'
-echo '  "Ubuntu lucid-security";'
-echo '  //"Ubuntu lucid-updates";'
+echo '  // Uncomment to install all updates:'
+echo '  //"Ubuntu ${distro_codename}-updates";'
+echo '  "Ubuntu ${distro_codename}-security";'
 echo '};'
 echo
 
