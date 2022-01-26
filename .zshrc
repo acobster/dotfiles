@@ -131,3 +131,17 @@ export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$HOME/dotfiles/bin:$PATH"
 
 # yarn
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# flutter SDK
+export PATH="/usr/local/lib/flutter/bin:$PATH"
+
+# Wasmer
+export WASMER_DIR="/home/tamayo/.wasmer"
+[ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
+
+export WASMTIME_HOME="$HOME/.wasmtime"
+
+export PATH="$WASMTIME_HOME/bin:$PATH"
+
+# Pip/Python 2.7
+#export PATH="/home/tamayo/.local/lib/python2.7/site-packages:$PATH"
