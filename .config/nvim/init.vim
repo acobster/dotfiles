@@ -59,6 +59,11 @@ Plug 'vim-syntastic/syntastic'
 Plug 'elzr/vim-json'
 Plug 'machakann/vim-swap' " swap fn args
 
+" Clojure formatting
+" https://www.wilfriedbarth.com/posts/2019-02-03-neovim-tooling-for-clojure/
+Plug 'tpope/vim-fireplace'
+Plug 'venantius/vim-cljfmt'
+
 " Lisp-y stuff
 Plug 'Olical/conjure'
 Plug 'guns/vim-clojure-static'
