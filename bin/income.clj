@@ -24,16 +24,19 @@
   (let [salary (Integer. salary)
         brackets (filter #(< (first %) salary)
                          (get brackets-by-year 2021))]
-    (reduce
-      (fn [after-tax [lower upper rate]]
-        (let [bracket-before-tax (- (min salary upper) lower)
-              bracket-after-tax (* (- 1.0 rate) bracket-before-tax)]
-          #_#_
-          (prn (min salary upper) '- lower '= bracket-before-tax)
-          (prn bracket-before-tax '* (- 1.0 rate) '= bracket-after-tax)
-          ;; TODO format output
-          (+ after-tax bracket-after-tax)))
-      0 brackets)))
+    (->>
+      (reduce
+        (fn [after-tax [lower upper rate]]
+          (let [bracket-before-tax (- (min salary upper) lower)
+                bracket-after-tax (* (- 1.0 rate) bracket-before-tax)]
+            #_#_
+            (prn (min salary upper) '- lower '= bracket-before-tax)
+            (prn bracket-before-tax '* (- 1.0 rate) '= bracket-after-tax)
+            ;; TODO format output
+            (+ after-tax bracket-after-tax)))
+        0 brackets)
+      (format "%.0f")
+      (Integer/parseInt))))
 
 
 (comment
