@@ -175,27 +175,31 @@ sql() {
 }
 
 grepclj() {
-  grep --recursive --include=*.clj "$@"
+  grep --recursive --include='*.clj' "$@"
+}
+
+grepcljc() {
+  grep --recursive --include='*.cljc' "$@"
 }
 
 grepcljs() {
-  grep --recursive --include=*.cljs "$@"
+  grep --recursive --include='*.cljs' "$@"
 }
 
 grephp() {
-  grep --recursive --include=*.php "$@"
+  grep --recursive --include='*.php' "$@"
 }
 
 grepjs() {
-  grep --recursive --include=*.js "$@"
+  grep --recursive --include='*.js' "$@"
 }
 
 greptwig() {
-  grep --recursive --include=*.twig "$@"
+  grep --recursive --include='*.twig' "$@"
 }
 
 grepless() {
-  grep --recursive --include=*.less "$@"
+  grep --recursive --include='*.less' "$@"
 }
 
 psgrep() {
