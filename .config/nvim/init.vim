@@ -78,7 +78,6 @@ Plug 'editorconfig/editorconfig-vim'
 
 " Git
 Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
 
 " Sessions
 Plug 'tpope/vim-obsession'
