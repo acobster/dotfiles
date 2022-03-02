@@ -56,10 +56,6 @@ if [[ ! -f ~/.githelpers ]] ; then
   ln -s ~/dotfiles/.githelpers ~/.githelpers
 fi
 
-if [[ ! -f ~/.railsrc ]] ; then
-  ln -s ~/dotfiles/.railsrc ~/.railsrc
-fi
-
 if ! [[ -f ~/.tmux.conf ]] ; then
   ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 fi
