@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+usage() {
+  echo "usage: $(basename $0) [OPTIONS]"
+  echo
+  echo "  OPTIONS:"
+  echo
+  echo "  -h|--help show this help text"
+  echo "  -c|--preserve-case do not convert to lowercase"
+}
+
+POSITIONAL=()
+while [[ $# -gt 0 ]]
+do
+key="$1"
+
+case $key in
+    -h|--help)
+    # show usage and bail
+    usage
+    exit
+    ;;
+    -c|--preserve-case)
+    PRESERVE_CASE=1
+    shift # past argument
+    ;;
+    *)
+    POSITIONAL+=("$1") # save it in an array for later
+    shift # past argument
+    ;;
+esac
+
+done
+set -- "${POSITIONAL[@]}" # restore positional parameters
+
+
+dest=$(hyphens $1)
+
+if [[ -z "$PRESERVE_CASE" ]] ; then
+  dest=$(echo $dest | awk '{print tolower($0)}')
+fi
+
+
+mv "$1" $dest
