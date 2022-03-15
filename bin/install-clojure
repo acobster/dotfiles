@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-CLJ_VERSION=${1:-'1.10.3.855'}
+CLJ_VERSION=${1:-'1.10.3.1087'}
 
 echo "Installing Clojure ${CLJ_VERSION}..."
 installer_file="linux-install-${CLJ_VERSION}.sh"
