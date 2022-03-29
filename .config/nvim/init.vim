@@ -68,8 +68,6 @@ Plug 'venantius/vim-cljfmt'
 Plug 'Olical/conjure'
 Plug 'guns/vim-clojure-static'
 Plug 'guns/vim-sexp'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'luochen1990/rainbow'
 
 " Formatting
@@ -121,8 +119,6 @@ let g:syntastic_html_tidy_ignore_errors = [
   \ ]
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe = 'eslint'
-
-let g:sexp_enable_insert_mode_mappings = 0
 
 if has("autocmd")
   au BufReadPost *.rkt,*.rktl set filetype=racket
@@ -205,11 +201,6 @@ nmap <leader>clc :ConjureLogCloseVisible<Enter>
 nmap <leader>clv :ConjureLogVSplit<Enter>
 nmap <leader>clr :ConjureLogResetSoft<Enter>
 nmap <leader>ma :ConjureEvalMark<Enter>
-
-" Sex, pee (sexp)
-nmap <leader>( cse(a
-nmap <leader>[ cse[a
-nmap <leader>{ cse{a
 
 " File/Tab navigation
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
