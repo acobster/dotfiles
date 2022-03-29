@@ -74,7 +74,6 @@ Plug 'luochen1990/rainbow'
 
 " Formatting
 Plug 'junegunn/vim-easy-align'
-Plug 'editorconfig/editorconfig-vim'
 
 " Git
 Plug 'airblade/vim-gitgutter'
