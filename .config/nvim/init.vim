@@ -59,13 +59,11 @@ Plug 'vim-syntastic/syntastic'
 Plug 'elzr/vim-json'
 Plug 'machakann/vim-swap' " swap fn args
 
-" Clojure formatting
+" Clojure formatting & Lisp-y stuff
 " https://www.wilfriedbarth.com/posts/2019-02-03-neovim-tooling-for-clojure/
 Plug 'tpope/vim-fireplace'
-Plug 'venantius/vim-cljfmt'
-
-" Lisp-y stuff
 Plug 'Olical/conjure'
+Plug 'clojure-vim/clojure.vim'
 Plug 'guns/vim-clojure-static'
 Plug 'guns/vim-sexp'
 Plug 'luochen1990/rainbow'
@@ -78,7 +76,6 @@ Plug 'airblade/vim-gitgutter'
 
 " Sessions
 Plug 'tpope/vim-obsession'
-Plug 'mhinz/vim-startify'
 
 " Initialize plugin system
 call plug#end()
@@ -102,6 +99,11 @@ autocmd BufNewFile,BufRead *.dat set filetype=ledger
 set shell=/bin/bash\ -i
 
 let g:rainbow_active = 1
+
+let g:clojure_syntax_keywords = {
+    \   'clojureMacro': ["defaction", "add-hook", "set-config-cond->",
+    \                    "add-hook", "add-hooks->", "add-effects->", "try-hook"]
+    \ }
 
 " Syntax highlighting/linting
 let g:syntastic_always_populate_loc_list = 1
@@ -260,6 +262,8 @@ let g:fzf_layout = { 'window': 'split enew' }
 " Project path stuff
 cmap ~vs ~/.vim/session/
 
+" Reload nvim config
+command Reload :source ~/.config/nvim/init.vim
 
 " Assets - display assets from Ledger-CLI
 
@@ -361,5 +365,8 @@ nnoremap <leader>ft 5strue<esc>
 " pipe
 " TODO figure out a snappier solution
 cnoremap <c-P><c-P> nmap ,t :w\\|:silent !echo 'test_cmd' > test.pipe<c-v>u003Ccr>:redraw!<c-v>u003Ccr>
+cnoremap <c-P><c-R> nmap ,r :w\\|:silent !echo 'test_cmd' > test.pipe<c-v>u003Ccr>:redraw!<c-v>u003Ccr>
+cnoremap <c-P><c-E> nmap ,e :w\\|:silent !echo 'test_cmd' > test.pipe<c-v>u003Ccr>:redraw!<c-v>u003Ccr>
+cnoremap <c-P><c-W> nmap ,w :w\\|:silent !echo 'test_cmd' > test.pipe<c-v>u003Ccr>:redraw!<c-v>u003Ccr>
 
 cnoremap <c-P>a nmap ,a :w\\|:silent !echo 'ledger -f ~/ledger/ledger.dat balance assets' > test.pipe<c-v>u003Ccr>:redraw!<c-v>u003Ccr>
