@@ -13,10 +13,9 @@ usage() {
   echo
   echo '  setup [-h|--help] [-r|--install-ruby <RUBY_VERSION>]'
   echo '        [--skip-clojure] [--skip-composer] [--skip-fzf] [--skip-golang]'
-  echo '        [--skip-hub] [--skip-yarn] [--skip-update] [--skip-packages]'
-  echo '        [--skip-bat] [--skip-docker] [--skip-babashka]'
-  echo '        [--skip-dotfiles] [--skip-java] [--install-rust]'
-  echo '        [--install-zazu] [--install-mariadb] [--install-kubectl]'
+  echo '        [--skip-yarn] [--skip-update] [--skip-packages [--skip-bat]]'
+  echo '        [--skip-docker] [--skip-babashka] [--skip-dotfiles] [--skip-java]'
+  echo '        [--install-rust] [--install-zazu] [--install-mariadb]'
   echo '        [--install-lua] [--install-racket] [--install-keybase]'
   echo
 }
@@ -48,10 +47,6 @@ case $key in
     ;;
     --skip-golang)
     SKIP_GOLANG=1
-    shift # past option
-    ;;
-    --skip-hub)
-    SKIP_HUB=1
     shift # past option
     ;;
     --skip-dotfiles)
@@ -139,7 +134,6 @@ function main() {
   install_composer
   install_fzf
   install_golang
-  install_hub
   install_yarn
   install_packages
   install_docker
@@ -241,12 +235,6 @@ function install_fzf() {
 function install_golang() {
   if [[ -z "$(which go)" ]] && [[ -z "$SKIP_GOLANG" ]] ; then
     install-golang
-  fi
-}
-
-function install_hub() {
-  if [[ -z "$(which hub)" ]] && [[ -z "$SKIP_HUB" ]] ; then
-    install-hub
   fi
 }
 
