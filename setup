@@ -109,10 +109,6 @@ case $key in
     INSTALL_LUA=1
     shift # past option
     ;;
-     --install-kubectl)
-    INSTALL_KUBECTL=1
-    shift # past option
-    ;;
     *)
     POSITIONAL+=("$1") # save it in an array for later
     shift # past argument
@@ -145,7 +141,6 @@ function main() {
   install_clojure
   install_babashka
   setup_mariadb
-  install_kubectl
   install_lua
   install_dotfiles
 
@@ -325,16 +320,6 @@ function setup_mariadb() {
   if [[ ! -z "$INSTALL_MARIADB" ]]
   then
     sudo mysql_secure_installation
-  fi
-}
-
-function install_kubectl() {
-  if [[ -z "$SKIP_KUBECTL" && -z $(which kubectl) ]]
-  then
-    curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-    echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
-    sudo apt-get update
-    sudo apt-get install -y kubectl
   fi
 }
 
