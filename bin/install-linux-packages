@@ -28,6 +28,7 @@ if [[ "$(which apt-get)" ]] ; then
     tmux \
     tree \
     vim \
+    neovim \
     xclip \
     xdotool \
     zsh
