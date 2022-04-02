@@ -13,11 +13,11 @@ usage() {
   echo
   echo '  setup [-h|--help] [-r|--install-ruby <RUBY_VERSION>]'
   echo '        [--skip-clojure] [--skip-composer] [--skip-fzf] [--skip-golang] [--skip-hub]'
-  echo '        [--skip-keybase] [--skip-yarn] [--skip-update] [--skip-racket]'
-  echo '        [--skip-packages] [--skip-docker] [--skip-keybase] [--skip-babashka]'
+  echo '        [--skip-keybase] [--skip-yarn] [--skip-update] [--skip-packages]'
+  echo '        [--skip-docker] [--skip-keybase] [--skip-babashka]'
   echo '        [--skip-bat] [--skip-dotfiles] [--skip-java] [--install-rust]'
   echo '        [--install-zazu] [--install-mariadb] [--install-kubectl]'
-  echo '        [--install-lua]'
+  echo '        [--install-lua] [--install-racket]'
   echo
 }
 
@@ -74,10 +74,6 @@ case $key in
     SKIP_KEYBASE=1
     shift # past option
     ;;
-     --skip-racket)
-    SKIP_RACKET=1
-    shift # past option
-    ;;
      --skip-java)
     SKIP_JAVA=1
     shift # past option
@@ -93,6 +89,10 @@ case $key in
     #
     # support installing additional software
     #
+    --install-racket)
+    INSTALL_RACKET=1
+    shift # past option
+    ;;
     --install-zazu)
     INSTALL_ZAZU=1
     shift # past option
@@ -296,7 +296,7 @@ function install_keybase() {
 }
 
 function install_racket() {
-  if [[ -z "$SKIP_RACKET" && -z $(which racket) ]] ; then
+  if [[ "$INSTALL_RACKET" && -z $(which racket) ]] ; then
     echo 'intalling racket...'
     sudo add-apt-repository ppa:plt/racket --yes
     sudo apt-get install racket -y
