@@ -12,12 +12,12 @@ key="$1"
 usage() {
   echo
   echo '  setup [-h|--help] [-r|--install-ruby <RUBY_VERSION>]'
-  echo '        [--skip-clojure] [--skip-composer] [--skip-fzf] [--skip-golang] [--skip-hub]'
-  echo '        [--skip-keybase] [--skip-yarn] [--skip-update] [--skip-packages]'
-  echo '        [--skip-docker] [--skip-keybase] [--skip-babashka]'
-  echo '        [--skip-bat] [--skip-dotfiles] [--skip-java] [--install-rust]'
+  echo '        [--skip-clojure] [--skip-composer] [--skip-fzf] [--skip-golang]'
+  echo '        [--skip-hub] [--skip-yarn] [--skip-update] [--skip-packages]'
+  echo '        [--skip-bat] [--skip-docker] [--skip-babashka]'
+  echo '        [--skip-dotfiles] [--skip-java] [--install-rust]'
   echo '        [--install-zazu] [--install-mariadb] [--install-kubectl]'
-  echo '        [--install-lua] [--install-racket]'
+  echo '        [--install-lua] [--install-racket] [--install-keybase]'
   echo
 }
 
@@ -70,8 +70,8 @@ case $key in
     SKIP_DOCKER=1
     shift # past option
     ;;
-    --skip-keybase)
-    SKIP_KEYBASE=1
+    --install-keybase)
+    INSTALL_KEYBASE=1
     shift # past option
     ;;
      --skip-java)
@@ -289,7 +289,7 @@ function install_zazu() {
 }
 
 function install_keybase() {
-  if [[ -z "$(which keybase)" ]] ; then
+  if [[ "$INSTALL_KEYBASE" ]] && [[ -z "$(which keybase)" ]] ; then
     echo 'installing keybase...'
     install-keybase
   fi
