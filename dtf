@@ -42,16 +42,6 @@ vim +PluginInstall +qall
 
 
 
-echo linking functions files
-if [[ ! -f ~/.functions ]] ; then
-  ln -s ~/dotfiles/.functions ~/.functions
-fi
-
-echo linking aliases
-if [[ ! -f ~/.aliases ]] ; then
-  ln -s ~/dotfiles/.aliases ~/.aliases
-fi
-
 echo linking config files
 if [[ ! -f ~/.gitignore ]] ; then
   ln -s ~/dotfiles/.gitignore ~/.gitignore
