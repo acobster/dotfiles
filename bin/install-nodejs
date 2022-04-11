@@ -43,7 +43,7 @@ main() {
     # --force CLI options was specified, or no node was detected
     echo "installing nodejs version ${VERSION}.x"
     curl -sL "https://deb.nodesource.com/setup_${VERSION}.x" | sudo -E bash -
-    sudo apt-get install -y nodejs npm
+    sudo apt-get install -y nodejs
 
     echo "node $(node --version) is now installed"
   else
