@@ -59,6 +59,7 @@ __user_host_ps1() {
 
   # abbreviate username/hostname combos on normal machines
   echo $(whoami)@$(hostname) \
+    | sed 's/tamayo@amperpad/⚡/' \
     | sed 's/acobster@Tomato.domain/🍅/' \
     | sed 's/acobster@CobyTamsMacBook.domain/🍅/' \
     | sed 's/tamayo@toast/🍅/'
