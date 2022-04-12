@@ -272,6 +272,9 @@ if [[ $(which hub) ]] ; then
   alias git='hub'
 fi
 
+
+# TODO move this stuff to its own script that can be run on demand
+
 # Default branch
 if [[ -z $(git config --global init.defaultBranch) ]] ; then
   git config --global init.defaultBranch main
