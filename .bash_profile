@@ -666,6 +666,21 @@ if [[ -d "${HOME}/go" ]] ; then
 fi
 
 
+#--------
+# Google
+#--------
+
+# Update PATH for the Google Cloud SDK.
+if [ -f '/home/tamayo/google-cloud-sdk/path.bash.inc' ]; then
+  . '/home/tamayo/google-cloud-sdk/path.bash.inc'
+fi
+
+# Enable shell command completion for gcloud.
+if [ -f '/home/tamayo/google-cloud-sdk/completion.bash.inc' ]; then
+  . '/home/tamayo/google-cloud-sdk/completion.bash.inc'
+fi
+
+
 
 #------
 # Rust
