@@ -35,6 +35,8 @@ if [[ "$(which nvim)" ]] ; then
     mkdir -p $HOME/.config/nvim
     ln -s $HOME/dotfiles/.config/nvim/init.vim $HOME/.config/nvim/init.vim
   fi
+else
+  echo "Neovim not found. Skipping configuration..."
 fi
 
 echo installing all the vim plugins...
