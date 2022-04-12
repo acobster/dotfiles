@@ -234,6 +234,17 @@ fi
 
 
 #----------------
+# Direnv
+#----------------
+
+# Load project-specific environment variables
+if ! [[ -z $(which direnv) ]] ; then
+  eval "$(direnv hook bash)"
+fi
+
+
+
+#----------------
 # Bash functions
 #----------------
 
