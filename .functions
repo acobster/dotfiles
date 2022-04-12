@@ -190,6 +190,10 @@ grepcljs() {
   grep --recursive --include='*.cljs' "$@"
 }
 
+grepy() {
+  grep --recursive --include='*.py' "$@"
+}
+
 grephp() {
   grep --recursive --include='*.php' "$@"
 }
