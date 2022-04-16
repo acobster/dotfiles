@@ -50,13 +50,8 @@ imap <c-l> ◊
 " ,n redraws the screen and removes any search highlighting.
 nmap <leader>n :nohlsearch<cr>
 
-" Markdown
-nmap <leader>gg :Goyo<cr>
-
 " Easy align interactive
 vnoremap <silent> <Enter> :EasyAlign<cr>
-
-"nmap <leader>c :w<cr>cpr
 
 " bash text completion
 imap <c-b><c-i> if [[ X ]] ; then<cr><cr>fi<esc><<kkfXs
