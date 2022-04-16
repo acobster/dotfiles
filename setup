@@ -23,6 +23,7 @@ usage() {
   echo '  - dotfiles'
   echo '  - fzf'
   echo '  - golang'
+  echo '  - node'
   echo '  - java'
   echo '  - packages'
   echo '  - update'
@@ -82,6 +83,10 @@ case $key in
     ;;
     --skip-bat)
     SKIP_BAT=1
+    shift # past option
+    ;;
+    --skip-node)
+    SKIP_NODE=1
     shift # past option
     ;;
     --skip-yarn)
@@ -149,6 +154,7 @@ case $key in
     SKIP_DOTFILES=1
     SKIP_DOCKER=1
     SKIP_JAVA=1
+    SKIP_NODE=1
     SKIP_PACKAGE_UPDATES=1
     SKIP_PACKAGES=1
     SKIP_YARN=1
@@ -182,6 +188,7 @@ function main() {
   install_docker
   install_lando
   setup_mariadb
+  install_node
   install_yarn
 
   # misc
@@ -283,7 +290,9 @@ function install_golang() {
 }
 
 function install_node() {
-  install-node
+  if [[ -z "$SKIP_NODE" ]] ; then
+    install-nodejs
+  fi
 }
 
 function install_yarn() {
