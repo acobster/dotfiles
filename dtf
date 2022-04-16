@@ -56,13 +56,23 @@ echo Linking config files...
 if [[ -z "$(which git)" ]] ; then
   echo Git is not installed. Skipping git configs.
 else
+  echo Configuring git...
+
+  if [[ -z "$(git config --global user.email)" ]] ; then
+    git config --global user.email coby@tamayo.email
+  fi
+  if [[ -z "$(git config --global user.name)" ]] ; then
+    git config --global user.name 'Coby Tamayo'
+  fi
+
   if [[ ! -f ~/.gitignore ]] ; then
     ln -s ~/dotfiles/.gitignore ~/.gitignore
   fi
-
   if [[ ! -f ~/.githelpers ]] ; then
     ln -s ~/dotfiles/.githelpers ~/.githelpers
   fi
+
+  git-config
 fi
 
 if [[ -z "$(which tmux)" ]] ; then

@@ -191,8 +191,6 @@ function main() {
   install_zazu
 
   install_dotfiles
-
-  configure_git
 }
 
 install_repo_updates() {
@@ -394,21 +392,6 @@ function install_dotfiles() {
     $DOTFILES_DIR/dtf
   fi
 }
-
-function configure_git() {
-  if [[ -z "$(which git)" ]] ; then
-    echo Git is not installed. Skipping configuration.
-    return
-  fi
-  if [[ -z "$(git config --global user.email)" ]] ; then
-    echo Configuring git...
-    git config --global user.email coby@tamayo.email
-  fi
-  if [[ -z "$(git config --global user.name)" ]] ; then
-    git config --global user.name 'Coby Tamayo'
-  fi
-}
-
 
 # Download and install a .deb package from a URL
 function __deb_install() {
