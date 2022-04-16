@@ -2,64 +2,80 @@
 
 set -e
 
-echo setting up vim...
-if [[ ! -f $HOME/.vimrc ]] ; then
-  echo symlinking ~/.vimrc
-  ln -s $HOME/dotfiles/.vimrc $HOME/.vimrc
+if [[ -z "$(which vim)" ]] ; then
+  echo Vim not installed...skipping.
+else
+  echo Setting up Vim...
+  if [[ ! -f $HOME/.vimrc ]] ; then
+    echo symlinking ~/.vimrc
+    ln -s $HOME/dotfiles/.vimrc $HOME/.vimrc
+  fi
+
+  if [[ ! -d $HOME/.vim/autoload ]] ; then
+    echo creating ~/.vim/autoload/
+    mkdir -p $HOME/.vim/autoload
+  fi
+
+  if [[ ! -d $HOME/.vim/bundle ]] ; then
+    echo creating ~/.vim/bundle/
+    mkdir -p $HOME/.vim/bundle
+  fi
+
+  if [[ ! -d $HOME/.vim/session ]] ; then
+    echo creating ~/.vim/session/
+    mkdir -p $HOME/.vim/session
+  fi
+
+  if [[ -z "$(which git)" ]] ; then
+    echo Git is not installed. Skipping Vundle installation.
+  else
+    if [[ ! -d $HOME/.vim/bundle/Vundle.vim ]] ; then
+      echo Downloading Vundle
+      git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    fi
+
+    echo Installing vim plugins...
+    vim +PluginInstall +qall
+  fi
 fi
 
-if [[ ! -d $HOME/.vim/autoload ]] ; then
-  echo creating ~/.vim/autoload/
-  mkdir -p $HOME/.vim/autoload
-fi
-
-if [[ ! -d $HOME/.vim/bundle ]] ; then
-  echo creating ~/.vim/bundle/
-  mkdir -p $HOME/.vim/bundle
-fi
-
-if [[ ! -d $HOME/.vim/session ]] ; then
-  echo creating ~/.vim/session/
-  mkdir -p $HOME/.vim/session
-fi
-
-if [[ ! -d $HOME/.vim/bundle/Vundle.vim ]] ; then
-  echo downloading Vundle
-  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-fi
-
-if [[ "$(which nvim)" ]] ; then
-  echo setting up nvim...
+if [[ -z "$(which nvim)" ]] ; then
+  echo "Neovim not found. Skipping configuration..."
+else
+  echo Setting up Neovim...
   if ! [[ -f $HOME/.config/nvim/init.vim ]] ; then
     echo symlinking ~/.config/nvim/init.vim
     mkdir -p $HOME/.config/nvim
     ln -s $HOME/dotfiles/.config/nvim/init.vim $HOME/.config/nvim/init.vim
   fi
+fi
+
+
+
+echo Linking config files...
+if [[ -z "$(which git)" ]] ; then
+  echo Git is not installed. Skipping git configs.
 else
-  echo "Neovim not found. Skipping configuration..."
+  if [[ ! -f ~/.gitignore ]] ; then
+    ln -s ~/dotfiles/.gitignore ~/.gitignore
+  fi
+
+  if [[ ! -f ~/.githelpers ]] ; then
+    ln -s ~/dotfiles/.githelpers ~/.githelpers
+  fi
 fi
 
-echo installing all the vim plugins...
-vim +PluginInstall +qall
+if [[ -z "$(which tmux)" ]] ; then
+  echo tmux is not installed. Skipping tmux configs.
+else
+  if ! [[ -f ~/.tmux.conf ]] ; then
+    ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
+  fi
 
-
-
-echo linking config files
-if [[ ! -f ~/.gitignore ]] ; then
-  ln -s ~/dotfiles/.gitignore ~/.gitignore
-fi
-
-if [[ ! -f ~/.githelpers ]] ; then
-  ln -s ~/dotfiles/.githelpers ~/.githelpers
-fi
-
-if ! [[ -f ~/.tmux.conf ]] ; then
-  ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
-fi
-
-if ! [[ -f ~/.tmux.local.conf ]] ; then
-  echo creating local tmux config
-  touch ~/.tmux.local.conf
+  if ! [[ -f ~/.tmux.local.conf ]] ; then
+    echo creating local tmux config
+    touch ~/.tmux.local.conf
+  fi
 fi
 
 echo 'done! 👍 🍅 🍕 🚀 🎸 '
