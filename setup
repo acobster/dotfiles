@@ -351,12 +351,6 @@ function install_clojure() {
     CLJ_VERSION='1.10.0.411'
     install-clojure
   fi
-
-  # TODO
-  if [[ -z "$SKIP_CLOJURE" && -z "$(which lein)" ]]
-  then
-    install-lein
-  fi
 }
 
 function install_babashka() {
