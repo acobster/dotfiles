@@ -164,33 +164,44 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 
 
 function main() {
-  if [[ -z "$SKIP_PACKAGE_UPDATES" ]]
-  then
-    sudo apt-get update
-  fi
-
-  install_ruby
-  install_rust
-  install_bat
-  install_composer
-  install_fzf
-  install_golang
-  install_yarn
+  install_repo_updates
   install_packages
-  install_docker
-  install_lando
-  install_zazu
-  install_keybase
-  install_racket
+
+  # langs
+  install_composer
+  install_golang
+  install_lua
   install_java
   install_clojure
   install_babashka
+  install_racket
+  install_ruby
+  install_rust
+
+  # Dev stuff
+  install_docker
+  install_lando
   setup_mariadb
-  install_lua
+  install_yarn
+
+  # misc
+  install_bat
+  install_fzf
+  install_keybase
+  install_zazu
+
   install_dotfiles
 
   configure_git
 }
+
+install_repo_updates() {
+  if [[ -z "$SKIP_PACKAGE_UPDATES" ]]
+  then
+    sudo apt-get update
+  fi
+}
+
 
 function install_ruby() {
   if [[ -z "$RUBY_VERSION" ]] ; then
@@ -385,8 +396,12 @@ function install_dotfiles() {
 }
 
 function configure_git() {
+  if [[ -z "$(which git)" ]] ; then
+    echo Git is not installed. Skipping configuration.
+    return
+  fi
   if [[ -z "$(git config --global user.email)" ]] ; then
-    echo 'configuring git...'
+    echo Configuring git...
     git config --global user.email coby@tamayo.email
   fi
   if [[ -z "$(git config --global user.name)" ]] ; then

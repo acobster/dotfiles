@@ -10,6 +10,7 @@ if [[ "$(which apt-get)" ]] ; then
     gconf-service \
     gconf-service-backend \
     gconf2 \
+    git \
     httpie \
     inotify-tools \
     jq \
