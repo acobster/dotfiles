@@ -2,6 +2,8 @@
 
 # Whither [my disk space]?
 #
+# TODO make this work in Bash?
+#
 # Run this to find out where your disk space is going. Pass the paths that
 # you're curious about as arguments. It will tell you:
 #

@@ -70,7 +70,6 @@ then
   alias git='hub'
 fi
 
-# Git
 alias g='git'
 alias m='git commit -m'
 alias master='git checkout master'
@@ -81,6 +80,7 @@ alias aa='git add --all'
 alias d='git diff'
 # be nice to me when i make typos ok plz
 alias tig='git'
+alias gr='grep --exclude-dir=.git -r'
 
 # Stack Exchange code snippetz
 alias socode='sed "s/^/    /"|x'
