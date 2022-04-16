@@ -18,8 +18,8 @@ if [[ "$(which apt-get)" ]] ; then
     libindicator7 \
     mariadb-client \
     mariadb-server \
+    neovim \
     net-tools \
-    nodejs \
     php \
     php-mbstring \
     php-mysql \
@@ -28,7 +28,6 @@ if [[ "$(which apt-get)" ]] ; then
     tmux \
     tree \
     vim \
-    neovim \
     xclip \
     xdotool \
     zsh
