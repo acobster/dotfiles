@@ -2,21 +2,48 @@
 
 DOTFILES_DIR=$(dirname $0)
 
-DEFAULT_RUBY='2.5.1'
-
 POSITIONAL=()
 while [[ $# -gt 0 ]]
 do
 key="$1"
 
 usage() {
+  echo 'usage: setup [-h|--help] [-N|--no-defaults]'
+  echo '             [--skip-<SKIP>] [--<PACKAGE>]'
   echo
-  echo '  setup [-h|--help] [-r|--ruby <RUBY_VERSION>]'
-  echo '        [--skip-clojure] [--skip-composer] [--skip-fzf] [--skip-golang]'
-  echo '        [--skip-yarn] [--skip-update] [--skip-packages [--skip-bat]]'
-  echo '        [--skip-docker] [--skip-babashka] [--skip-dotfiles] [--skip-java]'
-  echo '        [--rust] [--zazu] [--mariadb]'
-  echo '        [--lua] [--racket] [--keybase]'
+  echo '  --no-defaults'
+  echo '    Skip all default setup. Without additional options, this is a noop.'
+  echo
+  echo '  SKIP options:'
+  echo '  - bat'
+  echo '  - babashka'
+  echo '  - clojure'
+  echo '  - composer'
+  echo '  - docker'
+  echo '  - dotfiles'
+  echo '  - fzf'
+  echo '  - golang'
+  echo '  - java'
+  echo '  - packages'
+  echo '  - update'
+  echo '  - yarn'
+  echo
+  echo '  PACKAGE options:'
+  echo '  - keybase'
+  echo '  - lua'
+  echo '  - mariadb'
+  echo '  - racket'
+  echo '  - ruby'
+  echo '  - rust'
+  echo '  - zazu'
+  echo
+  echo '  EXAMPLES'
+  echo
+  echo '    setup -h                         # print this usage text'
+  echo '    setup --ruby                     # install defaults, plus ruby'
+  echo '    setup --ruby --no-defaults       # only install ruby'
+  echo '    setup --skip-clojure             # install defaults, minus clojure'
+  echo '    setup --skip-clojure --skip-bat  # install defaults, minus clojure and bat'
   echo
 }
 
@@ -65,10 +92,6 @@ case $key in
     SKIP_DOCKER=1
     shift # past option
     ;;
-    --keybase)
-    INSTALL_KEYBASE=1
-    shift # past option
-    ;;
      --skip-java)
     SKIP_JAVA=1
     shift # past option
@@ -84,6 +107,10 @@ case $key in
     #
     # support installing additional software
     #
+    --keybase)
+    INSTALL_KEYBASE=1
+    shift # past option
+    ;;
     --racket)
     INSTALL_RACKET=1
     shift # past option
@@ -107,6 +134,24 @@ case $key in
     ;;
     --lua)
     INSTALL_LUA=1
+    shift # past option
+    ;;
+    #
+    # override defaults
+    #
+    -N|--no-defaults)
+    SKIP_BABASHKA=1
+    SKIP_BAT=1
+    SKIP_CLOJURE=1
+    SKIP_COMPOSER=1
+    SKIP_FZF=1
+    SKIP_GOLANG=1
+    SKIP_DOTFILES=1
+    SKIP_DOCKER=1
+    SKIP_JAVA=1
+    SKIP_PACKAGE_UPDATES=1
+    SKIP_PACKAGES=1
+    SKIP_YARN=1
     shift # past option
     ;;
     *)
@@ -189,7 +234,9 @@ function install_ruby() {
 }
 
 function install_rust() {
-  install-rust
+  if [[ "$INSTALL_RUST" ]] ; then
+    install-rust
+  fi
 }
 
 function install_bat() {
@@ -340,7 +387,7 @@ function install_dotfiles() {
 function configure_git() {
   if [[ -z "$(git config --global user.email)" ]] ; then
     echo 'configuring git...'
-    git config --global user.email acobster@gmail.com
+    git config --global user.email coby@tamayo.email
   fi
   if [[ -z "$(git config --global user.name)" ]] ; then
     git config --global user.name 'Coby Tamayo'
@@ -356,4 +403,3 @@ function __deb_install() {
 
 
 main
-
