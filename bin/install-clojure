@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-CLJ_VERSION=${1:-'1.10.3.1087'}
+CLJ_VERSION=${1:-'1.11.1.1105'}
 
 echo "Installing Clojure ${CLJ_VERSION}..."
 installer_file="linux-install-${CLJ_VERSION}.sh"
@@ -8,6 +8,12 @@ installer_file="linux-install-${CLJ_VERSION}.sh"
 wget -O "/tmp/${installer_file}" "https://download.clojure.org/install/${installer_file}"
 chmod +x "/tmp/${installer_file}"
 sudo "/tmp/${installer_file}"
+
+if [[ ! -f "$HOME/.config/nvim/plugins" ]] || [[ -z "$(grep conjure $HOME/.config/nvim/plugins.vim)" ]] ; then
+  echo 'Configuring Neovim Clojure plugins...'
+  cat ~/dotfiles/vim/clojure-plugins.vim \
+    | grep -v '"!' >> ~/.config/nvim/plugins.vim
+fi
 
 echo "Clojure binaries are now installed at:"
 echo "    $(which clojure)"

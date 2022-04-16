@@ -352,6 +352,7 @@ function install_clojure() {
     install-clojure
   fi
 
+  # TODO
   if [[ -z "$SKIP_CLOJURE" && -z "$(which lein)" ]]
   then
     install-lein
