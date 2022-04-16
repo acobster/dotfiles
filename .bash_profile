@@ -271,6 +271,7 @@ if [ -f ~/dotfiles/git-completion.bash ]; then
 fi
 
 
+
 #--------
 # Search
 #--------
@@ -297,9 +298,9 @@ shopt -s histappend
 
 
 
-#---------
+#--------
 # Window
-#---------
+#--------
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -353,6 +354,7 @@ if [[ ! "$PATH" =~ ".rbenv/shims" ]] && [[ -d $HOME/.rbenv/shims ]] ; then
 fi
 
 
+
 #--------
 # Golang
 #--------
@@ -372,6 +374,7 @@ if [[ -d "${HOME}/go" ]] ; then
     export PATH="${HOME}/go/bin:$PATH"
   fi
 fi
+
 
 
 #--------
