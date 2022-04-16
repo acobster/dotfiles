@@ -293,11 +293,9 @@ function install_yarn() {
 }
 
 function install_packages() {
-  if [[ "$SKIP_PACKAGES" ]] ; then
-    return
+  if [[ -z "$SKIP_PACKAGES" ]] ; then
+    install-linux-packages
   fi
-
-  install-linux-packages
 }
 
 function install_docker() {
@@ -317,7 +315,6 @@ function install_zazu() {
   if [[ "$INSTALL_ZAZU" ]] ; then
     install-zazu
   fi
-
 }
 
 function install_keybase() {
