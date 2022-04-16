@@ -407,4 +407,10 @@ fi
 # Misc.
 #-------
 
-export EDITOR=nvim
+if [[ "$(which nvim)" ]] ; then
+  export EDITOR=nvim
+elif [[ "$(which vim)" ]] ; then
+  export EDITOR=vim
+else
+  export EDITOR=vi
+fi
