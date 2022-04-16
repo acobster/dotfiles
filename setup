@@ -11,12 +11,12 @@ key="$1"
 
 usage() {
   echo
-  echo '  setup [-h|--help] [-r|--install-ruby <RUBY_VERSION>]'
+  echo '  setup [-h|--help] [-r|--ruby <RUBY_VERSION>]'
   echo '        [--skip-clojure] [--skip-composer] [--skip-fzf] [--skip-golang]'
   echo '        [--skip-yarn] [--skip-update] [--skip-packages [--skip-bat]]'
   echo '        [--skip-docker] [--skip-babashka] [--skip-dotfiles] [--skip-java]'
-  echo '        [--install-rust] [--install-zazu] [--install-mariadb]'
-  echo '        [--install-lua] [--install-racket] [--install-keybase]'
+  echo '        [--rust] [--zazu] [--mariadb]'
+  echo '        [--lua] [--racket] [--keybase]'
   echo
 }
 
@@ -65,7 +65,7 @@ case $key in
     SKIP_DOCKER=1
     shift # past option
     ;;
-    --install-keybase)
+    --keybase)
     INSTALL_KEYBASE=1
     shift # past option
     ;;
@@ -84,28 +84,28 @@ case $key in
     #
     # support installing additional software
     #
-    --install-racket)
+    --racket)
     INSTALL_RACKET=1
     shift # past option
     ;;
-    --install-zazu)
+    --zazu)
     INSTALL_ZAZU=1
     shift # past option
     ;;
-    --install-ruby)
+    --ruby)
     RUBY_VERSION="$2"
     shift # past option
     shift # past value
     ;;
-    --install-rust)
+    --rust)
     INSTALL_RUST=1
     shift # past option
     ;;
-     --install-mariadb)
+    --mariadb)
     INSTALL_MARIADB=1
     shift # past option
     ;;
-     --install-lua)
+    --lua)
     INSTALL_LUA=1
     shift # past option
     ;;
