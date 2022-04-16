@@ -15,4 +15,7 @@ call SourceIfExists("~/dotfiles/vim/mappings.vim")
 " Markdown config
 let g:vim_markdown_folding_disabled = 1
 
+" Reload nvim config
+command Reload :source ~/.vimrc
+
 call SourceIfExists("~/.vimrc.local")

@@ -74,9 +74,6 @@ let g:fzf_layout = { 'window': 'split enew' }
 " Project path stuff
 cmap ~vs ~/.vim/session/
 
-" Reload nvim config
-command Reload :source ~/.config/nvim/init.vim
-
 " Assets - display assets from Ledger-CLI
 
 command Assets r!date '+;; \%Y-\%m-\%d ALL ACCOUNTS BALANCED'; echo ';;'; ledger -f ~/ledger/ledger.dat balance assets --cleared | sed -s 's/^/;; /'

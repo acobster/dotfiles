@@ -20,4 +20,7 @@ let g:vim_markdown_folding_disabled = 1
 set undodir=~/.config/nvim/undodir
 set undofile
 
+" Reload nvim config
+command Reload :source ~/.config/nvim/init.vim
+
 call SourceIfExists("~/.config/nvim/init.vim.local")
