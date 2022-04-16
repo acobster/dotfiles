@@ -4,7 +4,7 @@ usage() {
   echo 'Usage: ./install-nodejs [-v|--version VERSION] [-f|--force] [-h|--help]'
   echo
   echo '  VERSION: major version number without minor/patch decimal places, e.g.'
-  echo '  "10" or "12". Defaults to "12".'
+  echo '  "16" or "12". Defaults to "16".'
   echo
 }
 
@@ -38,7 +38,7 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 
 main() {
   if [[ ! -z "$FORCE" ]] || [[ -z "$(which node)" ]] ; then
-    VERSION=${VERSION:-12}
+    VERSION=${VERSION:-16}
 
     # --force CLI options was specified, or no node was detected
     echo "installing nodejs version ${VERSION}.x"
