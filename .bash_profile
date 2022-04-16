@@ -2,15 +2,6 @@
 [ -z "$PS1" ] && return
 
 
-#---------
-# PROMPT
-#---------
-
-if [[ -f ~/dotfiles/git-prompt.bash ]]; then
-  . ~/dotfiles/git-prompt.bash
-fi
-
-
 #
 # Web-environment-based prompt:
 # put your LIVE_DIRS array definition inside a file at ~/.live.env, e.g.:
@@ -110,6 +101,11 @@ __ps1_symbol() {
 }
 
 
+
+#---------
+# PROMPT
+#---------
+
 __compose_ps1() {
   MAGENTA='\e[1;35m'
   GREEN='\e[01;32m'
@@ -120,12 +116,12 @@ __compose_ps1() {
   # Git prompt
   local git_prompt
   git_prompt=''
-  if [ -f ~/dotfiles/git-prompt.bash ]; then
+
+  if [[ -f ~/dotfiles/git-prompt.bash ]]; then
     GIT_PS1_SHOWUNTRACKEDFILES=1
     GIT_PS1_SHOWDIRTYSTATE=1
     GIT_PS1_SHOWSTASHSTATE=1
     source ~/dotfiles/git-prompt.bash
-
     git_prompt="\$(__git_ps1)"
 
     # abbreviate git branch names!
