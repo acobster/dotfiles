@@ -40,4 +40,3 @@ ln -s dotfiles/.gitignore .gitignore
 ## TODO
 
 * modularize .bash_profile
-* zsh
