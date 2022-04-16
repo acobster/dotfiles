@@ -216,14 +216,7 @@ function install_composer() {
 
 function install_fzf() {
   if [[ -z "$(which fzf)" ]] && [[ -z "$SKIP_FZF" ]] ; then
-    echo 'Installing fzf...'
-    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-
-    # dotfiles are already setup for fzf stuff,
-    # but install bindings & bash completion stuff
-    ~/.fzf/install --completion --key-bindings --no-update-rc
-
-    echo "fzf installed at $(which fzf)"
+    install-fzf
   fi
 }
 
