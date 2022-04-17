@@ -4,6 +4,10 @@
 " https://github.com/junegunn/vim-plug#usage
 call plug#begin(stdpath('data') . '/plugged')
 
+" Neovim stuff
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-orgmode/orgmode'
+
 " The colors, Duke! The colors!
 Plug 'altercation/vim-colors-solarized'
 Plug 'bronson/vim-trailing-whitespace'
