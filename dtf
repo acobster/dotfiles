@@ -27,7 +27,7 @@ else
   fi
 
   if [[ -z "$(which git)" ]] ; then
-    echo Git is not installed. Skipping Vundle installation.
+    echo Git is not installed. Skipping vim-plug installation.
   else
     if [[ ! -f $HOME/.vim/autoload/plug.vim ]] ; then
       echo Downloading vim-plug...
@@ -47,7 +47,7 @@ else
   if ! [[ -f $HOME/.config/nvim/init.vim ]] ; then
     echo symlinking ~/.config/nvim/init.vim
     mkdir -p $HOME/.config/nvim
-    ln -s $HOME/dotfiles/.config/nvim/init.vim $HOME/.config/nvim/init.vim
+    ln -s $HOME/dotfiles/.config/nvim/init.lua $HOME/.config/nvim/init.lua
   fi
 fi
 
