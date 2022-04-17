@@ -1,6 +1,66 @@
 #!/usr/bin/env bash
 
-curl -s https://raw.githubusercontent.com/borkdude/babashka/master/install -o /tmp/install-babashka
-chmod +x /tmp/install-babashka
-/tmp/install-babashka
-which bb | bb -i '(println "bb is now installed at" (first *input*))'
+
+usage() {
+  echo 'usage: $(basename $0) [-h|--help]'
+  echo
+  echo '  OPTIONS:'
+  echo
+  echo '  -h|--help     show this help text'
+  echo '  -h|--version  which Babashka version to install'
+}
+
+POSITIONAL=()
+while [[ $# -gt 0 ]]
+do
+key="$1"
+
+case $key in
+    -h|--help)
+    # show usage and bail
+    usage
+    exit
+    ;;
+    -v|--version)
+    BB_VERSION="$2"
+    shift # past argument
+    shift # past value
+    ;;
+    -f|--force)
+    FORCE=1
+    shift # past argument
+    ;;
+    *)
+    POSITIONAL+=("$1") # save it in an array for later
+    shift # past argument
+    ;;
+esac
+
+done
+set -- "${POSITIONAL[@]}" # restore positional parameters
+
+
+main() {
+  if [[ "$(which bb)" ]] && [[ ! "$FORCE" ]] ; then
+    bb --version \
+      | bb -i '(println "Babashka" (first *input*) "is already installed.")'
+    exit 0
+  fi
+
+  BB_VERSION=${BB_VERSION:-'v0.8.1'}
+  if ! [[ "${BB_VERSION:0:1}" = 'v' ]] ; then
+    BB_VERSION="v${BB_VERSION}"
+  fi
+
+  curl -s https://raw.githubusercontent.com/borkdude/babashka/v0.8.1/install \
+    -o /tmp/install-babashka
+  chmod +x /tmp/install-babashka
+
+  # DO THE THING
+  /tmp/install-babashka
+
+  which bb | bb -i '(println "bb is now installed at" (first *input*))'
+}
+
+
+main
