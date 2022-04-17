@@ -2,6 +2,11 @@
 [ -z "$PS1" ] && return
 
 
+
+#---------
+# PROMPT
+#---------
+
 #
 # Web-environment-based prompt:
 # put your LIVE_DIRS array definition inside a file at ~/.live.env, e.g.:
@@ -45,7 +50,6 @@ __cwd_ps1() {
   return 0
 }
 
-
 __user_host_ps1() {
 
   # abbreviate username/hostname combos on normal machines
@@ -57,7 +61,6 @@ __user_host_ps1() {
 
   return 0
 }
-
 
 __ps1_symbol() {
   # Easter eggs!
@@ -99,12 +102,6 @@ __ps1_symbol() {
   echo "$s"
   return 0
 }
-
-
-
-#---------
-# PROMPT
-#---------
 
 __compose_ps1() {
   MAGENTA='\e[1;35m'
