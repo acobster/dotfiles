@@ -155,10 +155,6 @@ if [[ ! $PATH =~ "dotfiles/bin:" ]] ; then
   export PATH=$HOME/dotfiles/bin:$PATH
 fi
 
-if [[ -d "${HOME}/.linkerd2/bin" ]] && ! [[ $PATH =~ "${HOME}/.linkerd2/bin:" ]] ; then
-  export PATH=$HOME/.linkerd2/bin:$PATH
-fi
-
 # https://docs.radicle.xyz/docs/getting-started
 if [[ -d "${HOME}/.radicle/bin" ]] && ! [[ $PATH =~ "${HOME}/.radicle/bin:" ]] ; then
   export PATH=$HOME/.radicle/bin:$PATH
