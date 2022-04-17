@@ -17,6 +17,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'vim-syntastic/syntastic'
 Plug 'elzr/vim-json'
 Plug 'machakann/vim-swap' " swap fn args
+Plug 'nelsyeung/twig.vim'
 
 " Formatting
 Plug 'junegunn/vim-easy-align'
