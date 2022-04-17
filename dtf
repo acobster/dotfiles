@@ -44,8 +44,8 @@ if [[ -z "$(which nvim)" ]] ; then
   echo "Neovim not found. Skipping configuration..."
 else
   echo Setting up Neovim...
-  if ! [[ -f $HOME/.config/nvim/init.vim ]] ; then
-    echo symlinking ~/.config/nvim/init.vim
+  if ! [[ -f $HOME/.config/nvim/init.lua ]] ; then
+    echo symlinking ~/.config/nvim/init.lua
     mkdir -p $HOME/.config/nvim
     ln -s $HOME/dotfiles/.config/nvim/init.lua $HOME/.config/nvim/init.lua
   fi
