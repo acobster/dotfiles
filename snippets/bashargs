@@ -1,9 +1,9 @@
 usage() {
-  echo "usage: $(basename $0) [-h|--help]"
+  echo 'usage: $(basename $0) [-h|--help]'
   echo
-  echo "  OPTIONS:"
+  echo '  OPTIONS:'
   echo
-  echo "  -h|--help show this help text"
+  echo '  -h|--help show this help text'
 }
 
 POSITIONAL=()
