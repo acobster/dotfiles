@@ -137,6 +137,7 @@ __compose_ps1() {
 __compose_ps1
 
 
+
 #---------
 # PATH
 #---------
@@ -284,6 +285,7 @@ if [[ -f ~/.fzf.bash ]] ; then
     export PATH="$PATH:$HOME/.fzf/bin"
   fi
 fi
+
 
 
 #---------
