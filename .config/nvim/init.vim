@@ -340,6 +340,7 @@ endfunction
 
 command Php r!snip phpclass
 command Bashargs r!snip bashargs
+command Hashbash r!snip hashbash
 command Wpcli r!snip wpcli
 
 
