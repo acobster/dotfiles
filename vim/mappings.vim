@@ -142,8 +142,9 @@ endfunction
 " end Rename
 
 
-command Php r!snip phpclass
 command Bashargs r!snip bashargs
+command Cssheader r!snip cssheader
+command Php r!snip phpclass
 command Wpcli r!snip wpcli
 
 
