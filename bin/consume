@@ -15,9 +15,12 @@ fi
 while true                  # cycle eternally..
 do
     if read line < $pipe; then
-        echo                # a line break should be used because of the prompt 
-        eval $line          # run the line: as this script should be started
-    fi                          # in the target terminal,
-done                            # the line will be run there.
+        # a line break should be used because of the prompt
+        echo
+        echo "+ $line"
+        # run the line, including bash profile stuff
+        bash -ic "$line; echo = \$? ; `exit`"
+    fi
+done
 
 echo 'Bye bye!'
