@@ -4,9 +4,9 @@ require 'date'
 
 args = ARGV
 
-# recognize an account argument with leading "@"
-account = if not args.first.nil? and args.first[0] == '@'
-            # `spending @misc` -> account = "misc"
+# recognize an account argument with leading ":"
+account = if not args.first.nil? and args.first[0] == ':'
+            # `spending :misc` -> account = "misc"
             args.shift[1..-1]
           else
             'spending'
