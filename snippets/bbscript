@@ -1,0 +1,17 @@
+#!/usr/bin/env bb
+(ns payee
+  (:require
+    [clojure.java.io :as io]
+    [clojure.string :as string]
+    [clojure.tools.cli :refer [parse-opts]]))
+
+(def cli-options
+  [["-h" "--help" "Print this help text"]])
+
+(defn -main [cli-args]
+  (let [{:keys [arguments options summary]} (parse-opts cli-args cli-options)]
+    (cond
+      (:help options) (println summary)
+      :else (println cli-args))))
+
+(-main *command-line-args*)
