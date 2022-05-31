@@ -398,6 +398,16 @@ fi
 
 
 
+#------
+# Fly.io
+#------
+
+if [[ ! "$PATH" =~ "$HOME/.fly/bin" ]] && [[ -d "$HOME/.fly/bin" ]] ; then
+  export PATH="$HOME/.fly/bin:$PATH"
+fi
+
+
+
 #-------
 # Misc.
 #-------
