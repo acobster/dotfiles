@@ -71,31 +71,31 @@ __ps1_symbol() {
   t=$(date '+%H' | sed 's/^0//')
 
   if [[ $dt == '115' ]] ; then
-    s='🐦 '
+    s='🐦'
   elif [[ $dt == '201' ]] ; then
-    s='🍆 '
+    s='🍆'
   elif [[ $dt == '210' ]] ; then
-    s='🌱 '
+    s='🌱'
   elif [[ $dt == '314' ]] ; then
     s='π'
   elif [[ $dt == '316' ]] ; then
-    s='⚾️ '
+    s='⚾️'
   elif [[ $dt == '317' ]] ; then
-    s='🍀 '
+    s='🍀'
   elif [[ $dt == '422' ]] ; then
     s='🌎 '
   elif [[ $dt == '628' ]] ; then
     s='τ'
   elif [[ $dt == '809' ]] ; then
-    s='🍕 '
+    s='🍕'
   elif [[ $dt == '817' ]] ; then
-    s='💖 '
+    s='💖'
   elif [[ $dt == '1031' ]] ; then
-    s='🎃 '
+    s='🎃'
   elif [[ $dt == '1231' ]] || [[ $dt == '101' ]] ; then
-    s='🎉 '
+    s='🎉'
   elif [[ $dt -gt 1201 ]] ; then
-    s='🎄 '
+    s='🎄'
   else
     s='\$'
   fi
