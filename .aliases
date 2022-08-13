@@ -66,6 +66,7 @@ alias gigs='du . -h | grep "[0-9]\+\(\.[0-9]\+\)G"'
 
 # ID3 tags
 alias ff='ffprobe -show_format -print_format json 2>/dev/null'
+alias id3='id3.clj'
 
 # Git stuff
 if [[ $(which hub) ]]
