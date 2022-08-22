@@ -159,7 +159,7 @@
                     :metadata
                     {:artist (:artist options)
                      :album (:album options)
-                     :track (str (inc idx) "/" track-count)
+                     :track (str track-number "/" track-count)
                      :title (when track-titles
                               (get track-titles (dec track-number)))}})))
              (maybe-sort-by-track-number (:sort options))
