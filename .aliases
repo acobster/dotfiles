@@ -69,11 +69,6 @@ alias ff='ffprobe -show_format -print_format json 2>/dev/null'
 alias id3='id3.clj'
 
 # Git stuff
-if [[ $(which hub) ]]
-then
-  alias git='hub'
-fi
-
 alias g='git'
 alias m='git commit -m'
 alias master='git checkout master'
