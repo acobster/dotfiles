@@ -202,6 +202,10 @@ grepjs() {
   grep --recursive --include='*.js' "$@"
 }
 
+grepscss() {
+  grep --recursive --include='*.scss' "$@"
+}
+
 greptwig() {
   grep --recursive --include='*.twig' "$@"
 }
