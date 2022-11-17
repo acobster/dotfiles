@@ -339,6 +339,7 @@ endfunction
 
 
 command Php r!snip phpclass
+command Pdbtrace r!snip pdbtrace
 command Bashargs r!snip bashargs
 command Hashbash r!snip hashbash
 command Wpcli r!snip wpcli
