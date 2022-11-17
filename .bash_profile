@@ -426,6 +426,18 @@ if [[ -z $(git config --global alias.current-remote-branch) ]] ; then
   git config --global alias.current-remote-branch '!echo origin/$(git current-branch)'
 fi
 
+function containing() {
+  local branch_name="$1"
+  echo branch: $branch_name
+  echo rev: $(git rev-parse $branch_name)
+  git branch --contains $(git rev-parse $branch_name)
+}
+
+# Alias: git containing
+if [[ -z $(git config --global alias.containing) ]] ; then
+  git config --global alias.containing '!rev=$(git rev-parse "${1}" | uniq); git log -1 --oneline "$rev"; git branch --contains "$rev"'
+fi
+
 # Alias: git cr
 if [[ -z $(git config --global alias.cr) ]] ; then
   git config --global alias.cr '!echo origin/$(git current-branch)'
