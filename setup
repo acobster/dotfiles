@@ -36,7 +36,6 @@ usage() {
   echo '  - racket'
   echo '  - ruby'
   echo '  - rust'
-  echo '  - zazu'
   echo
   echo '  EXAMPLES'
   echo
@@ -120,10 +119,6 @@ case $key in
     INSTALL_RACKET=1
     shift # past option
     ;;
-    --zazu)
-    INSTALL_ZAZU=1
-    shift # past option
-    ;;
     --ruby)
     RUBY_VERSION="$2"
     shift # past option
@@ -195,7 +190,6 @@ function main() {
   install_bat
   install_fzf
   install_keybase
-  install_zazu
 
   install_dotfiles
 }
@@ -317,12 +311,6 @@ function install_docker() {
 function install_lando() {
   if [[ -z $(which lando) ]] ; then
     install-lando
-  fi
-}
-
-function install_zazu() {
-  if [[ "$INSTALL_ZAZU" ]] ; then
-    install-zazu
   fi
 }
 
