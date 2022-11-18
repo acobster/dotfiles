@@ -1,35 +1,110 @@
 #!/usr/bin/env bash
 
-if [[ "$(which apt-get)" ]] ; then
-  echo 'installing Linux packages...'
-  sudo apt-get install -y \
-    docker-compose \
-    expect \
-    fonts-firacode \
-    fonts-powerline \
-    gconf-service \
-    gconf-service-backend \
-    gconf2 \
-    git \
-    httpie \
-    inotify-tools \
-    jq \
-    libappindicator1 \
-    libgconf-2-4 \
-    libindicator7 \
-    mariadb-client \
-    mariadb-server \
-    neovim \
-    net-tools \
-    php \
-    php-mbstring \
-    php-mysql \
-    php-xml \
-    silversearcher-ag \
-    tmux \
-    tree \
-    vim \
-    xclip \
-    xdotool \
-    zsh
-fi
+usage() {
+  echo 'usage: $(basename $0) [-h|--help] [--clean]'
+  echo
+  echo '  OPTIONS:'
+  echo
+  echo '  -h|--help   show this help text'
+  echo '  --clean     uninstall packages'
+}
+
+POSITIONAL=()
+while [[ $# -gt 0 ]]
+do
+key="$1"
+
+case $key in
+  -h|--help)
+    # show usage and bail
+    usage
+    exit
+    ;;
+  --clean)
+    UNINSTALL=1
+    shift # past value
+    ;;
+  *)
+    POSITIONAL+=("$1") # save it in an array for later
+    shift # past argument
+    ;;
+esac
+
+done
+set -- "${POSITIONAL[@]}" # restore positional parameters
+
+
+main() {
+  if [[ "$(which apt-get)" ]] ; then
+    if ! [[ $UNINSTALL ]] ; then
+      echo 'installing Linux packages...'
+      sudo apt-get install -y \
+        curl \
+        docker-compose \
+        expect \
+        fonts-firacode \
+        fonts-powerline \
+        gconf-service \
+        gconf-service-backend \
+        gconf2 \
+        git \
+        httpie \
+        inotify-tools \
+        jq \
+        libappindicator1 \
+        libgconf-2-4 \
+        libindicator7 \
+        mariadb-client \
+        mariadb-server \
+        neovim \
+        net-tools \
+        php \
+        php-mbstring \
+        php-mysql \
+        php-xml \
+        silversearcher-ag \
+        tmux \
+        tree \
+        vim \
+        xclip \
+        xdotool \
+        zsh
+    else
+      echo 'UNINSTALLING Linux packages...'
+      sudo apt-get remove \
+        curl \
+        docker-compose \
+        expect \
+        fonts-firacode \
+        fonts-powerline \
+        gconf-service \
+        gconf-service-backend \
+        gconf2 \
+        git \
+        httpie \
+        inotify-tools \
+        jq \
+        libappindicator1 \
+        libgconf-2-4 \
+        libindicator7 \
+        mariadb-client \
+        mariadb-server \
+        neovim \
+        net-tools \
+        php \
+        php-mbstring \
+        php-mysql \
+        php-xml \
+        silversearcher-ag \
+        tmux \
+        tree \
+        vim \
+        xclip \
+        xdotool \
+        zsh
+    fi
+  fi
+}
+
+
+main
