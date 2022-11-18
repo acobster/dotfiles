@@ -2,6 +2,10 @@
 
 set -e
 
+if [[ -d "${HOME}/dotfiles/bin" ]] && ! [[ $PATH =~ "${HOME}/dotfiles/bin:" ]] ; then
+  export PATH=$HOME/dotfiles/bin:$PATH
+fi
+
 if [[ -z "$(which vim)" ]] ; then
   echo Vim not installed...skipping.
 else
