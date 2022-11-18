@@ -46,7 +46,9 @@ else
   echo Setting up Neovim...
   if ! [[ -f $HOME/.config/nvim/init.lua ]] ; then
     echo symlinking ~/.config/nvim/init.lua
-    mkdir -p $HOME/.config/nvim
+    if ! [[ -d $HOME/.config/nvim ]] ; then
+      mkdir -p $HOME/.config/nvim
+    fi
     ln -s $HOME/dotfiles/.config/nvim/init.lua $HOME/.config/nvim/init.lua
   fi
 fi

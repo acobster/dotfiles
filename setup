@@ -165,6 +165,8 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 
 
 function main() {
+  export PATH=$PATH:~/dotfiles/bin
+
   install_repo_updates
   install_packages
 
