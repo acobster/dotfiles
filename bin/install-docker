@@ -6,12 +6,8 @@
 #
 
 sudo apt-get update
-sudo apt-get install -y \
-  apt-transport-https \
-  ca-certificates \
-  curl \
-  gnupg2 \
-  software-properties-common
+sudo apt-get install -y apt-transport-https ca-certificates curl \
+  gnupg2 software-properties-common
 
 # Add Docker’s official GPG key:
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
@@ -36,3 +32,4 @@ sudo apt-get update
 
 sudo apt-get install -y docker-ce
 
+echo $(docker --version) 'is now installed!'
