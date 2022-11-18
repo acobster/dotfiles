@@ -80,10 +80,6 @@ case $key in
     SKIP_DOTFILES=1
     shift # past option
     ;;
-    --skip-bat)
-    SKIP_BAT=1
-    shift # past option
-    ;;
     --skip-node)
     SKIP_NODE=1
     shift # past option
@@ -141,7 +137,6 @@ case $key in
     #
     -N|--no-defaults)
     SKIP_BABASHKA=1
-    SKIP_BAT=1
     SKIP_CLOJURE=1
     SKIP_COMPOSER=1
     SKIP_FZF=1
@@ -189,7 +184,6 @@ function main() {
   install_yarn
 
   # misc
-  install_bat
   install_fzf
   install_keybase
 
@@ -248,17 +242,6 @@ function install_ruby() {
 function install_rust() {
   if [[ "$INSTALL_RUST" ]] ; then
     install-rust
-  fi
-}
-
-function install_bat() {
-  if [[ -z "$(which bat)" ]] && [[ -z "$SKIP_BAT" ]] ; then
-    BAT_VERSION='0.9.0'
-    echo "Installing Bat v${BAT_VERSION}..."
-
-    __deb_install "https://github.com/sharkdp/bat/releases/download/v${BAT_VERSION}/bat_${BAT_VERSION}_amd64.deb"
-
-    echo "Bat is now installed at $(which bat)"
   fi
 }
 
