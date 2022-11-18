@@ -107,7 +107,7 @@ __compose_ps1() {
   MAGENTA='\e[1;35m'
   GREEN='\e[01;32m'
 
-  BOLD='$(tput bold 1)'
+  BOLD='$(tput bold)'
   RESET='$(tput sgr0)'
 
   # Git prompt
