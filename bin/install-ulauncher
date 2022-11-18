@@ -1,56 +1,7 @@
 #!/usr/bin/env bash
 
-
-usage() {
-  echo "usage: $(basename $0) [--force] [-v|--version <version>]"
-  echo
-  echo '  --force : force install even if ulauncher is already installed'
-  echo '  -v|--version : specify a ulauncher version (without the "v", e.g. 5.8.0)'
-}
-
-
-POSITIONAL=()
-while [[ $# -gt 0 ]]
-do
-key="$1"
-
-case $key in
-    -h|--help)
-    # show usage and bail
-    usage
-    exit
-    ;;
-    --force)
-    FORCE='1'
-    shift # past argument
-    ;;
-    -v|--version)
-    VERSION="$2"
-    shift # past argument
-    shift # past value
-    ;;
-    *)
-    POSITIONAL+=("$1") # save it in an array for later
-    shift # past argument
-    ;;
-esac
-
-done
-set -- "${POSITIONAL[@]}" # restore positional parameters
-
-
-#if [[ -z "$FORCE" && $(which ulauncher) ]]
-#then
-#  echo "ulauncher is already installed at $(which ulauncher)"
-#  exit
-#fi
-
-
-VERSION=${VERSION:-'5.8.0'}
-
 echo "installing ulauncher ${VERSION}..."
 
 sudo add-apt-repository ppa:agornostal/ulauncher
-
-curl -o /tmp/ulauncher.deb "https://github.com/Ulauncher/Ulauncher/releases/download/${VERSION}/ulauncher_${VERSION}_all.deb"
-sudo apt install /tmp/ulauncher.deb
+sudo apt-get update
+sudo apt-get install ulauncher
