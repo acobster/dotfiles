@@ -40,10 +40,6 @@ main() {
       echo 'installing Linux packages...'
       sudo apt-get install -y \
         curl \
-        docker-compose \
-        expect \
-        fonts-firacode \
-        fonts-powerline \
         gconf-service \
         gconf-service-backend \
         gconf2 \
@@ -54,14 +50,8 @@ main() {
         libappindicator1 \
         libgconf-2-4 \
         libindicator7 \
-        mariadb-client \
-        mariadb-server \
         neovim \
         net-tools \
-        php \
-        php-mbstring \
-        php-mysql \
-        php-xml \
         silversearcher-ag \
         tmux \
         tree \
@@ -73,10 +63,6 @@ main() {
       echo 'UNINSTALLING Linux packages...'
       sudo apt-get remove \
         curl \
-        docker-compose \
-        expect \
-        fonts-firacode \
-        fonts-powerline \
         gconf-service \
         gconf-service-backend \
         gconf2 \
@@ -87,14 +73,8 @@ main() {
         libappindicator1 \
         libgconf-2-4 \
         libindicator7 \
-        mariadb-client \
-        mariadb-server \
         neovim \
         net-tools \
-        php \
-        php-mbstring \
-        php-mysql \
-        php-xml \
         silversearcher-ag \
         tmux \
         tree \
