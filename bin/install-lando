@@ -2,7 +2,7 @@
 
 set -e
 
-VERSION=${1:-'v3.6.2'}
+VERSION=${1:-'v3.6.4'}
 
 tmp_file="/tmp/lando-${VERSION}.deb"
 
