@@ -41,6 +41,23 @@ ln -s dotfiles/.gitignore .gitignore
 
 `setup` is weird and kinda whack. It should be simpler.
 
+Maybe just [port](https://www.youtube.com/watch?v=ck4J2Faa7Fc) everything to NixOS?
+
 ## TODO
 
 * modularize .bash_profile
+
+### Software to install automatically
+
+* dotfiles
+* Vim
+* FZF
+* Go
+* Keybase
+* Typora
+* Java (JDK 11)
+* Clojure
+* Rust
+* Docker
+* Lando
+* [Misc Linux packages](https://github.com/acobster/dotfiles/blob/main/bin/install-linux-packages)
