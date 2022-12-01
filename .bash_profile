@@ -70,10 +70,7 @@ __ps1_symbol() {
   # same for time
   t=$(date '+%H' | sed 's/^0//')
 
-  if [[ $(hostname) == 'ctamayo-sitecrafting' ]] && [[ $t -gt 16 ]] ; then
-    # LOG YOUR TIME
-    s='🕓 '
-  elif [[ $dt == '314' ]] ; then
+  if [[ $dt == '314' ]] ; then
     s='π'
   elif [[ $dt == '628' ]] ; then
     s='τ'
