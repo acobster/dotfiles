@@ -88,10 +88,14 @@ __ps1_symbol() {
     s='🎄 '
   elif [[ $dt == '809' ]] ; then
     s='🍕 '
+  elif [[ $dt == '817' ]] ; then
+    s='💖 '
   elif [[ $dt == '201' ]] ; then
     s='🍆 '
   elif [[ $dt == '115' ]] ; then
     s='🐦 '
+  elif [[ $dt == '210' ]] ; then
+    s='🌱 '
   else
     s='\$'
   fi
