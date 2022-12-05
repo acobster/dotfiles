@@ -50,7 +50,7 @@ Maybe just [port](https://www.youtube.com/watch?v=ck4J2Faa7Fc) everything to Nix
 ### Software to install automatically
 
 * dotfiles
-* Vim
+* (Neo)vim
 * FZF
 * Go
 * Keybase
@@ -60,4 +60,16 @@ Maybe just [port](https://www.youtube.com/watch?v=ck4J2Faa7Fc) everything to Nix
 * Rust
 * Docker
 * Lando
+* Postgres
 * [Misc Linux packages](https://github.com/acobster/dotfiles/blob/main/bin/install-linux-packages)
+* Balena Etcher
+* VLC
+
+### Nice to have:
+
+* rpi-imager
+* lxd
+* GIMP
+* Gparted
+* VirtualBox or virt-manager
+
