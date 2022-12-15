@@ -83,7 +83,11 @@ __ps1_symbol() {
   elif [[ $dt == '317' ]] ; then
     s='🍀'
   elif [[ $dt == '422' ]] ; then
-    s='🌎 '
+    s='🌎'
+  elif [[ $dt == '528' ]] ; then
+    s='🤓'
+  elif [[ $dt == '624' ]] ; then
+    s='👨'
   elif [[ $dt == '628' ]] ; then
     s='τ'
   elif [[ $dt == '809' ]] ; then
