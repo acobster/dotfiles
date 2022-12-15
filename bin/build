@@ -1,0 +1,57 @@
+#!/bin/sh
+
+usage() {
+  echo "usage: $(basename $0) [-h|--help] COMMAND"
+  echo
+  echo '  COMMANDS:'
+  echo
+  echo '  system'
+  echo '    Build the system according to ~/dotfiles/nixos/system/configuration.nix'
+  echo
+  echo '  OPTIONS:'
+  echo
+  echo '  -h|--help show this help text'
+}
+
+POSITIONAL=()
+while [[ $# -gt 0 ]]
+do
+key="$1"
+
+case $key in
+  -h|--help)
+    # show usage and bail
+    usage
+    exit
+    ;;
+
+  system | user)
+    COMMAND=$1
+    shift # past argument
+    ;;
+
+  *)
+    POSITIONAL+=("$1") # save it in an array for later
+    shift # past argument
+    ;;
+esac
+
+done
+set -- "${POSITIONAL[@]}" # restore positional parameters
+
+
+main() {
+  case $COMMAND in
+    system)
+      local dotfiles_dir="$(dirname $(dirname $0))"
+      nixos-rebuild switch -I nixos-config="$dotfiles_dir/nixos/system/configuration.nix"
+    ;;
+    user)
+      echo TODO
+      exit 1
+    ;;
+  esac
+}
+
+
+main "$@"
