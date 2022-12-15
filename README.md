@@ -51,17 +51,24 @@ Maybe just [port](https://www.youtube.com/watch?v=ck4J2Faa7Fc) everything to Nix
 
 * dotfiles
 * (Neo)vim
+* Git
 * FZF
-* Go
 * Keybase
 * Typora
 * Java (JDK 11)
 * Clojure
+* Babaska
+* silversearcher-ag
+* tmux
+* tree
+* xclip
+* net-tools
+* Go
 * Rust
 * Docker
 * Lando
 * Postgres
-* [Misc Linux packages](https://github.com/acobster/dotfiles/blob/main/bin/install-linux-packages)
+* SQLite
 * Balena Etcher
 * VLC
 
@@ -72,4 +79,10 @@ Maybe just [port](https://www.youtube.com/watch?v=ck4J2Faa7Fc) everything to Nix
 * GIMP
 * Gparted
 * VirtualBox or virt-manager
+* Flameshot?
 
+### Installed, don't know what they do:
+
+* libappindicator1
+* libgconf-2-4
+* libindicator7
