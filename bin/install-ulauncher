@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-echo "installing ulauncher ${VERSION}..."
-
-sudo add-apt-repository ppa:agornostal/ulauncher
-sudo apt-get update
-sudo apt-get install ulauncher
