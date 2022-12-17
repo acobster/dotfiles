@@ -234,9 +234,9 @@ fi
 #----------------
 
 # Load project-specific environment variables
-if ! [[ -z $(which direnv) ]] ; then
-  eval "$(direnv hook bash)"
-fi
+#if ! [[ -z $(which direnv) ]] ; then
+#  eval "$(direnv hook bash)"
+#fi
 
 
 
@@ -259,11 +259,6 @@ fi
 #---------
 # Git
 #---------
-
-# Alias git -> hub
-if [[ $(which hub) ]] ; then
-  alias git='hub'
-fi
 
 # Git completion
 if [ -f ~/dotfiles/git-completion.bash ]; then
