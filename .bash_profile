@@ -58,6 +58,7 @@ __user_host_ps1() {
     | sed 's/acobster@Tomato.domain/🍅/' \
     | sed 's/acobster@CobyTamsMacBook.domain/🍅/' \
     | sed 's/tamayo@toast/🍅/' \
+    | sed 's/tamayo@nixpad/🍅/' \
     | sed 's/tamayo@nixtest/🤓/'
 
   return 0
