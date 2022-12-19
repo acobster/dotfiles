@@ -81,6 +81,8 @@
       # misc
       vlc
       ulauncher
+      protonvpn-gui
+      protonvpn-cli
     ];
   };
 
