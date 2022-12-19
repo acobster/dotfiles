@@ -13,10 +13,6 @@ global_ignore() {
   echo "$1" >> ~/.gitignore
 }
 
-# Grab/push files relative to Git root
-# from/to a configured remote server
-source ~/dotfiles/grab.bash
-
 
 # Vim
 
