@@ -489,6 +489,9 @@ fi
 if [[ -z $(git config --global alias.l) ]] ; then
   git config --global alias.l '!. ~/.githelpers && pretty_git_log'
 fi
+if [[ -z $(git config --global alias.lm) ]] ; then
+  git config --global alias.lm '!. ~/.githelpers && git l master..HEAD'
+fi
 if [[ -z $(git config --global alias.o) ]] ; then
   git config --global alias.o 'log --oneline'
 fi
