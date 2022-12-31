@@ -83,6 +83,11 @@
       protonvpn-gui
       protonvpn-cli
       ulauncher
+
+      # torrent clients
+      webtorrent_desktop
+      nodePackages.webtorrent-cli
+      transmission
     ];
   };
 
