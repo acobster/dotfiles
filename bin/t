@@ -27,6 +27,10 @@ while [[ $# -gt 0 ]] ; do
 			NUM_PANES=2
 			shift # next opt
 			;;
+    -d|--detached)
+			DETACHED="1"
+			shift # next opt
+			;;
     -n|--dry-run)
 			DRY_RUN="1"
 			shift # next opt
@@ -75,10 +79,15 @@ main() {
 		exit
 	fi
 
-	# attempt to attach to an existing session,
-  # initializing a new one if necessary
-	tmux attach -t $SESSION
-  if [[ "$?" != '0' ]] ; then
+  existing_session=$(tmux ls -F '#{session_name}' | grep -e "^${SESSION}\$")
+  if [[ $existing_session ]] ; then
+    if [[ -z "$DETACHED" ]] ; then
+      tmux attach -t "$SESSION"
+    else
+      echo "session ${SESSION} exists"
+      exit
+    fi
+  else
     init_panes
   fi
 }
@@ -112,8 +121,13 @@ function init_panes() {
     send_cmd "$CMD3"
   fi
 
-  # finally, attach to the new session
-  tmux attach-session -t $SESSION
+  # finally, attach to the new session (unless -d was specified)
+  if [[ -z $DETACHED ]] ; then
+    echo detached
+    tmux attach-session -t $SESSION
+  fi
+
+  echo "session ${SESSION} created"
 
 }
 
