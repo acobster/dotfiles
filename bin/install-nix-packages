@@ -20,4 +20,7 @@ nix-env -iA nixpkgs.keybase \
   nixpkgs.gimp \
   nixpkgs.ungoogled-chromium \
   nixpkgs.rpi-imager \
+  nixpkgs.signal-desktop \
+  nixpkgs.discord \
+  nixpkgs.zulip \
   nixpkgs.vlc
