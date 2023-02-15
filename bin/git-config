@@ -285,3 +285,8 @@ fi
 if [[ -z $(git config --global alias.rbi) ]] ; then
   git config --global alias.rbi 'rebase -i'
 fi
+
+# Alias: git sperm
+if [[ -z $(git config --global alias.sperm) ]] ; then
+  git config --global alias.sperm '!git diff -p -R --no-ext-diff --no-color | grep -E "^(diff|(old|new) mode)" --color=never | git apply'
+fi
