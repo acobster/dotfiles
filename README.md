@@ -46,38 +46,49 @@ Maybe just [port](https://www.youtube.com/watch?v=ck4J2Faa7Fc) everything to Nix
 ## TODO
 
 * modularize .bash_profile
+* `Unknown function: plug#begin`
+* install `home-manager`
 
-### Software to install automatically
+### Daily Essentials
 
 * dotfiles
 * (Neo)vim
 * Git
 * FZF
-* Keybase
-* Typora
-* Java (JDK 11)
-* Clojure
-* Babaska
-* silversearcher-ag
 * tmux
+* silversearcher-ag
 * tree
 * xclip
 * net-tools
+* ulauncher
+
+### Languages / databases
+
+* Java (JDK 11)
+* Clojure
+* Babashka
 * Go
 * Rust
-* Docker
-* Lando
 * Postgres
 * SQLite
-* Balena Etcher
+
+### Dev tools
+
+* Docker
+* Lando
+* rpi-imager
+* lxd
+
+### Misc.
+
+* Keybase
+* Typora
 * VLC
-
-### Nice to have:
-
+* Chromium
+* Brave
 * rpi-imager
 * lxd
 * GIMP
-* Gparted
 * VirtualBox or virt-manager
 * Flameshot?
 
