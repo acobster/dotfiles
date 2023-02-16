@@ -16,6 +16,8 @@ nix-env -iA nixpkgs.curl \
 
 # Install misc. software.
 nix-env -iA nixpkgs.keybase \
+  nixpkgs.keybase-gui \
+  nixpkgs.kbfs \
   nixpkgs.brave \
   nixpkgs.gimp \
   nixpkgs.ungoogled-chromium \
