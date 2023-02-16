@@ -22,5 +22,7 @@ nix-env -iA nixpkgs.keybase \
   nixpkgs.rpi-imager \
   nixpkgs.signal-desktop \
   nixpkgs.discord \
+  nixpkgs.dropbox \
+  nixpkgs.syncthing \
   nixpkgs.zulip \
   nixpkgs.vlc
