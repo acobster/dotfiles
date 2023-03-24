@@ -4,27 +4,33 @@
 
 # Install essentials.
 # TODO get neovim working...
-nix-env -iA nixpkgs.curl \
-  nixpkgs.git \
-  nixpkgs.silver-searcher \
-  nixpkgs.tmux \
-  nixpkgs.tree \
-  nixpkgs.vim \
-  nixpkgs.nettools \
-  nixpkgs.xclip \
-  nixpkgs.ulauncher
-
-# Install misc. software.
-nix-env -iA nixpkgs.keybase \
-  nixpkgs.keybase-gui \
-  nixpkgs.kbfs \
+nix-env -iA \
+  nixpkgs.babashka \
   nixpkgs.brave \
-  nixpkgs.gimp \
-  nixpkgs.ungoogled-chromium \
-  nixpkgs.rpi-imager \
-  nixpkgs.signal-desktop \
+  nixpkgs.clojure \
+  nixpkgs.curl \
   nixpkgs.discord \
   nixpkgs.dropbox \
+  nixpkgs.gimp \
+  nixpkgs.git \
+  nixpkgs.nettools \
+  nixpkgs.jdk11 \
+  nixpkgs.python39 \
+  nixpkgs.python39Packages.numpy \
+  nixpkgs.python39Packages.pandas \
+  nixpkgs.python39Packages.pip \
+  nixpkgs.python39Packages.virtualenv \
+  nixpkgs.rpi-imager \
+  nixpkgs.signal-desktop \
+  nixpkgs.silver-searcher \
   nixpkgs.syncthing \
-  nixpkgs.zulip \
-  nixpkgs.vlc
+  nixpkgs.tmux \
+  nixpkgs.tree \
+  nixpkgs.ulauncher \
+  nixpkgs.ungoogled-chromium \
+  nixpkgs.vim \
+  nixpkgs.vlc \
+  nixpkgs.xclip \
+  nixpkgs.youtube-dl \
+  nixpkgs.zoom-us \
+  nixpkgs.zulip
