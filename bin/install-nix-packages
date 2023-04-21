@@ -16,8 +16,6 @@ nix-env -iA \
   nixpkgs.nettools \
   nixpkgs.jdk11 \
   nixpkgs.python39 \
-  nixpkgs.python39Packages.numpy \
-  nixpkgs.python39Packages.pandas \
   nixpkgs.python39Packages.pip \
   nixpkgs.python39Packages.virtualenv \
   nixpkgs.rpi-imager \
