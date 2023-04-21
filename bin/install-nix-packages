@@ -31,6 +31,6 @@ nix-env -iA \
   nixpkgs.vim \
   nixpkgs.vlc \
   nixpkgs.xclip \
-  nixpkgs.youtube-dl \
+  nixpkgs.yt-dlp \
   nixpkgs.zoom-us \
   nixpkgs.zulip
