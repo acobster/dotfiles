@@ -15,6 +15,8 @@ nix-env -iA \
   nixpkgs.git \
   nixpkgs.nettools \
   nixpkgs.jdk11 \
+  nixpkgs.ledger \
+  nixpkgs.ledger-web \
   nixpkgs.python39 \
   nixpkgs.python39Packages.pip \
   nixpkgs.python39Packages.virtualenv \
