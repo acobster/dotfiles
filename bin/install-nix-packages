@@ -10,7 +10,7 @@ nix-env -iA \
   nixpkgs.clojure \
   nixpkgs.curl \
   nixpkgs.discord \
-  nixpkgs.dropbox \
+  nixpkgs.ffmpeg \
   nixpkgs.gimp \
   nixpkgs.git \
   nixpkgs.nettools \
