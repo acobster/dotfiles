@@ -725,4 +725,8 @@ fi
 # Misc.
 #-------
 
-export EDITOR=nvim
+if [[ $(hostname) = 'devbox-frontend' ]]; then
+  export EDITOR=vim
+else
+  export EDITOR=nvim
+fi
