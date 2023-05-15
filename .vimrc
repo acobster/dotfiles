@@ -58,6 +58,7 @@ Plug 'ap/vim-css-color'
 
 " Navigation
 Plugin 'wesQ3/vim-windowswap' " ,ww for swapping buffers
+Plugin 'junegunn/fzf' " the best file search
 Plugin 'junegunn/fzf.vim' " the best file search
 
 " Undo
