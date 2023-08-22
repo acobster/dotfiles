@@ -98,6 +98,10 @@ alias up='docker-compose up -d'
 # Sublime shortcuts
 alias sp='subl *.sublime-project'
 
+# Switch solarized theme
+alias dark='export SOLARIZED_THEME=dark'
+alias light='export SOLARIZED_THEME=light'
+
 if [[ $(which pbcopy) ]] ; then
   alias x='pbcopy'
 fi
