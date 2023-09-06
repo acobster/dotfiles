@@ -133,6 +133,8 @@ __compose_ps1() {
     git_prompt="\$(echo $git_prompt | sed 's/feature\\//✔ /')"
     git_prompt="\$(echo $git_prompt | sed 's/experiment\\//🔬 /')"
     git_prompt="\$(echo $git_prompt | sed 's/bugfix\\//🐛 /')"
+    git_prompt="\$(echo $git_prompt | sed 's/hotfix\\//🐛 /')"
+    git_prompt="\$(echo $git_prompt | sed 's/refactor\\//𝚫 /')"
     git_prompt="\$(echo $git_prompt | sed 's/test\\//❔ /')"
   fi
 
