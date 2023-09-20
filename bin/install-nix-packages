@@ -14,7 +14,7 @@ nix-env -iA \
   nixpkgs.gimp \
   nixpkgs.git \
   nixpkgs.nettools \
-  nixpkgs.jdk11 \
+  nixpkgs.jdk17 \
   nixpkgs.ledger \
   nixpkgs.ledger-web \
   nixpkgs.python39 \
