@@ -65,9 +65,13 @@
                   :title maybe-title}
                  {:title maybe-artist}))))
 
+(defn- quoted [ss]
+  (str "'" (apply str ss) "'"))
+
 ;; ffmpeg -i Track\ 2.wav -map 0 -write_id3v2 1 -metadata 'artist=Mark Isham' -metadata 'album=Tibet' -metadata 'track=2/5' -metadata 'title=Part II' -y 02.flac
 (defn- convert [{:keys [in
                         metadata
+                        metadata-args
                         dir
                         output-format
                         number-tracks?
@@ -86,6 +90,8 @@
                     (concat opts ["-metadata" [(name k) "=" v]])
                     opts))
                 [] metadata)
+        metadata-args
+        (interleave (repeat "-metadata") (map quoted metadata-args))
         out (output-name in {:dir dir
                              :ext (name (or output-format "flac"))
                              :number-tracks? number-tracks?
@@ -95,11 +101,9 @@
         command (concat
                   ["ffmpeg" "-y" "-i" [in] "-map" "0" "-write_id3v2" "1"]
                   metadata-opts
+                  metadata-args
                   [out])]
     command))
-
-(defn- quoted [ss]
-  (str "'" (apply str ss) "'"))
 
 (defn- run-commands! [run? cmds]
   (doseq [cmd cmds]
@@ -125,6 +129,19 @@
     :default :flac]
    ["-d" "--dir DIR" "destination directory"
     :default "."]
+   ["-m" "--metadata DATA" "Specify a `-metadata` arg to all underlying ffmpeg commands"
+    :multi true
+    :default []
+    :update-fn conj]
+   ;; File can look like:
+   ;; Name of Track 1
+   ;; Name of Track 2
+   ;; ...
+   ;;
+   ;; OR:
+   ;; Artist 1 -  Name of Track 1
+   ;; Artist 2 -  Name of Track 2
+   ;; ...
    ["-t" "--tracks-file example.txt" "Tracks file (track titles, in order)"
     :validate [(comp boolean slurp) "File not found"]]])
 
@@ -161,7 +178,8 @@
                      :album (:album options)
                      :track (str track-number "/" track-count)
                      :title (when track-titles
-                              (get track-titles (dec track-number)))}})))
+                              (get track-titles (dec track-number)))}
+                    :metadata-args (:metadata options)})))
              (maybe-sort-by-track-number (:sort options))
              (map convert)
              (run-commands! (not (:dry-run options))))))))
