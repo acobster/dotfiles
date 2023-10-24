@@ -214,6 +214,10 @@ grepless() {
   grep --recursive --include='*.less' "$@"
 }
 
+grepyaml() {
+  grep --recursive --include='*.yaml' --include='*.yml' "$@"
+}
+
 psgrep() {
   ps aux | grep -i $1 | grep -v grep
 }
