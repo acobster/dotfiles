@@ -172,6 +172,10 @@ grepcljx() {
   grep --recursive --include='*.clj' --include='*.cljs' --include='*.cljc' "$@"
 }
 
+grepcljxe() {
+  grep --recursive --include='*.clj' --include='*.cljs' --include='*.cljc' --include='*.edn' "$@"
+}
+
 grepclj() {
   grep --recursive --include='*.clj' "$@"
 }
@@ -186,6 +190,10 @@ grepcljs() {
 
 grepy() {
   grep --recursive --include='*.py' "$@"
+}
+
+grepmd() {
+  grep --recursive --include='*.md' "$@"
 }
 
 grephp() {
