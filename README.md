@@ -52,9 +52,9 @@ Maybe just [port](https://www.youtube.com/watch?v=ck4J2Faa7Fc) everything to Nix
 ### Daily Essentials
 
 * dotfiles
-* (Neo)vim
-* Git
-* FZF
+* neovim
+* git
+* fzf
 * tmux
 * silversearcher-ag
 * tree
@@ -68,29 +68,23 @@ Maybe just [port](https://www.youtube.com/watch?v=ck4J2Faa7Fc) everything to Nix
 * Clojure
 * Babashka
 * Go
-* Rust
-* Postgres
 * SQLite
 
 ### Dev tools
 
 * Docker
-* Lando
 * rpi-imager
 * lxd
 
 ### Misc.
 
 * Keybase
-* Typora
 * VLC
 * Chromium
 * Brave
-* rpi-imager
-* lxd
 * GIMP
-* VirtualBox or virt-manager
-* Flameshot?
+* virt-manager
+* qemu-kvm
 
 ### Installed, don't know what they do:
 
