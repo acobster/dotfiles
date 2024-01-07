@@ -420,17 +420,3 @@ fi
 if [[ ! "$PATH" =~ "$HOME/.fly/bin" ]] && [[ -d "$HOME/.fly/bin" ]] ; then
   export PATH="$HOME/.fly/bin:$PATH"
 fi
-
-
-
-#-------
-# Misc.
-#-------
-
-if [[ "$(which nvim)" ]] ; then
-  export EDITOR=nvim
-elif [[ "$(which vim)" ]] ; then
-  export EDITOR=vim
-else
-  export EDITOR=vi
-fi
