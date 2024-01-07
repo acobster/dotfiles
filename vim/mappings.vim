@@ -57,8 +57,8 @@ vnoremap <silent> <Enter> :EasyAlign<cr>
 imap <c-b><c-i> if [[ X ]] ; then<cr><cr>fi<esc><<kkfXs
 
 " Search config
-nmap <leader>ff :Files<cr>
-nmap <leader>ag :Ag<cr>
+"nmap <leader>ff :Files<cr>
+"nmap <leader>ag :Ag<cr>
 
 let g:fzf_action = {
   \ 'ctrl-k': 'vsplit',
