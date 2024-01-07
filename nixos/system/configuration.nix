@@ -119,7 +119,7 @@
     xclip
     nettools
     lua
-    steam
+    steam # TODO
   ];
 
   # https://nixos.wiki/wiki/Steam
