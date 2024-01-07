@@ -106,6 +106,15 @@
     xclip
     nettools
     lua
+    steam
+    ulauncher
+  ];
+
+  # https://nixos.wiki/wiki/Steam
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
+    "steam"
+    "steam-original"
+    "steam-run"
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
