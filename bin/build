@@ -49,6 +49,10 @@ main() {
     user)
       home-manager switch --flake "$dotfiles_dir/#tamayo"
     ;;
+    *)
+      usage
+      exit 1
+    ;;
   esac
 }
 

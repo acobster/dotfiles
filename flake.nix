@@ -20,7 +20,7 @@
     homeConfigurations = {
       tamayo = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-	modules = [ ./nixos/home-manager/tamayo.nix ];
+	modules = [ ./tamayo.nix ];
       };
     };
 
