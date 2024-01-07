@@ -10,25 +10,17 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs:
+  outputs = { nixpkgs, home-manager, ... }:
   let
     system = "x86_64-linux";
-    pkgs = import nixpkgs {
-      inherit system;
-      config = {
-        allowUnfree = true;
-      };
-    };
+    pkgs = nixpkgs.legacyPackages.${system};
   in
   {
 
-    nixosConfigurations = {
-      tamayo = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs system; };
-
-        modules = [
-          ./nixos/system/configuration.nix
-        ];
+    homeConfigurations = {
+      tamayo = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+	modules = [ ./nixos/home-manager/tamayo.nix ];
       };
     };
 
