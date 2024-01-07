@@ -44,7 +44,7 @@ main() {
   case $COMMAND in
     system)
       local dotfiles_dir="$(dirname $(dirname $0))"
-      nixos-rebuild switch -I nixos-config="$dotfiles_dir/nixos/system/configuration.nix"
+      sudo nixos-rebuild switch -I nixos-config="$dotfiles_dir/nixos/system/configuration.nix"
     ;;
     user)
       echo TODO
