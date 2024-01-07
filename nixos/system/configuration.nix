@@ -2,14 +2,24 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
+      # TODO access to absolute path ... is forbidden in pure eval mode
       /etc/nixos/hardware-configuration.nix
       /etc/nixos/local.nix
+      # Home Manager
+      inputs.home-manager.nixosModules.home-manager
     ];
+
+  home-manager = {
+    extraSpecialArgs = { inherit inputs; };
+    users = {
+      tamayo = import ../home-manager/tamayo.nix;
+    };
+  };
 
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
