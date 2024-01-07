@@ -19,6 +19,72 @@
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
 
+    neovim = {
+      enable = true;
+      viAlias = true;
+      vimAlias = true;
+      vimdiffAlias = true;
+
+      # TODO convert to Lua...
+      extraConfig = ''
+        ${builtins.readFile ./vim/common.vim}
+        ${builtins.readFile ./vim/color.vim}
+        ${builtins.readFile ./vim/syntastic.vim}
+        ${builtins.readFile ./vim/racket.vim}
+        ${builtins.readFile ./vim/mappings.vim}
+      '';
+
+      extraLuaConfig = ''
+        ${builtins.readFile ./vim/init.lua}
+      '';
+
+      plugins = with pkgs.vimPlugins; [
+
+        # Fuzzy Finder
+        telescope-nvim
+        telescope-fzf-native-nvim
+
+        # Sessions
+        vim-obsession
+
+        # Clojure
+        conjure
+        vim-fireplace
+        # TODO clojure-lsp ?
+        # clojure-vim/clojure.vim
+        vim-clojure-static
+        vim-sexp
+        rainbow
+
+        # TODO orgmode ?
+        # https://github.com/nvim-orgmode/orgmode/
+
+        # Formatting
+        vim-easy-align
+        vim-trailing-whitespace
+
+        # Git
+        vim-gitgutter
+
+        # Color
+        vim-colors-solarized
+
+        # Navigation
+        vim-windowswap
+
+        # Syntax
+        # TODO explore syntastic -> ale ?
+        vim-json
+        (nvim-treesitter.withPlugins (p: [
+          p.tree-sitter-bash
+          p.tree-sitter-lua
+          p.tree-sitter-nix
+          p.tree-sitter-python
+          p.tree-sitter-vim
+        ]))
+      ];
+    };
+
     git = {
       enable = true;
       userName = "Coby Tamayo";
