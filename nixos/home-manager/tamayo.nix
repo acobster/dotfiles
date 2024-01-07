@@ -78,6 +78,7 @@
         l8 = "!. ~/.githelpers && pretty_git_log -8";
         l9 = "!. ~/.githelpers && pretty_git_log -9";
         l10 = "!. ~/.githelpers && pretty_git_log -10";
+        sperm = "!git diff -p -R --no-ext-diff --no-color | grep -E '^(diff|(old|new) mode)' --color=never | git apply";
       };
     };
   };
