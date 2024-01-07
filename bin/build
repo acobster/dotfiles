@@ -41,14 +41,13 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 
 
 main() {
+  local dotfiles_dir="$(dirname $(dirname $0))"
   case $COMMAND in
     system)
-      local dotfiles_dir="$(dirname $(dirname $0))"
       sudo nixos-rebuild switch -I nixos-config="$dotfiles_dir/nixos/system/configuration.nix"
     ;;
     user)
-      echo TODO
-      exit 1
+      home-manager switch --flake "$dotfiles_dir/#tamayo"
     ;;
   esac
 }
