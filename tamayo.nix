@@ -4,6 +4,8 @@
   home.username = "tamayo";
   home.homeDirectory = "/home/tamayo";
 
+  home.file.".bashrc".source = ./.bash_profile;
+
   home.packages = [
     pkgs.cowsay
     pkgs.lolcat
