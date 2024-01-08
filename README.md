@@ -7,7 +7,16 @@
     * syntastic
     * racket
 * port vim config to Lua
-* .bash_profile/.bashrc
+* Lando?
+* configure Git completions
+* fzf bash history
+* Keybase
+* Docker
+* Setup environmnets:
+    * Toast
+    * Generic server
+    * Plex
+    * Concierge
 
 ### Daily Essentials
 
