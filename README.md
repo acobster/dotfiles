@@ -17,6 +17,7 @@
     * Generic server
     * Plex
     * Concierge
+* Configure Ulauncher
 
 ### Daily Essentials
 
