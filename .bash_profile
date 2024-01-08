@@ -149,35 +149,12 @@ __compose_ps1
 # PATH
 #---------
 
-if [[ -d "${HOME}/apps" ]] && ! [[ $PATH =~ "${HOME}/apps:" ]] ; then
-  export PATH=$HOME/apps:$PATH
-fi
-
 if [[ -d "$HOME/bin" ]] && ! [[ $PATH =~ ":${HOME}\/bin:" ]] ; then
   export PATH=~/bin:$PATH
 fi
 
-if [[ -d "/usr/local/mysql/bin" ]] && ! [[ $PATH =~ ":mysql\/bin:" ]] ; then
-  export PATH=/usr/local/mysql/bin:$PATH
-fi
-
 if [[ ! $PATH =~ "dotfiles/bin:" ]] ; then
   export PATH=$HOME/dotfiles/bin:$PATH
-fi
-
-# https://docs.radicle.xyz/docs/getting-started
-if [[ -d "${HOME}/.radicle/bin" ]] && ! [[ $PATH =~ "${HOME}/.radicle/bin:" ]] ; then
-  export PATH=$HOME/.radicle/bin:$PATH
-fi
-
-
-
-#----------
-# Binaries
-#----------
-
-if [[ -f /System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc ]] && ! [[ -f $HOME/dotfiles/bin/jsc ]] ; then
-  ln -s /System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc $HOME/dotfiles/bin/jsc
 fi
 
 
@@ -201,12 +178,12 @@ fi
 #---------
 
 # Load common aliases
-if [ -f ~/dotfiles/.aliases ] ; then
+if [[ -f ~/dotfiles/.aliases ]] ; then
 	source ~/dotfiles/.aliases
 fi
 
 # Load machine-specific aliases, too!
-if [ -f ~/.aliases ] ; then
+if [[ -f ~/.aliases ]] ; then
   source ~/.aliases
 fi
 
@@ -234,27 +211,16 @@ fi
 
 
 #----------------
-# Direnv
-#----------------
-
-# Load project-specific environment variables
-#if ! [[ -z $(which direnv) ]] ; then
-#  eval "$(direnv hook bash)"
-#fi
-
-
-
-#----------------
 # Bash functions
 #----------------
 
 # Load common functions
-if [ -f ~/dotfiles/.functions ] ; then
+if [[ -f ~/dotfiles/.functions ]] ; then
   source ~/dotfiles/.functions
 fi
 
 # Load machine-specific functions
-if [ -f ~/.functions ] ; then
+if [[ -f ~/.functions ]] ; then
   source ~/.functions
 fi
 
@@ -265,7 +231,7 @@ fi
 #---------
 
 # Git completion
-if [ -f ~/dotfiles/git-completion.bash ]; then
+if [[ -f ~/dotfiles/git-completion.bash ]]; then
 	source ~/dotfiles/git-completion.bash
 fi
 
@@ -305,118 +271,3 @@ shopt -s histappend
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
-
-
-
-#--------------
-# Python/Pyenv
-#--------------
-
-if [[ !  "$PATH" =~ "$PYENV_ROOT/shims" ]] && [[ -d ~/.pyenv ]] ; then
-	export PYENV_ROOT="$HOME/.pyenv"
-	export PATH="$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH"
-fi
-
-
-
-#---------
-# WP CLI
-#---------
-
-if [[ -f ~/dotfiles/wp-completion.bash ]] ; then
-	source ~/dotfiles/wp-completion.bash
-fi
-
-
-
-#-----------------
-# Global Composer
-#-----------------
-
-if [[ !  "$PATH" =~ "$HOME/vendor/bin" ]] && [[ -d "$HOME/vendor/bin" ]] ; then
-  export PATH="$PATH:$HOME/vendor/bin"
-fi
-
-
-
-#------
-# Ruby
-#------
-
-# set up rbenv shims
-if [[ !  "$PATH" =~ ".rbenv/bin" ]] && [[ -d ~/.rbenv/bin ]] ; then
-  export PATH="$HOME/.rbenv/bin:$PATH"
-fi
-
-# initialize rbenv
-if [[ ! "$PATH" =~ ".rbenv/shims" ]] && [[ -d $HOME/.rbenv/shims ]] ; then
-  export PATH="$HOME/.rbenv/shims:$PATH"
-fi
-
-
-
-#--------
-# Golang
-#--------
-
-if [[ -d /usr/local/go ]] ; then
-  export GOROOT='/usr/local/go'
-
-  if [[ ! "$PATH" =~ "/usr/local/go/bin:" ]] ; then
-    export PATH="/usr/local/go/bin:$PATH"
-  fi
-fi
-
-if [[ -d "${HOME}/go" ]] ; then
-  export GOPATH="${HOME}/go"
-
-  if [[ ! "$PATH" =~ "{$HOME}/go/bin:" ]] ; then
-    export PATH="${HOME}/go/bin:$PATH"
-  fi
-fi
-
-
-
-#--------
-# Google
-#--------
-
-# Update PATH for the Google Cloud SDK.
-if [[ -f "$HOME/google-cloud-sdk/path.bash.inc" ]] ; then
-  source "$HOME/google-cloud-sdk/path.bash.inc"
-fi
-
-# Enable shell command completion for gcloud.
-if [[ -f "$HOME/google-cloud-sdk/completion.bash.inc" ]] ; then
-  source "$HOME/google-cloud-sdk/completion.bash.inc"
-fi
-
-
-
-#------
-# NVM
-#------
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-
-
-#------
-# Rust
-#------
-
-if [[ ! "$PATH" =~ "cargo/bin" ]] && [[ -d $HOME/.cargo/bin ]] ; then
-  export PATH="$HOME/.cargo/bin:$PATH"
-fi
-
-
-
-#------
-# Fly.io
-#------
-
-if [[ ! "$PATH" =~ "$HOME/.fly/bin" ]] && [[ -d "$HOME/.fly/bin" ]] ; then
-  export PATH="$HOME/.fly/bin:$PATH"
-fi
