@@ -56,16 +56,6 @@ vnoremap <silent> <Enter> :EasyAlign<cr>
 " bash text completion
 imap <c-b><c-i> if [[ X ]] ; then<cr><cr>fi<esc><<kkfXs
 
-" Search config
-"nmap <leader>ff :Files<cr>
-"nmap <leader>ag :Ag<cr>
-
-let g:fzf_action = {
-  \ 'ctrl-k': 'vsplit',
-  \ 'ctrl-l': 'tab split' }
-
-let g:fzf_layout = { 'window': 'split enew' }
-
 " Project path stuff
 cmap ~vs ~/.vim/session/
 
@@ -160,6 +150,9 @@ nnoremap <leader>uc 3scre<esc>
 " 'true'/'false' replacements
 nnoremap <leader>tf 4sfalse<esc>
 nnoremap <leader>ft 5strue<esc>
+" 'True'/'False' replacements
+nnoremap <leader>TF 4sFalse<esc>
+nnoremap <leader>FT 5sTrue<esc>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

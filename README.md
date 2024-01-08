@@ -2,8 +2,12 @@
 
 ## TODO
 
-* Neovim: `Unknown function: plug#begin`
-* modularize .bash_profile (?)
+* audit vim config
+    * color
+    * syntastic
+    * racket
+* port vim config to Lua
+* .bash_profile/.bashrc
 
 ### Daily Essentials
 
