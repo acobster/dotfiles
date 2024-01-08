@@ -81,9 +81,11 @@
       babashka
 
       # misc
+      gnome.gnome-terminal
       vlc
       protonvpn-gui
       protonvpn-cli
+      ripgrep
       ulauncher
 
       # torrent clients
