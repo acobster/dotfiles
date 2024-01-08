@@ -5,6 +5,7 @@
   home.homeDirectory = "/home/tamayo";
 
   home.file.".bashrc".source = ./.bash_profile;
+  home.file.".bash_profile".source = ./.bash_profile;
 
   home.packages = [
     pkgs.cowsay
