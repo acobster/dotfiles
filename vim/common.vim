@@ -51,7 +51,7 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd BufNewFile,BufRead *.dat set filetype=ledger
 
 " Shell behavior
-set shell=/bin/bash\ -i
+set shell=/usr/bin/env\ bash\ -i
 
 " Toggle paste mode easily
 " Useful for pasting code without autoformatting
