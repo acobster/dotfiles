@@ -19,6 +19,7 @@
     * Plex
     * Concierge
 * Configure Ulauncher
+* Manage Steam with home-manager?
 
 ### Daily Essentials
 
