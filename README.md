@@ -10,6 +10,7 @@
 * Lando?
 * configure Git completions
 * fzf bash history
+* GNOME Dock
 * Keybase
 * Docker
 * Setup environmnets:
