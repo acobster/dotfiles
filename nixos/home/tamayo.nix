@@ -4,17 +4,16 @@
   home.username = "tamayo";
   home.homeDirectory = "/home/tamayo";
 
-  home.file.".bashrc".source = ./.bash_profile;
-  home.file.".bash_profile".source = ./.bash_profile;
-
-  home.packages = [
-    pkgs.cowsay
-    pkgs.lolcat
-  ];
+  home.file.".bashrc".source = ../../.bash_profile;
+  home.file.".bash_profile".source = ../../.bash_profile;
 
   home.sessionVariables = {
     EDITOR = "nvim";
   };
+
+  imports = [
+    ./modules/misc.nix
+  ];
 
   home.stateVersion = "22.11";
 
@@ -30,15 +29,15 @@
 
       # TODO convert to Lua...
       extraConfig = ''
-        ${builtins.readFile ./vim/common.vim}
-        ${builtins.readFile ./vim/color.vim}
-        ${builtins.readFile ./vim/syntastic.vim}
-        ${builtins.readFile ./vim/racket.vim}
-        ${builtins.readFile ./vim/mappings.vim}
+        ${builtins.readFile ./modules/vim/common.vim}
+        ${builtins.readFile ./modules/vim/color.vim}
+        ${builtins.readFile ./modules/vim/syntastic.vim}
+        ${builtins.readFile ./modules/vim/racket.vim}
+        ${builtins.readFile ./modules/vim/mappings.vim}
       '';
 
       extraLuaConfig = ''
-        ${builtins.readFile ./vim/init.lua}
+        ${builtins.readFile ./modules/vim/init.lua}
       '';
 
       plugins = with pkgs.vimPlugins; [
