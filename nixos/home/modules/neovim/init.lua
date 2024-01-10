@@ -20,7 +20,7 @@ vim.keymap.set('n', '<leader>ag', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
-local mapping_table = {
+local finder = {
   mappings = {
     i = {
       ["<C-L>"] = "select_tab",
@@ -30,10 +30,13 @@ local mapping_table = {
 }
 require('telescope').setup {
   pickers = {
-    find_files = mapping_table,
-    live_grep  = mapping_table,
-    buffers    = mapping_table,
-    help_tags  = mapping_table,
+    find_files = {
+      hidden = true,
+      mappings = finder['mappings'],
+    },
+    live_grep  = finder,
+    buffers    = finder,
+    help_tags  = finder,
   },
 }
 
