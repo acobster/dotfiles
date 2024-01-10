@@ -31,7 +31,7 @@ local finder = {
 require('telescope').setup {
   pickers = {
     find_files = {
-      hidden = true,
+      hidden   = true,
       mappings = finder['mappings'],
     },
     live_grep  = finder,
