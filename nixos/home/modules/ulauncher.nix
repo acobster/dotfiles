@@ -1,3 +1,5 @@
+# https://discourse.nixos.org/t/ulauncher-and-the-debugging-journey/13141/4
+# https://github.com/AlexNabokikh/nix-config/blob/master/home/modules/ulauncher.nix
 { pkgs, ... }:
 
 {
@@ -21,16 +23,19 @@
     ulauncher
   ];
 
-  # https://discourse.nixos.org/t/ulauncher-and-the-debugging-journey/13141/4
   systemd.user.services.ulauncher = {
-    enable = true;
-    description = "Start Ulauncher";
-    script = "${pkgs.ulauncher}/bin/ulauncher --hide-window";
-    wantedBy = [ "graphical-session.target" ];
-    partOf = [ "graphical-session.target" ];
-    after = [ "display-manager.service" ];
-    serviceConfig = {
-      Restart = "on-failure";
+    Unit = {
+      Description = "Start Ulauncher";
+      Documentation = "https://ulauncher.io";
+      PartOf = [ "graphical-session.target" ];
     };
+
+    Service = {
+      Type = "simple";
+      ExecStart = "${pkgs.ulauncher}/bin/ulauncher --hide-window";
+      Restart = "always";
+    };
+
+    Install.WantedBy = [ "graphical-session.target" ];
   };
 }
