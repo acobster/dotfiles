@@ -1,5 +1,5 @@
 #!/usr/bin/env bb
-(ns payee
+(ns program
   (:require
     [clojure.java.io :as io]
     [clojure.string :as string]
