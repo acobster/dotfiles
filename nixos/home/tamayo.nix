@@ -6,6 +6,7 @@
 
   imports = [
     ./modules/bash.nix
+    ./modules/direnv.nix
     ./modules/keybase.nix
     ./modules/misc.nix
     ./modules/neovim.nix
