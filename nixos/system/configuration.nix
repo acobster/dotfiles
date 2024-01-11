@@ -9,8 +9,7 @@
 
   imports =
     [
-      # TODO get ext4 labels working...
-      /etc/nixos/hardware-configuration.nix
+      ./hardware-configuration.nix
     ];
 
   # Enable flakes
