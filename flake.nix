@@ -14,6 +14,7 @@
   let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
+    lib = nixpkgs.lib;
   in
   {
 
@@ -21,6 +22,15 @@
       tamayo = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [ ./nixos/home/tamayo.nix ];
+      };
+    };
+
+    nixosConfigurations = {
+      nixpad = lib.nixosSystem {
+        inherit system;
+        modules = [
+          ./nixos/system/configuration.nix
+        ];
       };
     };
 
