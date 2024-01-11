@@ -44,7 +44,8 @@ main() {
   local dotfiles_dir="$(dirname $(dirname $0))"
   case $COMMAND in
     system)
-      sudo nixos-rebuild switch -I nixos-config="$dotfiles_dir/nixos/system/configuration.nix"
+      # `/#` defaults to hostname
+      sudo nixos-rebuild switch --flake "$dotfiles_dir/#"
     ;;
     user)
       home-manager switch --flake "$dotfiles_dir/#tamayo"
