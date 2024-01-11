@@ -2,6 +2,7 @@
 
 ## TODO
 
+* Home manager version??
 * audit vim config
     * color
     * syntastic
@@ -21,7 +22,7 @@
 * Configure Ulauncher
 * Manage Steam with home-manager?
 
-### Daily Essentials
+### ✅ Daily Essentials
 
 * dotfiles
 * neovim
@@ -34,7 +35,7 @@
 * net-tools
 * ulauncher
 
-### Languages / databases
+### ƛ Languages / databases
 
 * Java (JDK 11)
 * Clojure
@@ -42,24 +43,14 @@
 * Go
 * SQLite
 
-### Dev tools
+### 🤷 Misc.
 
-* Docker
 * rpi-imager
-* lxd
-
-### Misc.
-
 * Keybase
 * VLC
-* Chromium
+* Ungoogled Chromium
 * Brave
 * GIMP
-* virt-manager
-* qemu-kvm
-
-### Installed, don't know what they do:
-
-* libappindicator1
-* libgconf-2-4
-* libindicator7
+* Zoom
+* Discord
+* Zulip
