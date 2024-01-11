@@ -29,7 +29,8 @@
       nixpad = lib.nixosSystem {
         inherit system;
         modules = [
-          ./nixos/system/configuration.nix
+          ./nixos/system/nixpad.nix
+          ./nixos/system/common.nix
         ];
       };
     };
