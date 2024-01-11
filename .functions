@@ -110,22 +110,6 @@ pantheon() {
 
 
 
-#-----------------------------------------------------
-# Run arbitrary commands in a running Vagrant machine
-#-----------------------------------------------------
-
-# vagrant cmd
-vc() {
-  vagrant ssh -c "$1"
-}
-
-# run wp cmd $2 in dir $1
-vwp() {
-  vagrant ssh -c "cd $1 && wp $2"
-}
-
-
-
 #--------------------
 # Assorted functions
 #--------------------
@@ -156,16 +140,8 @@ backup() {
   cp $1 $1.bak
 }
 
-h() {
-  history | grep $1
-}
-
 mc() {
   mkdir -p $1 && cd $1
-}
-
-sql() {
-  mysql -u root -p $1
 }
 
 grepcljx() {
@@ -242,13 +218,4 @@ portgrep() {
 
 grepkill() {
   ps aux | grep $1 | grep -v grep | kill `awk '{print $2}'`
-}
-
-killzeus() {
-  grepkill zeus
-  rm .zeus.sock
-}
-
-mysql-src() {
-  mysql -u root -p $2 < $1
 }
