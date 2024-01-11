@@ -2,7 +2,6 @@
 
 ## TODO
 
-* Home manager version??
 * audit vim config
     * color
     * syntastic
