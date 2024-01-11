@@ -84,19 +84,19 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    home-manager
-    vim
-    neovim
-    wget
-    git
     fzf
-    tmux
-    silver-searcher
-    tree
-    xclip
-    nettools
+    git
+    home-manager
     lua
-    steam # TODO
+    neovim
+    nettools
+    silver-searcher
+    steam
+    tmux
+    tree
+    vim
+    wget
+    xclip
   ];
 
   # https://nixos.wiki/wiki/Steam
