@@ -1,8 +1,13 @@
 { pkgs, ... }:
 
 {
-  home.packages = [
-    pkgs.cowsay
-    pkgs.lolcat
+  home.packages = with pkgs; [
+    cowsay
+    lolcat
+    discord
+  ];
+
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
+    "discord"
   ];
 }
