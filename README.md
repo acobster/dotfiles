@@ -9,17 +9,14 @@
 * port vim config to Lua
 * Lando?
 * configure Git completions
-* fzf bash history
 * GNOME Dock
 * Keybase
-* Docker
+* Direnv
 * Setup environmnets:
     * Toast
     * Generic server
     * Plex
     * Concierge
-* Configure Ulauncher
-* Manage Steam with home-manager?
 
 ### ✅ Daily Essentials
 
