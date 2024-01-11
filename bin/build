@@ -47,7 +47,7 @@ main() {
       # `/#` defaults to hostname
       sudo nixos-rebuild switch --flake "$dotfiles_dir/#"
     ;;
-    user)
+    home)
       home-manager switch --flake "$dotfiles_dir/#tamayo"
     ;;
     *)
