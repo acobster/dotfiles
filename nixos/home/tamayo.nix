@@ -9,6 +9,7 @@
     ./modules/misc.nix
     ./modules/neovim.nix
     ./modules/git.nix
+    #./modules/ulauncher.nix
   ];
 
   # Let Home Manager install and manage itself.
