@@ -31,7 +31,6 @@ alias fn='vim ~/.functions'
 alias svb='vim ~/dotfiles/.bash_profile'
 alias vb='vim ~/.bash_profile'
 alias vimrc='vim ~/.vimrc'
-alias zazurc='vim ~/.zazurc.json'
 alias dtf='cd ~/dotfiles'
 alias dtfbin='cd ~/dotfiles/bin'
 alias x='xclip -selection clipboard'
@@ -39,16 +38,14 @@ alias la='ls -la'
 alias lah='ls -lah'
 alias lz='ls -Z'
 alias drop='cd ~/Dropbox'
-alias vs='vagrant ssh'
 alias v='vim'
 alias vimsess='ls ~/.vim/session'
+alias vs='vimsess'
 alias kb='keybase'
 alias r='reload'
 alias rr='reload && clear'
 alias rrr='reload && cd && clear'
 alias rmswp='find . -regextype sed -regex ".*\\.sw\(p\|o\|n\)" | xargs rm'
-alias cd-='cd -'
-alias dot='cd ~/dotfiles'
 alias p='tmux send-keys -t cmus c'
 alias prev='tmux send-keys -t cmus z'
 alias next='tmux send-keys -t cmus b'
@@ -71,7 +68,6 @@ alias id3='id3.clj'
 # Git stuff
 alias g='git'
 alias m='git commit -m'
-alias master='git checkout master'
 alias ha='git add --all -p'
 alias st='git status'
 alias cam='git commit -am'
@@ -86,22 +82,3 @@ alias socode='sed "s/^/    /"|x'
 
 # List snippets available within my dotfiles
 alias snippets='ls ~/dotfiles/snippets'
-
-# Docker/Lando shortcuts
-alias posts='lando wp post list'
-alias wpusers='lando wp user list'
-alias dc='docker-compose'
-alias dw='docker-compose exec web'
-alias dwp='docker-compose exec web wp --allow-root'
-alias up='docker-compose up -d'
-
-# Sublime shortcuts
-alias sp='subl *.sublime-project'
-
-# Switch solarized theme
-alias dark='export SOLARIZED_THEME=dark'
-alias light='export SOLARIZED_THEME=light'
-
-if [[ $(which pbcopy) ]] ; then
-  alias x='pbcopy'
-fi
