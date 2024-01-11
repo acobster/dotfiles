@@ -87,6 +87,7 @@
     fzf
     git
     home-manager
+    jq
     lua
     nettools
     silver-searcher
