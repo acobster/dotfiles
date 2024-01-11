@@ -5,16 +5,8 @@
 # Install essentials.
 # TODO get neovim working...
 nix-env -iA \
-  nixpkgs.ffmpeg \
-  nixpkgs.gimp \
   nixpkgs.jdk17 \
-  nixpkgs.ledger \
-  nixpkgs.ledger-web \
   nixpkgs.python39 \
   nixpkgs.python39Packages.pip \
   nixpkgs.python39Packages.virtualenv \
-  nixpkgs.rpi-imager \
-  nixpkgs.signal-desktop \
-  nixpkgs.syncthing \
-  nixpkgs.ungoogled-chromium \
-  nixpkgs.zulip
+  nixpkgs.rpi-imager
