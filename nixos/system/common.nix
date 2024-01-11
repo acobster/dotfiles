@@ -88,7 +88,6 @@
     git
     home-manager
     lua
-    neovim
     nettools
     silver-searcher
     steam
