@@ -25,7 +25,7 @@ case $key in
     exit
     ;;
 
-  system | user)
+  up | update | system | user)
     COMMAND=$1
     shift # past argument
     ;;
@@ -43,6 +43,9 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 main() {
   local dotfiles_dir="$(dirname $(dirname $0))"
   case $COMMAND in
+    up | update)
+      sudo nix flake update
+    ;;
     system)
       # `/#` defaults to hostname
       sudo nixos-rebuild switch --flake "$dotfiles_dir/#"
