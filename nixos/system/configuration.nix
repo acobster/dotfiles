@@ -70,27 +70,8 @@
     initialPassword = "pourover";
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
-      # browsers
-      firefox
-      chromium
-      brave
-
-      # languages
-      jdk11
-      clojure
-      babashka
-
-      # misc
-      gnome.gnome-terminal
-      vlc
-      protonvpn-gui
       protonvpn-cli
-      ripgrep
-
-      # torrent clients
-      webtorrent_desktop
-      nodePackages.webtorrent-cli
-      transmission
+      protonvpn-gui
     ];
   };
 
