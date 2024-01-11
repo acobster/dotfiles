@@ -5,7 +5,6 @@
 # Install essentials.
 # TODO get neovim working...
 nix-env -iA \
-  nixpkgs.discord \
   nixpkgs.ffmpeg \
   nixpkgs.gimp \
   nixpkgs.jdk17 \
@@ -18,5 +17,4 @@ nix-env -iA \
   nixpkgs.signal-desktop \
   nixpkgs.syncthing \
   nixpkgs.ungoogled-chromium \
-  nixpkgs.zoom-us \
   nixpkgs.zulip
