@@ -86,27 +86,12 @@
       protonvpn-gui
       protonvpn-cli
       ripgrep
-      ulauncher
 
       # torrent clients
       webtorrent_desktop
       nodePackages.webtorrent-cli
       transmission
     ];
-  };
-
-  # https://discourse.nixos.org/t/ulauncher-and-the-debugging-journey/13141/4
-  # TODO move this to home.nix?
-  systemd.user.services.ulauncher = {
-    enable = true;
-    description = "Start Ulauncher";
-    script = "${pkgs.ulauncher}/bin/ulauncher --hide-window";
-    wantedBy = [ "graphical-session.target" ];
-    partOf = [ "graphical-session.target" ];
-    after = [ "display-manager.service" ];
-    serviceConfig = {
-      Restart = "on-failure";
-    };
   };
 
   # List packages installed in system profile. To search, run:
