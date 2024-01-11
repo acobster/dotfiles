@@ -5,8 +5,14 @@ usage() {
   echo
   echo '  COMMANDS:'
   echo
+  echo '  home'
+  echo '    Build the home-manager environment'
+  echo
   echo '  system'
-  echo '    Build the system according to ~/dotfiles/nixos/system/configuration.nix'
+  echo '    Build the system configuration for the current host'
+  echo
+  echo '  up[date]'
+  echo '    Update system dependencies'
   echo
   echo '  OPTIONS:'
   echo
