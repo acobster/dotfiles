@@ -5,10 +5,12 @@
 { config, pkgs, ... }:
 
 {
+  networking.hostName = "nixpad"; # Define your hostname.
+
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # TODO get ext4 labels working...
       /etc/nixos/hardware-configuration.nix
-      /etc/nixos/local.nix
     ];
 
   # Enable flakes
