@@ -7,5 +7,6 @@
 # ctags files at root only
 /tags
 
+/node_modules
 /*.ignore/
 .nrepl-port
