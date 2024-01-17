@@ -67,6 +67,11 @@ __user_host_ps1() {
 }
 
 __ps1_symbol() {
+  if [[ "$NIX_DEVELOP" ]] ; then
+    echo 'λ'
+    return 0
+  fi
+
   # Easter eggs!
   # strip leading zero from mmdd date
   dt=$(date '+%m%d' | sed 's/^0//')
