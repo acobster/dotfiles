@@ -35,15 +35,14 @@
       nixpad = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
-          ./nixos/home/common.nix
-          ./nixos/home/modules/keybase.nix
+          ./nixos/home/nixpad.nix
         ];
       };
 
       toast = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
-          ./nixos/home/common.nix
+          ./nixos/home/toast.nix
         ];
       };
     };
