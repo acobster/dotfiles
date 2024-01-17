@@ -77,11 +77,11 @@ muplugin() {
   cd "$wp_root/wp-content/mu-plugins/$1"
 }
 
-themes() {
+wpthemes() {
   cd $(wp-html-dir)/wp-content/themes
 }
 
-theme() {
+wptheme() {
   theme=$(wp-html-dir)/wp-content/themes/$1
   if [[ -d "$theme" ]] ; then
     cd $theme
