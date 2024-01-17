@@ -21,5 +21,15 @@
     ungoogled-chromium
     vlc
     zulip
+
+    # TODO
+    fzf
+    jq
+    lua
+    silver-searcher
+    tmux
+    tree
+    wget
+    xclip
   ];
 }
