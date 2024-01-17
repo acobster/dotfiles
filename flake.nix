@@ -27,6 +27,7 @@
 
       shellHook = ''
         NIX_DEVELOP=1;
+        source ~/.bash_profile
       '';
     };
 
