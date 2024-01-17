@@ -31,7 +31,7 @@ case $key in
     exit
     ;;
 
-  up | update | system | home)
+  up | update | system | home | down)
     COMMAND=$1
     shift # past argument
     ;;
@@ -58,6 +58,20 @@ main() {
     ;;
     home)
       home-manager switch --flake "$dotfiles_dir/#tamayo"
+    ;;
+    down)
+      if [[ -f ~/.bash_profile ]] ; then
+        echo mv ~/.bash_profile ~/.bash_profile.backup
+        mv ~/.bash_profile ~/.bash_profile.backup
+      fi
+      if [[ -f ~/.bashrc ]] ; then
+        echo mv ~/.bashrc ~/.bashrc.backup
+        mv ~/.bashrc ~/.bashrc.backup
+      fi
+      if [[ -f ~/.config/nvim/init.lua ]] ; then
+        echo mv ~/.config/nvim/init.lua ~/.config/nvim/init.lua.backup
+        mv ~/.config/nvim/init.lua ~/.config/nvim/init.lua.backup
+      fi
     ;;
     *)
       usage
