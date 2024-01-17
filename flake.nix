@@ -32,9 +32,19 @@
     };
 
     homeConfigurations = {
-      tamayo = home-manager.lib.homeManagerConfiguration {
+      nixpad = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [ ./nixos/home/tamayo.nix ];
+        modules = [
+          ./nixos/home/common.nix
+          ./nixos/home/modules/keybase.nix
+        ];
+      };
+
+      toast = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          ./nixos/home/common.nix
+        ];
       };
     };
 

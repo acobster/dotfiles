@@ -57,7 +57,7 @@ main() {
       sudo nixos-rebuild switch --flake "$dotfiles_dir/#"
     ;;
     home)
-      home-manager switch --flake "$dotfiles_dir/#tamayo"
+      home-manager switch --flake "$dotfiles_dir/#$(hostname)"
     ;;
     down)
       if [[ -f ~/.bash_profile ]] ; then
