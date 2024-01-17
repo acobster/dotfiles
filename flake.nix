@@ -19,6 +19,17 @@
   in
   {
 
+    devShells.${system}.default = pkgs.mkShell {
+      buildInputs = [
+        pkgs.home-manager
+        pkgs.direnv
+      ];
+
+      shellHook = ''
+        NIX_DEVELOP=1;
+      '';
+    };
+
     homeConfigurations = {
       tamayo = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
