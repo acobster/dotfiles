@@ -7,7 +7,7 @@ usage() {
   echo
   echo '    dark: set the terminal theme to solarized dark'
   echo
-  echo '    light: set the terminal theme to solarized dark'
+  echo '    light: set the terminal theme to solarized light'
   echo
   echo '    trans[parency] X: set the terminal transparency to X'
   echo '      where X is an int 0-100'
@@ -24,22 +24,24 @@ key="$1"
 
 case $key in
     -h|--help)
-    # show usage and bail
-    usage
-    exit
-    ;;
+      # show usage and bail
+      usage
+      exit
+      ;;
     trans | transparency)
-    TRANSPARENCY="$2"
-    shift # past argument
-    ;;
+      CMD='transparency'
+      TRANSPARENCY="$2"
+      shift # past argument
+      ;;
     dark | light)
-    VARIATION="$1"
-    shift # past argument
-    ;;
+      CMD='theme'
+      VARIATION="$1"
+      shift # past argument
+      ;;
     *)
-    POSITIONAL+=("$1") # save it in an array for later
-    shift # past argument
-    ;;
+      POSITIONAL+=("$1") # save it in an array for later
+      shift # past argument
+      ;;
 esac
 
 done
@@ -49,6 +51,11 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 if [[ -z $(which dconf) ]] ; then
   echo "dconf not found. Is this a GNOME environment?"
   exit 1
+fi
+
+if [[ -z $CMD ]] ; then
+  usage
+  exit
 fi
 
 UUID='e2b6e70f-8085-4735-bc8d-6f8512a1d849'
