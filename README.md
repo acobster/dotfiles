@@ -8,15 +8,14 @@
     * racket
 * port vim config to Lua
 * Lando?
-* configure Git completions
 * GNOME Dock
-* Keybase
-* Direnv
+* Fix Keybase
 * Setup environmnets:
-    * Toast
     * Generic server
     * Plex
     * Concierge
+
+## INCLUDED SOFTWARE
 
 ### ✅ Daily Essentials
 
@@ -31,18 +30,19 @@
 * net-tools
 * ulauncher
 
-### ƛ Languages / databases
+### λ Languages
 
-* Java (JDK 11)
+* Java (OpenJDK 21)
 * Clojure
 * Babashka
-* Go
-* SQLite
+* Lua
 
 ### 🤷 Misc.
 
+**NOTE: these can be run directly from the CLI, but on Ubuntu currently the GNOME launcher can't find them**
+
 * rpi-imager
-* Keybase
+* Keybase (not working)
 * VLC
 * Ungoogled Chromium
 * Brave
