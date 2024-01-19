@@ -54,7 +54,7 @@ Plugin 'VundleVim/Vundle.vim'
 " The colors, Duke! The colors!
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bronson/vim-trailing-whitespace'
-Plug 'ap/vim-css-color'
+Plugin 'ap/vim-css-color'
 
 " Navigation
 Plugin 'wesQ3/vim-windowswap' " ,ww for swapping buffers
