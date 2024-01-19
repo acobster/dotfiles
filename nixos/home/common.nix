@@ -3,6 +3,7 @@
 {
   imports = [
     ./modules/bash.nix
+    ./modules/clojure.nix
     ./modules/direnv.nix
     ./modules/misc.nix
     ./modules/neovim.nix

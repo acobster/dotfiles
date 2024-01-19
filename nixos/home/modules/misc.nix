@@ -2,9 +2,7 @@
 
 {
   home.packages = with pkgs; [
-    babashka
     brave
-    clojure
     cowsay
     ffmpeg
     firefox
