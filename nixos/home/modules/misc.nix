@@ -19,7 +19,6 @@
     signal-desktop
     silver-searcher
     syncthing
-    tmux
     transmission
     tree
     ungoogled-chromium
