@@ -76,6 +76,10 @@ main() {
         echo mv ~/.config/nvim/init.lua ~/.config/nvim/init.lua.backup
         mv ~/.config/nvim/init.lua ~/.config/nvim/init.lua.backup
       fi
+      if [[ -f ~/.tmux.conf ]] && ! [[ -L ~/.tmux.conf ]] ; then
+        echo mv ~/.tmux.conf ~/.tmux.conf.backup
+        mv ~/.tmux.conf ~/.tmux.conf.backup
+      fi
     ;;
     *)
       usage
