@@ -48,6 +48,7 @@ call plug#begin(stdpath('data') . '/plugged')
 " The colors, Duke! The colors!
 Plug 'altercation/vim-colors-solarized'
 Plug 'bronson/vim-trailing-whitespace'
+Plug 'ap/vim-css-color'
 
 " Navigation
 Plug 'wesQ3/vim-windowswap' " ,ww for swapping buffers
