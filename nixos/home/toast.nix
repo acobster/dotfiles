@@ -5,6 +5,7 @@
   home.homeDirectory = "/home/tamayo";
 
   imports = [
+    ./modules/ubuntu.nix
     ./common.nix
   ];
 
