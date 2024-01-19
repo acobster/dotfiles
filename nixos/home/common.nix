@@ -3,6 +3,8 @@
 {
   imports = [
     ./modules/bash.nix
+    ./modules/profile.nix
+
     ./modules/direnv.nix
     ./modules/misc.nix
     ./modules/neovim.nix
