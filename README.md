@@ -39,8 +39,6 @@
 
 ### 🤷 Misc.
 
-**NOTE: these can be run directly from the CLI, but on Ubuntu currently the GNOME launcher can't find them**
-
 * rpi-imager
 * Keybase (not working)
 * VLC
@@ -50,3 +48,13 @@
 * Zoom
 * Discord
 * Zulip
+
+**NOTE: for desktop apps on Ubuntu, you need to explicitly source `~/.profile` from a script inside `/etc/profile.d/`:**
+
+```sh
+# /etc/profile.d/nix.sh
+
+if [ -f /home/tamayo/.profile ] ; then
+  . /home/tamayo/.profile
+fi
+```
