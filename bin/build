@@ -53,17 +53,17 @@ main() {
   local dotfiles_dir="$(dirname $(dirname $0))"
   case $COMMAND in
     up | update)
-      sudo nix flake update
+      sudo nix flake update "$@"
     ;;
     system)
       # `/#` defaults to hostname
-      sudo nixos-rebuild switch --flake "$dotfiles_dir/#"
+      sudo nixos-rebuild switch --flake "$dotfiles_dir/#" "$@"
     ;;
     home)
-      home-manager switch --flake "$dotfiles_dir/#$(hostname)"
+      home-manager switch --flake "$dotfiles_dir/#$(hostname)" "$@"
     ;;
     iso)
-      nix build '.#nixosConfigurations.iso.config.system.build.isoImage'
+      nix build '.#nixosConfigurations.iso.config.system.build.isoImage' "$@"
     ;;
     down)
       if [[ -f ~/.profile ]] && ! [[ -L ~/.profile ]] ; then
