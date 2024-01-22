@@ -7,7 +7,7 @@
   imports = [
     ./modules/boot.nix
     ./modules/display.nix
-    ./modules/network.nix
+    #./modules/network.nix
     ./modules/packages.nix
     ./modules/peripherals.nix
   ];
