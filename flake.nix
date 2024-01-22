@@ -16,16 +16,8 @@
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
     lib = nixpkgs.lib;
-    mkComputer = {
-      extraModules,
-      user ? "tamayo"
-    }: lib.nixosSystem {
-      inherit system pkgs;
-      modules = [
-        ({ pkgs, ... }: {
-          environment.systemPackages = with pkgs; [ cowsay lolcat ];
-        })
-      ] ++ extraModules;
+    util = import ./nixos/util.nix {
+      inherit system pkgs nixpkgs;
     };
   in
   {
@@ -70,7 +62,7 @@
         ];
       };
 
-      iso = mkComputer {
+      iso = util.mkComputer {
         extraModules = [
           "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
         ];
