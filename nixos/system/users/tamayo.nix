@@ -6,7 +6,10 @@
     isNormalUser = true;
     # go ahead, try it lol
     initialPassword = "pourover";
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [
+      "wheel" # sudo
+      "networkmanager"
+    ];
     # TODO move this to home-manager?
     packages = with pkgs; [
       protonvpn-cli
