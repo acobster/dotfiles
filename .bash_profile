@@ -180,9 +180,9 @@ fi
 
 
 
-#---------
-# Aliases
-#---------
+#----------------------------
+# Bash functions and aliases
+#----------------------------
 
 # Load common aliases
 if [[ -f ~/dotfiles/.aliases ]] ; then
@@ -192,6 +192,16 @@ fi
 # Load machine-specific aliases, too!
 if [[ -f ~/.aliases ]] ; then
   source ~/.aliases
+fi
+
+# Load common functions
+if [[ -f ~/dotfiles/.functions ]] ; then
+  source ~/dotfiles/.functions
+fi
+
+# Load machine-specific functions
+if [[ -f ~/.functions ]] ; then
+  source ~/.functions
 fi
 
 
@@ -214,22 +224,6 @@ fi
 # Set an environment variable that tools like Vim can detect
 if [[ -f "${HOME}/.dir_colors/dircolors.${GNOME_TERMINAL_SOLARIZED_THEME}" ]] ; then
   eval `dircolors "${HOME}/.dir_colors/dircolors.${GNOME_TERMINAL_SOLARIZED_THEME}"`
-fi
-
-
-
-#----------------
-# Bash functions
-#----------------
-
-# Load common functions
-if [[ -f ~/dotfiles/.functions ]] ; then
-  source ~/dotfiles/.functions
-fi
-
-# Load machine-specific functions
-if [[ -f ~/.functions ]] ; then
-  source ~/.functions
 fi
 
 
