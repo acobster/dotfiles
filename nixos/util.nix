@@ -1,15 +1,19 @@
-{ system, pkgs, nixpkgs, ... }:
+{ system, pkgs, nixpkgs, home-manager, ... }:
 
 {
   mkComputer = {
     extraModules,
-    user ? "tamayo"
+    user ? "tamayo",
+    userConfig
   }: nixpkgs.lib.nixosSystem {
     inherit system pkgs;
+
     modules = [
-      ({ pkgs, ... }: {
-        environment.systemPackages = with pkgs; [ cowsay lolcat ];
-      })
+      #home-manager.nixosModules.home-manager {
+      #  home-manager.useGlobalPkgs = true;
+      #  home-manager.useUserPackages = true;
+      #  home-manager.users."${user}" = userConfig;
+      #}
     ] ++ extraModules;
   };
 }

@@ -17,10 +17,10 @@
     pkgs = nixpkgs.legacyPackages.${system};
     lib = nixpkgs.lib;
     util = import ./nixos/util.nix {
-      inherit system pkgs nixpkgs;
+      inherit system pkgs nixpkgs home-manager;
     };
   in
-  {
+  rec {
 
     # Bootstrap a minimual dev shell in case we're ever on a system where
     # our NixOS config and/or dotfiles are broken, so we can just do
@@ -65,7 +65,9 @@
       iso = util.mkComputer {
         extraModules = [
           "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+          ./nixos/system/nixpad.nix
         ];
+        userConfig = homeConfigurations.nixpad;
       };
     };
 
