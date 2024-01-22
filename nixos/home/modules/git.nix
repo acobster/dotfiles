@@ -1,6 +1,8 @@
 { pkgs, ... }:
 
 {
+  home.file.".githelpers".source = ../../../git/helpers.bash;
+
   programs.git = {
     enable = true;
     userName = "Coby Tamayo";

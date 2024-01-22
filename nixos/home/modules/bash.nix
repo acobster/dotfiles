@@ -1,8 +1,8 @@
 { pkgs, ... }:
 
 {
-  home.file.".bashrc".source = ../../../.bashrc;
-  home.file.".bash_profile".source = ../../../.bash_profile;
+  home.file.".bashrc".source = ../../../bash/.bashrc;
+  home.file.".bash_profile".source = ../../../bash/.bash_profile;
 
   home.sessionVariables = {
     EDITOR = "nvim";
