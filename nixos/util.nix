@@ -1,7 +1,8 @@
-{ system, pkgs, nixpkgs, home-manager, ... }:
+{ pkgs, nixpkgs, home-manager, ... }:
 
 {
   mkComputer = {
+    system,
     extraModules,
     user ? "tamayo",
     userConfig
