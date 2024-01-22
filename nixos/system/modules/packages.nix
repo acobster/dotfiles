@@ -11,7 +11,7 @@
     home-manager
     nettools
     silver-searcher
-    steam
+    #steam
   ];
 
   # https://nixos.wiki/wiki/Steam
