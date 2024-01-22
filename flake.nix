@@ -63,6 +63,7 @@
       };
 
       iso = util.mkComputer {
+        inherit system;
         extraModules = [
           "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
           ./nixos/system/nixpad.nix

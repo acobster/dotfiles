@@ -1,6 +1,8 @@
-{ config, lib, pkgs, nixpkgs, ... }:
+{ lib, pkgs, nixpkgs, system, ... }:
 
 {
+  nixpkgs.hostPlatform = lib.mkDefault "${system}";
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
