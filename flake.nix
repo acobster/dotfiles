@@ -16,9 +16,23 @@
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
     lib = nixpkgs.lib;
+    mkComputer = {
+      extraModules,
+      user ? "tamayo"
+    }: lib.nixosSystem {
+      inherit system pkgs;
+      modules = [
+        ({ pkgs, ... }: {
+          environment.systemPackages = with pkgs; [ cowsay lolcat ];
+        })
+      ] ++ extraModules;
+    };
   in
   {
 
+    # Bootstrap a minimual dev shell in case we're ever on a system where
+    # our NixOS config and/or dotfiles are broken, so we can just do
+    # `nix develop` to start working on a fix.
     devShells.${system}.default = pkgs.mkShell {
       buildInputs = [
         pkgs.home-manager
@@ -56,17 +70,9 @@
         ];
       };
 
-      desktopIso = lib.nixosSystem {
-        #inherit specialArgs;
-        inherit system;
-        modules = [
+      iso = mkComputer {
+        extraModules = [
           "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
-          ({ pkgs, ... }: {
-            environment.systemPackages = with pkgs; [
-              cowsay
-              lolcat
-            ];
-          })
         ];
       };
     };
