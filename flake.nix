@@ -55,6 +55,20 @@
           ./nixos/system/common.nix
         ];
       };
+
+      desktopIso = lib.nixosSystem {
+        #inherit specialArgs;
+        inherit system;
+        modules = [
+          "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+          ({ pkgs, ... }: {
+            environment.systemPackages = with pkgs; [
+              cowsay
+              lolcat
+            ];
+          })
+        ];
+      };
     };
 
   };
