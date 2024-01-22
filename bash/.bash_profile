@@ -128,11 +128,11 @@ __compose_ps1() {
   local git_prompt
   git_prompt=''
 
-  if [[ -f ~/dotfiles/git-prompt.bash ]]; then
+  if [[ -f ~/dotfiles/git/git-prompt.bash ]]; then
     GIT_PS1_SHOWUNTRACKEDFILES=1
     GIT_PS1_SHOWDIRTYSTATE=1
     GIT_PS1_SHOWSTASHSTATE=1
-    source ~/dotfiles/git-prompt.bash
+    source ~/dotfiles/git/git-prompt.bash
     git_prompt="\$(__git_ps1)"
 
     # abbreviate git branch names!
@@ -185,8 +185,8 @@ fi
 #----------------------------
 
 # Load common aliases
-if [[ -f ~/dotfiles/.aliases ]] ; then
-	source ~/dotfiles/.aliases
+if [[ -f ~/dotfiles/bash/.aliases ]] ; then
+	source ~/dotfiles/bash/.aliases
 fi
 
 # Load machine-specific aliases, too!
@@ -195,8 +195,8 @@ if [[ -f ~/.aliases ]] ; then
 fi
 
 # Load common functions
-if [[ -f ~/dotfiles/.functions ]] ; then
-  source ~/dotfiles/.functions
+if [[ -f ~/dotfiles/bash/.functions ]] ; then
+  source ~/dotfiles/bash/.functions
 fi
 
 # Load machine-specific functions
@@ -233,8 +233,8 @@ fi
 #---------
 
 # Git completion
-if [[ -f ~/dotfiles/git-completion.bash ]]; then
-	source ~/dotfiles/git-completion.bash
+if [[ -f ~/dotfiles/git/git-completion.bash ]]; then
+	source ~/dotfiles/git/git-completion.bash
 fi
 
 

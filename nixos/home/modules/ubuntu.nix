@@ -1,5 +1,5 @@
 { pkgs, ... }:
 
 {
-  home.file.".profile".source = ../../../ubuntu.profile;
+  home.file.".profile".source = ../../../config/ubuntu.profile;
 }
