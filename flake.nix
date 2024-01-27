@@ -15,13 +15,12 @@
   let
     system = "x86_64-linux";
     lib = nixpkgs.lib;
+    unfree = import ./nixos/system/unfree.nix {
+      inherit nixpkgs;
+    };
     pkgs = import nixpkgs {
       inherit system;
-      config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-        "steam"
-        "steam-original"
-        "steam-run"
-      ];
+      config.allowUnfreePredicate = unfree.allowUnfree;
     };
     util = import ./nixos/util.nix {
       inherit system pkgs nixpkgs home-manager;
