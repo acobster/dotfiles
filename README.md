@@ -14,6 +14,7 @@
     * Generic server
     * Plex
     * Concierge
+* Fix rainbow + solarized light theme
 
 ## INCLUDED SOFTWARE
 
