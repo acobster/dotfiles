@@ -8,6 +8,7 @@
     ./modules/misc.nix
     ./modules/neovim.nix
     ./modules/git.nix
+    ./modules/gnome.nix
     ./modules/tmux.nix
     ./modules/ulauncher.nix
     ./modules/unfree.nix

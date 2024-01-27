@@ -15,6 +15,18 @@
     * Plex
     * Concierge
 * Fix rainbow + solarized light theme
+* Consider some [themes](https://determinate.systems/posts/declarative-gnome-configuration-with-nixos)!
+    * themechanger?
+    * [graphite-gtk-theme](https://github.com/vinceliuice/Graphite-gtk-theme) and [graphite-cursor-theme](https://github.com/vinceliuice/Graphite-cursors)
+    * [numix-solarized-gtk-theme](https://github.com/Ferdi265/numix-solarized-gtk-theme) (unmaintained)
+    * [omni-gtk-theme](https://github.com/getomni/gtk) (meh)
+    * [layan-gtk-theme](https://github.com/vinceliuice/Layan-gtk-theme)
+    * [rose-pine-gtk-theme](https://github.com/rose-pine/gtk)
+    * [colloid-gtk-theme](https://github.com/vinceliuice/Colloid-gtk-theme)
+    * [dracula-icon-theme](https://github.com/m4thewz/dracula-icons)
+    * [tela-circle-icon-theme](https://github.com/vinceliuice/Tela-circle-icon-theme)
+    * [banana-cursor-theme](https://github.com/ful1e5/banana-cursor)
+* Blur My Shell
 
 ## INCLUDED SOFTWARE
 
