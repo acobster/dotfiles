@@ -11,15 +11,8 @@
     home-manager
     nettools
     silver-searcher
-    #steam
+    steam
   ];
-
-  # https://nixos.wiki/wiki/Steam
-  #nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
-  #  "steam"
-  #  "steam-original"
-  #  "steam-run"
-  #];
 
   environment.gnome.excludePackages = with pkgs; [
     epiphany
