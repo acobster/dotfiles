@@ -1,6 +1,16 @@
 { config, pkgs, ... }:
 
 {
+  dconf = {
+    enable = true;
+
+    settings = {
+      "org/gnome/desktop/interface" = {
+        color-scheme = "prefer-dark";
+      };
+    };
+  };
+
   # https://determinate.systems/posts/declarative-gnome-configuration-with-nixos
   gtk = {
     enable = true;
