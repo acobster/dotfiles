@@ -25,7 +25,6 @@
     };
   };
 
-  # https://determinate.systems/posts/declarative-gnome-configuration-with-nixos
   gtk = {
     enable = true;
 

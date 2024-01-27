@@ -71,3 +71,8 @@ if [ -f /home/tamayo/.profile ] ; then
   . /home/tamayo/.profile
 fi
 ```
+
+## HELPFUL LINKS
+
+* [Declarative GNOME configuration with NixOS](https://determinate.systems/posts/declarative-gnome-configuration-with-nixos)
+* [nixpkgs legacyPackages vs import](https://discourse.nixos.org/t/using-nixpkgs-legacypackages-system-vs-import/17462)
