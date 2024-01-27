@@ -1,12 +1,26 @@
 { config, pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    gnomeExtensions.dash-to-panel
+  ];
+
   dconf = {
     enable = true;
 
     settings = {
       "org/gnome/desktop/interface" = {
         color-scheme = "prefer-dark";
+      };
+      "org/gtk/settings/file-chooser" = {
+        sort-directories-first = true;
+        show-hidden = true;
+      };
+      "org/gnome/nautilus/list-view" = {
+        use-tree-view = true;
+      };
+      "org/gnome/nautilus/window-state" = {
+        start-with-sidebar = false;
       };
     };
   };
