@@ -38,11 +38,6 @@
       package = pkgs.tela-circle-icon-theme;
     };
 
-    cursorTheme = {
-      name = "Graphite cursors";
-      package = pkgs.graphite-cursors;
-    };
-
     gtk3.extraConfig = {
       Settings = ''
         gtk-application-prefer-dark-theme=1
