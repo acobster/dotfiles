@@ -72,9 +72,30 @@ if [ -f /home/tamayo/.profile ] ; then
 fi
 ```
 
+## TOOLING
+
+To build the home-manager environment:
+
+```sh
+build home
+```
+
+To build the system config:
+
+```sh
+build system
+```
+
+To build a live ISO:
+
+```sh
+build iso
+```
+
 ## HELPFUL LINKS
 
 * [Generating an ISO with my entire system configuration inside it](https://www.reddit.com/r/NixOS/comments/18lixd3/generating_an_iso_with_my_entire_system/) - from Yours Truly 😘
+* [Creating a NixOS live "CD"](https://nixos.wiki/wiki/Creating_a_NixOS_live_CD)
 * [Declarative GNOME configuration with NixOS](https://determinate.systems/posts/declarative-gnome-configuration-with-nixos)
 * [nixpkgs legacyPackages vs import](https://discourse.nixos.org/t/using-nixpkgs-legacypackages-system-vs-import/17462)
 * Inspo:
