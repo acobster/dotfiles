@@ -6,6 +6,7 @@
     cowsay
     ffmpeg
     firefox
+    freetube
     fzf
     gimp
     gnome.gnome-terminal
