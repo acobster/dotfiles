@@ -1,88 +1,103 @@
 # My dotfiles.
 
-![Travis Build status](https://api.travis-ci.org/acobster/dotfiles.svg?branch=master)
-
-## The fast, hacky way
-
-```
-curl -fsSL https://raw.githubusercontent.com/acobster/dotfiles/master/installer.sh | sh -
-```
-
-## The slow way
-
-### `.bash_profile`
-
-In your `~/.bash_profile`, add the following:
-
-```
-if [ -f ~/dotfiles/.bash_profile ] ; then
-  source ~/dotfiles/.bash_profile
-fi
-```
-
-This allows you to have machine-specific stuff in your `.bash_profile`. If you don't need that, you can always just set up a symlink:
-
-```
-ln -s dotfiles/.bash_profile .bash_profile
-```
-
-### Other dotfiles
-
-To initialize other stuff with sane defaults, symlink 'em up:
-
-```
-ln -s dotfiles/.vimrc .vimrc
-ln -s dotfiles/.gitignore .gitignore
-```
-
-**Note that this setup assumes you have these files in the `~/dotfiles` dir. It won't work otherwise.**
-
-## NOTES
-
-`setup` is weird and kinda whack. It should be simpler.
-
-Maybe just [port](https://www.youtube.com/watch?v=ck4J2Faa7Fc) everything to NixOS?
-
 ## TODO
 
-* modularize .bash_profile
+* audit vim config
+    * color
+    * syntastic
+    * racket
+* port vim config to Lua
+* Lando?
+* GNOME Dock
+* Fix Keybase
+* Setup environmnets:
+    * Generic server
+    * Plex
+    * Concierge
+* Fix rainbow + solarized light theme
+* Consider some [themes](https://determinate.systems/posts/declarative-gnome-configuration-with-nixos)!
+    * themechanger?
+    * [graphite-gtk-theme](https://github.com/vinceliuice/Graphite-gtk-theme) and [graphite-cursor-theme](https://github.com/vinceliuice/Graphite-cursors)
+    * [numix-solarized-gtk-theme](https://github.com/Ferdi265/numix-solarized-gtk-theme) (unmaintained)
+    * [omni-gtk-theme](https://github.com/getomni/gtk) (meh)
+    * [layan-gtk-theme](https://github.com/vinceliuice/Layan-gtk-theme)
+    * [rose-pine-gtk-theme](https://github.com/rose-pine/gtk)
+    * [colloid-gtk-theme](https://github.com/vinceliuice/Colloid-gtk-theme)
+    * [dracula-icon-theme](https://github.com/m4thewz/dracula-icons)
+    * [tela-circle-icon-theme](https://github.com/vinceliuice/Tela-circle-icon-theme)
+    * [banana-cursor-theme](https://github.com/ful1e5/banana-cursor)
+* Blur My Shell
 
-### Software to install automatically
+## INCLUDED SOFTWARE
+
+### ✅ Daily Essentials
 
 * dotfiles
-* (Neo)vim
-* Git
-* FZF
-* Keybase
-* Typora
-* Java (JDK 11)
-* Clojure
-* Babaska
-* silversearcher-ag
+* neovim
+* git
+* fzf
 * tmux
+* silversearcher-ag
 * tree
 * xclip
 * net-tools
-* Go
-* Rust
-* Docker
-* Lando
-* Postgres
-* SQLite
-* Balena Etcher
-* VLC
+* ulauncher
 
-### Nice to have:
+### λ Languages
+
+* Java (OpenJDK 21)
+* Clojure
+* Babashka
+* Lua
+
+### 🤷 Misc.
 
 * rpi-imager
-* lxd
+* Keybase (not working)
+* VLC
+* Ungoogled Chromium
+* Brave
 * GIMP
-* Gparted
-* VirtualBox or virt-manager
-* Flameshot?
+* Zoom
+* Discord
+* Zulip
 
-### Installed, don't know what they do:
+**NOTE: for desktop apps on Ubuntu, you need to explicitly source `~/.profile` from a script inside `/etc/profile.d/`:**
 
-* libappindicator1
-* libgconf-2-4
-* libindicator7
+```sh
+# /etc/profile.d/nix.sh
+
+if [ -f /home/tamayo/.profile ] ; then
+  . /home/tamayo/.profile
+fi
+```
+
+## TOOLING
+
+To build the home-manager environment:
+
+```sh
+build home
+```
+
+To build the system config:
+
+```sh
+build system
+```
+
+To build a live ISO:
+
+```sh
+build iso
+```
+
+## HELPFUL LINKS
+
+* [Generating an ISO with my entire system configuration inside it](https://www.reddit.com/r/NixOS/comments/18lixd3/generating_an_iso_with_my_entire_system/) - from Yours Truly 😘
+* [Creating a NixOS live "CD"](https://nixos.wiki/wiki/Creating_a_NixOS_live_CD)
+* [Declarative GNOME configuration with NixOS](https://determinate.systems/posts/declarative-gnome-configuration-with-nixos)
+* [nixpkgs legacyPackages vs import](https://discourse.nixos.org/t/using-nixpkgs-legacypackages-system-vs-import/17462)
+* Inspo:
+    * [dmadisetti/.dots](https://github.com/dmadisetti/.dots)
+    * [nyabinary/dotfiles](https://github.com/nyabinary/dotfiles)
