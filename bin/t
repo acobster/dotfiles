@@ -1,7 +1,14 @@
 #!/bin/bash
 
 usage() {
-  echo 'usage: t CMD1 [CMD2 [CMD3]] [-1|-2] [-v|--verbose] [-h|--help]'
+  echo 'usage: t CMD1 [CMD2 [CMD3 [CMD4 [CMD5]]]] [-N] [-p|--pane]'
+  echo '         [-v|--verbose] [-h|--help] [-d|--dry-run]'
+  echo
+  echo '  -N            number of panes to create, 1-5 (default=3)'
+  echo '  -d|--detached do not attach to session'
+  echo '  -p|--pane     pane to select (default=0)'
+  echo '  -n|--dry-run  do not execute any tmux commands, only output them'
+  echo '  -v|--verbose  verbose output for debugging'
 }
 
 POSITIONAL=()
@@ -31,6 +38,27 @@ while [[ $# -gt 0 ]] ; do
 			DETACHED="1"
 			shift # next opt
 			;;
+    -3)
+			NUM_PANES=3
+			shift # next opt
+			;;
+    -4)
+			NUM_PANES=4
+			shift # next opt
+			;;
+    -5)
+			NUM_PANES=5
+			shift # next opt
+			;;
+    -5)
+			NUM_PANES=5
+			shift # next opt
+			;;
+    -p|--pane)
+			PANE=$2
+			shift # past opt
+			shift # past arg
+			;;
     -n|--dry-run)
 			DRY_RUN="1"
 			shift # next opt
@@ -56,6 +84,8 @@ main() {
 	CMD1="${POSITIONAL[1]}"
 	CMD2="${POSITIONAL[2]:-$CMD1}"
 	CMD3="${POSITIONAL[3]:-$CMD1}"
+	CMD4="${POSITIONAL[4]:-$CMD1}"
+	CMD5="${POSITIONAL[5]:-$CMD1}"
 
 	# if any command is a directory, just cd into it
 	if [[ -d "$CMD1" ]] ; then
@@ -67,12 +97,20 @@ main() {
 	if [[ -d "$CMD3" ]] ; then
 		CMD3="cd '$CMD3'"
 	fi
+	if [[ -d "$CMD4" ]] ; then
+		CMD4="cd '$CMD4'"
+	fi
+	if [[ -d "$CMD5" ]] ; then
+		CMD5="cd '$CMD5'"
+	fi
 
 	if [[ $DRY_RUN ]] || [[ $VERBOSE ]] ; then
 		echo SESSION=$SESSION
 		echo CMD1=$CMD1
 		echo CMD2=$CMD2
 		echo CMD3=$CMD3
+		echo CMD4=$CMD4
+		echo CMD5=$CMD5
 	fi
 
 	if [[ $DRY_RUN ]] ; then
@@ -104,6 +142,9 @@ function init_panes() {
   # default to 3 panes
   NUM_PANES=$(expr ${NUM_PANES:-3})
 
+  # select active pane
+  PANE=$(expr ${PANE:-'0'})
+
   # create a new session named $SESSION
   tmux new-session -d -s $SESSION
   # send it the command
@@ -121,13 +162,25 @@ function init_panes() {
     send_cmd "$CMD3"
   fi
 
+  if [[ $NUM_PANES -gt 3 ]] ; then
+    tmux split-window -h
+    send_cmd "$CMD4"
+  fi
+
+  if [[ $NUM_PANES -gt 4 ]] ; then
+    tmux split-window -v
+    send_cmd "$CMD5"
+  fi
+
+  echo "session ${SESSION} created"
+
+  tmux select-pane -t $PANE
+
   # finally, attach to the new session (unless -d was specified)
   if [[ -z $DETACHED ]] ; then
     echo detached
     tmux attach-session -t $SESSION
   fi
-
-  echo "session ${SESSION} created"
 
 }
 
