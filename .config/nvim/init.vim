@@ -39,7 +39,7 @@ set backupcopy=yes
 
 " PLUGINZ
 
-" set the runtime path to include Vundle and initialize
+" set the runtime path to include vim-plug and initialize.
 
 " https://stackoverflow.com/questions/48700563/how-do-i-install-plugins-in-neovim-correctly
 " https://github.com/junegunn/vim-plug#usage
