@@ -1,0 +1,29 @@
+import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
+import { within, userEvent, expect } from '@storybook/test';
+
+import MyComponent from '@/components/MyComponent';
+
+const meta = {
+  title: 'Amperon/MyComponent',
+  component: MyComponent,
+  parameters: {
+    // https://storybook.js.org/docs/configure/story-layout
+    layout: 'fullscreen',
+  },
+  // https://storybook.js.org/docs/writing-docs/autodocs
+  tags: ['autodocs'],
+  // https://storybook.js.org/docs/essentials/actions#action-args
+  args: {
+    onClick: fn(),
+  },
+} satisfies Meta<typeof MyComponent>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Plain: Story = {
+  args: {
+    someProp: 'Example data',
+  },
+};
