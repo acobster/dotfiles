@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 usage() {
   echo 'usage: t CMD1 [CMD2 [CMD3 [CMD4 [CMD5]]]] [-N] [-p|--pane]'
