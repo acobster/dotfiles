@@ -1,12 +1,13 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 usage() {
   echo 'usage: t CMD1 [CMD2 [CMD3 [CMD4 [CMD5]]]] [-N] [-p|--pane]'
   echo '         [-v|--verbose] [-h|--help] [-d|--dry-run]'
   echo
   echo '  -N            number of panes to create, 1-5 (default=3)'
+  echo '  -d|--detached do not attach to session'
   echo '  -p|--pane     pane to select (default=0)'
-  echo '  -d|--dry-run  do not execute any tmux commands, only output them'
+  echo '  -n|--dry-run  do not execute any tmux commands, only output them'
   echo '  -v|--verbose  verbose output for debugging'
 }
 
@@ -33,6 +34,10 @@ while [[ $# -gt 0 ]] ; do
 			NUM_PANES=2
 			shift # next opt
 			;;
+    -d|--detached)
+			DETACHED="1"
+			shift # next opt
+			;;
     -3)
 			NUM_PANES=3
 			shift # next opt
@@ -54,7 +59,7 @@ while [[ $# -gt 0 ]] ; do
 			shift # past opt
 			shift # past arg
 			;;
-    -d|--dry-run)
+    -n|--dry-run)
 			DRY_RUN="1"
 			shift # next opt
 			;;
@@ -112,10 +117,15 @@ main() {
 		exit
 	fi
 
-	# attempt to attach to an existing session,
-  # initializing a new one if necessary
-	tmux attach -t $SESSION
-  if [[ "$?" != '0' ]] ; then
+  existing_session=$(tmux ls -F '#{session_name}' | grep -e "^${SESSION}\$")
+  if [[ $existing_session ]] ; then
+    if [[ -z "$DETACHED" ]] ; then
+      tmux attach -t "$SESSION"
+    else
+      echo "session ${SESSION} exists"
+      exit
+    fi
+  else
     init_panes
   fi
 }
@@ -162,10 +172,15 @@ function init_panes() {
     send_cmd "$CMD5"
   fi
 
+  echo "session ${SESSION} created"
+
   tmux select-pane -t $PANE
 
-  # finally, attach to the new session
-  tmux attach-session -t $SESSION
+  # finally, attach to the new session (unless -d was specified)
+  if [[ -z $DETACHED ]] ; then
+    echo detached
+    tmux attach-session -t $SESSION
+  fi
 
 }
 
