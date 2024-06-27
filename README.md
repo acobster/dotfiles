@@ -4,12 +4,15 @@
 
 * audit vim config
     * color
-    * syntastic
-    * racket
+    * syntastic => ALE
 * port vim config to Lua
+    * common.vim
+    * color.vim
+    * syntastic.vim (or just configure ALE in Lua)
+    * racket.vim
+    * mappings.vim
 * Lando?
 * GNOME Dock
-* Fix Keybase
 * Setup environmnets:
     * Generic server
     * Plex
@@ -54,7 +57,6 @@
 ### 🤷 Misc.
 
 * rpi-imager
-* Keybase (not working)
 * VLC
 * Ungoogled Chromium
 * Brave
