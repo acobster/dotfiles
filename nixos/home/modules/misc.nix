@@ -10,6 +10,7 @@
     fzf
     gimp
     gnome.gnome-terminal
+    joker
     jq
     ledger
     ledger-web

@@ -48,6 +48,7 @@
 * Java (OpenJDK 21)
 * Clojure
 * Babashka
+* Joker
 * Lua
 
 ### 🤷 Misc.
