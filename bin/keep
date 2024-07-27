@@ -1,20 +1,24 @@
 #!/usr/bin/env bash
 
 usage() {
-  echo "usage: $(basename $0) [-h|--help]"
+  echo "usage: $(basename $0) [-h|--help] [-c|--cmd CMD] [-d|--dry-run]"
   echo
   echo 'Keep is a tool for keeping or removing files from an arbitrary list,'
   echo 'interactively. It takes zero or more lines from STDIN and for each one'
   echo 'prompts the user to choose whether to keep (the default) or remove'
   echo 'that file.'
   echo
-  echo '  EXAMPLE:'
+  echo '  EXAMPLES:'
   echo
   echo '  $ ls | keep'
   echo
+  echo '  $ git branch | keep --cmd "git branch -D"'
+  echo
   echo '  OPTIONS:'
   echo
-  echo '  -h|--help show this help text'
+  echo '  -h|--help     show this help text'
+  echo '  -c|--cmd CMD  run CMD for each file not kept (default: rm -rf)'
+  echo '  -d|--dry-run  only echo rm commands, do not execute'
 }
 
 POSITIONAL=()
@@ -32,8 +36,8 @@ case $key in
     DRY_RUN=1
     shift # past argument
     ;;
-    -y|--arg-with-value)
-    VALARG="$2"
+    -c|--cmd)
+    CMD="$2"
     shift # past argument
     shift # past value
     ;;
@@ -47,14 +51,15 @@ done
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
 
-opts='-rf' # TODO
+CMD=${CMD:-'rm -rf'}
+
 while read file; do
   read -p "Keep $file (Y/n)? [Ctrl+C to quit] " choice < /dev/tty
   if [[ $choice == 'n' ]] ; then
     if [[ $DRY_RUN ]] ; then
-      echo rm $opts $cmd
+      echo $CMD "$file"
     else
-      rm $opts "$file"
+      $CMD "$file"
     fi
   else
     echo "kept $file."
