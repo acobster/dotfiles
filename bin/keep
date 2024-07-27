@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 usage() {
-  echo "usage: $(basename $0) [-h|--help] [-c|--cmd CMD] [-d|--dry-run]"
+  echo "usage: $(basename $0) [-h|--help] [-c|--cmd CMD] [-d|--dry-run] [-i|--invert]"
   echo
   echo 'Keep is a tool for keeping or removing files from an arbitrary list,'
   echo 'interactively. It takes zero or more lines from STDIN and for each one'
@@ -18,6 +18,7 @@ usage() {
   echo
   echo '  -h|--help     show this help text'
   echo '  -c|--cmd CMD  run CMD for each file not kept (default: rm -rf)'
+  echo '  -i|--invert   choosing Y[es] means "run CMD"; choosing n[o] is a noop'
   echo '  -d|--dry-run  only echo rm commands, do not execute'
 }
 
@@ -34,6 +35,10 @@ case $key in
     ;;
     -d|--dry-run)
     DRY_RUN=1
+    shift # past argument
+    ;;
+    -i|--invert)
+    INVERT=1
     shift # past argument
     ;;
     -c|--cmd)
@@ -54,8 +59,13 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 CMD=${CMD:-'rm -rf'}
 
 while read file; do
-  read -p "Keep $file (Y/n)? [Ctrl+C to quit] " choice < /dev/tty
-  if [[ $choice == 'n' ]] ; then
+  keep='Keep'
+  if [[ $INVERT ]] ; then
+    echo "keep is INVERTED. You will be prompted to run \`$CMD\` on each file."
+    keep="$CMD"
+  fi
+  read -p "$keep $file (Y/n)? [Ctrl+C to quit] " choice < /dev/tty
+  if [[ ( $INVERT != '1' && $choice == 'n' ) || ( $INVERT && $choice != 'n' ) ]] ; then
     if [[ $DRY_RUN ]] ; then
       echo $CMD "$file"
     else
