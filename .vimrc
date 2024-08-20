@@ -75,6 +75,7 @@ Plugin 'slim-template/vim-slim.git'
 Plugin 'elzr/vim-json'
 Plugin 'tpope/vim-surround'
 Plugin 'machakann/vim-swap' " swap fn args
+Plugin 'prettier/vim-prettier'
 
 " Lisp-y stuff
 Plugin 'guns/vim-clojure-static'

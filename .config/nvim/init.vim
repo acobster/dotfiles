@@ -59,6 +59,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'vim-syntastic/syntastic'
 Plug 'elzr/vim-json'
 Plug 'machakann/vim-swap' " swap fn args
+Plug 'dense-analysis/ale' " for prettier
 
 " Clojure formatting & Lisp-y stuff
 " https://www.wilfriedbarth.com/posts/2019-02-03-neovim-tooling-for-clojure/
@@ -123,6 +124,18 @@ let g:syntastic_html_tidy_ignore_errors = [
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe = 'eslint'
 let g:syntastic_python_checkers = []
+
+" Prettier
+augroup FiletypeGroup
+    autocmd!
+    au BufNewFile,BufRead *.tsx set filetype=typescript.tsx
+    au BufNewFile,BufRead *.ts set filetype=typescript.ts
+augroup END
+let g:ale_fixers = {
+\   'typescript': ['prettier', 'eslint'],
+\   'css': ['prettier'],
+\}
+let g:ale_fix_on_save = 1
 
 nnoremap <leader>py :SyntasticCheck<SPACE>pylint<CR>
 
