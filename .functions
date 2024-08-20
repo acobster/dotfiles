@@ -200,6 +200,22 @@ grepjs() {
   grep --recursive --include='*.js' "$@"
 }
 
+grepts() {
+  grep --recursive --include='*.ts' "$@"
+}
+
+greptsx() {
+  grep --recursive --include='*.ts' --include='*.tsx' "$@"
+}
+
+grepscss() {
+  grep --recursive --include='*.scss' "$@"
+}
+
+grepyaml() {
+  grep --recursive --include='*.yaml' --include='*.yml' "$@"
+}
+
 grepsql() {
   grep --recursive --include='*.sql' "$@"
 }
