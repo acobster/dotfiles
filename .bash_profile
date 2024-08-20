@@ -743,3 +743,5 @@ if [[ $(hostname) = 'devbox-frontend' ]]; then
 else
   export EDITOR=nvim
 fi
+
+nvm use 20 2>&1 > /dev/null
