@@ -55,6 +55,7 @@ __user_host_ps1() {
   # abbreviate username/hostname combos on normal machines
   echo $(whoami)@$(hostname) \
     | sed 's/tamayo@amperpad/⚡/' \
+    | sed 's/coby@devbox-frontend/⛈ /' \
     | sed 's/acobster@Tomato.domain/🍅/' \
     | sed 's/acobster@CobyTamsMacBook.domain/🍅/' \
     | sed 's/tamayo@toast/🍅/'
@@ -130,6 +131,8 @@ __compose_ps1() {
     git_prompt="\$(echo $git_prompt | sed 's/feature\\//✔ /')"
     git_prompt="\$(echo $git_prompt | sed 's/experiment\\//🔬 /')"
     git_prompt="\$(echo $git_prompt | sed 's/bugfix\\//🐛 /')"
+    git_prompt="\$(echo $git_prompt | sed 's/hotfix\\//🔥 /')"
+    git_prompt="\$(echo $git_prompt | sed 's/refactor\\//𝚫 /')"
     git_prompt="\$(echo $git_prompt | sed 's/test\\//❔ /')"
   fi
 
