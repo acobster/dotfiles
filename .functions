@@ -206,6 +206,10 @@ grepts() {
   grep --recursive --include='*.ts' "$@"
 }
 
+greptsx() {
+  grep --recursive --include='*.ts' --include='*.tsx' "$@"
+}
+
 grepscss() {
   grep --recursive --include='*.scss' "$@"
 }
