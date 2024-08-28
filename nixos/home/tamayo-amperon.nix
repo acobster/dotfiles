@@ -11,6 +11,7 @@
     ./modules/direnv.nix
     ./modules/misc.nix
     ./modules/neovim.nix
+    ./modules/nix.nix
     ./modules/git.nix
     ./modules/gnome.nix
     ./modules/tmux.nix
