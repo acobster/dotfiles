@@ -128,7 +128,9 @@ fi
 EOF
 
         sudo echo "$ETC_PROFILE_DOT_NIX_CONTENT" > "$etc_filepath"
-        echo "sourced ~/.profile from $etc_filepath"
+        if [[ $? -eq 0 ]] ; then
+          echo "sourced ~/.profile from $etc_filepath"
+        fi
       fi
     fi
   fi
