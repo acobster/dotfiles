@@ -9,7 +9,7 @@ usage() {
   echo '  --no-root       install without root'
   echo '  --skip-ssh      do not check or create SSH key'
   echo '  --skip-github   do not authorize GitHub'
-  echo '  --skip-profile  do not create /etc/profile.d/nix.sh'
+  echo '  --skip-profile  do not create /etc/profile.d/nix-profile.sh'
 }
 
 POSITIONAL=()
@@ -161,7 +161,7 @@ read -r -d '' INSTALL_SCRIPT <<'_EOF'
   )
 
   if [[ -z "$SKIP_PROFILE" ]] && [[ -z $NO_ROOT ]] ; then
-    etc_filepath='/etc/profile.d/nix.sh'
+    etc_filepath='/etc/profile.d/nix-profile.sh'
     read -p "Source ~/.profile from $etc_filepath? (Y/n) " source_profile
     source_profile=${source_profile:-'y'}
     if [[ $source_profile = 'y' ]] ; then
