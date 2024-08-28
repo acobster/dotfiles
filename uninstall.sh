@@ -15,7 +15,18 @@ for i in $(seq 1 32); do
 done
 sudo groupdel nixbld
 
-rm -rf ~/.bash_profile ~/.bashrc ~/.githelpers ~/.gtkrc-2.0 ~/.nix-profile ~/.profile ~/.tmux.conf ~/.nix-channels ~/.nix-defexpr ~/.config/nix
+rm -rf ~/.bash_profile \
+  ~/.bashrc \
+  ~/.githelpers \
+  ~/.gtkrc-2.0 \
+  ~/.nix-profile \
+  ~/.profile \
+  ~/.tmux.conf \
+  ~/.nix-channels \
+  ~/.nix-defexpr \
+  ~/.config/nix
+
+sudo rm -rf /etc/bash.bashrc.backup-before-nix
 
 if [[ -f /etc/profile.d/nix.sh ]] ; then
   read -p "Remove /etc/profile.d/nix.sh? (y/N) " remove_etc_profile
