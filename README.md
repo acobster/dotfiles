@@ -1,5 +1,34 @@
 # My dotfiles.
 
+## SETUP
+
+On non-NixOS systems, install Nix:
+
+```sh
+sh <(curl -L https://nixos.org/nix/install) --daemon
+```
+
+Start a new shell with the stuff we'll need:
+
+```sh
+nix-shell -p curl git home-manager
+```
+
+Clone the repo:
+
+```sh
+git clone git@github.com:acobster/dotfiles.git # over SSH - requires a key
+git clone https://github.com/acobster/dotfiles.git # over HTTPS
+```
+
+Note that cloning over HTTPS may require you to change your origin later if you want to push changes.
+
+Now run the thing:
+
+```sh
+bin/build home --extra-experimental-features nix-commmand --extra-experimental-features flakes
+```
+
 ## TODO
 
 * audit vim config
