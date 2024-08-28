@@ -16,5 +16,5 @@
     ./modules/tmux.nix
   ];
 
-  home.stateVersion = "24.05";
+  home.stateVersion = "22.11";
 }
