@@ -9,6 +9,7 @@
     jq
     lolcat
     lua
+    nix-info
     ripgrep
     silver-searcher
     syncthing
