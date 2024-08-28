@@ -15,14 +15,14 @@
   let
     system = "x86_64-linux";
     lib = nixpkgs.lib;
-    unfree = import ./nixos/system/unfree.nix {
+    unfree = import ./nix/system/unfree.nix {
       inherit nixpkgs;
     };
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfreePredicate = unfree.allowUnfree;
     };
-    util = import ./nixos/util.nix {
+    util = import ./nix/util.nix {
       inherit system pkgs nixpkgs home-manager;
     };
   in
@@ -47,21 +47,21 @@
       nixpad = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
-          ./nixos/home/nixpad.nix
+          ./nix/home/nixpad.nix
         ];
       };
 
       toast = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
-          ./nixos/home/toast.nix
+          ./nix/home/toast.nix
         ];
       };
 
       tamayo-amperon = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
-          ./nixos/home/tamayo-amperon.nix
+          ./nix/home/tamayo-amperon.nix
         ];
       };
     };
@@ -70,8 +70,8 @@
       nixpad = lib.nixosSystem {
         inherit system;
         modules = [
-          ./nixos/system/nixpad.nix
-          ./nixos/system/common.nix
+          ./nix/system/nixpad.nix
+          ./nix/system/common.nix
         ];
       };
 
@@ -79,8 +79,8 @@
         inherit system;
         extraModules = [
           "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
-          ./nixos/system/nixpad.nix
-          ./nixos/system/common.nix
+          ./nix/system/nixpad.nix
+          ./nix/system/common.nix
         ];
         userConfig = homeConfigurations.nixpad;
       };
