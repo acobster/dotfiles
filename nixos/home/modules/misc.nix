@@ -13,7 +13,6 @@
     lolcat
     lua
     ripgrep
-    rpi-imager
     silver-searcher
     syncthing
     tree
