@@ -14,7 +14,6 @@
     lua
     ripgrep
     rpi-imager
-    signal-desktop
     silver-searcher
     syncthing
     tree
