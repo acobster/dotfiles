@@ -23,10 +23,10 @@ git clone https://github.com/acobster/dotfiles.git # over HTTPS
 
 Note that cloning over HTTPS may require you to change your origin later if you want to push changes.
 
-Now run the thing:
+Finally, we can run the thing:
 
 ```sh
-bin/build home --extra-experimental-features nix-commmand --extra-experimental-features flakes
+bin/build home -b backup --extra-experimental-features nix-commmand --extra-experimental-features flakes
 ```
 
 ## TODO
