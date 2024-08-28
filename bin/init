@@ -55,6 +55,7 @@ if [[ -z $(which nix) ]] ; then
 
     echo 'Installing nix-user-chroot...'
     mkdir -p ~/.local/bin
+    export PATH="~/.local/bin:$PATH"
     curl https://github.com/nix-community/nix-user-chroot/releases/download/1.2.2/nix-user-chroot-bin-1.2.2-x86_64-unknown-linux-musl > ~/.local/bin/nix-user-chroot
 
     if [[ -f /boot/config-$(uname -r) ]] ; then
