@@ -84,6 +84,8 @@ if [[ -z $(which nix) ]] ; then
       echo
       echo "  nix-user-chroot $store_path bash"
       echo
+
+      nix-user-chroot "$store_path" bash
     fi
 
   else
