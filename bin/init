@@ -101,28 +101,29 @@ read -r -d '' INSTALL_SCRIPT <<'_EOF'
     cd ~
     git clone git@github.com:acobster/dotfiles.git
     cd ~/dotfiles
-    bin/build home -b backup --extra-experimental-features nix-command --extra-experimental-features flakes
+    pwd
+    #~/dotfiles/bin/build home -b backup --extra-experimental-features nix-command --extra-experimental-features flakes
   )
 
-  if [[ -z "$SKIP_PROFILE" ]]; then
-    etc_filepath='/etc/profile.d/nix.sh'
-    read -p "Source ~/.profile from $etc_filepath? (Y/n) " source_profile
-    source_profile=${source_profile:-'y'}
-    if [[ $source_profile = 'y' ]]; then
-      if [[ -f etc_filepath ]] ; then
-        echo "$etc_filepath detected!"
-      else
-        read -r -d '' ETC_PROFILE_DOT_NIX_CONTENT <<'EOF'
-if [ -f /home/tamayo/.profile ] ; then
-  . /home/tamayo/.profile
-fi
-EOF
+  #if [[ -z "$SKIP_PROFILE" ]]; then
+  #  etc_filepath='/etc/profile.d/nix.sh'
+  #  read -p "Source ~/.profile from $etc_filepath? (Y/n) " source_profile
+  #  source_profile=${source_profile:-'y'}
+  #  if [[ $source_profile = 'y' ]]; then
+  #    if [[ -f etc_filepath ]] ; then
+  #      echo "$etc_filepath detected!"
+  #    else
+  #      read -r -d '' ETC_PROFILE_DOT_NIX_CONTENT <<'EOF'
+if# [ -f /home/tamayo/.profile ] ; then
+  #. /home/tamayo/.profile
+fi#
+EO#F
 
-        sudo echo "$ETC_PROFILE_DOT_NIX_CONTENT" > "$etc_filepath"
-        echo "sourced ~/.profile from $etc_filepath"
-      fi
-    fi
-  fi
+  #      sudo echo "$ETC_PROFILE_DOT_NIX_CONTENT" > "$etc_filepath"
+  #      echo "sourced ~/.profile from $etc_filepath"
+  #    fi
+  #  fi
+  #fi
 
   echo '
 
