@@ -58,10 +58,10 @@
         ];
       };
 
-      tamayo-amperon = home-manager.lib.homeManagerConfiguration {
+      damperon = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
-          ./nix/home/tamayo-amperon.nix
+          ./nix/home/damperon.nix
         ];
       };
     };
