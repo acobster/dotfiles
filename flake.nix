@@ -64,6 +64,13 @@
           ./nixos/home/tamayo-amperon.nix
         ];
       };
+
+      devbox-frontend = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          ./nixos/home/devbox-frontend.nix
+        ];
+      };
     };
 
     nixosConfigurations = {
