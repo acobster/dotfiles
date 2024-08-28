@@ -4,6 +4,12 @@
   home.username = "tamayo";
   home.homeDirectory = "/home/tamayo";
 
+  home.packages = with pkgs; [
+    nodejs_20
+    python3
+    python311Packages.pip
+  ];
+
   imports = [
     ./modules/ubuntu.nix
     # instead of common, pick and choose just the work stuff:
@@ -14,10 +20,8 @@
     ./modules/misc.nix
     ./modules/neovim.nix
     ./modules/nix.nix
-    ./modules/nodejs.nix
     ./modules/git.nix
     ./modules/gnome.nix
-    ./modules/python.nix
     ./modules/tmux.nix
     ./modules/slack.nix
   ];
