@@ -8,6 +8,7 @@
     ./modules/ubuntu.nix
     # instead of common, pick and choose just the work stuff:
     ./modules/bash.nix
+    ./modules/browsers.nix
     ./modules/direnv.nix
     ./modules/misc.nix
     ./modules/neovim.nix

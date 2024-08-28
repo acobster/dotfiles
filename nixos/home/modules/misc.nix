@@ -2,10 +2,8 @@
 
 {
   home.packages = with pkgs; [
-    brave
     cowsay
     ffmpeg
-    firefox
     fzf
     gimp
     gnome.gnome-terminal
@@ -20,7 +18,6 @@
     silver-searcher
     syncthing
     tree
-    ungoogled-chromium
     vlc
     wget
     xclip
