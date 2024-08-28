@@ -1,38 +1,12 @@
-.calva
+/result
 .cpcache
 *.swo
 *.swp
 *.swn
-*.code-workspace
-.idea
-*.iml
-*.sublime-project
-*.sublime-workspace
-.DS_Store
-node_modules/
-bower_components/
-.otto/
-.zeus.sock
-zeus.json
-*.swp
-*.swn
-*.swo
-bin/jsc
+
 # ctags files at root only
 /tags
-*.deb
 
-# misc WordPress stuff
-/wp-content/uploads/
-/wp-content/debug.log
-
-# editor/dev env stuff
-*.code-workspace
-.nrepl-port
-.shadow-cljs/
-
-# Local Lando files
-.lando.local.yml
-.vscode
-
+/node_modules
 /*.ignore/
+.nrepl-port

@@ -1,3 +1,0 @@
-alias PROJ='work PROJ'
-alias PROJtheme='work PROJ/wp-content/themes/PROJ'
-alias tPROJ='t PROJ "PROJ && vms PROJ" "PROJ && lando start" "PROJ"'

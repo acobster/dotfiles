@@ -1,0 +1,98 @@
+#!/usr/bin/env bash
+
+usage() {
+  echo "usage: $(basename $0) [-h|--help] COMMAND"
+  echo
+  echo '  COMMANDS:'
+  echo
+  echo '  home'
+  echo '    Build the home-manager environment'
+  echo
+  echo '  system'
+  echo '    Build the system configuration for the current host'
+  echo
+  echo '  up[date]'
+  echo '    Update system dependencies'
+  echo
+  echo '  iso'
+  echo '    Build a live ISO image'
+  echo
+  echo '  OPTIONS:'
+  echo
+  echo '  -h|--help show this help text'
+}
+
+POSITIONAL=()
+while [[ $# -gt 0 ]]
+do
+key="$1"
+
+case $key in
+  -h|--help)
+    # show usage and bail
+    usage
+    exit
+    ;;
+
+  up | update | system | home | down | iso)
+    COMMAND=$1
+    shift # past argument
+    ;;
+
+  *)
+    POSITIONAL+=("$1") # save it in an array for later
+    shift # past argument
+    ;;
+esac
+
+done
+set -- "${POSITIONAL[@]}" # restore positional parameters
+
+
+main() {
+  local dotfiles_dir="$(dirname $(dirname $0))"
+  case $COMMAND in
+    up | update)
+      sudo nix flake update "$@"
+    ;;
+    system)
+      # `/#` defaults to hostname
+      sudo nixos-rebuild switch --flake "$dotfiles_dir/#" "$@"
+    ;;
+    home)
+      home-manager switch --flake "$dotfiles_dir/#$(hostname)" "$@"
+    ;;
+    iso)
+      nix build '.#nixosConfigurations.iso.config.system.build.isoImage' "$@"
+    ;;
+    down)
+      if [[ -f ~/.profile ]] && ! [[ -L ~/.profile ]] ; then
+        echo mv ~/.profile ~/.profile.backup
+        mv ~/.profile ~/.profile.backup
+      fi
+      if [[ -f ~/.bash_profile ]] && ! [[ -L ~/.bash_profile ]] ; then
+        echo mv ~/.bash_profile ~/.bash_profile.backup
+        mv ~/.bash_profile ~/.bash_profile.backup
+      fi
+      if [[ -f ~/.bashrc ]] && ! [[ -L ~/.bashrc ]] ; then
+        echo mv ~/.bashrc ~/.bashrc.backup
+        mv ~/.bashrc ~/.bashrc.backup
+      fi
+      if [[ -f ~/.config/nvim/init.lua ]] && ! [[ -L ~/.config/nvim/init.lua ]] ; then
+        echo mv ~/.config/nvim/init.lua ~/.config/nvim/init.lua.backup
+        mv ~/.config/nvim/init.lua ~/.config/nvim/init.lua.backup
+      fi
+      if [[ -f ~/.tmux.conf ]] && ! [[ -L ~/.tmux.conf ]] ; then
+        echo mv ~/.tmux.conf ~/.tmux.conf.backup
+        mv ~/.tmux.conf ~/.tmux.conf.backup
+      fi
+    ;;
+    *)
+      usage
+      exit 1
+    ;;
+  esac
+}
+
+
+main "$@"

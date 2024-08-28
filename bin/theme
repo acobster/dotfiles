@@ -1,0 +1,89 @@
+#!/usr/bin/env bash
+
+usage() {
+  echo "usage: $(basename $0) COMMAND [-h|--help]"
+  echo
+  echo '  COMMANDS:'
+  echo
+  echo '    dark: set the terminal theme to solarized dark'
+  echo
+  echo '    light: set the terminal theme to solarized light'
+  echo
+  echo '    trans[parency] X: set the terminal transparency to X'
+  echo '      where X is an int 0-100'
+  echo
+  echo '  OPTIONS:'
+  echo
+  echo '  -h|--help show this help text'
+}
+
+POSITIONAL=()
+while [[ $# -gt 0 ]]
+do
+key="$1"
+
+case $key in
+    -h|--help)
+      # show usage and bail
+      usage
+      exit
+      ;;
+    trans | transparency)
+      CMD='transparency'
+      TRANSPARENCY="$2"
+      shift # past argument
+      ;;
+    dark | light)
+      CMD='theme'
+      VARIATION="$1"
+      shift # past argument
+      ;;
+    *)
+      POSITIONAL+=("$1") # save it in an array for later
+      shift # past argument
+      ;;
+esac
+
+done
+set -- "${POSITIONAL[@]}" # restore positional parameters
+
+
+if [[ -z $(which dconf) ]] ; then
+  echo "dconf not found. Is this a GNOME environment?"
+  exit 1
+fi
+
+if [[ -z $CMD ]] ; then
+  usage
+  exit
+fi
+
+UUID='e2b6e70f-8085-4735-bc8d-6f8512a1d849'
+
+if [[ $TRANSPARENCY ]] ; then
+  dconf write /org/gnome/terminal/legacy/profiles:/:$UUID/background-transparency-percent $TRANSPARENCY
+  exit 0
+fi
+
+dconf write /org/gnome/terminal/legacy/profiles:/list "['$UUID']"
+dconf write /org/gnome/terminal/profiles:/default "'$UUID'"
+dconf write /org/gnome/terminal/legacy/profiles:/:$UUID/visible-name "'SOLAR'"
+
+dconf write /org/gnome/terminal/legacy/profiles:/:$UUID/use-theme-transparency false
+dconf write /org/gnome/terminal/legacy/profiles:/:$UUID/use-theme-colors false
+
+if [[ $VARIATION = 'light' ]] ; then
+  export GNOME_TERMINAL_SOLARIZED_THEME=light
+  dconf write /org/gnome/terminal/legacy/theme-variant "'light'"
+  dconf write /org/gnome/terminal/legacy/profiles:/:$UUID/use-transparent-background false
+  dconf write "/org/gnome/terminal/legacy/profiles:/:$UUID/foreground-color" "'rgb(101,123,131)'"
+  dconf write "/org/gnome/terminal/legacy/profiles:/:$UUID/background-color" "'rgb(253,246,227)'"
+  dconf write "/org/gnome/terminal/legacy/profiles:/:$UUID/palette" "['rgb(205,223,228)', 'rgb(220,50,47)', 'rgb(133,153,0)', 'rgb(181,137,0)', 'rgb(38,139,210)', 'rgb(211,54,130)', 'rgb(42,161,152)', 'rgb(238,232,213)', 'rgb(0,43,54)', 'rgb(203,75,22)', 'rgb(88,110,117)', 'rgb(101,123,131)', 'rgb(131,148,150)', 'rgb(108,113,196)', 'rgb(147,161,161)', 'rgb(253,246,227)']"
+else
+  export GNOME_TERMINAL_SOLARIZED_THEME=dark
+  dconf write /org/gnome/terminal/legacy/theme-variant "'dark'"
+  dconf write /org/gnome/terminal/legacy/profiles:/:$UUID/use-transparent-background true
+  dconf write "/org/gnome/terminal/legacy/profiles:/:$UUID/foreground-color" "'rgb(131,148,150)'"
+  dconf write "/org/gnome/terminal/legacy/profiles:/:$UUID/background-color" "'rgb(0,43,54)'"
+  dconf write "/org/gnome/terminal/legacy/profiles:/:$UUID/palette" "['rgb(7,54,66)', 'rgb(220,50,47)', 'rgb(133,153,0)', 'rgb(181,137,0)', 'rgb(38,139,210)', 'rgb(211,54,130)', 'rgb(42,161,152)', 'rgb(238,232,213)', 'rgb(0,43,54)', 'rgb(203,75,22)', 'rgb(88,110,117)', 'rgb(101,123,131)', 'rgb(131,148,150)', 'rgb(108,113,196)', 'rgb(147,161,161)', 'rgb(253,246,227)']"
+fi
