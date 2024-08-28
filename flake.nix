@@ -39,7 +39,7 @@
 
       shellHook = ''
         NIX_DEVELOP=1;
-        source ~/.bash_profile
+        source ~/dotfiles/bash/.bash_profile
       '';
     };
 
