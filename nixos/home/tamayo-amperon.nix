@@ -5,6 +5,8 @@
   home.homeDirectory = "/home/tamayo";
 
   home.packages = with pkgs; [
+    clickhouse
+    mariadb_105
     nodejs_20
     python3
     python311Packages.pip
