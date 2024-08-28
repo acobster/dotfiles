@@ -7,8 +7,6 @@
     ffmpeg
     fzf
     jq
-    ledger
-    ledger-web
     lolcat
     lua
     ripgrep
