@@ -7,7 +7,7 @@
 First, [install Nix](https://nixos.org/download).
 
 ```sh
-nix-shell -p curl --run 'sh <(curl https://raw.githubusercontent.com/acobster/dotfiles/nixos/bin/init)'
+nix-shell -p curl --run 'sh <(curl https://raw.githubusercontent.com/acobster/dotfiles/main/bin/init)'
 ```
 
 You can pass the following options (append to the `sh` command):
