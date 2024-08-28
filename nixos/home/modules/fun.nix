@@ -2,9 +2,8 @@
 
 {
   home.packages = with pkgs; [
-    babashka
-    clojure
-    jdk21
-    joker
+    freetube
+    transmission
+    zulip
   ];
 }

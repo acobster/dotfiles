@@ -5,6 +5,7 @@
     ./modules/bash.nix
     ./modules/clojure.nix
     ./modules/direnv.nix
+    ./modules/fun.nix
     ./modules/misc.nix
     ./modules/neovim.nix
     ./modules/nix.nix

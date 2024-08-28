@@ -6,11 +6,9 @@
     cowsay
     ffmpeg
     firefox
-    freetube
     fzf
     gimp
     gnome.gnome-terminal
-    joker
     jq
     ledger
     ledger-web
@@ -21,12 +19,10 @@
     signal-desktop
     silver-searcher
     syncthing
-    transmission
     tree
     ungoogled-chromium
     vlc
     wget
     xclip
-    zulip
   ];
 }
