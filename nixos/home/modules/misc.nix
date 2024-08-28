@@ -3,6 +3,7 @@
 {
   home.packages = with pkgs; [
     cowsay
+    curl
     ffmpeg
     fzf
     jq
