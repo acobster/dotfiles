@@ -14,6 +14,7 @@
     ./modules/git.nix
     ./modules/gnome.nix
     ./modules/tmux.nix
+    ./modules/slack.nix
   ];
 
   home.stateVersion = "22.11";
