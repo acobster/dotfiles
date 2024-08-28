@@ -27,7 +27,7 @@ vms() {
 
   find . -regextype sed -regex ".*\.sw\(p\|o\|n\)" | xargs rm
 
-  nvim -S ~/.vim/session/$1.vim
+  $EDITOR -S ~/.vim/session/$1.vim
 }
 
 
