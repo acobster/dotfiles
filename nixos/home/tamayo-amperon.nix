@@ -12,8 +12,10 @@
     ./modules/misc.nix
     ./modules/neovim.nix
     ./modules/nix.nix
+    ./modules/nodejs.nix
     ./modules/git.nix
     ./modules/gnome.nix
+    ./modules/python.nix
     ./modules/tmux.nix
     ./modules/slack.nix
   ];
