@@ -4,15 +4,21 @@
 
 ### Automatic install
 
-TODO
+First, [install Nix](https://nixos.org/download).
+
+```sh
+nix-shell -p curl --run 'sh <(curl https://raw.githubusercontent.com/acobster/dotfiles/nixos/bin/init)'
+```
+
+You can pass the following options (append to the `sh` command):
+
+- `--skip-ssh` if you already created an SSH key
+- `--skip-github` if you already authorized GitHub
+- `--skip-profile` to skip sourcing `~/.profile` from `/etc/profile.d/nix.sh` (required for desktop apps)
 
 ### Manual Setup
 
-On non-NixOS systems, install Nix:
-
-```sh
-sh <(curl -L https://nixos.org/nix/install) --daemon
-```
+[Install Nix](https://nixos.org/download).
 
 Start a new shell with the stuff we'll need:
 
@@ -32,7 +38,7 @@ Note that cloning over HTTPS may require you to change your origin later if you 
 Finally, we can run the thing:
 
 ```sh
-bin/build home -b backup --extra-experimental-features nix-commmand --extra-experimental-features flakes
+bin/build home -b backup --extra-experimental-features nix-command --extra-experimental-features flakes
 ```
 
 **NOTE: for desktop apps on Ubuntu, you need to explicitly source `~/.profile` from a script inside `/etc/profile.d/`:**
