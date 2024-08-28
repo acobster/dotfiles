@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+usage() {
+  echo 'usage: $(basename $0) [-h|--help]'
+  echo
+  echo '  OPTIONS:'
+  echo
+  echo '  -h|--help show this help text'
+}
+
+POSITIONAL=()
+while [[ $# -gt 0 ]]
+do
+key="$1"
+
+case $key in
+    -h|--help)
+    # show usage and bail
+    usage
+    exit
+    ;;
+    -x|--option-arg)
+    SOMETHING="some value"
+    shift # past argument
+    ;;
+    -y|--arg-with-value)
+    VALARG="$2"
+    shift # past argument
+    shift # past value
+    ;;
+    *)
+    POSITIONAL+=("$1") # save it in an array for later
+    shift # past argument
+    ;;
+esac
+
+done
+set -- "${POSITIONAL[@]}" # restore positional parameters
+
+main() {
+  echo 'Checking for Nix installation...'
+  if [[ $(which nix) ]] ; then
+    echo 'Nix detected!'
+  fi
+}
+
+main
