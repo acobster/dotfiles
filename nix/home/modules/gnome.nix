@@ -10,6 +10,8 @@
 
     settings = {
       "org/gnome/desktop/interface" = {
+        gtk-theme = "Yaru-red-dark";
+        icon-theme = "Yaru-red";
         color-scheme = "prefer-dark";
       };
       "org/gtk/settings/file-chooser" = {
@@ -27,16 +29,6 @@
 
   gtk = {
     enable = true;
-
-    theme = {
-      name = "Graphite";
-      package = pkgs.graphite-gtk-theme;
-    };
-
-    iconTheme = {
-      name = "Tela Circle";
-      package = pkgs.tela-circle-icon-theme;
-    };
 
     gtk3.extraConfig = {
       Settings = ''
