@@ -2,6 +2,12 @@
 
 ## SETUP
 
+### Automatic install
+
+TODO
+
+### Manual Setup
+
 On non-NixOS systems, install Nix:
 
 ```sh
@@ -27,6 +33,16 @@ Finally, we can run the thing:
 
 ```sh
 bin/build home -b backup --extra-experimental-features nix-commmand --extra-experimental-features flakes
+```
+
+**NOTE: for desktop apps on Ubuntu, you need to explicitly source `~/.profile` from a script inside `/etc/profile.d/`:**
+
+```sh
+# /etc/profile.d/nix.sh
+
+if [ -f /home/tamayo/.profile ] ; then
+  . /home/tamayo/.profile
+fi
 ```
 
 ## TODO
@@ -93,16 +109,6 @@ bin/build home -b backup --extra-experimental-features nix-commmand --extra-expe
 * Zoom
 * Discord
 * Zulip
-
-**NOTE: for desktop apps on Ubuntu, you need to explicitly source `~/.profile` from a script inside `/etc/profile.d/`:**
-
-```sh
-# /etc/profile.d/nix.sh
-
-if [ -f /home/tamayo/.profile ] ; then
-  . /home/tamayo/.profile
-fi
-```
 
 ## TOOLING
 

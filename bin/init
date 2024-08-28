@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
-
 usage() {
-  echo 'usage: $(basename $0) [-h|--help]'
+  echo 'usage: $(basename $0) [-h|--help] [--skip-ssh] [--skip-github] [--skip-profile]'
   echo
   echo '  OPTIONS:'
   echo
-  echo '  -h|--help show this help text'
+  echo '  -h|--help       show this help text'
+  echo '  --skip-ssh      do not check or create SSH key'
+  echo '  --skip-github   do not authorize GitHub'
+  echo '  --skip-profile  do not create /etc/profile.d/nix.sh'
 }
 
 POSITIONAL=()
@@ -19,14 +21,17 @@ case $key in
     usage
     exit
     ;;
-    -x|--option-arg)
-    SOMETHING="some value"
+    --skip-ssh)
+    SKIP_SSH='1'
     shift # past argument
     ;;
-    -y|--arg-with-value)
-    VALARG="$2"
+    --skip-github)
+    SKIP_GITHUB='1'
     shift # past argument
-    shift # past value
+    ;;
+    --skip-profile)
+    SKIP_PROFILE='1'
+    shift # past argument
     ;;
     *)
     POSITIONAL+=("$1") # save it in an array for later
@@ -37,11 +42,99 @@ esac
 done
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
-main() {
-  echo 'Checking for Nix installation...'
-  if [[ $(which nix) ]] ; then
-    echo 'Nix detected!'
-  fi
-}
+echo 'Checking for Nix installation...'
+if [[ -z $(which nix) ]] ; then
+  echo 'Downloading Nix installer!'
+  sh <(curl -L https://nixos.org/nix/install) --daemon
+else
+  echo 'Nix detected!'
+fi
 
-main
+read -r -d '' NIX_SHELL <<EOF
+{ pkgs ? import <nixpkgs> {} }:
+pkgs.mkShell {
+  packages = with pkgs; [ git curl home-manager gh lolcat ];
+
+  SKIP_SSH = "$SKIP_SSH";
+  SKIP_GITHUB = "$SKIP_GITHUB";
+  SKIP_PROFILE = "$SKIP_PROFILE";
+}
+EOF
+
+read -r -d '' INSTALL_SCRIPT <<'_EOF'
+  echo '
+
+░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░▒▓█▓▒░      ░▒▓██████▓▒░ ░▒▓██████▓▒░░▒▓██████████████▓▒░░▒▓████████▓▒░
+░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░
+░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░     ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░
+░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓██████▓▒░ ░▒▓█▓▒░     ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓██████▓▒░
+░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░     ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░
+░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░
+ ░▒▓█████████████▓▒░░▒▓████████▓▒░▒▓████████▓▒░▒▓██████▓▒░ ░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░
+
+' | lolcat
+
+  if [[ -z "$SKIP_SSH" ]]; then
+    echo "Detecting SSH key (for GitHub auth)..."
+    read -p "SSH key filename: ($HOME/.ssh/id_ed25519) " ssh_key_filename
+    ssh_key_filename=${ssh_key_filename:-"$HOME/.ssh/id_ed25519"}
+    if [[ -f "$ssh_key_filename" ]] ; then
+      echo "$ssh_key_filename exists! Proceeding with GitHub auth..."
+    else
+      read -p "SSH identity: (coby@tamayo.email) " ssh_ident
+      ssh_ident=${ssh_ident:-"coby@tamayo.email"}
+      ssh-keygen -t ed25519 -f "$ssh_key_filename" -C "$ssh_ident"
+    fi
+  fi
+
+  if [[ -z "$SKIP_GITHUB" ]]; then
+    read -p "Authorize GitHub? (Y/n) " auth_gh
+    auth_gh=${auth_gh:-'y'}
+    if [[ $auth_gh = 'y' ]]; then
+      gh auth login --git-protocol ssh
+    else
+      echo 'Skipping GitHub auth...'
+    fi
+  fi
+
+  (
+    cd
+    git clone git@github.com:acobster/dotfiles.git
+    cd ~/dotfiles
+    bin/build home -b backup --extra-experimental-features nix-command --extra-experimental-features flakes
+  )
+
+  if [[ -z "$SKIP_PROFILE" ]]; then
+    etc_filepath='/etc/profile.d/nix.sh'
+    read -p "Source ~/.profile from $etc_filepath? (Y/n) " source_profile
+    source_profile=${source_profile:-'y'}
+    if [[ $source_profile = 'y' ]]; then
+      if [[ -f etc_filepath ]] ; then
+        echo "$etc_filepath detected!"
+      else
+        read -r -d '' ETC_PROFILE_DOT_NIX_CONTENT <<'EOF'
+if [ -f /home/tamayo/.profile ] ; then
+  . /home/tamayo/.profile
+fi
+EOF
+
+        sudo echo "$ETC_PROFILE_DOT_NIX_CONTENT" > "$etc_filepath"
+        echo "sourced ~/.profile from $etc_filepath"
+      fi
+    fi
+  fi
+
+  echo '
+
+░▒▓███████▓▒░ ░▒▓██████▓▒░░▒▓███████▓▒░░▒▓████████▓▒░▒▓█▓▒░
+░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░
+░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░
+░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓██████▓▒░ ░▒▓█▓▒░
+░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░
+░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░
+░▒▓███████▓▒░ ░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░▒▓█▓▒░
+
+' | lolcat
+_EOF
+
+nix-shell -E "$NIX_SHELL" --run "$INSTALL_SCRIPT"
