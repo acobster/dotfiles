@@ -5,8 +5,6 @@
     cowsay
     ffmpeg
     fzf
-    gimp
-    gnome.gnome-terminal
     jq
     ledger
     ledger-web
@@ -16,7 +14,6 @@
     silver-searcher
     syncthing
     tree
-    vlc
     wget
     xclip
   ];

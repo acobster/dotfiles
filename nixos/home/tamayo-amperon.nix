@@ -10,6 +10,7 @@
     ./modules/bash.nix
     ./modules/browsers.nix
     ./modules/direnv.nix
+    ./modules/gui.nix
     ./modules/misc.nix
     ./modules/neovim.nix
     ./modules/nix.nix
