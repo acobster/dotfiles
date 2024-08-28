@@ -87,10 +87,10 @@ read -r -d '' INSTALL_SCRIPT <<'_EOF'
     fi
   fi
 
-  if [[ -z "$SKIP_GITHUB" ]]; then
+  if [[ -z "$SKIP_GITHUB" ]] ; then
     read -p "Authorize GitHub? (Y/n) " auth_gh
     auth_gh=${auth_gh:-'y'}
-    if [[ $auth_gh = 'y' ]]; then
+    if [[ $auth_gh = 'y' ]] ; then
       gh auth login --git-protocol ssh
     else
       echo 'Skipping GitHub auth...'
@@ -113,11 +113,11 @@ read -r -d '' INSTALL_SCRIPT <<'_EOF'
     bin/build home -b backup --extra-experimental-features nix-command --extra-experimental-features flakes
   )
 
-  if [[ -z "$SKIP_PROFILE" ]]; then
+  if [[ -z "$SKIP_PROFILE" ]] ; then
     etc_filepath='/etc/profile.d/nix.sh'
     read -p "Source ~/.profile from $etc_filepath? (Y/n) " source_profile
     source_profile=${source_profile:-'y'}
-    if [[ $source_profile = 'y' ]]; then
+    if [[ $source_profile = 'y' ]] ; then
       if [[ -f etc_filepath ]] ; then
         echo "$etc_filepath detected!"
       else
