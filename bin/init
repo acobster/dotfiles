@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 usage() {
-  echo 'usage: $(basename $0) [-h|--help] [--skip-ssh] [--skip-github] [--skip-profile]'
+  echo 'usage: $(basename $0) [-h|--help] [--no-root]'
+  echo '                      [--skip-ssh] [--skip-github] [--skip-profile]'
   echo
   echo '  OPTIONS:'
   echo
   echo '  -h|--help       show this help text'
+  echo '  --no-root       install without root'
   echo '  --skip-ssh      do not check or create SSH key'
   echo '  --skip-github   do not authorize GitHub'
   echo '  --skip-profile  do not create /etc/profile.d/nix.sh'
@@ -20,6 +22,10 @@ case $key in
     # show usage and bail
     usage
     exit
+    ;;
+    --no-root)
+    NO_ROOT='1'
+    shift # past argument
     ;;
     --skip-ssh)
     SKIP_SSH='1'
@@ -43,18 +49,52 @@ done
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
 echo 'Checking for Nix installation...'
-if [[ -z $(which nix) ]] ; then
-  echo 'Downloading Nix installer!'
-  sh <(curl -L https://nixos.org/nix/install) --daemon
-else
-  echo 'Nix detected!'
-fi
+#if [[ -z $(which nix) ]] ; then
+  if [[ "$NO_ROOT" ]] ; then
+    echo 'Installing without root...'
+
+    if [[ -f /boot/config-$(uname -r) ]] ; then
+      if [[ "$(grep CONFIG_USER_NS /boot/config-$(uname -r))" = 'CONFIG_USER_NS=y' ]] ; then
+        supports_namespaces=yes
+      fi
+    else
+      if [[ "$(unshare --user --pid echo YES)" = 'YES' ]] ; then
+        supports_namespaces=yes
+      fi
+    fi
+
+    if [[ $supports_namespaces != 'yes' ]] ; then
+      echo 'This system does not support user namespaces. Sorry :/'
+      exit
+    fi
+
+    read -p 'Install Nix store to: (~/.nix) ' store_path
+    store_path=${store_path:-"$HOME/.nix"}
+    mkdir -m 0755 "$store_path"
+    nix-user-chroot "$store_path" bash -c 'curl -L https://nixos.org/nix/install | sh'
+
+    if [[ $? -eq 0 ]] ; then
+      echo "Success! You may now start Nix programs by running:"
+      echo
+      echo "  nix-user-chroot $store_path bash"
+      echo
+    fi
+
+  else
+    echo 'Downloading Nix installer!'
+    sh <(curl -L https://nixos.org/nix/install) --daemon
+  fi
+#else
+#  echo 'Nix detected!'
+#fi
+exit
 
 read -r -d '' NIX_SHELL <<EOF
 { pkgs ? import <nixpkgs> {} }:
 pkgs.mkShell {
-  packages = with pkgs; [ git curl home-manager gh lolcat ];
+  packages = with pkgs; [ git curl home-manager gh lolcat ] ;
 
+  NO_ROOT = "$NO_ROOT";
   SKIP_SSH = "$SKIP_SSH";
   SKIP_GITHUB = "$SKIP_GITHUB";
   SKIP_PROFILE = "$SKIP_PROFILE";
@@ -74,7 +114,7 @@ read -r -d '' INSTALL_SCRIPT <<'_EOF'
 
 ' | lolcat
 
-  if [[ -z "$SKIP_SSH" ]]; then
+  if [[ -z "$SKIP_SSH" ]] ; then
     echo "Detecting SSH key (for GitHub auth)..."
     read -p "SSH key filename: ($HOME/.ssh/id_ed25519) " ssh_key_filename
     ssh_key_filename=${ssh_key_filename:-"$HOME/.ssh/id_ed25519"}
@@ -113,7 +153,7 @@ read -r -d '' INSTALL_SCRIPT <<'_EOF'
     bin/build home -b backup --extra-experimental-features nix-command --extra-experimental-features flakes
   )
 
-  if [[ -z "$SKIP_PROFILE" ]] ; then
+  if [[ -z "$SKIP_PROFILE" ]] && [[ -z $NO_ROOT ]] ; then
     etc_filepath='/etc/profile.d/nix.sh'
     read -p "Source ~/.profile from $etc_filepath? (Y/n) " source_profile
     source_profile=${source_profile:-'y'}
