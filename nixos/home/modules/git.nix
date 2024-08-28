@@ -23,6 +23,7 @@
       ci = "commit";
       m = "commit -m";
       cam = "commit -am";
+      gam = "!git commit --amend -m \"$(git log -1 --pretty=%s)\"";
       amend = "commit --amend";
       root = "rev-parse --show-toplevel";
       last = "diff HEAD~1 HEAD";
