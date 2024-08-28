@@ -57,6 +57,13 @@
           ./nixos/home/toast.nix
         ];
       };
+
+      tamayo-amperon = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          ./nixos/home/tamayo-amperon.nix
+        ];
+      };
     };
 
     nixosConfigurations = {
