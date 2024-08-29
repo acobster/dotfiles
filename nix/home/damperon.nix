@@ -8,8 +8,11 @@
     clickhouse
     mariadb_105
     nodejs_20
+    pkg-config
     python3
     python311Packages.pip
+    python311Packages.virtualenv
+    yarn-berry
   ];
 
   imports = [
