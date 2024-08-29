@@ -23,6 +23,7 @@ upandaway() {
 
 
 # Set up aliases
+alias b='build'
 alias aliases='vim ~/dotfiles/.aliases'
 alias al='vim ~/.aliases'
 alias functions='vim ~/dotfiles/bash/.functions'
