@@ -144,6 +144,10 @@ mc() {
   mkdir -p $1 && cd $1
 }
 
+grepnix() {
+  grep --recursive --include='*.nix' "$@"
+}
+
 grepcljx() {
   grep --recursive --include='*.clj' --include='*.cljs' --include='*.cljc' "$@"
 }
