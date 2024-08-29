@@ -57,6 +57,7 @@ __user_host_ps1() {
   echo $(whoami)@$(hostname) \
     | sed 's/tamayo@amperpad/⚡/' \
     | sed 's/tamayo@damperon/⚡/' \
+    | sed 's/(amperon)/🐍/' \
     | sed 's/coby@devbox-frontend/⛈ /' \
     | sed 's/acobster@Tomato.domain/🍅/' \
     | sed 's/acobster@CobyTamsMacBook.domain/🍅/' \
