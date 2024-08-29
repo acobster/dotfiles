@@ -38,7 +38,7 @@ Note that cloning over HTTPS may require you to change your origin later if you 
 Finally, we can run the thing:
 
 ```sh
-bin/build home -b backup --extra-experimental-features nix-command --extra-experimental-features flakes
+bin/build home -b backup --extra-experimental-features 'nix-command flakes'
 ```
 
 **NOTE: for desktop apps on Ubuntu, you need to explicitly source `~/.profile` from a script inside `/etc/profile.d/`:**
