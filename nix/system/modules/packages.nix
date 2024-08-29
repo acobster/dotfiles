@@ -6,11 +6,13 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    docker
     fzf
     git
     home-manager
     nettools
     silver-searcher
+    # Steam needs to run at the system level
     steam
   ];
 
