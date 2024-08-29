@@ -34,10 +34,6 @@ while [[ $# -gt 0 ]] ; do
 			NUM_PANES=2
 			shift # next opt
 			;;
-    -d|--detached)
-			DETACHED="1"
-			shift # next opt
-			;;
     -3)
 			NUM_PANES=3
 			shift # next opt
@@ -52,6 +48,10 @@ while [[ $# -gt 0 ]] ; do
 			;;
     -5)
 			NUM_PANES=5
+			shift # next opt
+			;;
+    -d|--detached)
+			DETACHED="1"
 			shift # next opt
 			;;
     -p|--pane)
