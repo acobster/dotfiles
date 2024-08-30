@@ -5,6 +5,7 @@
     gnomeExtensions.dash-to-panel
   ];
 
+  # `dconf watch /` is your friend
   dconf = {
     enable = true;
 
