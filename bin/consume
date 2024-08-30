@@ -10,10 +10,8 @@ if [[ ! -p $pipe ]]; then   # if the pipe doesn't exist, create it
     mkfifo $pipe
 fi
 
-while true                  # cycle eternally..
-do
+while true; do
     if read line < $pipe; then
-        # a line break should be used because of the prompt
         echo
         echo "+ $line"
         # run the line, including bash profile stuff
