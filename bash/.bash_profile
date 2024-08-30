@@ -116,7 +116,7 @@ __ps1_symbol() {
   elif [[ $dt -gt 1201 ]] ; then
     s='🎄'
   else
-    s='\$'
+    s='$'
   fi
 
   echo "$s"
@@ -150,7 +150,9 @@ __compose_ps1() {
     git_prompt="\$(echo $git_prompt | sed 's/test\\//❔ /')"
   fi
 
-  export PS1="\$(__user_host_ps1) \[$BOLD\]\[$MAGENTA\]${git_prompt} \[$GREEN\]\$(__cwd_ps1)\$(__env_ps1)\[$RESET\] $(__ps1_symbol) "
+  symbol="\$(__ps1_symbol)"
+
+  export PS1="\$(__user_host_ps1) \[$BOLD\]\[$MAGENTA\]${git_prompt} \[$GREEN\]\$(__cwd_ps1)\$(__env_ps1)\[$RESET\] ${symbol} "
 }
 
 __compose_ps1
