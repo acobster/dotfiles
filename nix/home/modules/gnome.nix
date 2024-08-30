@@ -22,7 +22,7 @@
         use-tree-view = true;
       };
       "org/gnome/nautilus/window-state" = {
-        start-with-sidebar = false;
+        start-with-sidebar = true;
       };
     };
   };
