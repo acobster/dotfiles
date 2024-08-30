@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 
-if [[ -z $1 ]] ; then
-  echo 'no pipe name specified; defaulting to "test.pipe"'
-fi
-
 pipe=${1:-'test.pipe'}
+
+echo "reading from $pipe..."
 
 trap 'rm -f "$pipe"' EXIT     # ignore exit and delete messages until the end
 
@@ -22,5 +20,3 @@ do
         bash -ic "$line; echo = \$? ; `exit`"
     fi
 done
-
-echo 'Bye bye!'
