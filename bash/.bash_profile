@@ -73,6 +73,10 @@ __ps1_symbol() {
     echo 'λ'
     return 0
   fi
+  if [[ $VIRTUAL_ENV ]] ; then
+    echo '🐍'
+    return 0
+  fi
 
   # Easter eggs!
   # strip leading zero from mmdd date
