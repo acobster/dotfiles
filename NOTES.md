@@ -3,7 +3,12 @@
 ### Partitions strategy v2: BTRFS subvolums + LUKS
 
 1. Boot
-2. Btrfs+LUKS
+    - EFI
+    - 200M 
+3. Btrfs+LUKS
+    - LUKS drive, with Btrfs filesystem mounted into it
+    - 100% remaining disk space
+    - A subvolume each for root & home, plus a swapfile
 
 See also:
 
