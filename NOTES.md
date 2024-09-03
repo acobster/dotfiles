@@ -15,10 +15,11 @@ See also:
 - [Ubuntu 20.04 btrfs-luks + timeshift](https://www.youtube.com/watch?v=yRSElRlp7TQ)
 - [Disko Btrfs+LUKS example](https://github.com/nix-community/disko/blob/master/example/luks-btrfs-subvolumes.nix)
 
-Tangentially related videos found while researching:
+Tangentially related resources found while researching:
 
 - [Introduction to LVM](https://www.youtube.com/watch?v=dMHFArkANP8)
 - [Encrypting Linux fs with LUKS](https://www.youtube.com/watch?v=woHtfaFDWBU)
+- [Btrfs + LUKS + Secure Boot on Arch](https://wiki.archlinux.org/title/User:ZachHilman/Installation_-_Btrfs_%2B_LUKS2_%2B_Secure_Boot)
 
 ### Partitions strategy v1
 
