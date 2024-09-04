@@ -8,7 +8,11 @@
 3. Btrfs+LUKS
     - LUKS drive, with Btrfs filesystem mounted into it
     - 100% remaining disk space
-    - A subvolume each for root & home, plus a swapfile
+    - A subvolume each for:
+        - root
+        - home
+        - snapshots (this lets us browse snapshots as a regular file tree)
+    - Swapfile
 
 See also:
 
@@ -20,6 +24,166 @@ Tangentially related resources found while researching:
 - [Introduction to LVM](https://www.youtube.com/watch?v=dMHFArkANP8)
 - [Encrypting Linux fs with LUKS](https://www.youtube.com/watch?v=woHtfaFDWBU)
 - [Btrfs + LUKS + Secure Boot on Arch](https://wiki.archlinux.org/title/User:ZachHilman/Installation_-_Btrfs_%2B_LUKS2_%2B_Secure_Boot)
+
+#### Manual setup
+
+Boot into the NixOS live environment. Close out of the graphical installer. Start an interactive sudo session with `sudo -i` and run `lsblk` and `fdisk -l` to get a lay of the land. You should see something like:
+
+```
+# lsblk
+NAME           MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINTS
+loop0            7:0    0   2.4G  1 loop  /nix/.ro-store
+sda              8:0    1  14.6G  0 disk  
+├─sdb1           8:1    1   2.4G  0 part  /iso
+└─sdb2           8:2    1     3M  0 part
+sdb             259:0   0 238.5G  0 disk
+├─ ...
+└─ ...
+```
+
+Here, `sdb` is the device for the laptop drive we want to partition and format. This will depend on the type of drive(s) the computer came with. Choose carefully, and remember to replace `sdb` in the below comands with the right partition.
+
+Let's start by creating a partition table with the `fdisk` utility. Run `fdisk /dev/sdb`, making sure to use the correct device name for the drive.
+
+1. `g` to create a new GUID Partition Table (GPT)
+2. `n` to create the first partition, which will be our boot partition
+3. Hit `Enter` to accept the default **Partition number** of 1, and again to accept the default **First sector**
+4. For **Last sector**, type `+200M` and hit `Enter`
+5. `t` to set the type of the partition we just created and select `1` for **EFI System**
+6. `n` to create our next partition
+7. Now hit `Enter` three times for the default **Partition number**, **First sector**, and **Last sector**, which will tell it to allocate the remaining disk space to this partition
+8. Leave type as **Linux filesystem**
+9. `p` to doube-check the partition table we're about to write
+10. `w` to write it
+
+You should see some output like:
+
+```
+The partition table has been altered.
+Calling ioclt() to re-read partition table.
+Syncing disks.
+```
+
+Now run `lsblk` again to triple-check we got the layout we want:
+
+```
+# lsblk
+NAME           MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINTS
+loop0            7:0    0   2.4G  1 loop  /nix/.ro-store
+sda              8:0    1  14.6G  0 disk  
+├─sdb1           8:1    1   2.4G  0 part  /iso
+└─sdb2           8:2    1     3M  0 part
+sdb             259:0   0 238.5G  0 disk
+├─sdb1          259:1   0   200M  0 part 
+└─sdb2          259:2   0 238.5G  0 part  
+```
+
+Looks good! `/dev/sdb1` is our 200M EFI boot partition, and `/dev/sdb3` is our filesystem partition which we will encrypt and then format with Btrfs.
+
+First, make sure the boot partition is properly formatted and labeled:
+
+```
+# mkfs.fat -F 32 /dev/sdb1
+mkfs.fat 4.2 (2021-01-31)
+# fatlabel /dev/sdb1 EFI_BOOT
+#
+```
+
+We'll mount this filesystem in a future step, but we have a few other steps first.
+
+Now create the LUKS container for the encrypted umbrella filesystem, which will contain root, swap, and home. As of 2024 you probably still want to specify LUKS1, as the most detail I could find in my cursory search was that GRUB only has limited support for LUKS2.
+
+```
+# cryptsetup luksFormat --type=luks1 /dev/sdb2
+
+WARNING!
+========
+This will overwrite data on /dev/sdb2 irrevocably.
+
+Are you sure? (Type uppercase yes): YES
+Enter passphrase for /dev/sdb2:
+Verify passphrase:
+```
+
+Follow the prompts, typing `YES` to confirm and enter a password (twice).
+
+Map the encrypted partition to a device with:
+
+```
+# cryptsetup luksOpen /dev/sdb2 encrypted
+Enter passphrase for /dev/sdb2:
+```
+
+The `encrypted` part is arbitrary.
+
+We now have our encrypted container, so next we need to create the actual Btrfs filesystem inside it:
+
+```
+# mkfs.btrfs --label SYSTEM /dev/mapper/encrypted
+```
+
+Similarly to the `EFI_BOOT` label we set using `fatlabel`, we'll use the `SYSTEM` label in our NixOS hardware config later. But first, let's create our Btrfs subvolumes:
+
+```
+# mount -t btrfs LABEL=SYSTEM /mnt
+# btrfs subvolume create /mnt/@root
+# btrfs subvolume create /mnt/@home
+# btrfs subvolume create /mnt/@snapshots
+```
+
+We now have our subvolumes, but what we want to do now is actually mount them as separate mounts in the filesystem tree, each with their own set of options. We'll first _unmount_ root and then remount each subvolume with [fs_mntopts](https://www.man7.org/linux/man-pages/man5/fstab.5.html).
+
+Okay, let's begin by recursively (hence `-R`) unmounting:
+
+```
+# umount -R /mnt
+```
+
+Now let's remount. Here are the options we'll pass:
+
+- `defaults` - defaults for the kernel and filesystem.
+- `x-mount.mkdir` - tells `mount` to create a directory for the mount if it doesn't exist.
+- `compress=zstd` - optimize for storage. Defaults to no compression if not passed.
+- `nodatacow` - disables Copy-On-Write for newly created files. Default is `datacow`, meaning COW is enabled.
+- `ssd` - optimize for SSD performance.
+- `noatime` - prevents inode updates when files are merely accessed (as opposed to actually written to, I think).
+- `subvol=...` - indicates Btrfs subvolume explicitly.
+
+```
+# mount -t btrfs -o defaults,x-mount.mkdir,compress=zstd,ssd,noatime,subvol=@root LABEL=SYSTEM /mnt
+# mount -t btrfs -o defaults,x-mount.mkdir,compress=zstd,ssd,noatime,subvol=@home LABEL=SYSTEM /mnt/home
+# mount -t btrfs -o defaults,x-mount.mkdir,compress=zstd,ssd,noatime,subvol=@snapshots LABEL=SYSTEM /mnt/.snapshots
+```
+
+Now that we have the root mount, we're also ready to mount the boot filesystem:
+
+```
+# mkdir /mnt/boot
+# mount LABEL=EFI_BOOT /mnt/boot
+```
+
+And while we're at it, let's create a Btrfs swapfile:
+
+```
+# btrfs filesystem mkswapfile --size 2G /mnt/.swapfile
+# swapon /mnt/.swapfile
+```
+
+Our disk layout should now look something like this:
+
+```
+# lsblk
+NAME           MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINTS
+...
+sdb             259:0   0 238.5G  0 disk
+├─sdb1          259:1   0   200M  0 part 
+└─sdb2          259:2   0 238.5G  0 part
+  └─encrypted   259:0   0 238.5G  0 crypt /mnt/.snapshots
+                                          /mnt/home
+                                          /mnt
+```
+
+**NOTE:** that once you run `nixos-generate-config` with this setup, you may still need to edit your generated `hardware-configuration.nix` file to specify filesystems `by-label` instead of `by-uuid`, and to specify swapfile. For some reason the config gen script does not catch the fact that we're mapping `by-label`, although [apparently](https://youtu.be/axOxLJ4BWmY?si=6t4y0vR9vXWwnW1B&t=1300) it used to.
 
 ### Partitions strategy v1
 
