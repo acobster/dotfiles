@@ -110,7 +110,7 @@ Follow the prompts, typing `YES` to confirm and enter a password (twice).
 Map the encrypted partition to a device with:
 
 ```
-# cryptsetup luksOpen /dev/sdb2 encrypted
+# cryptsetup luksOpen --label=LUKS_CONTAINER /dev/sdb2 encrypted
 Enter passphrase for /dev/sdb2:
 ```
 
@@ -176,7 +176,7 @@ Our disk layout should now look something like this:
 NAME           MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINTS
 ...
 sdb             259:0   0 238.5G  0 disk
-├─sdb1          259:1   0   200M  0 part 
+├─sdb1          259:1   0   200M  0 part  /mnt/boot
 └─sdb2          259:2   0 238.5G  0 part
   └─encrypted   259:0   0 238.5G  0 crypt /mnt/.snapshots
                                           /mnt/home
