@@ -187,7 +187,20 @@ sdb             259:0   0 238.5G  0 disk
                                           /mnt
 ```
 
-**NOTE:** that once you run `nixos-generate-config` with this setup, you may still need to edit your generated `hardware-configuration.nix` file to specify filesystems `by-label` instead of `by-uuid`, and to specify swapfile. For some reason the config gen script does not catch the fact that we're mapping `by-label`, although [apparently](https://youtu.be/axOxLJ4BWmY?si=6t4y0vR9vXWwnW1B&t=1300) it used to.
+#### A note on NixOS
+
+The above steps are general and should work on any Linux distro that provides `cryptsetup` etc. For NixOS, I have a couple suggestions to make (re-)install go smoothly.
+
+Once you run `nixos-generate-config` with this setup, there are some config directives you will probably want to change:
+
+- `fileSystems.[*].device` (in `hardware-configuration.nix`) from `/dev/disk/by-uuid/<uuid>` to `/dev/disk/by-label/SYSTEM` for the root, home, and snapshots fs blocks. (For some reason the config gen script does not catch the fact that we're mapping `by-label`, although [apparently](https://youtu.be/axOxLJ4BWmY?si=6t4y0vR9vXWwnW1B&t=1300) it used to.) Do NOT use `SYSTEM` for the `/boot` fs.
+- `swapDevices` (also in `hardware-configuration.nix`) to `[ { device = "/.swapfile"; } ]`
+- `boot.loader.grub.enable` to `true` if not already enabled
+- `boot.loader.grub.efiSupport` to `true`
+- `boot.loader.grub.device` to `"nodev"`
+- `boot.loader.efi.efiSysMountPoint` from `"/boot/efi"` to `"/boot"`
+
+- you may still need to edit your generated `hardware-configuration.nix` file to specify filesystems `by-label` instead of `by-uuid`, and to specify swapfile. 
 
 From this point on, it's just a normal NixOS install.
 
