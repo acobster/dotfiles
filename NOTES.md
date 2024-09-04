@@ -14,16 +14,21 @@
         - snapshots (this lets us browse snapshots as a regular file tree)
     - Swapfile
 
-See also:
+Sources I distilled into these steps:
 
 - [Ubuntu 20.04 btrfs-luks + timeshift](https://www.youtube.com/watch?v=yRSElRlp7TQ)
+- [Btrfs + LUKS + Secure Boot on Arch](https://wiki.archlinux.org/title/User:ZachHilman/Installation_-_Btrfs_%2B_LUKS2_%2B_Secure_Boot)
 - [Disko Btrfs+LUKS example](https://github.com/nix-community/disko/blob/master/example/luks-btrfs-subvolumes.nix)
+- [fstab options](https://www.baeldung.com/linux/etc-fstab-mount-options) AKA `fsmnt_opts`
+- [Btrfs-specific mount options](https://btrfs.readthedocs.io/en/latest/ch-mount-options.html)
+- [Btrfs Swapfile](https://btrfs.readthedocs.io/en/latest/Swapfile.html)
 
 Tangentially related resources found while researching:
 
 - [Introduction to LVM](https://www.youtube.com/watch?v=dMHFArkANP8)
 - [Encrypting Linux fs with LUKS](https://www.youtube.com/watch?v=woHtfaFDWBU)
-- [Btrfs + LUKS + Secure Boot on Arch](https://wiki.archlinux.org/title/User:ZachHilman/Installation_-_Btrfs_%2B_LUKS2_%2B_Secure_Boot)
+- [nixos-generate-config source](https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/installer/tools/nixos-generate-config.pl)
+- [Chris Titus Tech's Btrfs Guide](https://www.youtube.com/watch?v=J2QP4onqJKI&)
 
 #### Manual setup
 
@@ -86,7 +91,6 @@ First, make sure the boot partition is properly formatted and labeled:
 # mkfs.fat -F 32 /dev/sdb1
 mkfs.fat 4.2 (2021-01-31)
 # fatlabel /dev/sdb1 EFI_BOOT
-#
 ```
 
 We'll mount this filesystem in a future step, but we have a few other steps first.
@@ -184,6 +188,10 @@ sdb             259:0   0 238.5G  0 disk
 ```
 
 **NOTE:** that once you run `nixos-generate-config` with this setup, you may still need to edit your generated `hardware-configuration.nix` file to specify filesystems `by-label` instead of `by-uuid`, and to specify swapfile. For some reason the config gen script does not catch the fact that we're mapping `by-label`, although [apparently](https://youtu.be/axOxLJ4BWmY?si=6t4y0vR9vXWwnW1B&t=1300) it used to.
+
+From this point on, it's just a normal NixOS install.
+
+---
 
 ### Partitions strategy v1
 
