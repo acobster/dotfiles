@@ -7,12 +7,7 @@
   home.packages = with pkgs; [
     clickhouse
     google-cloud-sdk
-    mariadb_105
-    nodejs_20
-    python3
-    python311Packages.pip
-    python311Packages.virtualenv
-    yarn-berry
+    mariadb
   ];
 
   imports = [
