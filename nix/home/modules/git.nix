@@ -7,6 +7,14 @@
     enable = true;
     userName = "Coby Tamayo";
     userEmail = "coby@tamayo.email";
+    extraConfig = {
+      pull = {
+        rebase = true;
+      };
+      push = {
+        autoSetupRemote = true;
+      };
+    };
     aliases = {
       st = "status";
       churn = "!git-churn";
