@@ -5,6 +5,7 @@
   home.homeDirectory = "/home/tamayo";
 
   home.packages = with pkgs; [
+    azure-cli
     clickhouse
     google-cloud-sdk
     mariadb
