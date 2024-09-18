@@ -1,6 +1,9 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+# Disable Ctrl+S because it is the Devil.
+stty -ixon
+
 
 #---------
 # PROMPT
