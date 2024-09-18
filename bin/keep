@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+
+usage() {
+  echo "usage: $(basename $0) [-h|--help] [-c|--cmd CMD] [-d|--dry-run] [-i|--invert]"
+  echo
+  echo 'Keep is a tool for keeping or removing files from an arbitrary list,'
+  echo 'interactively. It takes zero or more lines from STDIN and for each one'
+  echo 'prompts the user to choose whether to keep (the default) or remove'
+  echo 'that file.'
+  echo
+  echo '  EXAMPLES:'
+  echo
+  echo '  $ ls | keep'
+  echo
+  echo '  $ git branch | keep --cmd "git branch -D"'
+  echo
+  echo '  OPTIONS:'
+  echo
+  echo '  -h|--help     show this help text'
+  echo '  -c|--cmd CMD  run CMD for each file not kept (default: rm -rf)'
+  echo '  -i|--invert   choosing Y[es] means "run CMD"; choosing n[o] is a noop'
+  echo '  -d|--dry-run  only echo rm commands, do not execute'
+}
+
+POSITIONAL=()
+while [[ $# -gt 0 ]]
+do
+key="$1"
+
+case $key in
+    -h|--help)
+    # show usage and bail
+    usage
+    exit
+    ;;
+    -d|--dry-run)
+    DRY_RUN=1
+    shift # past argument
+    ;;
+    -i|--invert)
+    INVERT=1
+    shift # past argument
+    ;;
+    -c|--cmd)
+    CMD="$2"
+    shift # past argument
+    shift # past value
+    ;;
+    *)
+    POSITIONAL+=("$1") # save it in an array for later
+    shift # past argument
+    ;;
+esac
+
+done
+set -- "${POSITIONAL[@]}" # restore positional parameters
+
+
+CMD=${CMD:-'rm -rf'}
+
+while read file; do
+  keep='Keep'
+  if [[ $INVERT ]] ; then
+    echo "keep is INVERTED. You will be prompted to run \`$CMD\` on each file."
+    keep="$CMD"
+  fi
+  read -p "$keep $file (Y/n)? [Ctrl+C to quit] " choice < /dev/tty
+  if [[ ( $INVERT != '1' && $choice == 'n' ) || ( $INVERT && $choice != 'n' ) ]] ; then
+    if [[ $DRY_RUN ]] ; then
+      echo $CMD "$file"
+    else
+      $CMD "$file"
+    fi
+  else
+    echo "kept $file."
+  fi
+done < /dev/stdin
