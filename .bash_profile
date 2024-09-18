@@ -748,3 +748,5 @@ if [[ $(hostname) = 'devbox-frontend' ]]; then
 else
   export EDITOR=nvim
 fi
+
+export TERM="xterm-256color"
