@@ -58,10 +58,13 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 
 CMD=${CMD:-'rm -rf'}
 
+if [[ $INVERT ]] ; then
+  echo "keep is INVERTED. You will be prompted to run \`$CMD\` on each file."
+fi
+
 while read file; do
   keep='Keep'
   if [[ $INVERT ]] ; then
-    echo "keep is INVERTED. You will be prompted to run \`$CMD\` on each file."
     keep="$CMD"
   fi
   read -p "$keep $file (Y/n)? [Ctrl+C to quit] " choice < /dev/tty
