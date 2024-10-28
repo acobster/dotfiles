@@ -5,7 +5,7 @@
     freetube
     rpi-imager
     signal-desktop
-    transmission
+    vlc
     zulip
   ];
 }
