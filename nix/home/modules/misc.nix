@@ -10,6 +10,7 @@
     lolcat
     lua
     nix-info
+    pdfsam-basic
     ripgrep
     silver-searcher
     syncthing
