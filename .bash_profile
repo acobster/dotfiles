@@ -743,7 +743,7 @@ fi
 # Misc.
 #-------
 
-if [[ $(hostname) = 'devbox-frontend' ]]; then
+if [[ $(hostname | grep devbox) ]]; then
   export EDITOR=vim
 else
   export EDITOR=nvim
