@@ -76,14 +76,11 @@ fi
 
 ### 🤷 Misc.
 
-* rpi-imager
 * VLC
 * Ungoogled Chromium
 * Brave
 * GIMP
-* Zoom
 * Discord
-* Zulip
 
 ## TOOLING
 
@@ -114,6 +111,14 @@ build iso
 * Inspo:
     * [dmadisetti/.dots](https://github.com/dmadisetti/.dots)
     * [nyabinary/dotfiles](https://github.com/nyabinary/dotfiles)
+
+## NOTES
+
+These apps require a system-level install, and don't work when installed at user-level:
+
+- steam
+- signal-desktop
+- zoom-us
 
 ## UNINSTALL
 
