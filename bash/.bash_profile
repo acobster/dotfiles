@@ -163,7 +163,7 @@ __compose_ps1
 # PATH
 #---------
 
-if [[ -d "$HOME/bin" ]] && ! [[ $PATH =~ ":${HOME}\/bin:" ]] ; then
+if [[ -d "$HOME/bin" ]] && ! [[ $PATH =~ "$HOME/bin" ]] ; then
   export PATH=~/bin:$PATH
 fi
 
