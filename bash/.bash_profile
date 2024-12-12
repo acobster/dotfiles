@@ -320,3 +320,16 @@ if [[ -d ~/.pyenv ]] ; then
   [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
   eval "$(pyenv init -)"
 fi
+
+
+
+#--------
+# FLYCTL
+#--------
+
+
+export FLYCTL_INSTALL="~/.fly"
+
+if [[ ! "$PATH" =~ "$FLYCTL_INSTALL/bin" ]] ; then
+  export PATH="$FLYCTL_INSTALL/bin:$PATH"
+fi
