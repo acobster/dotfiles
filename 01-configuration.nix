@@ -21,6 +21,8 @@
       grub = {
         efiSupport = true;
         device = "nodev";
+        # https://discourse.nixos.org/t/upgrading-some-older-full-disk-encryption-setups/47746/2
+        enableCryptodisk = true;
       };
     };
     initrd.luks.devices.cryptroot.device = "/dev/mapper/encrypted";
