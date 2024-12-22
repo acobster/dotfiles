@@ -17,7 +17,6 @@
       systemd-boot.enable = true;
       efi = {
         canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot";
       };
     };
     initrd.luks.devices.cryptroot.device = "/dev/mapper/encrypted";
