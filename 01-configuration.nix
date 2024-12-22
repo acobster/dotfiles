@@ -16,7 +16,7 @@
     loader = {
       efi = {
         canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot";
+        efiSysMountPoint = "/boot/efi";
       };
       grub = {
         enable = true;
@@ -184,7 +184,7 @@
       options = [ "subvol=@snapshots" ];
     };
 
-  fileSystems."/boot" =
+  fileSystems."/boot/efi" =
     { device = "/dev/disk/by-label/EFI_BOOT";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
