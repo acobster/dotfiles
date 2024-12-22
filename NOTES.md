@@ -145,7 +145,7 @@ Follow the prompts, typing `YES` to confirm and enter a password (twice).
 Map the encrypted partition to a device with:
 
 ```
-# cryptsetup luksOpen --label=LUKS_CONTAINER /dev/sdb2 encrypted
+# cryptsetup luksOpen /dev/sdb2 encrypted
 Enter passphrase for /dev/sdb2:
 ```
 
@@ -193,8 +193,8 @@ Now let's remount. Here are the options we'll pass:
 Now that we have the root mount, we're also ready to mount the boot filesystem:
 
 ```
-# mkdir /mnt/boot
-# mount LABEL=EFI_BOOT /mnt/boot
+# mkdir -p /mnt/boot/efi
+# mount LABEL=EFI_BOOT /mnt/boot/efi
 ```
 
 And while we're at it, let's create a Btrfs swapfile:
