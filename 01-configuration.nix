@@ -14,9 +14,13 @@
   #boot.loader.systemd-boot.enable = true;
   boot = {
     loader = {
-      systemd-boot.enable = true;
       efi = {
         canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot/efi";
+      };
+      grub = {
+        efiSupport = true;
+        device = "nodev";
       };
     };
     initrd.luks.devices.cryptroot.device = "/dev/mapper/encrypted";
@@ -179,7 +183,7 @@
       options = [ "subvol=@snapshots" ];
     };
 
-  fileSystems."/boot" =
+  fileSystems."/boot/efi" =
     { device = "/dev/disk/by-label/EFI_BOOT";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
