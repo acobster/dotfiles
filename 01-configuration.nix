@@ -21,11 +21,8 @@
       grub = {
         efiSupport = true;
         device = "nodev";
-        # https://discourse.nixos.org/t/upgrading-some-older-full-disk-encryption-setups/47746/2
-        enableCryptodisk = true;
       };
     };
-    initrd.luks.devices.cryptroot.device = "/dev/mapper/encrypted";
   };
 
   # networking.hostName = "nixos"; # Define your hostname.
@@ -170,8 +167,6 @@
       fsType = "btrfs";
       options = [ "subvol=@root" ];
     };
-
-  boot.initrd.luks.devices."encrypted".device = "/dev/disk/by-uuid/7d472f05-f3e5-4327-a67e-11bf848b8a3c";
 
   fileSystems."/home" =
     { device = "/dev/disk/by-label/SYSTEM";
