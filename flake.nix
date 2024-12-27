@@ -76,6 +76,7 @@
     nixosConfigurations = {
       clementine = lib.nixosSystem {
         inherit system;
+        specialArgs = { inherit system; };
         modules = [
           ./nix/system/common.nix
           ./nix/system/clementine
