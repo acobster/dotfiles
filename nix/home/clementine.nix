@@ -19,6 +19,12 @@
     ./modules/gnome.nix
     ./modules/tmux.nix
     ./modules/ulauncher.nix
+    ./modules/zoom.nix
+  ];
+
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
+    "discord"
+    "zoom"
   ];
 
   # Let Home Manager install and manage itself.

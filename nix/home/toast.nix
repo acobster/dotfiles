@@ -21,6 +21,11 @@
     ./modules/unfree.nix
   ];
 
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
+    "discord"
+    "zoom"
+  ];
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
