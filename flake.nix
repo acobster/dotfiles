@@ -79,7 +79,7 @@
         modules = [
           ./nix/system/common.nix
           ./nix/system/clementine
-          ./nix/system/user/tamayo.nix
+          ./nix/system/users/tamayo.nix
         ];
       };
 
