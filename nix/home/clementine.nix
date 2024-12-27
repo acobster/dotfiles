@@ -8,7 +8,6 @@
     ./modules/bash.nix
     ./modules/browsers.nix
     ./modules/clojure.nix
-    ./modules/discord.nix
     ./modules/direnv.nix
     ./modules/fun.nix
     ./modules/ledger.nix
@@ -19,7 +18,11 @@
     ./modules/gnome.nix
     ./modules/tmux.nix
     ./modules/ulauncher.nix
-    ./modules/zoom.nix
+  ];
+
+  home.packages = with pkgs; [
+    discord
+    zoom-us
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [

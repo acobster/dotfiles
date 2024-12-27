@@ -18,7 +18,10 @@
     ./modules/tmux.nix
     ./modules/ubuntu.nix
     ./modules/ulauncher.nix
-    ./modules/unfree.nix
+  ];
+
+  home.packages = with pkgs; [
+    discord
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
