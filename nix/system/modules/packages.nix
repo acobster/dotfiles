@@ -9,6 +9,7 @@
     docker
     fzf
     git
+    gnome-terminal
     home-manager
     nettools
     silver-searcher
