@@ -10,7 +10,6 @@
       "wheel" # sudo
       "networkmanager"
     ];
-    # TODO move this to home-manager?
     packages = with pkgs; [
       protonvpn-cli
       protonvpn-gui
