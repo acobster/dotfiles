@@ -44,6 +44,13 @@
     };
 
     homeConfigurations = {
+      clementine = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          ./nix/home/clementine.nix
+        ];
+      };
+
       nixpad = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
