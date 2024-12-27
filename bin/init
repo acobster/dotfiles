@@ -148,7 +148,7 @@ read -r -d '' INSTALL_SCRIPT <<'_EOF'
     echo "dotfiles already cloned! Attempting git pull..."
     (
       cd ~/dotfiles
-      git pull
+      git pull origin main
     )
   else
     git clone git@github.com:acobster/dotfiles.git ~/dotfiles
