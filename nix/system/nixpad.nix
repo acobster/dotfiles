@@ -16,6 +16,11 @@
 
   boot.initrd.luks.devices."luks-0d009137-ca91-4608-b436-67feeb0279ef".device = "/dev/disk/by-uuid/0d009137-ca91-4608-b436-67feeb0279ef";
 
+  boot.initrd.availableKernelModules = [ "ata_piix" "ohci_pci" "ahci" "sd_mod" "sr_mod" ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ ];
+  boot.extraModulePackages = [ ];
+
   # TODO
   #fileSystems."/boot/efi" =
   #  { device = "/dev/disk/by-label/BOOT";

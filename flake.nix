@@ -74,6 +74,15 @@
     };
 
     nixosConfigurations = {
+      clementine = lib.nixosSystem {
+        inherit system;
+        modules = [
+          ./nix/system/common.nix
+          ./nix/system/clementine
+          ./nix/system/user/tamayo.nix
+        ];
+      };
+
       nixpad = lib.nixosSystem {
         inherit system;
         modules = [
