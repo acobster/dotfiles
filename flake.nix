@@ -73,6 +73,7 @@
         modules = [
           ./nix/system/users/tamayo.nix
           ./nix/system/common.nix
+          ./nix/system/modules/wayland.nix
           ./nix/system/clementine
         ];
       };
