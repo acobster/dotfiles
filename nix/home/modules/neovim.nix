@@ -1,6 +1,8 @@
 { pkgs, ... }:
 
 {
+  home.file.".vim/session/README.md".source = ../../../vim/session/README.md;
+
   programs.neovim = {
     enable = true;
     viAlias = true;
