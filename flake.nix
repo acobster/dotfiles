@@ -73,6 +73,7 @@
         modules = [
           ./nix/system/users/tamayo.nix
           ./nix/system/common.nix
+          ./nix/system/modules/hyprland.nix
           ./nix/system/clementine
         ];
       };
