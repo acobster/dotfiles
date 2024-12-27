@@ -7,6 +7,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     docker
+    firefox
     fzf
     git
     gnome-terminal
@@ -15,6 +16,7 @@
     silver-searcher
     # Steam needs to run at the system level
     steam
+    vim
   ];
 
   environment.gnome.excludePackages = with pkgs; [
