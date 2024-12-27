@@ -8,6 +8,7 @@
     ./modules/bash.nix
     ./modules/browsers.nix
     ./modules/clojure.nix
+    ./modules/discord.nix
     ./modules/direnv.nix
     ./modules/fun.nix
     ./modules/ledger.nix
@@ -18,7 +19,6 @@
     ./modules/gnome.nix
     ./modules/tmux.nix
     ./modules/ulauncher.nix
-    ./modules/unfree.nix
   ];
 
   # Let Home Manager install and manage itself.
