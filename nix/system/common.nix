@@ -10,7 +10,6 @@
     ./modules/fonts.nix
     ./modules/network.nix
     ./modules/packages.nix
-    ./modules/peripherals.nix
   ];
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
