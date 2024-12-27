@@ -6,7 +6,6 @@
 
   imports = [
     ./modules/boot.nix
-    ./modules/display.nix
     ./modules/fonts.nix
     ./modules/network.nix
     ./modules/packages.nix
