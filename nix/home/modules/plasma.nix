@@ -7,6 +7,23 @@
 
     overrideConfig = true;
 
+    workspace = {
+      lookAndFeel = "org.kde.breezedark.desktop";
+    };
+
+    hotkeys.commands."launch-terminal" = {
+      name = "Launch GNOME Terminal";
+      key = "Ctrl+Alt+T";
+      command = "gnome-terminal";
+    };
+
+    panels = [
+      {
+        location = "right";
+        hiding = "autohide";
+      }
+    ];
+
     shortcuts = {
       "ksmserver"."Lock Session" = "Meta+L";
       "ksmserver"."Log Out" = "Ctrl+Alt+Del";
