@@ -23,7 +23,7 @@
     ./modules/neovim.nix
     ./modules/nix.nix
     ./modules/git.nix
-    ./modules/gnome.nix
+    ./modules/plasma.nix
     ./modules/tmux.nix
     ./modules/ulauncher.nix
   ];

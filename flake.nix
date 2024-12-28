@@ -9,9 +9,15 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
+  outputs = { nixpkgs, home-manager, plasma-manager, ... }@inputs:
   let
     system = "x86_64-linux";
     lib = nixpkgs.lib;
@@ -47,6 +53,7 @@
       clementine = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
+          inputs.plasma-manager.homeManagerModules.plasma-manager
           ./nix/home/clementine.nix
         ];
       };
@@ -73,6 +80,7 @@
         modules = [
           ./nix/system/users/tamayo.nix
           ./nix/system/common.nix
+          ./nix/system/modules/kde.nix
           ./nix/system/clementine
         ];
       };

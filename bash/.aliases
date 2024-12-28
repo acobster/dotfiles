@@ -70,3 +70,5 @@ alias socode='sed "s/^/    /"|x'
 
 # List snippets available within my dotfiles
 alias snippets='ls ~/dotfiles/snippets'
+
+alias nix-plasma='nix run github:nix-community/plasma-manager'
