@@ -19,7 +19,7 @@
 
     panels = [
       {
-        location = "right";
+        location = "left";
         hiding = "autohide";
       }
     ];
