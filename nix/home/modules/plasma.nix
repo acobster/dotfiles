@@ -21,11 +21,29 @@
       {
         location = "top";
         hiding = "normalpanel";
+        height = 24;
+        widgets = [
+          "org.kde.plasma.marginseparator"
+          "org.kde.plasma.digital-clock"
+          "org.kde.plasma.marginseparator"
+          # clipboard
+          # volume
+          # brightness
+          # network
+          # battery
+          # notif
+          "org.kde.plasma.systemtray"
+          "org.kde.plasma.showdesktop"
+        ];
       }
       {
         location = "left";
         hiding = "dodgewindows";
         floating = true;
+        widgets = [
+          "org.kde.plasma.kickoff"
+          "org.kde.plasma.icontasks"
+        ];
       }
     ];
 
