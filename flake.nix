@@ -78,17 +78,18 @@
         inherit system;
         specialArgs = { inherit pkgs system; };
         modules = [
+          ./nix/system/users/tamayo.nix
           ./nix/system/common.nix
           ./nix/system/clementine
-          ./nix/system/users/tamayo.nix
         ];
       };
 
       nixpad = lib.nixosSystem {
         inherit system;
         modules = [
-          ./nix/system/nixpad.nix
           ./nix/system/common.nix
+          ./nix/system/modules/xserver.nix
+          ./nix/system/nixpad.nix
         ];
       };
 
