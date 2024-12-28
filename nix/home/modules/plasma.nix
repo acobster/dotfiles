@@ -23,9 +23,14 @@
         hiding = "normalpanel";
         height = 24;
         widgets = [
-          "org.kde.plasma.marginseparator"
-          "org.kde.plasma.digital-clock"
-          "org.kde.plasma.marginseparator"
+          "org.kde.plasma.panelspacer"
+          {
+            digitalClock = {
+              time.format = "12h";
+              date.enable = false;
+            };
+          }
+          "org.kde.plasma.panelspacer"
           # clipboard
           # volume
           # brightness
