@@ -64,13 +64,6 @@
           ./nix/home/toast.nix
         ];
       };
-
-      damperon = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [
-          ./nix/home/damperon.nix
-        ];
-      };
     };
 
     nixosConfigurations = {
