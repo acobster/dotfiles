@@ -53,6 +53,8 @@
         location = "left";
         hiding = "dodgewindows";
         floating = true;
+        alignment = "center";
+        lengthMode = "fit";
         widgets = [
           "org.kde.plasma.kickoff"
           "org.kde.plasma.icontasks"
