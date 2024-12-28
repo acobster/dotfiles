@@ -30,14 +30,22 @@
               date.enable = false;
             };
           }
+          "org.kde.plasma.weather"
           "org.kde.plasma.panelspacer"
-          # clipboard
-          # volume
-          # brightness
-          # network
-          # battery
-          # notif
-          "org.kde.plasma.systemtray"
+          {
+            systemTray = {
+              items = {
+                shown = [
+                  "org.kde.plasma.clipboard"
+                  "org.kde.plasma.brightness"
+                  "org.kde.plasma.volume"
+                  "org.kde.plasma.battery"
+                  "org.kde.plasma.networkmanagement"
+                  "org.kde.plasma.notifications"
+                ];
+              };
+            };
+          }
           "org.kde.plasma.showdesktop"
         ];
       }
