@@ -94,7 +94,6 @@
         extraModules = [
           "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
           ./nix/system/nixpad.nix
-          ./nix/system/common.nix
         ];
         userConfig = homeConfigurations.nixpad;
       };
