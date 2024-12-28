@@ -78,9 +78,6 @@
         inherit system;
         specialArgs = { inherit pkgs system; };
         modules = [
-          ./nix/system/users/tamayo.nix
-          ./nix/system/common.nix
-          ./nix/system/modules/kde.nix
           ./nix/system/clementine
         ];
       };

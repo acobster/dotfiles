@@ -4,6 +4,16 @@
   networking.hostName = "clementine";
 
   imports = [
+    ../users/tamayo.nix
+
+    # Common config
+    ../modules/boot.nix
+    ../modules/fonts.nix
+    ../modules/kde.nix
+    ../modules/network.nix
+    ../modules/packages.nix
+
+    # Machine-specific config
     ./hardware.nix
     ./audio.nix
   ];
