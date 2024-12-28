@@ -85,8 +85,6 @@
       nixpad = lib.nixosSystem {
         inherit system;
         modules = [
-          ./nix/system/common.nix
-          ./nix/system/modules/xserver.nix
           ./nix/system/nixpad.nix
         ];
       };

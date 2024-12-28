@@ -3,6 +3,17 @@
 {
   networking.hostName = "nixpad";
 
+  imports = [
+    ./users/tamayo.nix
+
+    # Common config
+    ./modules/boot.nix
+    ./modules/fonts.nix
+    ./modules/network.nix
+    ./modules/packages.nix
+    ./modules/xserver.nix
+  ];
+
   # TODO
   #fileSystems."/" =
   #  {
