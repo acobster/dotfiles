@@ -38,6 +38,7 @@
 
     configFile = {
       "kwinrc"."MouseBindings"."CommandAllWheel" = "Change Opacity";
+      "kwinrc"."NightColor"."Active" = true;
     };
   };
 }
