@@ -19,8 +19,13 @@
 
     panels = [
       {
+        location = "top";
+        hiding = "normalpanel";
+      }
+      {
         location = "left";
-        hiding = "autohide";
+        hiding = "dodgewindows";
+        floating = true;
       }
     ];
 
