@@ -66,7 +66,7 @@
       "ksmserver"."Lock Session" = "Meta+L";
       "ksmserver"."Log Out" = "Ctrl+Alt+Del";
       "kwin"."Edit Tiles" = "Meta+T";
-      "kwin"."Expose" = "Ctrl+F9,Meta+Tab";
+      "kwin"."Expose" = ["Ctrl+F9" "Meta+Tab"];
       "kwin"."Grid View" = "Meta+G";
       "kwin"."Window Maximize" = "Meta+Up";
       "kwin"."Window Minimize" = "Meta+H";
