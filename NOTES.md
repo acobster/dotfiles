@@ -418,3 +418,37 @@ Compiled with this command (and therefore probably not complete):
 ```
 find /nix/store -name plasmoids | while read f; do ls $f; done | grep org.kde.plasma | sort | uniq
 ```
+
+## Syncthing on a Synology NAS
+
+For me, setting up Syncthing on a Synology NAS was mostly a process of discover. It's not that complicated once you get the details right, but I wished there was a .
+
+The basic process that worked for me was:
+
+1. Install [Container Manager](https://www.synology.com/en-us/dsm/packages/ContainerManager)
+2. Install the official [`syncthing/syncthing` Docker image](https://github.com/syncthing/syncthing/blob/main/README-Docker.md)
+3. Configure and run the Docker container to sync individual folders within `$HOME`, the root sync folder
+
+### Specs
+
+As always, your mileage may vary. I imagine these steps are fairly universal, but my versions at time of writing are:
+
+- Linux kernel 4.4.302+ x86_64
+- DSM 7.2
+- Syncthing 1.28 (`syncthing/syncthing:1.28` Docker image)
+
+One thing to note is that I did have SSH set up already. I _think_ that was a bit of manual setup, but it was unremarkable enough to not write down, so it's out of scope here.
+
+### Installing Syncthing
+
+I tried the Syncthing [SynoCommunity app](https://synocommunity.com/package/syncthing), but due to DSM being a "[spectacularly unrewarding platform to work with](https://forum.syncthing.net/t/synology-dsm-7-kastelo-synocommunity-either/17006/8)" (one can only imagine) that integration is unmaintained. So Docker it is!
+
+There's nothing very special about this installation method. I had never used Container Manager or set up a Docker container on Synology/DSM and I found it pretty straightforward. Container Manager is a standard Synology app available from the Package Center.
+
+Install it and open it up. Go to **Container > Create**, search for syncthing, and choose the official `syncthing/syncthing` image. It should prompt you for a tag. I prefer to pin my Docker images, so I chose the latest stable minor version at time of writing, which was 1.28.
+
+Once you pick a tag it should start a download and then it's onto configuration!
+
+### Setting up the container
+
+Container Manager exposes a nice GUI that maps pretty intuitively onto Docker's CLI args. Give the container a name (I named mine `syncthing-1.28`) and start configure the ports. Synology knows to forward ports 8384
