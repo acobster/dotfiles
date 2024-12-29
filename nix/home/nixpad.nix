@@ -33,10 +33,5 @@
     ./modules/ulauncher.nix
   ];
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
-    "discord"
-    "zoom"
-  ];
-
   home.stateVersion = "23.11";
 }
