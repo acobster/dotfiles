@@ -4,6 +4,13 @@
   home.username = "tamayo";
   home.homeDirectory = "/home/tamayo";
 
+  # Let Home Manager install and manage itself.
+  programs.home-manager.enable = true;
+
+  home.packages = with pkgs; [
+    discord
+  ];
+
   imports = [
     ./modules/bash.nix
     ./modules/clojure.nix
@@ -19,17 +26,10 @@
     ./modules/ulauncher.nix
   ];
 
-  home.packages = with pkgs; [
-    discord
-  ];
-
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
     "discord"
     "zoom"
   ];
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
 
   home.stateVersion = "22.11";
 }
