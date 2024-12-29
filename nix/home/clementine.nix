@@ -45,7 +45,6 @@
     ./modules/git.nix
     ./modules/plasma.nix
     ./modules/tmux.nix
-    ./modules/ulauncher.nix
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
