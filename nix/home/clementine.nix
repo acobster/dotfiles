@@ -14,6 +14,7 @@
     ffmpeg
     freetube
     fzf
+    ghostwriter
     gimp-with-plugins
     jq
     lolcat
@@ -24,6 +25,7 @@
     rpi-imager
     signal-desktop
     silver-searcher
+    standardnotes
     syncthing
     tree
     vlc
