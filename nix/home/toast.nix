@@ -9,6 +9,17 @@
 
   home.packages = with pkgs; [
     discord
+    fzf
+    curl
+    jq
+    lua
+    ripgrep
+    silver-searcher
+    tree
+    vlc
+    wget
+    xclip
+    zulip
   ];
 
   imports = [
@@ -16,7 +27,6 @@
     ./modules/clojure.nix
     ./modules/direnv.nix
     ./modules/ledger.nix
-    ./modules/misc.nix
     ./modules/neovim.nix
     ./modules/nix.nix
     ./modules/git.nix

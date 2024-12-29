@@ -8,9 +8,30 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
+    cowsay
+    curl
     discord
+    ffmpeg
+    freetube
+    fzf
+    gimp-with-plugins
+    jq
+    lolcat
+    lua
+    nix-info
+    pdfsam-basic
+    ripgrep
+    rpi-imager
     signal-desktop
+    silver-searcher
+    syncthing
+    tree
+    vlc
+    wget
+    xclip
     zoom-us
+    zulip
+    zulip-term
   ];
 
   imports = [
@@ -19,7 +40,6 @@
     ./modules/clojure.nix
     ./modules/direnv.nix
     ./modules/ledger.nix
-    ./modules/misc.nix
     ./modules/neovim.nix
     ./modules/nix.nix
     ./modules/git.nix
