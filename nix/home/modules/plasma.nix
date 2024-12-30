@@ -9,7 +9,7 @@
 
     workspace = {
       lookAndFeel = "org.kde.breezedark.desktop";
-      wallpaperSlideshow = {
+      wallpaperSlideShow = {
         path = "/home/tamayo/Sync/pictures/copyleft";
         interval = 10;
       };
