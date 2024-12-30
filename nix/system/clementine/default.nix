@@ -14,8 +14,9 @@
     ../modules/packages.nix
 
     # Machine-specific config
-    ./hardware.nix
     ./audio.nix
+    ./hardware.nix
+    ./hosts.nix
   ];
 
   # Enable CUPS to print documents.
