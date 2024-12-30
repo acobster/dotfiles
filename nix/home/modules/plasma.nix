@@ -11,7 +11,7 @@
       lookAndFeel = "org.kde.breezedark.desktop";
       wallpaperSlideShow = {
         path = "/home/tamayo/Sync/pictures/copyleft";
-        interval = 10;
+        interval = 180;
       };
     };
 
