@@ -2,8 +2,10 @@
 
 * [syncthing](https://github.com/syncthing/syncthing/blob/main/README-Docker.md)
 * hosts blocklist
-* wallpaper slideshow
-* firewall
+* app launcher
+* fix solarized vim
+* dock height
+* ssh keychain
 * audit vim config
     * color
     * syntastic => ALE
@@ -17,7 +19,6 @@
     * Generic server
     * Plex
     * Concierge
-* Fix vim in light theme
 * Lando?
 
 ## PARTITIONS
