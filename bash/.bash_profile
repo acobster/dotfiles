@@ -12,7 +12,7 @@ export EDITOR=nvim
 # Web-environment-based prompt:
 # put your LIVE_DIRS array definition inside a file at ~/.live.env, e.g.:
 #
-#   LIVE_ENV=(/var/www/example.com /var/www/example2.com)
+#   LIVE_DIRS=(/var/www/example.com /var/www/example2.com)
 #
 __env_ps1() {
   local _live
