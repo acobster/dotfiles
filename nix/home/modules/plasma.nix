@@ -9,6 +9,10 @@
 
     workspace = {
       lookAndFeel = "org.kde.breezedark.desktop";
+      wallpaperSlideshow = {
+        path = "/home/tamayo/Sync/pictures/copyleft";
+        interval = 10;
+      };
     };
 
     hotkeys.commands."launch-terminal" = {
