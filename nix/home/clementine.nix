@@ -11,6 +11,7 @@
     cowsay
     curl
     discord
+    neofetch
     ffmpeg
     freetube
     fzf
