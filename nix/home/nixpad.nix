@@ -22,7 +22,7 @@
 
   imports = [
     ./modules/bash.nix
-    ./modules/clojure.nix
+    ./modules/clojure
     ./modules/direnv.nix
     ./modules/ledger.nix
     ./modules/neovim.nix

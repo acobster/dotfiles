@@ -7,4 +7,6 @@
     jdk21
     joker
   ];
+
+  home.file.".clojure/deps.edn".source = ./deps.edn;
 }

@@ -40,7 +40,7 @@
   imports = [
     ./modules/bash.nix
     ./modules/browsers.nix
-    ./modules/clojure.nix
+    ./modules/clojure
     ./modules/direnv.nix
     ./modules/ledger.nix
     ./modules/neovim.nix
