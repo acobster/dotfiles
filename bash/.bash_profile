@@ -229,8 +229,8 @@ else
 fi
 
 # Set an environment variable that tools like Vim can detect
-if [[ -f "${HOME}/.dir_colors/dircolors.${SOLARIZED_THEME}" ]] ; then
-  eval `dircolors "${HOME}/.dir_colors/dircolors.${SOLARIZED_THEME}"`
+if [[ -f "${HOME}/.dir_colors/solarized.ansi-${SOLARIZED_THEME}" ]] ; then
+  eval `dircolors "${HOME}/.dir_colors/solarized.ansi-${SOLARIZED_THEME}"`
 fi
 
 
