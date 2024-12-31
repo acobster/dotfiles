@@ -1,5 +1,7 @@
 " COLOR CONFIG
 
+syntax enable
+
 " Coloring for 80-char column
 if (exists('+colorcolumn'))
   set colorcolumn=80
@@ -22,7 +24,7 @@ else
 endif
 
 try
-  colorscheme solarized
+  colorscheme solarized8_flat
 
   " transparent background
   " https://stackoverflow.com/questions/37712730/set-vim-background-transparent

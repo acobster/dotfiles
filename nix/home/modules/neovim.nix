@@ -51,7 +51,7 @@
       vim-gitgutter
 
       # Color
-      vim-colors-solarized
+      vim-solarized8
 
       # Navigation
       vim-windowswap
