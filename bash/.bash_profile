@@ -222,15 +222,15 @@ fi
 #
 
 if [[ -f "${HOME}/.dir_colors/theme" ]] ; then
-  export GNOME_TERMINAL_SOLARIZED_THEME=$(cat "${HOME}/.dir_colors/theme")
+  export SOLARIZED_THEME=$(cat "${HOME}/.dir_colors/theme")
 else
   # default to dark
-  export GNOME_TERMINAL_SOLARIZED_THEME=dark
+  export SOLARIZED_THEME=dark
 fi
 
 # Set an environment variable that tools like Vim can detect
-if [[ -f "${HOME}/.dir_colors/dircolors.${GNOME_TERMINAL_SOLARIZED_THEME}" ]] ; then
-  eval `dircolors "${HOME}/.dir_colors/dircolors.${GNOME_TERMINAL_SOLARIZED_THEME}"`
+if [[ -f "${HOME}/.dir_colors/dircolors.${SOLARIZED_THEME}" ]] ; then
+  eval `dircolors "${HOME}/.dir_colors/dircolors.${SOLARIZED_THEME}"`
 fi
 
 
