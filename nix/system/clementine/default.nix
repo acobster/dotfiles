@@ -14,6 +14,7 @@
     ../modules/packages.nix
 
     # Machine-specific config
+    ./syncthing.nix
     ./audio.nix
     ./hardware.nix
     ./hosts.nix

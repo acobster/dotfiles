@@ -27,7 +27,6 @@
     signal-desktop
     silver-searcher
     standardnotes
-    syncthing
     tree
     vlc
     wget
