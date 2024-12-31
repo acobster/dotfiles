@@ -5,7 +5,7 @@
 * app launcher
 * fix solarized vim
 * dock height
-* ssh keychain
+* weather location
 * audit vim config
     * color
     * syntastic => ALE
