@@ -3,7 +3,7 @@
 * [syncthing](https://github.com/syncthing/syncthing/blob/main/README-Docker.md)
 * app launcher
 * fix solarized vim
-* dock height
+* desktop widgets
 * weather location
 * audit vim config
     * color

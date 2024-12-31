@@ -58,7 +58,7 @@
         hiding = "dodgewindows";
         floating = true;
         alignment = "center";
-        lengthMode = "fit";
+        lengthMode = "fill";
         widgets = [
           "org.kde.plasma.kickoff"
           "org.kde.plasma.icontasks"
