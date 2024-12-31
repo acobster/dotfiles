@@ -1,7 +1,6 @@
 ## TODO
 
 * [syncthing](https://github.com/syncthing/syncthing/blob/main/README-Docker.md)
-* hosts blocklist
 * app launcher
 * fix solarized vim
 * dock height
