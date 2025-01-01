@@ -34,11 +34,11 @@
             path = "/home/tamayo/Sync/docs";
             devices = [ "nastyboi" ];
           };
-          "movies" = {
-            id = "7rkpv-epj4e";
-            path = "/home/tamayo/Sync/movies";
-            devices = [ "nastyboi" ];
-          };
+          #"movies" = {
+          #  id = "7rkpv-epj4e";
+          #  path = "/home/tamayo/Sync/movies";
+          #  devices = [ "nastyboi" ];
+          #};
           "music" = {
             id = "oevph-m7uaw";
             path = "/home/tamayo/Sync/music";
