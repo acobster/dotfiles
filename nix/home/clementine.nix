@@ -42,6 +42,7 @@
     ./modules/clojure
     ./modules/colors
     ./modules/direnv.nix
+    ./modules/keybase.nix
     ./modules/ledger.nix
     ./modules/neovim.nix
     ./modules/nix.nix
