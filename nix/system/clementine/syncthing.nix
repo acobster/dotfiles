@@ -8,6 +8,10 @@
       user = "tamayo";
       dataDir = "/home/tamayo/Sync";
       settings = {
+        gui = {
+          user = "tamayo";
+          password = "pourover";
+        };
         devices = {
           # This is the machine nastyboi originally synced to.
           #"clementine" = { id = "UFNJALL-L75PPG7-63AYQOY-IGDVDE3-ZTRP3KV-RQIARGB-5K7OI2K-G5DZKQB"; };

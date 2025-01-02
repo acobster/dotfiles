@@ -1,6 +1,7 @@
 ## TODO
 
-* [syncthing](https://github.com/syncthing/syncthing/blob/main/README-Docker.md)
+* secrets
+* Syncthing GUI password
 * app launcher
 * desktop widgets
 * weather location
