@@ -27,6 +27,7 @@
     signal-desktop
     silver-searcher
     standardnotes
+    transmission_4-gtk
     tree
     vlc
     wget
