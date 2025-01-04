@@ -7,6 +7,7 @@
     # go ahead, try it lol
     initialPassword = "pourover";
     extraGroups = [
+      "docker"
       "wheel" # sudo
       "networkmanager"
     ];

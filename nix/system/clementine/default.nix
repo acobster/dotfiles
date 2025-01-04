@@ -9,6 +9,7 @@
     # Common config
     ../modules/boot.nix
     ../modules/fonts.nix
+    ../modules/docker.nix
     ../modules/kde.nix
     ../modules/network.nix
     ../modules/packages.nix
