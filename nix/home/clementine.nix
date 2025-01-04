@@ -31,6 +31,7 @@
     vlc
     wget
     xclip
+    yt-dlp
     zoom-us
     zulip
     zulip-term
