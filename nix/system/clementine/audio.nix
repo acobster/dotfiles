@@ -10,4 +10,10 @@
     pulse.enable = true;
     jack.enable = true;
   };
+
+  # Enable Bluetooth.
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
 }
