@@ -16,6 +16,7 @@
     silver-searcher
     # Steam needs to run at the system level
     steam
+    unzip
     vim
   ];
 
