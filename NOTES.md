@@ -26,7 +26,7 @@
 
 1. Boot
     - EFI
-    - 200M 
+    - 200M
 3. Btrfs+LUKS
     - LUKS drive, with Btrfs filesystem mounted into it
     - 100% remaining disk space
@@ -60,7 +60,7 @@ Boot into the NixOS live environment. Close out of the graphical installer. Star
 # lsblk
 NAME           MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINTS
 loop0            7:0    0   2.4G  1 loop  /nix/.ro-store
-sda              8:0    1  14.6G  0 disk  
+sda              8:0    1  14.6G  0 disk
 ├─sdb1           8:1    1   2.4G  0 part  /iso
 └─sdb2           8:2    1     3M  0 part
 sdb             259:0   0 238.5G  0 disk
@@ -97,12 +97,12 @@ Now run `lsblk` again to triple-check we got the layout we want:
 # lsblk
 NAME           MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINTS
 loop0            7:0    0   2.4G  1 loop  /nix/.ro-store
-sda              8:0    1  14.6G  0 disk  
+sda              8:0    1  14.6G  0 disk
 ├─sdb1           8:1    1   2.4G  0 part  /iso
 └─sdb2           8:2    1     3M  0 part
 sdb             259:0   0 238.5G  0 disk
-├─sdb1          259:1   0   200M  0 part 
-└─sdb2          259:2   0 238.5G  0 part  
+├─sdb1          259:1   0   200M  0 part
+└─sdb2          259:2   0 238.5G  0 part
 ```
 
 Looks good! `/dev/sdb1` is our 200M EFI boot partition, and `/dev/sdb3` is our filesystem partition which we will encrypt and then format with Btrfs.
@@ -222,7 +222,7 @@ Once you run `nixos-generate-config` with this setup, there are some config dire
 - `boot.loader.grub.device` to `"nodev"`
 - `boot.loader.efi.efiSysMountPoint` from `"/boot/efi"` to `"/boot"`
 
-- you may still need to edit your generated `hardware-configuration.nix` file to specify filesystems `by-label` instead of `by-uuid`, and to specify swapfile. 
+- you may still need to edit your generated `hardware-configuration.nix` file to specify filesystems `by-label` instead of `by-uuid`, and to specify swapfile.
 
 From this point on, it's just a normal NixOS install.
 
