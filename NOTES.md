@@ -5,6 +5,7 @@
 * app launcher
 * desktop widgets
 * weather location
+* fix `clipboard=unnamedplus`
 * audit vim config
     * color
     * syntastic => ALE
