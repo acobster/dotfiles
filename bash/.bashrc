@@ -1,4 +1,6 @@
-source ~/.profile
+if [[ -f ~/.profile ]] ; then
+  source ~/.profile
+fi
 source ~/.bash_profile
 
 # If we are not on NixOS, we need to source the Nix environment itself.
