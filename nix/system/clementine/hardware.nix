@@ -45,4 +45,12 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  services.logind.extraConfig = ''
+    HandleLidSwitch=suspend
+    HandleLidSwitchDocked=ignore
+    HandleLidSwitchExternalPower=ignore
+    IdleAction=lock
+    SleepOperation=suspend-then-hibernate
+  '';
 }
