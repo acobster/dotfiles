@@ -13,6 +13,7 @@
     ../modules/kde.nix
     ../modules/network.nix
     ../modules/packages.nix
+    ../modules/ssh.nix
 
     # Machine-specific config
     ./syncthing.nix
