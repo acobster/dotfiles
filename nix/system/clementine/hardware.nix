@@ -46,6 +46,7 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
+  # https://www.man7.org/linux/man-pages/man5/logind.conf.5.html
   services.logind.extraConfig = ''
     HandleLidSwitch=suspend
     HandleLidSwitchDocked=ignore
