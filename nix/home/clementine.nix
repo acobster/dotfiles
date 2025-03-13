@@ -29,6 +29,7 @@
     standardnotes
     transmission_4-gtk
     tree
+    typora
     vlc
     wget
     xclip
@@ -54,6 +55,7 @@
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
     "discord"
+    "typora"
     "zoom"
   ];
 
