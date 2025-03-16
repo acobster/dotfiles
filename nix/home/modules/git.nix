@@ -14,6 +14,9 @@
       push = {
         autoSetupRemote = true;
       };
+      init = {
+        defaultBranch = "main";
+      };
     };
     aliases = {
       st = "status";
