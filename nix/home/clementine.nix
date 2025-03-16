@@ -22,6 +22,7 @@
     lua
     nix-info
     pdfsam-basic
+    python3
     ripgrep
     rpi-imager
     signal-desktop
