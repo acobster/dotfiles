@@ -10,6 +10,9 @@
       "docker"
       "wheel" # sudo
       "networkmanager"
+      # https://nixos.wiki/wiki/Scanners
+      "scanner"
+      "lp"
     ];
     packages = with pkgs; [
       protonvpn-cli
