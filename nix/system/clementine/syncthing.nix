@@ -17,6 +17,12 @@
           #"clementine" = { id = "UFNJALL-L75PPG7-63AYQOY-IGDVDE3-ZTRP3KV-RQIARGB-5K7OI2K-G5DZKQB"; };
           "nastyboi" = { id = "ANZ3S3B-L4H5BZU-OAXMIFJ-FN2RX66-5ZF3VOO-MAE6VEI-LDM4ED6-NBY2OQQ"; };
         };
+        relaysEnabled = false;
+        setLowPriority = false;
+        copiers = 16;
+        hashers = 16;
+        databaseTuning = "large";
+        maxConcurrentIncomingRequestKiB = 2048;
         folders = {
           "archive" = {
             id = "zgpfk-jzghx";
