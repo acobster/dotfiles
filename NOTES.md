@@ -225,7 +225,11 @@ Once you run `nixos-generate-config` with this setup, there are some config dire
 
 - you may still need to edit your generated `hardware-configuration.nix` file to specify filesystems `by-label` instead of `by-uuid`, and to specify swapfile.
 
-From this point on, it's just a normal NixOS install.
+From this point on, it's just a normal NixOS install from a flake. Clone the dotfiles repo into `/mnt/home/tamayo/dotfiles` and run:
+
+```
+nixos-install --flake dotfiles/#clementine
+```
 
 ---
 
