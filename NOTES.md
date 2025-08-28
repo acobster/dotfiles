@@ -221,7 +221,6 @@ Once you run `nixos-generate-config` with this setup, there are some config dire
 - `boot.loader.grub.enable` to `true` if not already enabled
 - `boot.loader.grub.efiSupport` to `true`
 - `boot.loader.grub.device` to `"nodev"`
-- `boot.loader.efi.efiSysMountPoint` from `"/boot/efi"` to `"/boot"`
 
 From this point on, it's just a normal NixOS install from a flake. Clone the dotfiles repo into `/mnt/home/tamayo/dotfiles` and run:
 
