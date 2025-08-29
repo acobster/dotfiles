@@ -17,6 +17,9 @@ usage() {
   echo '  iso'
   echo '    Build a live ISO image'
   echo
+  echo '  gc'
+  echo '    Collect garbage'
+  echo
   echo '  OPTIONS:'
   echo
   echo '  -h|--help show this help text'
@@ -34,7 +37,7 @@ case $key in
     exit
     ;;
 
-  up | update | system | home | down | iso)
+  up | update | system | home | down | iso | gc)
     COMMAND=$1
     shift # past argument
     ;;
@@ -65,6 +68,9 @@ main() {
     ;;
     iso)
       nix build '.#nixosConfigurations.iso.config.system.build.isoImage' "$@"
+    ;;
+    gc)
+      nix-collect-garbage --delete-older-than 90d
     ;;
     down)
       if [[ -f ~/.profile ]] && ! [[ -L ~/.profile ]] ; then
