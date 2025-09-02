@@ -15,6 +15,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { nixpkgs, home-manager, plasma-manager, ... }@inputs:
@@ -77,6 +82,7 @@
       clementine = lib.nixosSystem {
         inherit system;
         specialArgs = { inherit pkgs system; };
+        extraSpecialArgs = { inherit inputs; };
         modules = [
           ./nix/system/clementine
         ];
