@@ -45,6 +45,7 @@
 
       extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
         bitwarden
+        clearurls
         decentraleyes
         pinboard
         privacy-badger
