@@ -82,6 +82,7 @@ dconf write /org/gnome/terminal/legacy/profiles:/:$UUID/visible-name "'SOLAR'"
 
 dconf write /org/gnome/terminal/legacy/profiles:/:$UUID/use-theme-transparency false
 dconf write /org/gnome/terminal/legacy/profiles:/:$UUID/use-theme-colors false
+dconf write /org/gnome/terminal/legacy/profiles:/:$UUID/font "'Fira Code 12'"
 
 if [[ $VARIATION = 'light' ]] ; then
   export SOLARIZED_THEME=light
