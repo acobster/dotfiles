@@ -10,10 +10,8 @@
   home.packages = with pkgs; [
     cowsay
     curl
-    discord
     neofetch
     ffmpeg
-    freetube
     fzf
     ghostwriter
     gimp-with-plugins
@@ -27,16 +25,13 @@
     rpi-imager
     signal-desktop
     silver-searcher
-    standardnotes
     transmission_4-gtk
     tree
-    typora
     vlc
     wget
     xclip
     yt-dlp
     zoom-us
-    zulip
     zulip-term
   ];
 
