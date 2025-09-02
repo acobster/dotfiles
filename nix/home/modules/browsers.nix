@@ -42,6 +42,15 @@
           definedAliases = [ "@nix" ];
         };
       };
+
+      extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
+        bitwarden
+        decentraleyes
+        pinboard
+        privacy-badger
+        tridactyl
+        ublock-origin
+      ];
     };
   };
 }
