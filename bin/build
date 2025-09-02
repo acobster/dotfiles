@@ -64,7 +64,8 @@ main() {
       sudo nixos-rebuild switch --flake "$dotfiles_dir/#" "$@"
     ;;
     home)
-      home-manager switch -b backup --flake "$dotfiles_dir/#$(hostname)" "$@"
+      backup_date=$(date +%Y-%m-%d-%H:%M:%S)
+      home-manager switch -b "$backup_date".backup --flake "$dotfiles_dir/#$(hostname)" "$@"
     ;;
     iso)
       nix build '.#nixosConfigurations.iso.config.system.build.isoImage' "$@"
