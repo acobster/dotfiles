@@ -57,6 +57,7 @@
     homeConfigurations = {
       clementine = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
+        extraSpecialArgs = { inherit inputs; };
         modules = [
           inputs.plasma-manager.homeManagerModules.plasma-manager
           ./nix/home/clementine.nix
@@ -82,7 +83,6 @@
       clementine = lib.nixosSystem {
         inherit system;
         specialArgs = { inherit pkgs system; };
-        extraSpecialArgs = { inherit inputs; };
         modules = [
           ./nix/system/clementine
         ];
