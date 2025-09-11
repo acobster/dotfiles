@@ -13,7 +13,6 @@
     neofetch
     ffmpeg
     fzf
-    ghostwriter
     gimp-with-plugins
     jq
     lolcat
