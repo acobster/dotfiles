@@ -3,7 +3,7 @@
   description = ".";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
@@ -82,6 +82,7 @@
     nixosConfigurations = {
       clementine = lib.nixosSystem {
         inherit system;
+        # NOTE: we need pkgs here to get config.allowUnfreePredicate
         specialArgs = { inherit pkgs system; };
         modules = [
           ./nix/system/clementine

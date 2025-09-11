@@ -4,7 +4,7 @@
   programs.ssh = {
     startAgent = true;
     enableAskPassword = true;
-    askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
+    # askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
   };
 
   environment.variables = {
