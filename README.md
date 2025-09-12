@@ -51,6 +51,10 @@ if [ -f /home/tamayo/.profile ] ; then
 fi
 ```
 
+### Setting up syncthing
+
+Standard shared folders should already be declared in your Nix config. To start syncing files from `nastyboi`, it's best to go to `nastyboi:8384` and manually add your local device from there. Then share the folders accordingly, and accept them on the other end. Syncthing should be smart enough to figure out which files need syncing (on a fresh install, all of them).
+
 ## INCLUDED SOFTWARE
 
 ### ✅ Daily Essentials
