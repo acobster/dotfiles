@@ -29,8 +29,8 @@
       };
 
       search = {
-        default = "DuckDuckGo";
-        privateDefault = "DuckDuckGo";
+        default = "ddg";
+        privateDefault = "ddg";
 
         engines = {
           "Nix Packages" = {
@@ -48,15 +48,17 @@
         };
       };
 
-      extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
-        bitwarden
-        clearurls
-        decentraleyes
-        pinboard
-        privacy-badger
-        tridactyl
-        ublock-origin
-      ];
+      extensions = {
+        packages = with inputs.firefox-addons.packages."x86_64-linux"; [
+          bitwarden
+          clearurls
+          decentraleyes
+          pinboard
+          privacy-badger
+          tridactyl
+          ublock-origin
+        ];
+      };
     };
   };
 }
