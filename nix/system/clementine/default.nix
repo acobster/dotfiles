@@ -7,7 +7,6 @@
     ../users/tamayo.nix
 
     # Common config
-    ../modules/boot.nix
     ../modules/fonts.nix
     ../modules/docker.nix
     ../modules/kde.nix
@@ -16,6 +15,7 @@
     ../modules/ssh.nix
 
     # Machine-specific config
+    ./boot.nix
     ./syncthing.nix
     ./audio.nix
     ./hardware.nix
