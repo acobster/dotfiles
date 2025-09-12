@@ -21,6 +21,175 @@
     * Concierge
 * Lando?
 
+## SETUP 2025
+
+
+
+### Partition Layout
+```
+/dev/sda1 - Boot partition (512MB-1GB, FAT32, labeled "EFI_BOOT")
+/dev/sda2 - Encrypted root partition (rest of disk, LUKS, labeled "SYSTEM")
+```
+
+### LUKS + Btrfs Structure
+```
+/dev/sda2 (LUKS encrypted, labeled "SYSTEM")
+└── /dev/mapper/cryptroot (decrypted btrfs filesystem)
+    ├── @root (subvolume mounted at /)
+    ├── @home (subvolume mounted at /home)
+    └── @snapshots (subvolume mounted at /.snapshots)
+```
+
+### Installation Steps
+
+#### 1. Partition Setup
+```bash
+# Create partitions (adjust size as needed)
+# /dev/sda1 - 1GB for boot
+# /dev/sda2 - remaining space for encrypted root
+
+# Format boot partition
+mkfs.fat -F32 /dev/sda1
+fatlabel /dev/sda1 EFI_BOOT
+```
+
+#### 2. LUKS Encryption
+```bash
+# Encrypt root partition
+cryptsetup luksFormat /dev/sda2
+cryptsetup open /dev/sda2 cryptroot
+
+# Create and label btrfs filesystem
+mkfs.btrfs -L SYSTEM /dev/mapper/cryptroot
+```
+
+#### 3. Btrfs Subvolumes
+```bash
+# Mount and create subvolumes
+mount /dev/mapper/cryptroot /mnt
+btrfs subvolume create /mnt/@root
+btrfs subvolume create /mnt/@home
+btrfs subvolume create /mnt/@snapshots
+
+# Remount with proper subvolume structure
+umount /mnt
+mount -o subvol=@root /dev/mapper/cryptroot /mnt
+mkdir -p /mnt/{home,.snapshots,boot}
+mount -o subvol=@home /dev/mapper/cryptroot /mnt/home
+mount -o subvol=@snapshots /dev/mapper/cryptroot /mnt/.snapshots
+mount /dev/disk/by-label/EFI_BOOT /mnt/boot
+```
+
+#### 4. NixOS Installation
+```bash
+nixos-generate-config --root /mnt
+# Edit configs (see below)
+nixos-install
+```
+
+### NixOS Configuration Files
+
+#### `/etc/nixos/configuration.nix`
+```nix
+{ config, pkgs, ... }:
+
+{
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+    supportedFilesystems = [ "btrfs" ];
+  };
+
+  # Your users, networking, packages, etc.
+  users.users.yourusername = {
+    isNormalUser = true;
+    home = "/home/yourusername";
+    extraGroups = [ "wheel" "networkmanager" ];
+    uid = 1000;  # Match your backup if preserving ownership
+  };
+
+  system.stateVersion = "24.05";  # Match your NixOS version
+}
+```
+
+#### `/etc/nixos/hardware-configuration.nix`
+```nix
+{ config, lib, pkgs, modulesPath, ... }:
+
+{
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
+
+  # Kernel modules for hardware detection during boot
+  boot.initrd.availableKernelModules = [
+    "nvme"        # NVMe SSDs
+    "xhci_pci"    # USB 3.0 controllers
+    "thunderbolt" # Thunderbolt support
+    "usbhid"      # USB keyboard/mouse
+    "usb_storage" # USB drives
+  ];
+
+  # Modules loaded after boot (virtualization, etc.)
+  boot.kernelModules = [ "kvm-amd" ];  # or "kvm-intel"
+
+  # LUKS encryption setup
+  boot.initrd.luks.devices."cryptroot" = {
+    device = "/dev/disk/by-label/SYSTEM";
+    preLVM = true;        # Decrypt before LVM
+    allowDiscards = true; # Enable TRIM for SSD performance
+  };
+
+  # Filesystem configuration using labels
+  fileSystems."/" = {
+    device = "/dev/mapper/cryptroot";
+    fsType = "btrfs";
+    options = [ "subvol=@root" "compress=zstd" "noatime" ];
+  };
+
+  fileSystems."/home" = {
+    device = "/dev/mapper/cryptroot";
+    fsType = "btrfs";
+    options = [ "subvol=@home" "compress=zstd" "noatime" ];
+  };
+
+  fileSystems."/.snapshots" = {
+    device = "/dev/mapper/cryptroot";
+    fsType = "btrfs";
+    options = [ "subvol=@snapshots" "compress=zstd" "noatime" ];
+  };
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-label/EFI_BOOT";
+    fsType = "vfat";
+  };
+
+  swapDevices = [ ];
+
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+}
+```
+
+### Key Benefits of This Setup
+
+- **Full disk encryption** (except boot partition)
+- **Persistent device names** using labels instead of `/dev/sdaX`
+- **Flexible storage** with btrfs subvolumes sharing space
+- **Easy OS reinstalls** while preserving `/home` data
+- **Snapshot capability** with dedicated `.snapshots` subvolume
+- **SSD optimization** with TRIM support and compression
+
+### Boot Process
+
+1. **UEFI** loads systemd-boot from `/boot`
+2. **Kernel** loads with initrd containing hardware modules
+3. **LUKS password prompt** appears for decryption
+4. **Btrfs subvolumes** mount automatically after decryption
+5. **System boots** normally with encrypted root and preserved home data
+
+This setup gives you a secure, flexible, and maintainable NixOS installation!
+
 ## PARTITIONS
 
 ### Partitions strategy v2: BTRFS subvolums + LUKS
