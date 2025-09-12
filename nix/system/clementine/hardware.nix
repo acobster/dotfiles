@@ -18,6 +18,17 @@
         "usb_storage"
       ];
       kernelModules = [ ];
+
+      luks.devices."crypt" = {
+        device = "/dev/disk/by-label/SYSTEM";
+
+        # Decrypt before LVM is activated. Not stricly necessary, but a safe default.
+        preLVM = true;
+
+        # Allow TRIM/discard commands to pass through the encryption layer to the underlying SSD.
+        # Slightly less secure but more performant.
+        allowDiscards = true;
+      };
     };
   };
 
