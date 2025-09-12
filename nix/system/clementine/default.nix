@@ -15,7 +15,7 @@
     ../modules/ssh.nix
 
     # Machine-specific config
-    ./boot.nix
+    ./bootloader.nix
     ./syncthing.nix
     ./audio.nix
     ./hardware.nix
