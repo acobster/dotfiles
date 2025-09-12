@@ -5,27 +5,38 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "usbhid" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+  boot = {
+    kernelModules = [ "kvm-amd" ];
+    extraModulePackages = [ ];
+
+    initrd = {
+      availableKernelModules = [
+        "nvme"     # NVME SSD drives
+        "xhci_pci" # USB 3.0 controllers
+        "usbhid"   # USB keyboard/mouse
+        "thunderbolt"
+        "usb_storage"
+      ];
+      kernelModules = [ ];
+    };
+  };
 
   fileSystems."/" =
     { device = "/dev/disk/by-label/SYSTEM";
       fsType = "btrfs";
-      options = [ "subvol=@root" ];
+      options = [ "subvol=@root" "compress=zstd" "ssd" "noatime" ];
     };
 
   fileSystems."/home" =
     { device = "/dev/disk/by-label/SYSTEM";
       fsType = "btrfs";
-      options = [ "subvol=@home" ];
+      options = [ "subvol=@home" "compress=zstd" "ssd" "noatime" ];
     };
 
   fileSystems."/.snapshots" =
     { device = "/dev/disk/by-label/SYSTEM";
       fsType = "btrfs";
-      options = [ "subvol=@snapshots" ];
+      options = [ "subvol=@snapshots" "compress=zstd" "ssd" "noatime" ];
     };
 
   fileSystems."/boot" =
