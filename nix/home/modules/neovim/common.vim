@@ -55,7 +55,8 @@ set shell=/usr/bin/env\ bash\ -i
 
 " Toggle paste mode easily
 " Useful for pasting code without autoformatting
-set pastetoggle=<F3>
+" FIXME
+" set pastetoggle=<F3>
 
 " put symbols in the sign column
 hi clear SignColumn
