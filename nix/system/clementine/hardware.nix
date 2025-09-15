@@ -20,7 +20,7 @@
       kernelModules = [ "kvm-amd" ];
 
       luks.devices."crypt" = {
-        device = "/dev/disk/by-label/SYSTEM";
+        device = "/dev/disk/by-uuid/299f7c77-2ecd-4697-95fb-b930725208a5";
         preLVM = true;        # Decrypt before LVM.
         allowDiscards = true; # Enable TRIM for SSD performance.
       };
