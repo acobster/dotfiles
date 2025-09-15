@@ -17,7 +17,7 @@
         "thunderbolt"
         "usb_storage"
       ];
-      kernelModules = [ ];
+      kernelModules = [ "kvm-amd" ];
     };
   };
 
