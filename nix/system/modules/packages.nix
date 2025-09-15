@@ -11,6 +11,7 @@
     fzf
     git
     gnome-terminal
+    gnupg
     home-manager
     nettools
     silver-searcher
