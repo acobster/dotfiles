@@ -66,6 +66,9 @@ Now reboot into your new system. It should prompt you to unlock `crypt` before l
 Once you reboot, you'll probably want to do some housekeeping things:
 
 ```bash
+# reset password
+passwd
+
 # set the correct permissions on ~/dotfiles (which were cloned by root)
 chown tamayo:users -R ~/dotfiles
 
@@ -77,6 +80,8 @@ build home
 # set up terminal theme
 theme dark
 ```
+
+You may also need to reset the default KDE Wallet password.
 
 #### Reinstall preserving home directory
 
