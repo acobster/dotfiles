@@ -12,5 +12,6 @@
         device = "nodev";
       };
     };
+    supportedFilesystems = [ "btrfs" ];
   };
 }
