@@ -24,7 +24,13 @@
   ];
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  services.printing = {
+    enable = true;
+    drivers = with pkgs; [
+      cups-filters
+      cups-browsed
+    ];
+  };
   services.avahi = {
     enable = true;
     nssmdns4 = true;
