@@ -16,6 +16,7 @@
 
     # Machine-specific config
     ./bootloader.nix
+    ./borg.nix
     ./syncthing.nix
     ./audio.nix
     ./hardware.nix
