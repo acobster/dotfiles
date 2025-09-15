@@ -34,7 +34,7 @@
 ### LUKS + Btrfs Structure
 ```
 /dev/sda2 (LUKS encrypted, labeled "SYSTEM")
-└── /dev/mapper/cryptroot (decrypted btrfs filesystem)
+└── /dev/mapper/crypt (decrypted btrfs filesystem)
     ├── @root (subvolume mounted at /)
     ├── @home (subvolume mounted at /home)
     └── @snapshots (subvolume mounted at /.snapshots)
@@ -57,26 +57,26 @@ fatlabel /dev/sda1 EFI_BOOT
 ```bash
 # Encrypt root partition
 cryptsetup luksFormat /dev/sda2
-cryptsetup open /dev/sda2 cryptroot
+cryptsetup open /dev/sda2 crypt
 
 # Create and label btrfs filesystem
-mkfs.btrfs -L SYSTEM /dev/mapper/cryptroot
+mkfs.btrfs -L SYSTEM /dev/mapper/crypt
 ```
 
 #### 3. Btrfs Subvolumes
 ```bash
 # Mount and create subvolumes
-mount /dev/mapper/cryptroot /mnt
+mount /dev/mapper/crypt /mnt
 btrfs subvolume create /mnt/@root
 btrfs subvolume create /mnt/@home
 btrfs subvolume create /mnt/@snapshots
 
 # Remount with proper subvolume structure
 umount /mnt
-mount -o subvol=@root /dev/mapper/cryptroot /mnt
+mount -o subvol=@root /dev/mapper/crypt /mnt
 mkdir -p /mnt/{home,.snapshots,boot}
-mount -o subvol=@home /dev/mapper/cryptroot /mnt/home
-mount -o subvol=@snapshots /dev/mapper/cryptroot /mnt/.snapshots
+mount -o subvol=@home /dev/mapper/crypt /mnt/home
+mount -o subvol=@snapshots /dev/mapper/crypt /mnt/.snapshots
 mount /dev/disk/by-label/EFI_BOOT /mnt/boot
 ```
 
@@ -134,7 +134,7 @@ nixos-install
   boot.kernelModules = [ "kvm-amd" ];  # or "kvm-intel"
 
   # LUKS encryption setup
-  boot.initrd.luks.devices."cryptroot" = {
+  boot.initrd.luks.devices."crypt" = {
     device = "/dev/disk/by-label/SYSTEM";
     preLVM = true;        # Decrypt before LVM
     allowDiscards = true; # Enable TRIM for SSD performance
@@ -142,19 +142,19 @@ nixos-install
 
   # Filesystem configuration using labels
   fileSystems."/" = {
-    device = "/dev/mapper/cryptroot";
+    device = "/dev/mapper/crypt";
     fsType = "btrfs";
     options = [ "subvol=@root" "compress=zstd" "noatime" ];
   };
 
   fileSystems."/home" = {
-    device = "/dev/mapper/cryptroot";
+    device = "/dev/mapper/crypt";
     fsType = "btrfs";
     options = [ "subvol=@home" "compress=zstd" "noatime" ];
   };
 
   fileSystems."/.snapshots" = {
-    device = "/dev/mapper/cryptroot";
+    device = "/dev/mapper/crypt";
     fsType = "btrfs";
     options = [ "subvol=@snapshots" "compress=zstd" "noatime" ];
   };
