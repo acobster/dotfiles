@@ -55,7 +55,6 @@
           decentraleyes
           pinboard
           privacy-badger
-          tridactyl
           ublock-origin
         ];
       };
