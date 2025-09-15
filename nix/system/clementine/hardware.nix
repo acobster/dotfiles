@@ -18,23 +18,29 @@
         "usb_storage"
       ];
       kernelModules = [ "kvm-amd" ];
+
+      luks.devices."crypt" = {
+        device = "/dev/disk/by-label/SYSTEM";
+        preLVM = true;        # Decrypt before LVM.
+        allowDiscards = true; # Enable TRIM for SSD performance.
+      };
     };
   };
 
   fileSystems."/" =
-    { device = "/dev/disk/by-label/SYSTEM";
+    { device = "/dev/mapper/crypt";
       fsType = "btrfs";
       options = [ "subvol=@root" "compress=zstd" "ssd" "noatime" ];
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-label/SYSTEM";
+    { device = "/dev/mapper/crypt";
       fsType = "btrfs";
       options = [ "subvol=@home" "compress=zstd" "ssd" "noatime" ];
     };
 
   fileSystems."/.snapshots" =
-    { device = "/dev/disk/by-label/SYSTEM";
+    { device = "/dev/mapper/crypt";
       fsType = "btrfs";
       options = [ "subvol=@snapshots" "compress=zstd" "ssd" "noatime" ];
     };
