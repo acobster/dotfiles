@@ -30,6 +30,7 @@ in
       };
 
       Preferences = {
+        "browser.engagement.home-button.has-removed" = lock-true;
         "browser.newtabpage.pinned" = lock-empty;
         "browser.newtabpage.activity-stream.discoverystream.spoc.impressions" = lock-empty;
         "browser.newtabpage.activity-stream.feeds.section.topstories" = lock-false;
