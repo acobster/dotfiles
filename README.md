@@ -244,8 +244,8 @@ build iso
     * [dmadisetti/.dots](https://github.com/dmadisetti/.dots)
     * [nyabinary/dotfiles](https://github.com/nyabinary/dotfiles)
 * Backups:
-    * [https://nixos.wiki/wiki/Borg_backup](NixOS/Borg backup docs)
-    * [https://xeiaso.net/blog/borg-backup-2021-01-09/](How to set up Borg Backup on NixOS)
+    * [NixOS/Borg backup docs](https://nixos.wiki/wiki/Borg_backup)
+    * [How to set up Borg Backup on NixOS](https://xeiaso.net/blog/borg-backup-2021-01-09/)
 
 ## NOTES
 
