@@ -2,6 +2,7 @@
 
 {
   services = {
+    # https://wiki.nixos.org/wiki/Syncthing
     syncthing = {
       enable = true;
       group = "users";
@@ -57,6 +58,11 @@
           "pictures" = {
             id = "jgjvt-mjfkq";
             path = "/home/tamayo/Sync/pictures";
+            devices = [ "nastyboi" ];
+          };
+          "projects" = {
+            id = "projects";
+            path = "/home/tamayo/projects";
             devices = [ "nastyboi" ];
           };
           "recordings" = {

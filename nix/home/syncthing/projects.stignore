@@ -1,0 +1,13 @@
+.cache
+.clj-kondo
+.cpcache
+.direnv
+.nrepl-port
+.pnp.*
+.shadow-cljs
+.storybook
+.yarn
+cljs-runtime
+node_modules
+target/classes
+vendor

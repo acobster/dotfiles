@@ -54,5 +54,9 @@
     "zoom"
   ];
 
+  # Ignore project dependency files in syncs.
+  # These can be restored easily, and so aren't worth the noise.
+  home.file."projects/.stignore".source = ./syncthing/projects.stignore;
+
   home.stateVersion = "23.11";
 }
