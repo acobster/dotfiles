@@ -29,6 +29,33 @@
     * [banana-cursor-theme](https://github.com/ful1e5/banana-cursor)
 * Blur My Shell
 
+## Arch install
+
+Installing on a refurbished Lenovo ThinkPad (T470).
+
+- Intel Core i5-6300U 2.4GHz Processor
+- 16GB RAM
+- 256GB SSD
+
+### Boot mode
+
+According to this section, this computer boots into BIOS mode (or possibly CSM):
+
+```
+# cat /sys/firmware/efi
+...No such file or directory
+```
+
+I therefore tried setting up GRUB [in BIOS mode](https://wiki.archlinux.org/title/GRUB#BIOS_systems) but after doing so I'm not able to boot into Arch. I think it's because I set up an EFI boot partition as well as a BIOS boot partition. According to [this tutorial](https://youtu.be/5DHz23VQJxk) I just want the BIOS one, so I'll try that next...
+
+### Packages
+
+Install [essential packages](https://wiki.archlinux.org/title/Installation_guide#Install_essential_packages):
+
+```bash
+pacstrap /mnt base base-devel linux linux-firmware intel-ucode networkmanager sof-firmware vim man-db man-pages texinfo
+```
+
 ## PARTITIONS
 
 ### Partitions strategy v2: BTRFS subvolums + LUKS
