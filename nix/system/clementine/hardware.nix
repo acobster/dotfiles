@@ -71,4 +71,12 @@
     IdleAction=lock
     SleepOperation=suspend-then-hibernate
   '';
+
+  # Disable suspension entirely:
+  systemd.sleep.extraConfig = ''
+    AllowSuspend=no
+    AllowHibernation=no
+    AllowHybridSleep=no
+    AllowSuspendThenHibernate=no
+  '';
 }
