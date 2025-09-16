@@ -26,12 +26,8 @@
   let
     system = "x86_64-linux";
     lib = nixpkgs.lib;
-    unfree = import ./nix/system/unfree.nix {
-      inherit nixpkgs;
-    };
     pkgs = import nixpkgs {
       inherit system;
-      config.allowUnfreePredicate = unfree.allowUnfree;
     };
     util = import ./nix/util.nix {
       inherit system pkgs nixpkgs home-manager;
@@ -82,8 +78,7 @@
     nixosConfigurations = {
       clementine = lib.nixosSystem {
         inherit system;
-        # NOTE: we need pkgs here to get config.allowUnfreePredicate
-        specialArgs = { inherit pkgs system; };
+        specialArgs = { inherit nixpkgs system; };
         modules = [
           ./nix/system/clementine
         ];
