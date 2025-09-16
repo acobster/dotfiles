@@ -12,6 +12,7 @@
     curl
     neofetch
     ffmpeg
+    freetube
     fzf
     gimp-with-plugins
     jq
