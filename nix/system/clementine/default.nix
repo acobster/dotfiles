@@ -25,6 +25,12 @@
 
   services.desktopManager.plasma6.enable = true;
 
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 90d";
+  };
+
   # Enable CUPS to print documents.
   services.printing = {
     enable = true;
