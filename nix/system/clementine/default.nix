@@ -52,6 +52,30 @@
     xsaneGimp = pkgs.xsane.override { gimpSupport = true; };
   };
 
+  systemd.timers."update-lockscreen-background" = {
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnBootSec = "5m";
+      OnUnitActiveSec = "5m";
+      Unit = "update-lockscreen-background.service";
+    };
+  };
+  systemd.services."update-lockscreen-background" = {
+    script = ''
+      set -eu
+      dir_path='/home/tamayo/Sync/pictures/copyleft'
+      (
+        cd $dir_path
+        dest=$(shuf -n 1 < <(ls -1))
+        ln -sf "$dest" lockscreen.pic
+      )
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      User = "root";
+    };
+  };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

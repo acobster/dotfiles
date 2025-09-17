@@ -81,8 +81,8 @@
     configFile = {
       "kwinrc"."MouseBindings"."CommandAllWheel" = "Change Opacity";
       "kwinrc"."NightColor"."Active" = true;
-      "kscreenlockerrc"."Greeter/Wallpaper/org.kde.image/General"."Image" = "/home/tamayo/Sync/pictures/copyleft/Clearfin_lionfish_(Pterois_radiata).JPG";
-      "kscreenlockerrc"."Greeter/Wallpaper/org.kde.image/General"."PreviewImage" = "/home/tamayo/Sync/pictures/copyleft/Clearfin_lionfish_(Pterois_radiata).JPG";
+      "kscreenlockerrc"."Greeter/Wallpaper/org.kde.image/General"."Image" = "/home/tamayo/Sync/pictures/copyleft/lockscreen.pic";
+      "kscreenlockerrc"."Greeter/Wallpaper/org.kde.image/General"."PreviewImage" = "/home/tamayo/Sync/pictures/copyleft/lockscreen.pic";
       "kscreenlockerrc"."Greeter/Wallpaper/org.kde.image/General"."SlidePaths" = "/home/tamayo/.local/share/wallpapers/,/home/tamayo/Sync/picture/copyleft";
       "ksplashrc"."KSplash"."Theme" = "Illusion";
     };
