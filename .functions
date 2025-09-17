@@ -207,7 +207,7 @@ grepts() {
 }
 
 greptsx() {
-  grep --recursive --include='*.ts' --include='*.tsx' "$@"
+  grep --recursive --include='*.ts' --include='*.tsx' --exclude-dir=node_modules "$@"
 }
 
 grepscss() {
