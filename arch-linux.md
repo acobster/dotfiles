@@ -60,5 +60,5 @@ Now remount subvolumes onto their own mountpoints:
 Install [essential packages](https://wiki.archlinux.org/title/Installation_guide#Install_essential_packages):
 
 ```bash
-pacstrap /mnt base base-devel linux linux-firmware intel-ucode networkmanager sof-firmware vim man-db man-pages texinfo
+pacstrap /mnt base base-devel linux linux-firmware intel-ucode networkmanager vim man-db man-pages texinfo grub
 ```
