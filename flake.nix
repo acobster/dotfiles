@@ -98,9 +98,9 @@
         inherit system;
         extraModules = [
           "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
-          ./nix/system/nixpad.nix
+          ./nix/system/clementine
         ];
-        userConfig = homeConfigurations.nixpad;
+        userConfig = homeConfigurations.clementine;
       };
     };
 
