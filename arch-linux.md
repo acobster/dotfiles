@@ -32,6 +32,11 @@ I think there is some misconfiguration with EFI and/or GRUB.
 
 What I've tried so far for the [Partition the disk](https://wiki.archlinux.org/title/Installation_guide#Partition_the_disks) step.
 
+- 2M BIOS boot partition, no fs
+- Btrfs root partition with three subvolumes
+
+At first there was also an EFI partition which I kept because I thought it needed to be there. The GRUB Arch wiki page is not super clear.
+
 Create subvolumes:
 
 ```
