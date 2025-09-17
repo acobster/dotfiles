@@ -34,7 +34,41 @@
               date.enable = false;
             };
           }
-          "org.kde.plasma.weather"
+          # For sources, check ~/.config/plasma-org.kde.plasma.desktop-appletsrc
+          {
+            name = "org.kde.plasma.weather";
+            config = {
+              WeatherStation = {
+                updateInterval = 30; # minutes
+                source = "bbcukmet|weather|Tacoma, United States, US|5812944";
+              };
+              Appearance = {
+                showTemperatureInCompactMode = false;
+                showTemperatureInBadge = false;
+                showPressureInTooltip = true;
+              };
+              Units = {
+                temperatureUnit = 6002; # F
+              };
+            };
+          }
+          {
+            name = "org.kde.plasma.weather";
+            config = {
+              WeatherStation = {
+                updateInterval = 30; # minutes
+                source = "bbcukmet|weather|Sacramento (CA), United States, US|5389489";
+              };
+              Appearance = {
+                showTemperatureInCompactMode = false;
+                showTemperatureInBadge = false;
+                showPressureInTooltip = true;
+              };
+              Units = {
+                temperatureUnit = 6002; # F
+              };
+            };
+          }
           "org.kde.plasma.panelspacer"
           {
             systemTray = {
