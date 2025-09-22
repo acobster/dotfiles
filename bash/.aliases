@@ -22,7 +22,7 @@ upandaway() {
 }
 
 
-# Set up aliases
+# Utilities
 alias b='build'
 alias aliases='vim ~/dotfiles/.aliases'
 alias al='vim ~/.aliases'
@@ -50,6 +50,18 @@ alias minute='date +%Y%m%d%I%M'
 alias hour='date +%Y%m%d%I'
 alias day='date +%Y%m%d'
 alias gigs='du . -h | grep "[0-9]\+\(\.[0-9]\+\)G"'
+alias cpkey='cat ~/.ssh/id_ed25519.pub | x'
+
+# programs
+alias yt='yt-dlp'
+
+# dirs
+alias music='cd ~/Sync/music'
+alias vids='cd ~/Sync/music'
+alias pics='cd ~/Sync/pictures'
+alias movies='cd ~/Sync/movies'
+alias shows='cd ~/Sync/shows'
+alias tv='cd ~/Sync/shows'
 
 # ID3 tags
 alias ff='ffprobe -show_format -print_format json 2>/dev/null'
