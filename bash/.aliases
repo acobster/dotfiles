@@ -62,6 +62,8 @@ alias pics='cd ~/Sync/pictures'
 alias movies='cd ~/Sync/movies'
 alias shows='cd ~/Sync/shows'
 alias tv='cd ~/Sync/shows'
+alias dl='cd ~/Downloads'
+alias desk='cd ~/Desktop'
 
 # ID3 tags
 alias ff='ffprobe -show_format -print_format json 2>/dev/null'
