@@ -45,6 +45,11 @@
             path = "/home/tamayo/Sync/docs";
             devices = [ "nastyboi" ];
           };
+          "ledger" = {
+            id = "ledger";
+            path = "/home/tamayo/ledger";
+            devices = [ "nastyboi" ];
+          };
           "movies" = {
             id = "7rkpv-epj4e";
             path = "/home/tamayo/Sync/movies";
