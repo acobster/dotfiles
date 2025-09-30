@@ -170,6 +170,10 @@ if [[ ! $PATH =~ "dotfiles/bin:" ]] ; then
   export PATH=$HOME/dotfiles/bin:$PATH
 fi
 
+if [[ ! $PATH =~ "ledger/bin:" ]] ; then
+  export PATH=$HOME/ledger/bin:$PATH
+fi
+
 
 
 #----------
