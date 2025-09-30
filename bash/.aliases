@@ -58,7 +58,7 @@ alias yt='yt-dlp'
 # dirs
 alias docs='cd ~/Sync/docs'
 alias music='cd ~/Sync/music'
-alias vids='cd ~/Sync/music'
+alias vids='cd ~/Sync/videos'
 alias pics='cd ~/Sync/pictures'
 alias movies='cd ~/Sync/movies'
 alias shows='cd ~/Sync/shows'
