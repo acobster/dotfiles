@@ -17,6 +17,7 @@
     gimp-with-plugins
     jq
     lolcat
+    libreoffice-qt
     lua
     nix-info
     pdfsam-basic
