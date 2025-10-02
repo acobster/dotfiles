@@ -70,18 +70,8 @@ Plugin 'elzr/vim-json'
 Plugin 'tpope/vim-surround'
 Plugin 'machakann/vim-swap' " swap fn args
 
-" Lisp-y stuff
-Plugin 'guns/vim-clojure-static'
-Plugin 'guns/vim-sexp'
-Plugin 'tpope/vim-fireplace'
-Plugin 'clojure-vim/vim-cider'
-Plugin 'junegunn/rainbow_parentheses.vim'
-
 " Case
 Plugin 'tpope/vim-abolish'
-
-" Markdown
-Plugin 'junegunn/goyo.vim'
 
 " Formatting
 Plugin 'junegunn/vim-easy-align'
