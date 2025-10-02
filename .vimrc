@@ -65,12 +65,6 @@ Plugin 'junegunn/fzf.vim' " the best file search
 Plugin 'mbbill/undotree'
 
 " Syntax
-Plugin 'lumiliet/vim-twig'
-Plugin 'bkad/vim-stylus'
-Plugin 'posva/vim-vue'
-Plugin 'elmcast/elm-vim'
-Plugin 'StanAngeloff/php.vim'
-Plugin 'slim-template/vim-slim.git'
 Plugin 'elzr/vim-json'
 Plugin 'tpope/vim-surround'
 Plugin 'machakann/vim-swap' " swap fn args
