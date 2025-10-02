@@ -65,10 +65,10 @@ Plugin 'junegunn/fzf.vim' " the best file search
 Plugin 'mbbill/undotree'
 
 " Syntax
+Plugin 'dense-analysis/ale'
 Plugin 'elzr/vim-json'
 Plugin 'tpope/vim-surround'
 Plugin 'machakann/vim-swap' " swap fn args
-Plugin 'prettier/vim-prettier'
 
 " Lisp-y stuff
 Plugin 'guns/vim-clojure-static'
