@@ -107,7 +107,8 @@ let g:clojure_syntax_keywords = {
     \ }
 
 " Syntax highlighting/linting
-" TODO ALE
+" Don't lint every single buffer every time I open vim...
+let g:ale_lint_on_enter = 0
 
 " Prettier
 augroup FiletypeGroup
@@ -117,6 +118,7 @@ augroup FiletypeGroup
 augroup END
 let g:ale_fixers = {
 \   'typescript': ['prettier', 'eslint'],
+\   'python': ['black'],
 \   'css': ['prettier'],
 \}
 let g:ale_fix_on_save = 1
