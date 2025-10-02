@@ -231,9 +231,6 @@ imap <c-l> ◊
 " ,n redraws the screen and removes any search highlighting.
 nmap <leader>n :nohlsearch<cr>
 
-" Markdown
-nmap <leader>gg :Goyo<cr>
-
 " Easy align interactive
 vnoremap <silent> <Enter> :EasyAlign<cr>
 
