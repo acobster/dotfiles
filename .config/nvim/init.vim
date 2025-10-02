@@ -56,7 +56,6 @@ Plug 'junegunn/fzf', { 'commit': '4145f53f3d343c389ff974b1f1a68eeb39fba18b', 'do
 Plug 'junegunn/fzf.vim'
 
 " Syntax
-Plug 'vim-syntastic/syntastic'
 Plug 'elzr/vim-json'
 Plug 'machakann/vim-swap' " swap fn args
 Plug 'dense-analysis/ale' " for prettier
@@ -108,22 +107,7 @@ let g:clojure_syntax_keywords = {
     \ }
 
 " Syntax highlighting/linting
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let syntastic_mode_map = { 'passive_filetypes': ['html'] }
-let g:syntastic_twig_checkers = ['twig']
-" WiP - ignore racket check warning
-"let g:syntastic_quiet_messages = {
-"  \ "regex": '.*racket: checks disabled for security reasons.*' }
-let g:syntastic_html_tidy_ignore_errors = [
-  \ 'plain text isn''t allowed in <head> elements',
-  \ '<img> escaping malformed URI reference'
-  \ ]
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exe = 'eslint'
-let g:syntastic_python_checkers = []
+" TODO ALE
 
 " Prettier
 augroup FiletypeGroup
@@ -137,8 +121,6 @@ let g:ale_fixers = {
 \}
 let g:ale_fix_on_save = 1
 
-nnoremap <leader>py :SyntasticCheck<SPACE>pylint<CR>
-
 if has("autocmd")
   au BufReadPost *.rkt,*.rktl set filetype=racket
   au filetype racket set lisp
@@ -147,14 +129,6 @@ endif
 
 " put symbols in the sign column
 hi clear SignColumn
-
-" ----- scrooloose/syntastic settings -----
-let g:syntastic_error_symbol = '✘'
-let g:syntastic_warning_symbol = "▲"
-augroup mySyntastic
-  au!
-  au FileType tex let b:syntastic_mode = "passive"
-augroup END
 
 " Toggle paste mode easily
 " Useful for pasting code without autoformatting
