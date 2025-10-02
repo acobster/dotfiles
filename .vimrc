@@ -65,7 +65,6 @@ Plugin 'junegunn/fzf.vim' " the best file search
 Plugin 'mbbill/undotree'
 
 " Syntax
-Plugin 'vim-syntastic/syntastic'
 Plugin 'lumiliet/vim-twig'
 Plugin 'bkad/vim-stylus'
 Plugin 'posva/vim-vue'
@@ -159,19 +158,7 @@ set shell=/bin/bash\ -i
 
 
 " Syntax highlighting/linting
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let syntastic_mode_map = { 'passive_filetypes': ['html'] }
-let g:syntastic_twig_checkers = ['twig']
-let g:syntastic_html_tidy_ignore_errors = [
-  \ 'plain text isn''t allowed in <head> elements',
-  \ '<img> escaping malformed URI reference'
-  \ ]
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exe = 'eslint'
-let g:syntastic_python_checkers = []
+" TODO ALE
 
 let g:sexp_enable_insert_mode_mappings = 0
 
@@ -196,14 +183,6 @@ vnoremap <silent> <Enter> :EasyAlign<cr>
 
 " put symbols in the sign column
 hi clear SignColumn
-
-" ----- scrooloose/syntastic settings -----
-let g:syntastic_error_symbol = '✘'
-let g:syntastic_warning_symbol = "▲"
-augroup mySyntastic
-  au!
-  au FileType tex let b:syntastic_mode = "passive"
-augroup END
 
 " Toggle paste mode easily
 " Useful for pasting code without autoformatting
