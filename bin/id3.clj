@@ -1,7 +1,6 @@
 #!/usr/bin/env bb
 (ns id3
   (:require
-    [clojure.core.async :as async]
     [clojure.java.shell :refer [sh]]
     [clojure.java.io :as io]
     [clojure.string :as string]
