@@ -29,7 +29,8 @@
                            (future
                              (let [extracted (extract-zip archive dest)]
                                (when (and extracted delete?)
-                                 (io/delete-file archive-file)))))
+                                 (io/delete-file archive-file))
+                               extracted)))
                          extractions))))
 
 (def cli-options
@@ -67,8 +68,8 @@
         (if dry-run
           (doseq [{:keys [dest]} extractions]
             (println (.getAbsolutePath dest)))
-          (extract-all extractions)))))
-  nil)
+          (doseq [extracted (extract-all extractions)]
+            (println extracted)))))))
 
 (comment
 
