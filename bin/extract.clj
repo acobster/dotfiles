@@ -21,11 +21,15 @@
     (.close zip-file)
     (.getAbsolutePath dest-dir)
     (catch Throwable ex
-      (.close zip-file))))
+      (.close zip-file)
+      nil)))
 
 (defn- extract-all [extractions]
-  (doall (map deref (map (fn [{:keys [archive dest]}]
-                           (future (extract-zip archive dest)))
+  (doall (map deref (map (fn [{:keys [archive archive-file delete? dest]}]
+                           (future
+                             (let [extracted (extract-zip archive dest)]
+                               (when (and extracted delete?)
+                                 (io/delete-file archive-file)))))
                          extractions))))
 
 (def cli-options
@@ -36,9 +40,10 @@
    [nil "--dry-run" "Output commands to be run, but do not run them"]
    ["-s" "--source DIR" "Source directory" :default "."]
    ["-d" "--dest DIR" "Destination directory" :default "."]
-   ["-e" "--ext EXT" "File extension to match on" :default ".zip"]])
+   ["-e" "--ext EXT" "File extension to match on" :default ".zip"]
+   [nil "--delete" "Delete archives"]])
 
-(defn main [& args]
+(defn main [args]
   (let [{:keys [options errors summary]} (cli/parse-opts args cli-options)]
     (cond
       errors
@@ -46,7 +51,7 @@
       (:help options)
       (println summary)
       :default
-      (let [{:keys [source delimiter dest ext]} options
+      (let [{:keys [delimiter delete dest dry-run ext source]} options
             archives (filter #(.endsWith (.getName %) ".zip")
                              (file-seq (io/file source)))
             extractions (map (fn [file]
@@ -54,15 +59,22 @@
                                      extract-dirname (string/replace archive-path ext "")
                                      splits (string/split extract-dirname (re-pattern delimiter))
                                      dest-dir (io/file (string/join "/" (cons dest splits)))]
-                                 {
-                                  :archive (ZipFile. file)
-                                  :dest dest-dir}))
+                                 {:archive (ZipFile. file)
+                                  :archive-file file
+                                  :dest dest-dir
+                                  :delete? delete}))
                              archives)]
-        (extract-all extractions)))))
+        (if dry-run
+          (doseq [{:keys [dest]} extractions]
+            (println (.getAbsolutePath dest)))
+          (extract-all extractions)))))
+  nil)
 
 (comment
 
-  (main "--source" "/home/tamayo/Downloads" "--dest" "/home/tamayo/Sync/music")
+  (main ["--source" "/home/tamayo/Downloads" "--dest" "/home/tamayo/Sync/music"])
+  (main ["--dry-run" "--source" "/home/tamayo/Downloads" "--dest" "/home/tamayo/Sync/music"])
+  (main ["--delete" "--source" "/home/tamayo/Downloads" "--dest" "/home/tamayo/Downloads/test"])
 
   ,)
 
