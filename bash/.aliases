@@ -54,6 +54,7 @@ alias cpkey='cat ~/.ssh/id_ed25519.pub | x'
 
 # programs
 alias yt='yt-dlp'
+alias extract='extract.clj'
 
 # dirs
 alias docs='cd ~/Sync/docs'
