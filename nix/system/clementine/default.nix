@@ -76,6 +76,30 @@
     };
   };
 
+  systemd.timers."extract-music-downloads" = {
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnBootSec = "5m";
+      OnUnitActiveSec = "5m";
+      Unit = "extract-music-downloads.service";
+    };
+  };
+  systemd.services."extract-music-downloads" = {
+    script = ''
+      set -eu
+      src_path='/home/tamayo/Downloads/music'
+      dest_path='/home/tamayo/Sync/music'
+
+      date +'%Y-%m-%d %H:%M:%S' >> $src_path/extract.log
+      mkdir -p $src_path
+      ${pkgs.babashka}/bin/bb /home/tamayo/dotfiles/bin/extract.clj --delete --source $src_path --dest $dest_path >> $src_path/extract.log
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      User = "tamayo";
+    };
+  };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
