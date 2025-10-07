@@ -7,6 +7,7 @@
     ../users/tamayo.nix
 
     # Common config
+    ../modules/clamav.nix
     ../modules/fonts.nix
     ../modules/docker.nix
     ../modules/kde.nix
