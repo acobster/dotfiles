@@ -2,6 +2,7 @@
 [ -z "$PS1" ] && return
 
 export EDITOR=nvim
+export NIX_SHELL_PRESERVE_PROMPT=1
 
 
 #---------
@@ -68,6 +69,10 @@ __user_host_ps1() {
 }
 
 __ps1_symbol() {
+  if [[ "$IN_NIX_SHELL" ]] ; then
+    echo 'λ'
+    return 0
+  fi
   if [[ "$NIX_DEVELOP" ]] ; then
     echo 'λ'
     return 0
