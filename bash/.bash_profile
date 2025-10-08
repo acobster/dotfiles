@@ -91,6 +91,8 @@ __ps1_symbol() {
 
   if [[ $dt == '115' ]] ; then
     s='🐦'
+  elif [[ $dt == '131' ]] ; then
+    s='🦋'
   elif [[ $dt == '201' ]] ; then
     s='🍆'
   elif [[ $dt == '210' ]] ; then
