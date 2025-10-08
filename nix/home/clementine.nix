@@ -8,6 +8,7 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
+    bat
     cowsay
     curl
     neofetch
@@ -24,6 +25,7 @@
     python3
     ripgrep
     rpi-imager
+    ruby
     signal-desktop
     silver-searcher
     transmission_4-gtk
