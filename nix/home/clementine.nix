@@ -16,6 +16,7 @@
     freetube
     fzf
     gimp-with-plugins
+    gnome-calculator
     jq
     lolcat
     libreoffice-qt
