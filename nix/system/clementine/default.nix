@@ -101,6 +101,15 @@
     };
   };
 
+  systemd.services."planner" = {
+    serviceConfig = {
+      ExecStart = "${pkgs.php}/bin/php -S 0.0.0.0:59009 -t /home/tamayo/projects/planner";
+      Restart = "always";
+    };
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
+  };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
