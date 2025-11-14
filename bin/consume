@@ -1,20 +1,30 @@
 #!/usr/bin/env bash
 
+if [[ -z $1 ]] ; then
+  echo 'no pipe name specified; defaulting to "test.pipe"'
+fi
+
 pipe=${1:-'test.pipe'}
 
-echo "reading from $pipe..."
-
-trap 'rm -f "$pipe"' EXIT     # ignore exit and delete messages until the end
+trap '[[ -p "$pipe" ]] && rm -f "$pipe"' EXIT     # ignore exit and delete messages until the end
 
 if [[ ! -p $pipe ]]; then   # if the pipe doesn't exist, create it
     mkfifo $pipe
 fi
+if [[ ! -p $pipe ]]; then   # if the pipe previously existed and is not a pipe, bail
+    echo "$pipe" is not a pipe!
+    exit 1
+fi
 
-while true; do
+while true                  # cycle eternally..
+do
     if read line < $pipe; then
+        # a line break should be used because of the prompt
         echo
         echo "+ $line"
         # run the line, including bash profile stuff
         bash -ic "$line; echo = \$? ; `exit`"
     fi
 done
+
+echo 'Bye bye!'
