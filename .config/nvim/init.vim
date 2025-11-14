@@ -45,6 +45,8 @@ set backupcopy=yes
 " https://github.com/junegunn/vim-plug#usage
 call plug#begin(stdpath('data') . '/plugged')
 
+Plug 'github/copilot.vim'
+
 " The colors, Duke! The colors!
 Plug 'altercation/vim-colors-solarized'
 Plug 'bronson/vim-trailing-whitespace'
