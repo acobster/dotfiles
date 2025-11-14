@@ -6,10 +6,14 @@ fi
 
 pipe=${1:-'test.pipe'}
 
-trap 'rm -f "$pipe"' EXIT     # ignore exit and delete messages until the end
+trap '[[ -p "$pipe" ]] && rm -f "$pipe"' EXIT     # ignore exit and delete messages until the end
 
 if [[ ! -p $pipe ]]; then   # if the pipe doesn't exist, create it
     mkfifo $pipe
+fi
+if [[ ! -p $pipe ]]; then   # if the pipe previously existed and is not a pipe, bail
+    echo "$pipe" is not a pipe!
+    exit 1
 fi
 
 while true                  # cycle eternally..
