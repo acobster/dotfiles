@@ -1,0 +1,13 @@
+@pytest.mark.parametrize(
+    'req, expected',
+    [
+        (
+            {
+                # ...
+            },
+            {
+                'status': 200,
+            },
+        ),
+    ],
+)
