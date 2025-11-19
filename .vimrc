@@ -109,7 +109,6 @@ set tags=./tags;/,tags;/
 " tabs n spaces
 autocmd FileType make setlocal noexpandtab
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-autocmd BufNewFile,BufRead *.dat set filetype=ledger
 
 " File/Tab navigation
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
@@ -256,14 +255,6 @@ cmap ~con ~/projects/conifer/
 
 
 
-
-" Assets - display assets from Ledger-CLI
-
-command Assets r!date '+;; \%Y-\%m-\%d ALL ACCOUNTS BALANCED'; echo ';;'; ledger -f ~/ledger/ledger.dat balance assets --cleared | sed -s 's/^/;; /'
-
-
-
-
 " Rename.vim  -  Rename a buffer within Vim and on the disk
 "
 " Copyright June 2007-2011 by Christian J. Robinson <heptite@gmail.com>
@@ -373,5 +364,3 @@ cnoremap <c-P><c-P> nmap ,t :w\\|:silent !echo 'test_cmd' > test.pipe<c-v>u003Cc
 cnoremap <c-P><c-R> nmap ,r :w\\|:silent !echo 'command' > test.pipe<c-v>u003Ccr>:redraw!<c-v>u003Ccr>
 cnoremap <c-P><c-E> nmap ,e :w\\|:silent !echo 'command' > test.pipe<c-v>u003Ccr>:redraw!<c-v>u003Ccr>
 cnoremap <c-P><c-W> nmap ,s :w\\|:silent !echo 'command' > test.pipe<c-v>u003Ccr>:redraw!<c-v>u003Ccr>
-
-cnoremap <c-P>a nmap ,a :w\\|:silent !echo 'ledger -f ~/ledger/ledger.dat balance assets' > test.pipe<c-v>u003Ccr>:redraw!<c-v>u003Ccr>
