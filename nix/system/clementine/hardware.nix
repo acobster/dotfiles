@@ -64,13 +64,14 @@
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   # https://www.man7.org/linux/man-pages/man5/logind.conf.5.html
-  services.logind.extraConfig = ''
-    HandleLidSwitch=suspend
-    HandleLidSwitchDocked=ignore
-    HandleLidSwitchExternalPower=ignore
-    IdleAction=lock
-    SleepOperation=suspend-then-hibernate
-  '';
+  # AKA services.logind.extraConfig pre-25.11
+  services.logind.settings.Login = {
+    HandleLidSwitch = "suspend";
+    HandleLidSwitchDocked = "ignore";
+    HandleLidSwitchExternalPower = "ignore";
+    IdleAction = "lock";
+    SleepOperation = "suspend-then-hibernate";
+  };
 
   # Disable suspension entirely:
   systemd.sleep.extraConfig = ''
