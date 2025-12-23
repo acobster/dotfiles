@@ -6,6 +6,7 @@
 nmap <leader><Space> :ConjureEvalCurrentForm<Enter>
 nmap <leader><Enter> :ConjureEvalBuf<Enter>
 nmap <leader>cc :ConjureConnect<Enter>
+nmap <leader>cs :ConjureShadowSelect<Space>_app_
 nmap <leader>cw :ConjureEvalWord<Enter>
 nmap <leader>cr :ConjureEvalReplaceForm<Enter>
 nmap <leader>cll :ConjureLogSplit<Enter>
