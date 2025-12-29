@@ -24,6 +24,8 @@
     ./hosts.nix
   ];
 
+  services.tailscale.enable = true;
+
   services.desktopManager.plasma6.enable = true;
 
   nix.gc = {
