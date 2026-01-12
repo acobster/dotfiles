@@ -73,6 +73,9 @@ main() {
     gc)
       nix-collect-garbage --delete-older-than 90d
     ;;
+    flush-dns)
+      sudo systemctl restart nscd
+    ;;
     down)
       if [[ -f ~/.profile ]] && ! [[ -L ~/.profile ]] ; then
         echo mv ~/.profile ~/.profile.backup
