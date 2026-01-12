@@ -12333,7 +12333,7 @@
 0.0.0.0 tkclick.smardroid.com
 
 # [smart.link]
-0.0.0.0 smart.link
+# 0.0.0.0 smart.link
 
 # [smartadserver.com]
 0.0.0.0 cdn1.smartadserver.com
