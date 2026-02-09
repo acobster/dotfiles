@@ -8,9 +8,15 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
+    (azure-cli.withExtensions [ azure-cli.extensions.ssh ])
     fzf
     curl
     jq
+    k9s
+    kubectl
+    kubelogin
+    pyenv
+    ripgrep
     silver-searcher
     tree
     vlc
