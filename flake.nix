@@ -75,6 +75,13 @@
           ./nix/home/toast.nix
         ];
       };
+
+      amperpad = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          ./nix/home/amperpad.nix
+        ];
+      };
     };
 
     nixosConfigurations = {
