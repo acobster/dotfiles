@@ -7,6 +7,10 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
+    "vscode"
+  ];
+
   home.packages = with pkgs; [
     (azure-cli.withExtensions [ azure-cli.extensions.ssh ])
     fzf
@@ -20,6 +24,7 @@
     silver-searcher
     tree
     vlc
+    vscode
     wget
     xclip
   ];
