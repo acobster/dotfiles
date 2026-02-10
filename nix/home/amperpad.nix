@@ -8,12 +8,14 @@
   programs.home-manager.enable = true;
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
+    "claude-code"
     "vscode"
   ];
 
   home.packages = with pkgs; [
     (azure-cli.withExtensions [ azure-cli.extensions.ssh ])
     fzf
+    claude-code
     curl
     jq
     k9s
