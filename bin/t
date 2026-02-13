@@ -77,6 +77,11 @@ set -- "${POSITIONAL[@]}"
 
 main() {
 
+	if [[ -n "$TMUX" ]] ; then
+		echo "already inside a tmux session"
+		exit 1
+	fi
+
 	# initialize the session name
 	SESSION=${POSITIONAL[0]:-'default'}
 
