@@ -6,7 +6,7 @@ fi
 
 pipe=${1:-'test.pipe'}
 
-trap '[[ -p "$pipe" ]] && rm -f "$pipe"' EXIT     # ignore exit and delete messages until the end
+trap '[[ -p "$pipe" ]] && rm -f "$pipe" && echo "Bye bye!"' EXIT     # ignore exit and delete messages until the end
 
 if [[ ! -p $pipe ]]; then   # if the pipe doesn't exist, create it
     mkfifo $pipe
@@ -19,12 +19,9 @@ fi
 while true                  # cycle eternally..
 do
     if read line < $pipe; then
-        # a line break should be used because of the prompt
         echo
         echo "+ $line"
-        # run the line, including bash profile stuff
-        bash -ic "$line; echo = \$? ; `exit`"
+        # run the line
+        bash -c "$line; echo = \$? ; `exit`"
     fi
 done
-
-echo 'Bye bye!'
