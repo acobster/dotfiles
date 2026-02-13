@@ -5,9 +5,9 @@ export EDITOR=nvim
 export NIX_SHELL_PRESERVE_PROMPT=1
 
 
-#---------
+#~~~~~~~~~
 # PROMPT
-#---------
+#~~~~~~~~~
 
 #
 # Web-environment-based prompt:
@@ -165,9 +165,9 @@ __compose_ps1
 
 
 
-#---------
+#~~~~~~~~~
 # PATH
-#---------
+#~~~~~~~~~
 
 if [[ -d "$HOME/bin" ]] && ! [[ $PATH =~ "$HOME/bin" ]] ; then
   export PATH=~/bin:$PATH
@@ -183,9 +183,9 @@ fi
 
 
 
-#----------
+#~~~~~~~~~~
 # SSH Keys
-#----------
+#~~~~~~~~~~
 
 if [[ -z $ADDED_DEFAULT_KEYS && -f ~/.ssh/default-keys ]] ; then
   cat ~/.ssh/default-keys | while read k ; do
@@ -198,9 +198,9 @@ fi
 
 
 
-#----------------------------
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Bash functions and aliases
-#----------------------------
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Load common aliases
 if [[ -f ~/dotfiles/bash/.aliases ]] ; then
@@ -214,9 +214,9 @@ fi
 
 
 
-#--------
+#~~~~~~~~
 # Colors
-#--------
+#~~~~~~~~
 
 #
 # Provide an ergonomic way to switch between light/dark solarized themes
@@ -236,9 +236,9 @@ fi
 
 
 
-#---------
+#~~~~~~~~~
 # Git
-#---------
+#~~~~~~~~~
 
 # Git completion
 if [[ -f ~/dotfiles/git/git-completion.bash ]]; then
@@ -247,9 +247,9 @@ fi
 
 
 
-#--------
+#~~~~~~~~
 # Search
-#--------
+#~~~~~~~~
 
 if [[ -f ~/.fzf.bash ]] ; then
   source ~/.fzf.bash
@@ -262,9 +262,9 @@ fi
 
 
 
-#---------
+#~~~~~~~~~
 # History
-#---------
+#~~~~~~~~~
 
 # force ignoredups and ignorespace
 export HISTCONTROL=ignoreboth
@@ -279,9 +279,9 @@ fi
 
 
 
-#--------
+#~~~~~~~~
 # Window
-#--------
+#~~~~~~~~
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -289,9 +289,9 @@ shopt -s checkwinsize
 
 
 
-#--------
+#~~~~~~~~
 # Direnv
-#--------
+#~~~~~~~~
 
 if [[ $(which direnv) ]] ; then
   eval "$(direnv hook bash)"
@@ -299,9 +299,9 @@ fi
 
 
 
-#--------
+#~~~~~~~~
 # NVM
-#--------
+#~~~~~~~~
 
 if [[ -d ~/.nvm ]] ; then
   export NVM_DIR=~/.nvm
@@ -311,10 +311,9 @@ fi
 
 
 
-#--------
+#~~~~~~~~
 # PYENV
-#--------
-
+#~~~~~~~~
 
 if [[ -d ~/.pyenv ]] ; then
   export PYENV_ROOT="$HOME/.pyenv"
@@ -324,10 +323,9 @@ fi
 
 
 
-#--------
+#~~~~~~~~
 # FLYCTL
-#--------
-
+#~~~~~~~~
 
 export FLYCTL_INSTALL="~/.fly"
 
