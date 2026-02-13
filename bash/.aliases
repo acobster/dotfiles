@@ -26,8 +26,6 @@ upandaway() {
 alias b='build'
 alias aliases='vim ~/dotfiles/.aliases'
 alias al='vim ~/.aliases'
-alias functions='vim ~/dotfiles/bash/.functions'
-alias fn='vim ~/.functions'
 alias ssh-config='vim ~/.ssh/config'
 alias dtf='cd ~/dotfiles'
 alias x='xclip -selection clipboard'
@@ -88,3 +86,158 @@ alias socode='sed "s/^/    /"|x'
 alias snippets='ls ~/dotfiles/snippets'
 
 alias nix-plasma='nix run github:nix-community/plasma-manager'
+
+alias grepnix='grep --recursive --include="*.nix"'
+alias grepcljx='grep --recursive --include="*.clj" --include="*.cljs" --include="*.cljc"'
+alias grepcljxe='grep --recursive --include="*.clj" --include="*.cljs" --include="*.cljc" --include="*.edn"'
+alias grepclj='grep --recursive --include="*.clj"'
+alias grepcljc='grep --recursive --include="*.cljc"'
+alias grepcljs='grep --recursive --include="*.cljs"'
+alias grepy='grep --recursive --include="*.py"'
+alias grepmd='grep --recursive --include="*.md"'
+alias grephp='grep --recursive --include="*.php"'
+alias grepjs='grep --recursive --include="*.js"'
+alias grepts='grep --recursive --include="*.ts"'
+alias greptsx='grep --recursive --include="*.ts" --include="*.tsx"'
+alias grepscss='grep --recursive --include="*.scss"'
+alias grepyaml='grep --recursive --include="*.yaml" --include="*.yml"'
+alias grepsql='grep --recursive --include="*.sql"'
+alias greptwig='grep --recursive --include="*.twig"'
+alias grepless='grep --recursive --include="*.less"'
+
+#--------------------
+# Git functions
+#--------------------
+
+global_ignore() {
+  echo "$1" >> ~/.gitignore
+}
+
+
+# Vim
+
+vms() {
+  if [[ -z $1 ]] ; then
+    echo you gotta specify a session
+  fi
+
+  nvim -S ~/.vim/session/$1.vim
+}
+
+
+# Misc projects
+
+proj() {
+  if [[ -d "$HOME/projects/$1" ]] ; then
+    cd "$HOME/projects/$1"
+  else
+    cd ~/projects
+  fi
+}
+
+
+# WordPress
+
+wp-html-dir() {
+  root=`git root`
+  if [[ -d $root/html/wp ]] ; then
+    html=$root/html/wp
+  elif [[ -d $root/html ]] ; then
+    html=$root/html
+  elif [[ -d $root/wp ]] ; then
+    html=$root/wp
+  elif [[ -f $root/wp-config.php ]] ; then
+    html=$root
+  fi
+  echo $html
+}
+
+plugins() {
+  echo 'deprecated! use `plugin` instead'
+  cd $(wp-html-dir)/wp-content/plugins
+}
+
+plugin() {
+  wp_root=$(wp-html-dir)
+  if [[ -z "$wp_root" ]] ; then
+    echo 'Not in a WordPress directory tree!'
+    exit 1
+  fi
+
+  cd "$wp_root/wp-content/plugins/$1"
+}
+
+muplugin() {
+  wp_root=$(wp-html-dir)
+  if [[ -z "$wp_root" ]] ; then
+    echo 'Not in a WordPress directory tree!'
+    exit 1
+  fi
+
+  cd "$wp_root/wp-content/mu-plugins/$1"
+}
+
+wpthemes() {
+  cd $(wp-html-dir)/wp-content/themes
+}
+
+wptheme() {
+  theme=$(wp-html-dir)/wp-content/themes/$1
+  if [[ -d "$theme" ]] ; then
+    cd $theme
+  elif [[ -d $(dirname "$theme") ]] ; then
+    echo "No such theme: $1"
+    cd $(dirname "$theme")
+  else
+    echo "Couldn't find themes directory. Are you in a WP directory tree?"
+    exit 1
+  fi
+}
+
+wpdebug() {
+  cd $(wp-html-dir)/wp-content
+  touch debug.log
+  tail -f debug.log
+}
+
+
+
+#--------------------
+# Assorted functions
+#--------------------
+
+reload() {
+  if [[ -f $HOME/.bash_profile ]] ; then
+    source $HOME/.bash_profile
+  elif [[ -f $HOME/.bashrc ]] ; then
+    source $HOME/.bashrc
+  fi
+}
+
+gems() {
+  gem query | grep "$1"
+}
+
+decode_url() {
+  php -r "echo urldecode('$1').\"\n\";"
+}
+
+backup() {
+  cp -r $1 $1.bak
+}
+
+mc() {
+  mkdir -p "$1" && cd "$1"
+}
+
+psgrep() {
+  ps aux | grep -i $1 | grep -v grep
+}
+
+portgrep() {
+  sudo netstat -tulpn | grep $1 | grep -v grep
+}
+
+grepkill() {
+  ps aux | grep $1 | grep -v grep | kill `awk '{print $2}'`
+}
