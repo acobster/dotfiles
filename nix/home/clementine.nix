@@ -15,6 +15,7 @@
     ffmpeg
     freetube
     fzf
+    gdu
     gimp-with-plugins
     gnome-calculator
     jq
@@ -22,6 +23,7 @@
     libreoffice-qt
     lua
     nix-info
+    ollama-cpu
     pdfsam-basic
     python3
     ripgrep
