@@ -13,7 +13,7 @@
     extraConfig = ''
       ${builtins.readFile ./neovim/common.vim}
       ${builtins.readFile ./neovim/color.vim}
-      ${builtins.readFile ./neovim/syntastic.vim}
+      ${builtins.readFile ./neovim/syntax.vim}
       ${builtins.readFile ./neovim/racket.vim}
       ${builtins.readFile ./neovim/mappings.vim}
     '';
@@ -57,7 +57,7 @@
       vim-windowswap
 
       # Syntax
-      # TODO explore syntastic -> ale ?
+      ale
       vim-json
       (nvim-treesitter.withPlugins (p: [
         p.tree-sitter-bash
