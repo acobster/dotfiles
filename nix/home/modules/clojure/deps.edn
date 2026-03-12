@@ -53,6 +53,18 @@
   :reveal
   {:extra-deps
    {vlaaad/reveal {:mvn/version "1.3.280"}}}}
+  :repl-mcp
+  {:main-opts ["-m" "is.simm.repl-mcp"]
+   :extra-paths ["test"] ;; If you want it to be able to run the tests
+   ;; Option for clj-async-profiler
+   :jvm-opts ["-Djdk.attach.allowAttachSelf"
+              "-XX:+UnlockDiagnosticVMOptions"
+              "-XX:+DebugNonSafepoints"
+              "-XX:+EnableDynamicAgentLoading"
+              "--enable-native-access=ALL-UNNAMED"]
+   :extra-deps {is.simm/repl-mcp {:git/url "https://github.com/simm-is/repl-mcp" :git/sha "d00f661"}
+                org.slf4j/slf4j-api {:mvn/version "2.0.17"}
+                org.slf4j/slf4j-simple {:mvn/version "2.0.17"}}}
 
  ;; Provider attributes
 
