@@ -10,6 +10,7 @@
   home.packages = with pkgs; [
     bat
     cowsay
+    claude-code
     curl
     neofetch
     ffmpeg
@@ -56,6 +57,7 @@
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
+    "claude-code"
     "discord"
     "typora"
     "zoom"
