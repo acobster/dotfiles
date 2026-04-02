@@ -156,6 +156,7 @@ function init_panes() {
 
   # create a new session named $SESSION
   tmux new-session -d -s $SESSION
+  tmux source-file ~/.tmux.conf
   # send it the command
   send_cmd "$CMD1"
 
