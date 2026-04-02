@@ -82,6 +82,13 @@
           ./nix/home/amperpad.nix
         ];
       };
+
+      amp76 = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          ./nix/home/amp76.nix
+        ];
+      };
     };
 
     nixosConfigurations = {

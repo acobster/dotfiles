@@ -1,0 +1,52 @@
+{ config, pkgs, ... }:
+
+{
+  home.username = "tamayo";
+  home.homeDirectory = "/home/tamayo";
+
+  # Let Home Manager install and manage itself.
+  programs.home-manager.enable = true;
+
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
+    "claude-code"
+    "vscode"
+  ];
+
+  home.packages = with pkgs; [
+    (azure-cli.withExtensions [ azure-cli.extensions.ssh ])
+    fzf
+    claude-code
+    curl
+    jq
+    k9s
+    kubectl
+    kubelogin
+    mariadb_118
+    pkg-config
+    (python311.withPackages (ps: with ps; [
+      pip
+      setuptools
+      virtualenv
+    ]))
+    ripgrep
+    silver-searcher
+    tree
+    vlc
+    vscode
+    wget
+    xclip
+  ];
+
+  imports = [
+    ./modules/bash.nix
+    ./modules/direnv.nix
+    ./modules/neovim.nix
+    ./modules/nix.nix
+    ./modules/git.nix
+    ./modules/gnome.nix
+    ./modules/tmux.nix
+    ./modules/ubuntu.nix
+  ];
+
+  home.stateVersion = "26.05";
+}
