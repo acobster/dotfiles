@@ -32,6 +32,7 @@
     silver-searcher
     syncthing
     tree
+    universal-ctags
     vlc
     vscode
     wget
