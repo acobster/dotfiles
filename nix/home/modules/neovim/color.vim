@@ -2,9 +2,9 @@
 
 syntax enable
 
-" Coloring for 80-char column
+" Coloring for 88-char column
 if (exists('+colorcolumn'))
-  set colorcolumn=80
+  set colorcolumn=88
   highlight ColorColumn ctermbg=9
 endif
 
