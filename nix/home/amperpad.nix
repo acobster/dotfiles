@@ -30,6 +30,7 @@
     ]))
     ripgrep
     silver-searcher
+    syncthing
     tree
     vlc
     vscode
