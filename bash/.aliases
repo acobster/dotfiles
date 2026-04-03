@@ -92,7 +92,7 @@ alias grepcljxe='grep --recursive --include="*.clj" --include="*.cljs" --include
 alias grepclj='grep --recursive --include="*.clj"'
 alias grepcljc='grep --recursive --include="*.cljc"'
 alias grepcljs='grep --recursive --include="*.cljs"'
-alias grepy='grep --recursive --include="*.py"'
+alias grepy='grep --recursive --include="*.py" --exclude-dir=.venv'
 alias grepmd='grep --recursive --include="*.md"'
 alias grephp='grep --recursive --include="*.php"'
 alias grepjs='grep --recursive --include="*.js"'
