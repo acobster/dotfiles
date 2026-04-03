@@ -9,8 +9,9 @@
 
   home.packages = with pkgs; [
     bat
-    cowsay
+    cheese
     claude-code
+    cowsay
     curl
     neofetch
     ffmpeg
