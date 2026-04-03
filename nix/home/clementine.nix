@@ -9,7 +9,6 @@
 
   home.packages = with pkgs; [
     bat
-    cheese
     claude-code
     cowsay
     curl
