@@ -8,6 +8,7 @@
   programs.home-manager.enable = true;
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
+    "albert"
     "claude-code"
     "vscode"
   ];
@@ -40,6 +41,7 @@
   ];
 
   imports = [
+    ./modules/albert.nix
     ./modules/bash.nix
     ./modules/direnv.nix
     ./modules/neovim.nix
