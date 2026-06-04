@@ -33,6 +33,7 @@
     syncthing
     tree
     universal-ctags
+    uv
     vlc
     vscode
     wget
