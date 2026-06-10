@@ -12,6 +12,7 @@
     claude-code
     cowsay
     curl
+    dig
     neofetch
     ffmpeg
     freetube
