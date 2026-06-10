@@ -8,11 +8,11 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
-        "lastModified": 1777867383,
-        "narHash": "sha256-Pv7/nyFVi6ZMjInw3UYG9a6yjKxh6ORs2+GqnM0pH8I=",
+        "lastModified": 1781064146,
+        "narHash": "sha256-HjjvV8nCE6/sTgghlTW1ht8Rs3VZB55tV8wWces8DwY=",
         "owner": "rycee",
         "repo": "nur-expressions",
-        "rev": "c63195f23846be639805fb8fc5bcb579e249b8e0",
+        "rev": "5213e7922ccfed3b070bf125c103504bc37852eb",
         "type": "gitlab"
       },
       "original": {
@@ -29,11 +29,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1777851538,
-        "narHash": "sha256-Gp8qwTEYNoy2yvmErVGlvLOQvrtEECCAKbonW7VJef8=",
+        "lastModified": 1779506708,
+        "narHash": "sha256-QOD/CNm196nCJRheux/URi4/HE66fthdOMqCJoPP1Y0=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "cc09c0f9b7eaa95c2d9827338a5eb03d32505ca5",
+        "rev": "3ee51fbdac8c8bdfe1e7e1fcaba6520a563f394f",
         "type": "github"
       },
       "original": {
@@ -44,12 +44,15 @@
       }
     },
     "nixos-hardware": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
       "locked": {
-        "lastModified": 1777917524,
-        "narHash": "sha256-k+LVe9YaO2BEPB9AaCtTtOMCeGi4dxDo6gt4Un3qoPY=",
+        "lastModified": 1781020964,
+        "narHash": "sha256-fS7xTi2j2iso5Hj7RNZLv/acDlCT+fgMVkVk40A7Uco=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "df7783100babf59001340a7a874ba3824e441ecb",
+        "rev": "32c2cd9e46286c4eced3dc6b613c659126bf3cca",
         "type": "github"
       },
       "original": {
@@ -61,11 +64,24 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1777673416,
-        "narHash": "sha256-5c2POKPOjU40Kh0MirOdScBLG0bu9TAuPYAtPRNZMBs=",
+        "lastModified": 1767892417,
+        "narHash": "sha256-8bW3q88CEg2u4hSP66Vf4lpbLonHz7hqDNBMcCY7E9U=",
+        "rev": "3497aa5c9457a9d88d71fa93a4a8368816fbeeba",
+        "type": "tarball",
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.05pre924538.3497aa5c9457/nixexprs.tar.xz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1780952837,
+        "narHash": "sha256-Fwd1+spDtQ0hDyBwme6ufG3n4mY0UrjjFdYHv+G/Hds=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "26ef669cffa904b6f6832ab57b77892a37c1a671",
+        "rev": "e820eb4a444b46a19b2e03e8dfd2359439ff30fe",
         "type": "github"
       },
       "original": {
@@ -103,7 +119,7 @@
         "firefox-addons": "firefox-addons",
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_2",
         "plasma-manager": "plasma-manager"
       }
     }
