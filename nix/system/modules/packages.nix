@@ -7,7 +7,6 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     borgbackup
-    docker
     firefox
     fzf
     git
