@@ -13,6 +13,7 @@
     gnome-terminal
     gnupg
     home-manager
+    lm_sensors
     nettools
     silver-searcher
     # Steam needs to run at the system level
