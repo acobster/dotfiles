@@ -14,6 +14,7 @@
     curl
     dig
     neofetch
+    nodejs_22
     ffmpeg
     freetube
     fzf
