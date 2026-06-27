@@ -300,3 +300,31 @@ Once you pick a tag it should start a download and then it's onto configuration!
 ### Setting up the container
 
 Container Manager exposes a nice GUI that maps pretty intuitively onto Docker's CLI args. Give the container a name (I named mine `syncthing-1.28`) and start configure the ports. Synology knows to forward ports 8384
+
+## Sensors
+
+Notes from Claude:
+
+**CPU Temperature** — `k10temp-pci-00c3` is the authoritative AMD CPU sensor:
+```
+k10temp-pci-00c3 → Tctl → temp1_input   (96.75°C right now — hot!)
+```
+
+**Fan speeds** — `framework_laptop-isa-000f` is the cleanest source:
+```
+framework_laptop-isa-000f → fan1 → fan1_input   (3963 RPM)
+framework_laptop-isa-000f → fan2 → fan2_input   (3654 RPM)
+```
+
+**Bonus useful ones** from `cros_ec-isa-000c` (the embedded controller, named readings):
+```
+cpu@4c → temp4_input          95.85°C  (same as Tctl, EC-reported)
+apu_f75303@4d → temp3_input   72.85°C  (APU/die temp, cooler reading)
+ambient_f75303@4d → temp1_input  59.85°C  (chassis ambient)
+```
+
+**GPU** if you care: `amdgpu-pci-c200 → edge → temp1_input` (81°C)
+
+**RAM DIMMs** (`spd5118-i2c-22-50`/`51`): 74°C and 69°C respectively.
+
+**Note:** `cros_ec` and `framework_laptop` report the same fan RPMs from two different interfaces — pick one (I'd use `framework_laptop`). Also, Tctl on AMD is offset by up to +27°C from the actual die temp; `apu_f75303@4d` is closer to real junction temp. The system is clearly under load right now (~97°C Tctl).

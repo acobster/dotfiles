@@ -1,52 +1,45 @@
 #!/usr/bin/env bb
 
-(require '[cheshire.core :as json]
-         '[clojure.string :as string]
-         '[clojure.java.shell :as shell])
+(require
+  '[cheshire.core :as json]
+  '[clojure.string :as string]
+  '[clojure.java.shell :as shell])
 
-(defn get-temp [sensor]
-  "Get temperature from sensor data, handling different key formats"
-  (or (get sensor "temp1_input")
-      (get sensor "input")
-      0))
+(defn get-sensor-data []
+  (-> (shell/sh "sensors" "-j")
+      :out
+      (string/replace #"NaN" "null")
+      (json/parse-string true)))
 
-(defn get-rpm [sensor]
-  "Get fan RPM from sensor data"
-  (or (get sensor "fan1_input")
-      (get sensor "rpm")
-      0))
+(defn hostname []
+  (-> (shell/sh "hostname")
+      :out
+      string/trim))
+
+(def $profiles
+  {"clementine"
+   {:cpu-temp [:k10temp-pci-00c3 :Tctl :temp1_input]
+    :fan1-rpm [:framework_laptop-isa-000f :fan1 :fan1_input]
+    :fan2-rpm [:framework_laptop-isa-000f :fan2 :fan2_input]}})
 
 (comment
   (shell/sh "ls" "-l")
-  (as-> (shell/sh "sensors" "-j") $
-    (:out $)
-    (string/replace $ #"NaN" "null")
-    (json/parse-string $ true))
+  (get-sensor-data)
   (-main)
   ,)
 
 (defn -main []
-  (try
-    (let [data (-> (shell/sh "sensors" "-j")
-                   :out
-                   (string/replace #"NaN" "null")
-                   (json/parse-string true))]
-      (doseq [[device-name device] data
-              :let [sensors (vals device)
-                    temps (filter some? (map get-temp sensors))
-                    rpms (filter some? (map get-rpm sensors))
-                    coretemps (filter (fn [t] (<= 20 t 100)) temps)
-                    current rpms]]
-        (when (or coretemps current)
-          (println (str device-name ":"))
-          (when coretemps
-            (doseq [t coretemps]
-              (println (format "  Core: %.1f°C" (/ t 1000.0)))))
-          (when current
-            (doseq [r current]
-              (println (format "  Fan: %d RPM" r)))))))
-    (catch Exception e
-      (println "Error reading sensors:" (.getMessage e))
-      (System/exit 1))))
+  (let [sensor-data (get-sensor-data)
+        host (hostname)
+        profile (get $profiles host)
+        _ (when-not profile (do
+                              (println "No profile found for" host)
+                              (System/exit 1)))
+        {:keys [cpu-temp fan1-rpm fan2-rpm]}
+        (into {} (map (juxt key #(get-in sensor-data (val %))))
+              (get $profiles "clementine"))]
+    (println "CPU temp:" cpu-temp "°C")
+    (println "Fan 1:" fan1-rpm "RPM")
+    (println "Fan 2:" fan2-rpm "RPM")))
 
 (-main)
