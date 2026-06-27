@@ -68,6 +68,7 @@ alias desk='cd ~/Desktop'
 # ID3 tags
 alias ff='ffprobe -show_format -print_format json 2>/dev/null'
 alias id3='id3.clj'
+alias sense='sense.clj'
 
 # Git stuff
 alias g='git'
