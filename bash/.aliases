@@ -130,10 +130,15 @@ vms() {
 # Misc projects
 
 proj() {
-  if [[ -d "$HOME/projects/$1" ]] ; then
-    cd "$HOME/projects/$1"
+  local project_dir="$HOME/projects/$1"
+  if [[ -d "$project_dir" ]] ; then
+    cd "$project_dir"
   else
-    cd ~/projects
+    read -p "Create project ${1}? [Y/n] " create
+    if [[ $create = "y" ]] ; then
+      mkdir -p "$project_dir"
+      cd "$project_dir"
+    fi
   fi
 }
 
