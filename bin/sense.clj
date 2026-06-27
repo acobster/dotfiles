@@ -42,7 +42,7 @@
         (distill profile (get-sensor-data))
         critical? (>= cpu-temp 85)
         temp-icon (if critical? "‼️" "✔️")]
-    (println temp-icon " CPU temp:" cpu-temp "°C")
+    (println (format "%s  CPU temp: %.2f°C" temp-icon cpu-temp))
     (println "   Fan 1:" fan1-rpm "RPM")
     (println "   Fan 2:" fan2-rpm "RPM")))
 
