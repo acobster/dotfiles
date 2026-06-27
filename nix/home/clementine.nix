@@ -69,5 +69,7 @@
   # These can be restored easily, and so aren't worth the noise.
   home.file."projects/.stignore".source = ./syncthing/projects.stignore;
 
+  home.file.".pi/agent/models.json".source = ./pi/agent/models.json;
+
   home.stateVersion = "23.11";
 }
