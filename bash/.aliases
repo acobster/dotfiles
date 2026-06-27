@@ -136,7 +136,7 @@ proj() {
     cd "$project_dir"
   else
     read -p "Create project ${1}? [Y/n] " create
-    if [[ $create = "y" ]] ; then
+    if [[ $create = "y" ]] || [[ $create = "" ]] ; then
       mkdir -p "$project_dir"
       cd "$project_dir"
     fi
