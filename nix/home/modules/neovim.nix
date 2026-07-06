@@ -9,6 +9,9 @@
     vimAlias = true;
     vimdiffAlias = true;
 
+    withRuby = false;
+    withPython3 = true;
+
     # TODO convert to Lua...
     extraConfig = ''
       ${builtins.readFile ./neovim/common.vim}
