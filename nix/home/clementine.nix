@@ -13,7 +13,6 @@
     cowsay
     curl
     dig
-    neofetch
     nodejs_22
     ffmpeg
     freetube
@@ -62,6 +61,10 @@
     "claude-code"
     "discord"
     "typora"
+    # TODO replace these vim ones?
+    "vim-solarized8"
+    "vim-trailing-whitespace"
+    "vim-windowswap"
     "zoom"
   ];
 
