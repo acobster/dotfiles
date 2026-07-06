@@ -24,7 +24,6 @@
     mariadb_118
     pkg-config
     (python311.withPackages (ps: with ps; [
-      pip
       setuptools
       virtualenv
     ]))
