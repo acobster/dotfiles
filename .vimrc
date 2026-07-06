@@ -142,7 +142,21 @@ set shell=/bin/bash\ -i
 
 
 " Syntax highlighting/linting
-" TODO ALE
+" Don't lint every single buffer every time I open vim...
+let g:ale_lint_on_enter = 0
+
+" Prettier
+augroup FiletypeGroup
+    autocmd!
+    au BufNewFile,BufRead *.tsx set filetype=typescript.tsx
+    au BufNewFile,BufRead *.ts set filetype=typescript.ts
+augroup END
+let g:ale_fixers = {
+\   'typescript': ['prettier', 'eslint'],
+\   'python': ['black'],
+\   'css': ['prettier'],
+\}
+let g:ale_fix_on_save = 1
 
 let g:sexp_enable_insert_mode_mappings = 0
 
