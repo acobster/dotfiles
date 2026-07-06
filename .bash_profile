@@ -750,3 +750,5 @@ else
 fi
 
 export TERM="xterm-256color"
+
+. "$HOME/.local/bin/env"
