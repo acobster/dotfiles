@@ -9,6 +9,10 @@
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
     "claude-code"
+    # TODO replace these vim ones?
+    "vim-solarized8"
+    "vim-trailing-whitespace"
+    "vim-windowswap"
     "vscode"
   ];
 
@@ -24,7 +28,6 @@
     mariadb_118
     pkg-config
     (python311.withPackages (ps: with ps; [
-      pip
       setuptools
       virtualenv
     ]))
@@ -33,6 +36,7 @@
     syncthing
     tree
     universal-ctags
+    uv
     vlc
     vscode
     wget
