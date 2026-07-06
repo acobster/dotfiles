@@ -67,3 +67,9 @@ augroup CursorLine
   au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
   au WinLeave * setlocal nocursorline
 augroup END
+
+augroup FillOnResize
+  au!
+  au SessionLoadPost * tabdo wincmd =
+  au VimResized * tabdo wincmd =
+augroup END
