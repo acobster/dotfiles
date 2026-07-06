@@ -3,6 +3,8 @@
 usage() {
   echo "usage: $(basename $0) [-h|--help] COMMAND"
   echo
+  echo 'Manage Nix/OS system and home-manager configurations in one place.'
+  echo
   echo '  COMMANDS:'
   echo
   echo '  home'
