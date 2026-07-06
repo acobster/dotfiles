@@ -18,7 +18,7 @@
       ${builtins.readFile ./neovim/mappings.vim}
     '';
 
-    extraLuaConfig = ''
+    initLua = ''
       ${builtins.readFile ./neovim/init.lua}
     '';
 
