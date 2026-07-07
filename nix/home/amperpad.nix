@@ -21,6 +21,7 @@
     fzf
     claude-code
     curl
+    gh
     jq
     k9s
     kubectl
@@ -40,6 +41,7 @@
     vlc
     vscode
     wget
+    worktrunk
     xclip
   ];
 
