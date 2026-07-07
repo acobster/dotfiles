@@ -15,7 +15,7 @@
       "lp"
     ];
     packages = with pkgs; [
-      protonvpn-gui
+      proton-vpn
     ];
   };
 }
