@@ -343,3 +343,13 @@ export FLYCTL_INSTALL="~/.fly"
 if [[ ! "$PATH" =~ "$FLYCTL_INSTALL/bin" ]] ; then
   export PATH="$FLYCTL_INSTALL/bin:$PATH"
 fi
+
+
+
+#~~~~~~~~~~~~~~~~~~~~
+# LOCAL BASH PROFILE
+#~~~~~~~~~~~~~~~~~~~~
+
+if [[ -f ~/.bash_profile.local ]] ; then
+  source ~/.bash_profile.local
+fi
