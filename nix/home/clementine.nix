@@ -9,6 +9,7 @@
 
   home.packages = with pkgs; [
     bat
+    busybox
     claude-code
     cowsay
     curl
