@@ -19,6 +19,7 @@
   home.packages = with pkgs; [
     (azure-cli.withExtensions [ azure-cli.extensions.ssh ])
     fzf
+    busybox
     claude-code
     curl
     gh
