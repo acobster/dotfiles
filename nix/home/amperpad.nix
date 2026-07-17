@@ -19,7 +19,6 @@
   home.packages = with pkgs; [
     (azure-cli.withExtensions [ azure-cli.extensions.ssh ])
     fzf
-    busybox
     claude-code
     curl
     gh
@@ -28,6 +27,7 @@
     kubectl
     kubelogin
     mariadb_118
+    net-tools
     pkg-config
     (python311.withPackages (ps: with ps; [
       setuptools

@@ -9,11 +9,11 @@
 
   home.packages = with pkgs; [
     bat
-    busybox
     claude-code
     cowsay
     curl
     dig
+    net-tools
     nodejs_22
     ffmpeg
     freetube
