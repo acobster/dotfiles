@@ -8,6 +8,7 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
+    audacity
     bat
     claude-code
     cowsay
