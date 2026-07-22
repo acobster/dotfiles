@@ -15,6 +15,8 @@ in
   programs.firefox = {
     enable = true;
 
+    configPath = ".mozilla/firefox";
+
     languagePacks = [ "en-US" "es" "fr" "ar" ];
 
     # See about:policies#documentation
