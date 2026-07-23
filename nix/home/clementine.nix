@@ -29,6 +29,7 @@
     nix-info
     ollama-cpu
     pdfsam-basic
+    pulseaudio
     python3
     ripgrep
     rpi-imager
