@@ -39,6 +39,7 @@
     vlc
     vscode
     wget
+    worktrunk
     xclip
   ];
 
