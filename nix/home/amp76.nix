@@ -9,6 +9,9 @@
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
     "claude-code"
+    "vim-solarized8"
+    "vim-trailing-whitespace"
+    "vim-windowswap"
     "vscode"
   ];
 
