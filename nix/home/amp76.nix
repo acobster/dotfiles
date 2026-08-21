@@ -45,6 +45,7 @@
 
   imports = [
     ./modules/bash.nix
+    ./modules/browsers-amp.nix
     ./modules/direnv.nix
     ./modules/neovim.nix
     ./modules/nix.nix
