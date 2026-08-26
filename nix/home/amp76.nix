@@ -20,6 +20,7 @@
     fzf
     claude-code
     curl
+    gimp
     jq
     k9s
     kubectl
