@@ -61,7 +61,15 @@
   # networking.interfaces.wlp2s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware = {
+    cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+    # Configure Nvidia GPU.
+    graphics.enable = true;
+    nvidia.open = true;
+  };
+
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   # https://www.man7.org/linux/man-pages/man5/logind.conf.5.html
   # AKA services.logind.extraConfig pre-25.11
