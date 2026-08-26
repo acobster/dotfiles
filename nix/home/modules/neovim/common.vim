@@ -68,8 +68,16 @@ augroup CursorLine
   au WinLeave * setlocal nocursorline
 augroup END
 
+" :tabdo leaves you on the last tab, so save/restore the current one.
+" (Otherwise a tmux pane zoom -> VimResized -> tabdo jumps tabs on you.)
+function! s:EqualizeAllTabs() abort
+  let l:tab = tabpagenr()
+  tabdo wincmd =
+  execute 'tabnext' l:tab
+endfunction
+
 augroup FillOnResize
   au!
-  au SessionLoadPost * tabdo wincmd =
-  au VimResized * tabdo wincmd =
+  au SessionLoadPost * call s:EqualizeAllTabs()
+  au VimResized * call s:EqualizeAllTabs()
 augroup END
