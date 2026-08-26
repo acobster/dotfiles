@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   networking.hostName = "clementine";
@@ -111,6 +111,15 @@
     after = [ "network.target" ];
     wantedBy = [ "multi-user.target" ];
   };
+
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "nvidia-settings"
+    "nvidia-x11"
+    "steam"
+    "steam-original"
+    "steam-run"
+    "steam-unwrapped"
+  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
