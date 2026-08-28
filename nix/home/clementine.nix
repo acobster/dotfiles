@@ -10,6 +10,7 @@
   home.packages = with pkgs; [
     audacity
     bat
+    chez
     claude-code
     cowsay
     curl
