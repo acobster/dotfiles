@@ -27,7 +27,7 @@
     libreoffice-qt
     lua
     nix-info
-    ollama-cpu
+    ollama-cuda
     pdfsam-basic
     pulseaudio
     python3
@@ -69,6 +69,11 @@
     "vim-trailing-whitespace"
     "vim-windowswap"
     "zoom"
+    # For ollama-cuda
+    "cuda_cccl"
+    "cuda_cudart"
+    "cuda_nvcc"
+    "libcublas"
   ];
 
   # Ignore project dependency files in syncs.
