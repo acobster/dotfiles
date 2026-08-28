@@ -5,6 +5,7 @@
       "api": "openai-completions",
       "apiKey": "nope",
       "models": [
+        { "id": "qwen3:8b" },
         { "id": "qwen3-coder-next:q4_K_M" },
         { "id": "qwen2.5-coder:7b" },
         { "id": "gemma4:31b" },
