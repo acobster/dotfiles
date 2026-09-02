@@ -4,6 +4,7 @@ let
   lock-false = { Value = false; Status = "locked"; };
   lock-true = { Value = true; Status = "locked"; };
   lock-empty = { Value = ""; Status = "locked"; };
+  nixGLIntel = inputs.nixgl.packages.${pkgs.stdenv.hostPlatform.system}.nixGLIntel;
 in
 {
   home.packages = with pkgs; [
@@ -14,6 +15,25 @@ in
   # https://discourse.nixos.org/t/combining-best-of-system-firefox-and-home-manager-firefox-settings/37721
   programs.firefox = {
     enable = true;
+    # home-manager calls package.override to inject profile/extension config,
+    # so we intercept override to apply the nixGL wrapper after that step.
+    package =
+      let
+        wrapWithNixGL = drv: pkgs.symlinkJoin {
+          name = "firefox-nixgl";
+          paths = [ drv ];
+          buildInputs = [ pkgs.makeWrapper ];
+          postBuild = ''
+            rm $out/bin/firefox
+            makeWrapper ${nixGLIntel}/bin/nixGLIntel $out/bin/firefox \
+              --add-flags "${drv}/bin/firefox"
+          '';
+        };
+      in
+      pkgs.firefox // {
+        override = args: wrapWithNixGL (pkgs.firefox.override args);
+        overrideAttrs = f: wrapWithNixGL (pkgs.firefox.overrideAttrs f);
+      };
 
     configPath = ".mozilla/firefox";
 
