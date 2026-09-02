@@ -4,6 +4,7 @@ usage() {
   echo 'usage: t CMD1 [CMD2 [CMD3 [CMD4 [CMD5]]]] [-N] [-p|--pane]'
   echo '         [-v|--verbose] [-h|--help] [-d|--dry-run]'
   echo
+  echo '  -h|--help     print this help text'
   echo '  -N            number of panes to create, 1-6 (default=3)'
   echo '  -d|--detached do not attach to session'
   echo '  -p|--pane     pane to select (default=0)'
@@ -77,7 +78,7 @@ set -- "${POSITIONAL[@]}"
 
 main() {
 
-	if [[ -n "$TMUX" ]] ; then
+	if [[ -n "$TMUX" ]] && [[ -z "$DETACHED" ]] ; then
 		echo "already inside a tmux session"
 		exit 1
 	fi
@@ -142,7 +143,7 @@ main() {
 # Send an arbitrary command to the current window
 function send_cmd() {
   if ! [[ -z $1 ]] ; then
-    tmux send-keys "$1" 'C-m'
+    tmux send-keys -t $SESSION "$1" 'C-m'
   fi
 }
 
@@ -170,7 +171,7 @@ function init_panes() {
   if [[ $NUM_PANES -gt 1 ]] ; then
     # select/split the window, sending each the command
     tmux select-window -t $SESSION:0
-    tmux split-window -v
+    tmux split-window -v -t $SESSION
     send_cmd "$CMD2"
   fi
 
@@ -182,7 +183,7 @@ function init_panes() {
   # |  1  |  2  |
   # +-----+-----+
   if [[ $NUM_PANES -eq 3 ]] ; then
-    tmux split-window -h
+    tmux split-window -h -t $SESSION
     send_cmd "$CMD3"
   fi
 
@@ -194,9 +195,9 @@ function init_panes() {
   # | 1 | 2 | 3 |
   # +-----+-----+
   if [[ $NUM_PANES -eq 4 ]] ; then
-    tmux split-window -h
+    tmux split-window -h -t $SESSION
     send_cmd "$CMD3"
-    tmux split-window -h
+    tmux split-window -h -t $SESSION
     send_cmd "$CMD4"
   fi
 
@@ -210,11 +211,11 @@ function init_panes() {
   # |   |   | 4 |
   # +-----+-----+
   if [[ $NUM_PANES -eq 5 ]] ; then
-    tmux split-window -h
+    tmux split-window -h -t $SESSION
     send_cmd "$CMD3"
-    tmux split-window -h
+    tmux split-window -h -t $SESSION
     send_cmd "$CMD4"
-    tmux split-window -v
+    tmux split-window -v -t $SESSION
     send_cmd "$CMD5"
   fi
 
@@ -228,24 +229,24 @@ function init_panes() {
   # |   | 3 | 5 |
   # +-----+-----+
   if [[ $NUM_PANES -eq 6 ]] ; then
-    tmux split-window -h
+    tmux split-window -h -t $SESSION
     send_cmd "$CMD3"
 
-    tmux split-window -h
-    tmux select-pane -t 2
-    tmux split-window -v
+    tmux split-window -h -t $SESSION
+    tmux select-pane -t $SESSION:2
+    tmux split-window -v -t $SESSION
     send_cmd "$CMD4"
 
-    tmux select-pane -t 4
+    tmux select-pane -t $SESSION:4
     send_cmd "$CMD5"
 
-    tmux split-window -v
+    tmux split-window -v -t $SESSION
     send_cmd "$CMD6"
   fi
 
   echo "session ${SESSION} created"
 
-  tmux select-pane -t $PANE
+  tmux select-pane -t $SESSION:$PANE
 
   # finally, attach to the new session (unless -d was specified)
   if [[ -z $DETACHED ]] ; then
