@@ -22,6 +22,7 @@
     curl
     gimp
     jq
+    jujutsu
     k9s
     kubectl
     kubelogin
