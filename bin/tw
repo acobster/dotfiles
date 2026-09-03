@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+usage() {
+  echo 'usage: tw [-h|--help] [--create] [-d|--dry-run] WORKTREE'
+  echo
+  echo '  -h|--help     print this help text'
+  echo '  -n|--dry-run  do not execute any tmux commands, only output them'
+  echo '     --create   create worktree'
+}
+
+POSITIONAL=()
+while [[ $# -gt 0 ]]
+do
+key="$1"
+
+case $key in
+    -h|--help)
+    # show usage and bail
+    usage
+    exit
+    ;;
+    --create)
+    CREATE=1
+    shift # past argument
+    ;;
+    -d|--dry-run)
+    SOMETHING="some value"
+    shift # past argument
+    ;;
+    *)
+    POSITIONAL+=("$1") # save it in an array for later
+    shift # past argument
+    ;;
+esac
+
+done
+set -- "${POSITIONAL[@]}" # restore positional parameters
+
+
+main() {
+  if [[ -n $CREATE ]] ; then
+    local switch_cmd="wt switch --create $@"
+  else
+    local switch_cmd="wt switch $@"
+  fi
+  session_cmd="t -d -4 $1 'vim app/app.py' 'cd client; yarn dev' 'cd app; yarn start' 'devdb'"
+
+  # Setup the new worktree, then create and attach a new tmux session once it's done.
+  t -1 switch "$switch_cmd && $session_cmd && spd-say 'worktree session created'" -d
+  tmux attach -t $1
+}
+
+
+main $@
