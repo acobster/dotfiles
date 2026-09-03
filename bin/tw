@@ -24,7 +24,7 @@ case $key in
     shift # past argument
     ;;
     -d|--dry-run)
-    SOMETHING="some value"
+    DRY_RUN=1
     shift # past argument
     ;;
     *)
@@ -32,22 +32,30 @@ case $key in
     shift # past argument
     ;;
 esac
-
 done
+
 set -- "${POSITIONAL[@]}" # restore positional parameters
+
+WORKTREE=$1
+shift
 
 
 main() {
   if [[ -n $CREATE ]] ; then
-    local switch_cmd="wt switch --create $@"
+    local switch_cmd="wt switch --create $WORKTREE"
   else
-    local switch_cmd="wt switch $@"
+    local switch_cmd="wt switch $WORKTREE"
   fi
-  session_cmd="t -d -4 $1 'vim app/app.py' 'cd client; yarn dev' 'cd app; yarn start' 'devdb'"
+  session_cmd="t -d -4 $WORKTREE $@"
 
-  # Setup the new worktree, then create and attach a new tmux session once it's done.
-  t -1 switch "$switch_cmd && $session_cmd && spd-say 'worktree session created'" -d
-  tmux attach -t $1
+  if [[ -n $DRY_RUN ]] ; then
+    echo t -1 switch "$switch_cmd && $session_cmd && spd-say 'worktree session created'" -d
+    echo tmux attach -t $WORKTREE
+  else
+    # Setup the new worktree, then create and attach a new tmux session once it's done.
+    t -1 switch "$switch_cmd && $session_cmd && spd-say 'worktree session created'" -d
+    tmux attach -t $WORKTREE
+  fi
 }
 
 
