@@ -27,6 +27,7 @@
     kubectl
     kubelogin
     mariadb_118
+    net-tools
     pkg-config
     (python311.withPackages (ps: with ps; [
       pip
