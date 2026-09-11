@@ -16,6 +16,7 @@
   ];
 
   home.packages = with pkgs; [
+    argo-workflows
     (azure-cli.withExtensions [ azure-cli.extensions.ssh ])
     fzf
     claude-code
