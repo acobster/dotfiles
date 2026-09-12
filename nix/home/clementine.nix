@@ -23,6 +23,7 @@
     gdu
     gimp-with-plugins
     gnome-calculator
+    gnumake
     jq
     lolcat
     libreoffice-qt
