@@ -9,5 +9,8 @@
 
 /node_modules
 /*.ignore/
+
+# (dir|dot)env
 .nrepl-port
 .direnv
+.env
