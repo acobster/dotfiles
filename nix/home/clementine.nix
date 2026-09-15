@@ -44,6 +44,7 @@
     wget
     xclip
     yt-dlp
+    zeal
   ];
 
   imports = [
