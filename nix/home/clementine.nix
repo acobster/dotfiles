@@ -64,6 +64,25 @@
     ./modules/tmux.nix
   ];
 
+  home.activation = {
+    clojure-mcp = ''
+      mkdir -p ~/.config/mcp
+      cat > ~/.config/mcp/mcp.json <<EOF
+      {
+        "mcpServers": {
+          "clojure-mcp": {
+            "command": "${pkgs.bashInteractive}/bin/bash",
+            "args": [
+              "-c",
+              "clojure -Tmcp start :port 7888"
+            ]
+          }
+        }
+      }
+      EOF
+    '';
+  };
+
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
     "claude-code"
     "discord"
