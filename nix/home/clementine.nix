@@ -63,6 +63,10 @@
   ];
 
   home.activation = {
+    hyprland = ''
+      mkdir -p ~/.config/hypr
+      ln -sf ~/dotfiles/config/hypr/hyprland.lua ~/.config/hypr/hyprland.lua
+    '';
     clojure-mcp = ''
       mkdir -p ~/.config/mcp
       cat > ~/.config/mcp/mcp.json <<EOF
