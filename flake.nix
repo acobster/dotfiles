@@ -35,6 +35,7 @@
     lib = nixpkgs.lib;
     pkgs = import nixpkgs {
       inherit system;
+      # NOTE: to use this from nixosConfigurations, lift to an outer let binding.
       overlays = [
         (final: prev: {
           ledger-lsp = final.callPackage ./nix/packages/ledger-lsp.nix { };
