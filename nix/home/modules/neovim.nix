@@ -24,6 +24,7 @@
     initLua = ''
       ${builtins.readFile ./neovim/init.lua}
       ${builtins.readFile ./neovim/fuzzyfind.lua}
+      ${builtins.readFile ./neovim/ledger.lua}
     '';
 
     plugins = with pkgs.vimPlugins; [
