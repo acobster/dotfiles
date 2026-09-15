@@ -54,6 +54,7 @@
     ./modules/clojure
     ./modules/colors
     ./modules/direnv.nix
+    ./modules/hyprland.nix
     ./modules/ledger.nix
     ./modules/neovim.nix
     ./modules/nix.nix
