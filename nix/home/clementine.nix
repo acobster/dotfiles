@@ -43,7 +43,6 @@
     tree
     vlc
     wget
-    xclip
     yt-dlp
     zeal
   ];
