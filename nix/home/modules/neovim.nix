@@ -23,6 +23,7 @@
 
     initLua = ''
       ${builtins.readFile ./neovim/init.lua}
+      ${builtins.readFile ./neovim/fuzzyfind.lua}
     '';
 
     plugins = with pkgs.vimPlugins; [
