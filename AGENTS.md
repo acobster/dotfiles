@@ -9,6 +9,11 @@
     - we pretty much always want `--detached` for scripting; I will switch to the new session if/when I want to.
     - `-X` is not a literal option, it represents a number `-1` through `-6`.
 
+- Spawn a fleet of sub-agents: the `agency` MCP server (`bin/agency.clj`)
+    - `spawn_agent` takes 1-6 tasks and gives each one a tmux pane, via `t`.
+    - Agents talk by mail: `send_message` writes a JSON file to the recipient's inbox and rings their pane with `tmux send-keys`, so they wake up and read it. `read_messages` drains the inbox.
+    - Everything lives under `~/.local/state/agent-mesh/<session>/`, including a `log.jsonl` of the whole conversation.
+
 ## Workflow
 
 Never offer to create git commits or open pull requests. Only do so when asked.
