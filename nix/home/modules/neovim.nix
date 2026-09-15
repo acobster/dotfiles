@@ -26,7 +26,11 @@
       ${builtins.readFile ./neovim/fuzzyfind.lua}
 
       -- ledger-lsp
-      vim.lsp.config('ledger-cli', { cmd = { '${pkgs.ledger-lsp}/bin/ledger-lsp' } })
+      vim.filetype.add({ extension = { dat = 'ledger' } })
+      vim.lsp.config('ledger-cli', {
+        cmd = { '${pkgs.ledger-lsp}/bin/ledger-lsp' },
+        filetypes = { 'ledger' },
+      })
       vim.lsp.enable('ledger-cli')
     '';
 
