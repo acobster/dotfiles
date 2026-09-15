@@ -4,12 +4,41 @@
       "baseUrl": "http://localhost:11434/v1",
       "api": "openai-completions",
       "apiKey": "nope",
+      "compat": {
+        "supportsDeveloperRole": false,
+        "supportsReasoningEffort": false
+      },
       "models": [
         { "id": "qwen3:8b" },
-        { "id": "qwen3-coder-next:q4_K_M" },
-        { "id": "qwen2.5-coder:7b" },
-        { "id": "gemma4:31b" },
-        { "id": "deepseek-coder:33b" }
+        {
+          "id": "qwen3:14b",
+          "name": "Qwen3 14B",
+          "reasoning": true,
+          "input": ["text"],
+          "contextWindow": 16384,
+          "maxTokens": 4096,
+          "samplingParams": {
+            "temperature": 0.6,
+            "top_p": 0.95,
+            "top_k": 20,
+            "min_p": 0
+          },
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 }
+        },
+        {
+          "id": "gemma4:12b",
+          "name": "Gemma 4 12B",
+          "reasoning": false,
+          "input": ["text", "image"],
+          "contextWindow": 16384,
+          "maxTokens": 4096,
+          "samplingParams": {
+            "temperature": 1.0,
+            "top_p": 0.95,
+            "top_k": 64
+          },
+          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 }
+        }
       ]
     }
   }
