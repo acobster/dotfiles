@@ -12,6 +12,7 @@
     bat
     chez
     claude-code
+    clj-kondo
     cowsay
     curl
     dig
