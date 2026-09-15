@@ -10,7 +10,7 @@
     ../modules/clamav.nix
     ../modules/fonts.nix
     ../modules/docker.nix
-    ../modules/kde.nix
+    ../modules/hyprland.nix
     ../modules/network.nix
     ../modules/packages.nix
     ../modules/ssh.nix

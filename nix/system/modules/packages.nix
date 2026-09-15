@@ -26,11 +26,4 @@
     epiphany
     gnome-console
   ];
-
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
-    "steam"
-    "steam-original"
-    "steam-run"
-    "steam-unwrapped"
-  ];
 }
