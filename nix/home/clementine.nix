@@ -8,8 +8,6 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
-    audacity
-    bat
     chez
     claude-code
     clj-kondo
@@ -46,8 +44,6 @@
     wget
     xclip
     yt-dlp
-    zoom-us
-    zulip-term
   ];
 
   imports = [
@@ -91,7 +87,6 @@
     "vim-solarized8"
     "vim-trailing-whitespace"
     "vim-windowswap"
-    "zoom"
     # For ollama-cuda
     "cuda_cccl"
     "cuda_cudart"
