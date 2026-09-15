@@ -1,8 +1,8 @@
 { lib, rustPlatform, fetchFromGitHub }:
 
 rustPlatform.buildRustPackage rec {
-  name = "ledger-lsp";
   pname = "ledger-lsp";
+  version = "master-2026-09-15";
 
   src = fetchFromGitHub {
     owner = "bsilvereagle";

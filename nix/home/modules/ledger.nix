@@ -1,9 +1,9 @@
-{ pkgs, lib, rustPlatform, fetchFromGithub, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [
     ledger
     ledger-web
-    (pkgs.callPackage ./ledger-lsp.nix {})
+    ledger-lsp
   ];
 }

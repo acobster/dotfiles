@@ -35,6 +35,11 @@
     lib = nixpkgs.lib;
     pkgs = import nixpkgs {
       inherit system;
+      overlays = [
+        (final: prev: {
+          ledger-lsp = final.callPackage ./nix/packages/ledger-lsp.nix { };
+        })
+      ];
     };
     util = import ./nix/util.nix {
       inherit system pkgs nixpkgs home-manager;

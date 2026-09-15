@@ -24,7 +24,10 @@
     initLua = ''
       ${builtins.readFile ./neovim/init.lua}
       ${builtins.readFile ./neovim/fuzzyfind.lua}
-      ${builtins.readFile ./neovim/ledger.lua}
+
+      -- ledger-lsp
+      vim.lsp.config('ledger-cli', { cmd = { '${pkgs.ledger-lsp}/bin/ledger-lsp' } })
+      vim.lsp.enable('ledger-cli')
     '';
 
     plugins = with pkgs.vimPlugins; [
