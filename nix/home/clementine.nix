@@ -102,5 +102,8 @@
 
   home.file.".pi/agent/models.json".source = ./pi/agent/models.json;
 
+  # https://agentsstandard.com/
+  home.file.".agents/AGENTS.md".source = ../../AGENTS.md;
+
   home.stateVersion = "23.11";
 }
