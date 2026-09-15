@@ -2,7 +2,7 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "ledger-lsp";
-  version = "master-2026-09-15";
+  version = "0-unstable-2026-02-07";
 
   src = fetchFromGitHub {
     owner = "bsilvereagle";
