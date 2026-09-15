@@ -26,6 +26,7 @@
     jq
     lolcat
     libreoffice-qt
+    libsecret
     lua
     nix-info
     ollama-cuda
