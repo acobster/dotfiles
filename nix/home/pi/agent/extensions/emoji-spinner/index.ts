@@ -68,6 +68,11 @@ const PACKS = [
      workingMessage: "Exploring...",
    },
    {
+     name: "magic",
+     frames: ["✨ ", "🪄 ", "🔮 ", "🧹 ", "💎 ", "🌟 ", "🫧 "],
+     workingMessage: "Conjuring...",
+   },
+   {
      name: "sunmoon",
      frames: ["🌚 ", "🌝 "],
      intervalMs: 1000,
