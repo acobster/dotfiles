@@ -3,6 +3,7 @@
 (require
   '[cheshire.core :as json]
   '[clojure.string :as string]
+  '[clojure.math]
   '[clojure.java.shell :as shell])
 
 (defn get-sensor-data []
@@ -41,9 +42,9 @@
         {:keys [cpu-temp fan1-rpm fan2-rpm]}
         (distill profile (get-sensor-data))
         critical? (>= cpu-temp 85)
-        temp-icon (if critical? "‼️" "✔️")]
-    (println (format "%s  CPU temp: %.2f°C" temp-icon cpu-temp))
-    (println "   Fan 1:" fan1-rpm "RPM")
-    (println "   Fan 2:" fan2-rpm "RPM")))
+        temp-icon (if critical? "!" " ")]
+    (println (format "%s CPU temp: %d°C" temp-icon (clojure.math/round cpu-temp)))
+    (println "  Fan 1:" fan1-rpm "RPM")
+    (println "  Fan 2:" fan2-rpm "RPM")))
 
 (-main)
