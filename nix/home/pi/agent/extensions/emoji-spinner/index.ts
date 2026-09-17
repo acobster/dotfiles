@@ -24,7 +24,13 @@ const PACKS = [
    {
      name: "plants",
      frames: ["🌱 ", "☘️ ", "🪴 ", "🌿 ", "🌳 ", "🍃", "🍁 ", "🍂 "],
-     workingMessage: "Leafing...",
+     workingMessage: "Growing...",
+   },
+   {
+     name: "egg",
+     frames: ["🪹 ", "🪺 ", "🐣 ", "🐥 ", "🕊️ ", "🪶 "],
+     intervalMs: 300,
+     workingMessage: "Hatching...",
    },
    {
      name: "squares",
