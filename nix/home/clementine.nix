@@ -63,7 +63,7 @@
   ];
 
   home.activation = {
-    clojure-mcp = ''
+    agents = ''
       mkdir -p ~/.config/mcp
       cat > ~/.config/mcp/mcp.json <<EOF
       {
@@ -78,6 +78,17 @@
         }
       }
       EOF
+
+      dotfiles_dir=~/dotfiles/nix/home
+
+      # https://agentsstandard.com/
+      ln -sf $dotfiles_dir/agents ~/.agents
+
+      ln -sf $dotfiles_dir/pi/agent/models.json ~/.pi/agent/models.json
+      ln -sf $dotfiles_dir/pi/agent/config.json ~/.pi/agent/config.json
+
+      mkdir -p ~/.pi/agent/extensions
+      ln -sf $dotfiles_dir/pi/agent/extensions/emoji-spinner ~/.pi/agent/extensions/emoji-spinner
     '';
   };
 
@@ -99,13 +110,6 @@
   # Ignore project dependency files in syncs.
   # These can be restored easily, and so aren't worth the noise.
   home.file."projects/.stignore".source = ./syncthing/projects.stignore;
-
-  home.file.".pi/agent/models.json".source = ./pi/agent/models.json;
-  home.file.".pi/agent/config.json".source = ./pi/agent/config.json;
-  home.file.".pi/agent/extensions/emoji-spinner".source = ./pi/agent/extensions/emoji-spinner;
-
-  # https://agentsstandard.com/
-  home.file.".agents/AGENTS.md".source = ../../AGENTS.md;
 
   home.stateVersion = "23.11";
 }
