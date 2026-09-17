@@ -35,9 +35,9 @@
 (defn -main []
   (let [hostname' (hostname)
         profile (get $profiles hostname')
-        _ (when-not profile (do
-                              (println "No profile found for" hostname')
-                              (System/exit 1)))
+        _ (when-not profile
+            (println "No profile found for" hostname')
+            (System/exit 1))
         {:keys [cpu-temp fan1-rpm fan2-rpm]}
         (distill profile (get-sensor-data))
         critical? (>= cpu-temp 85)
