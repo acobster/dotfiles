@@ -57,11 +57,6 @@ const PACKS = [
      workingMessage: "Weathering...",
    },
    {
-     name: "emo",
-     frames: ["😊 ", "😄 ", "😢 ", "😡 ", "😴 ", "😎 ", "🥳 "],
-     workingMessage: "Emoting...",
-   },
-   {
      name: "stars",
      frames: ["⭐️ ", "🌠 ", "🌌 ", "🪐 ", "🌟 ", "🌀 "],
      workingMessage: "Exploring...",
