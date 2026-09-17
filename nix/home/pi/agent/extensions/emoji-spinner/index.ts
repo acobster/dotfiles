@@ -5,46 +5,96 @@ function pickRandom(arr) {
 }
 
 
-const INDICES = ["hands", "hands2", "flowers", "plants", "squares", "arrows", "clock", "moon", "earth", "clouds"];
 const PACKS = [
-  ["👌 ", "👍️ ", "👎️ ", "👋 ", "🤚 ", "🖐️ ", "✋️ ", "🖖 ", "🫱 ", "🫲 ", "🤌 ", "🤏 ", "✌️  ", "🤞 ", "🫰 ", "🤟 ", "🤘 ", "🤙 ", "👈️ ", "👉️ ", "👆️ ", "🖕 ", "👇️ ", "☝️  ", "🫵 ", "✊️ ", "👊 "],
-  ["👏 ", "🙌 ", "🫶 ", "👐 ", "🤲 ", "🤝 ", "🙏 ", "✍️  "],
-  ["🌸 ", "💮 ", "🪷 ", "🏵️ ", "🌺 ", "🌻 ", "🌼 ", "🌷 ", "🪻 ", "🌹 ", "🥀 "],
-  ["🌱 ", "☘️ ", "🪴 ", "🌿 ", "🌳 ", "🍃", "🍁 ", "🍂 "],
-  ["⬛️ ", "⬜️ ", "🔳 ", "🔲 ", "◼️ ", "◻️ ", "◾️ ", "◽️ ", "▪️ ", "▫️ "],
-  ["⬆️ ", "↗️ ", "➡️ ", "↘️ ", "⬇️ ", "↙️ ", "⬅️ ", "↖️ "],
-  ["🕛️ ", "🕧️ ", "🕐️ ", "🕜️ ", "🕑️ ", "🕝️ ", "🕒️ ", "🕞️ ", "🕓️ ", "🕟️ ", "🕔️ ", "🕠️ ", "🕕️ ", "🕡️ ", "🕖️ ", "🕢️ ", "🕗️ ", "🕣️ ", "🕘️ ", "🕤️ ", "🕙️ ", "🕥️ ", "🕚️ ", "🕦️ "],
-  ["🌑 ", "🌒 ", "🌓 ", "🌔 ", "🌕️ ", "🌖 ", "🌗 ", "🌘 "],
-  ["🌍️ ", "🌎️ ", "🌏️ "],
-  ["☁️ ", "🌤️ ", "⛅️ ", "🌥️ ", "🌦️ ", "🌧️ ", "⛈️ ", "🌩️ ", "🌨️ "],
+   {
+     name: "hands",
+     frames: ["👌 ", "👍️ ", "👎️ ", "👋 ", "🤚 ", "🖐️ ", "✋️ ", "🖖 ", "🫱 ", "🫲 ", "🤌 ", "🤏 ", "✌️  ", "🤞 ", "🫰 ", "🤟 ", "🤘 ", "🤙 ", "👈️ ", "👉️ ", "👆️ ", "🖕 ", "👇️", "☝️  ", "🫵 ", "✊️ ", "👊 "],
+     workingMessage: "Handling...",
+   },
+   {
+     name: "hands2",
+     frames: ["👏 ", "🙌 ", "🫶 ", "👐 ", "🤲 ", "🤝 ", "🙏 ", "✍️  "],
+     workingMessage: "Hand-wringing...",
+   },
+   {
+     name: "flowers",
+     frames: ["🌸 ", "💮 ", "🪷 ", "🏵️ ", "🌺 ", "🌻 ", "🌼 ", "🌷 ", "🪻 ", "🌹 ", "🥀 "],
+     workingMessage: "Blooming...",
+   },
+   {
+     name: "plants",
+     frames: ["🌱 ", "☘️ ", "🪴 ", "🌿 ", "🌳 ", "🍃", "🍁 ", "🍂 "],
+     workingMessage: "Leafing...",
+   },
+   {
+     name: "squares",
+     frames: ["⬛️ ", "⬜️ ", "🔳 ", "🔲 ", "◼️ ", "◻️ ", "◾️ ", "◽️ ", "▪️ ", "▫️ "],
+     workingMessage: "Squaring...",
+   },
+   {
+     name: "arrows",
+     frames: ["⬆️ ", "↗️ ", "➡️ ", "↘️ ", "⬇️ ", "↙️ ", "⬅️ ", "↖️ "],
+     workingMessage: "Spinning...",
+   },
+   {
+     name: "clock",
+     frames: ["🕛️ ", "🕧️ ", "🕐️ ", "🕜️ ", "🕑️ ", "🕝️ ", "🕒️ ", "🕞️ ", "🕓️ ", "🕟️ ", "🕔️ ", "🕠️ ", "🕕️ ", "🕡️ ", "🕖️ ", "🕢️ ", "🕗️ ", "🕣️ ", "🕘️ ", "🕤️ ", "🕙️ ", "🕥️ ", "🕚️ ", "🕦️ "],
+     workingMessage: "Ticking...",
+   },
+   {
+     name: "moon",
+     frames: ["🌑 ", "🌒 ", "🌓 ", "🌔 ", "🌕️ ", "🌖 ", "🌗 ", "🌘 "],
+     workingMessage: "Phasing...",
+   },
+   {
+     name: "earth",
+     frames: ["🌍️ ", "🌎️ ", "🌏️ "],
+     workingMessage: "Revolving...",
+   },
+   {
+     name: "clouds",
+     frames: ["☁️ ", "🌤️ ", "⛅️ ", "🌥️ ", "🌦️ ", "🌧️ ", "⛈️ ", "🌩️ ", "🌨️ "],
+     workingMessage: "Weathering...",
+   },
+   {
+     name: "emo",
+     frames: ["😊 ", "😄 ", "😢 ", "😡 ", "😴 ", "😎 ", "🥳 "],
+     workingMessage: "Emoting...",
+   },
+   {
+     name: "stars",
+     frames: ["⭐️ ", "🌠 ", "🌌 ", "🪐 ", "🌟 ", "🌀 "],
+     workingMessage: "Exploring...",
+   },
+   {
+     name: "sunmoon",
+     frames: ["🌚 ", "🌝 "],
+     intervalMs: 1000,
+     workingMessage: "Daybreaking...",
+   },
 ];
 
 let PACK = null;
 
 export default function (pi: ExtensionAPI) {
   pi.on("before_agent_start", async (_args, ctx) => {
-    const frames = PACK || pickRandom(PACKS);
+    const { frames, workingMessage, intervalMs = 200 } = PACK || pickRandom(PACKS);
     ctx.ui.setWorkingIndicator({
       frames,
-      intervalMs: 200,
+      intervalMs,
     });
+    ctx.ui.setWorkingMessage(workingMessage);
   });
 
   pi.registerCommand("indicator-pack", {
     description: "Simulate an async operation with a custom spinner",
     handler: async (args, ctx) => {
-      const idx = INDICES.indexOf(args.trim());
+      const name = args.trim();
+      const found = PACKS.find((pack) => pack.name === name);
 
-      // statefully set the pack
-      PACK = PACKS[idx];
-
-      if (idx > -1) {
-        // Set a custom spinner with emoji
-        ctx.ui.setWorkingIndicator({
-          frames: PACK,
-          intervalMs: 200
-        });
-
+      if (found) {
+        // statefully set the pack
+        PACK = found;
         ctx.ui.notify(`Set indicator pack to: ${args}`, "success");
       } else {
         ctx.ui.notify(`No indicator pack found: ${args}`, "error");
