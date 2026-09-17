@@ -101,6 +101,8 @@
   home.file."projects/.stignore".source = ./syncthing/projects.stignore;
 
   home.file.".pi/agent/models.json".source = ./pi/agent/models.json;
+  home.file.".pi/agent/config.json".source = ./pi/agent/config.json;
+  home.file.".pi/agent/extensions/emoji-spinner".source = ./pi/agent/extensions/emoji-spinner;
 
   # https://agentsstandard.com/
   home.file.".agents/AGENTS.md".source = ../../AGENTS.md;
