@@ -23,7 +23,7 @@ const PACKS = [
    },
    {
      name: "plants",
-     frames: ["🌱 ", "☘️ ", "🪴 ", "🌿 ", "🌳 ", "🍃", "🍁 ", "🍂 "],
+     frames: ["🌱 ", "☘️ ", "🪴 ", "🌿 ", "🌳 ", "🍃 ", "🍁 ", "🍂 "],
      workingMessage: "Growing...",
    },
    {
