@@ -42,6 +42,7 @@
     transmission_4-gtk
     tree
     vlc
+    waybar
     wget
     yt-dlp
     zeal
@@ -67,6 +68,11 @@
       mkdir -p ~/.config/hypr
       ln -sf ~/dotfiles/config/hypr/hyprland.lua ~/.config/hypr/hyprland.lua
     '';
+
+    waybar = ''
+      ln -sf ~/dotfiles/config/waybar ~/.config/waybar
+    '';
+
     agents = ''
       mkdir -p ~/.config/mcp
       cat > ~/.config/mcp/mcp.json <<EOF
