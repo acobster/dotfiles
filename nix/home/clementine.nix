@@ -98,7 +98,7 @@
       ln -sf $dotfiles_dir/pi/agent/config.json ~/.pi/agent/config.json
 
       mkdir -p ~/.pi/agent/extensions
-      ln -sf $dotfiles_dir/pi/agent/extensions/emoji-spinner ~/.pi/agent/extensions/emoji-spinner
+      ln -sf $dotfiles_dir/pi/agent/extensions/emoji-spinner/index.ts ~/.pi/agent/extensions/emoji-spinner/index.ts
     '';
   };
 
