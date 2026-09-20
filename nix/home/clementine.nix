@@ -71,7 +71,7 @@
     '';
 
     waybar = ''
-      ln -sf ~/dotfiles/config/waybar ~/.config/waybar
+      ln -s ~/dotfiles/config/waybar ~/.config/waybar
     '';
 
     agents = ''
