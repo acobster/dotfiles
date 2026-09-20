@@ -17,6 +17,7 @@
     net-tools
     nodejs_22
     ffmpeg
+    font-awesome
     freetube
     fzf
     gdu
