@@ -9,12 +9,16 @@
         "supportsReasoningEffort": false
       },
       "models": [
-        { "id": "qwen3:8b" },
+        {
+          "id": "qwen3:8b"
+        },
         {
           "id": "qwen3:14b",
           "name": "Qwen3 14B",
           "reasoning": true,
-          "input": ["text"],
+          "input": [
+            "text"
+          ],
           "contextWindow": 16384,
           "maxTokens": 4096,
           "samplingParams": {
@@ -23,13 +27,21 @@
             "top_k": 20,
             "min_p": 0
           },
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 }
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          }
         },
         {
           "id": "gemma4:12b",
           "name": "Gemma 4 12B",
           "reasoning": false,
-          "input": ["text", "image"],
+          "input": [
+            "text",
+            "image"
+          ],
           "contextWindow": 16384,
           "maxTokens": 4096,
           "samplingParams": {
@@ -37,7 +49,12 @@
             "top_p": 0.95,
             "top_k": 64
           },
-          "cost": { "input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0 }
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          }
         }
       ]
     }
