@@ -29,7 +29,6 @@
     libsecret
     lua
     nix-info
-    ollama-cuda
     pdfsam-basic
     pulseaudio
     python3
@@ -101,11 +100,6 @@
     "vim-solarized8"
     "vim-trailing-whitespace"
     "vim-windowswap"
-    # For ollama-cuda
-    "cuda_cccl"
-    "cuda_cudart"
-    "cuda_nvcc"
-    "libcublas"
   ];
 
   # Ignore project dependency files in syncs.
