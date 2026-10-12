@@ -86,11 +86,10 @@
 
       ln -sf $dotfiles_dir/pi/agent/models.json ~/.pi/agent/models.json
       ln -sf $dotfiles_dir/pi/agent/config.json ~/.pi/agent/config.json
-
-      mkdir -p ~/.pi/agent/extensions
-      ln -sf $dotfiles_dir/pi/agent/extensions/emoji-spinner ~/.pi/agent/extensions/emoji-spinner
     '';
   };
+
+  home.file.".pi/agent/extensions/emoji-spinner".source = ./pi/agent/extensions/emoji-spinner;
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
     "claude-code"
