@@ -8,6 +8,7 @@
 - Start a tmux session: `t <session_name> --detached -X "cmd 1" "cmd 2" ... "cmd X"`
     - we pretty much always want `--detached` for scripting; I will switch to the new session if/when I want to.
     - `-X` is not a literal option, it represents a number `-1` through `-6`.
+- Pi agent docs: Find local docs for the current Pi coding harness at ~/.pi/docs
 
 ## Workflow
 

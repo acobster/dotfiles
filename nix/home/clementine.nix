@@ -30,6 +30,7 @@
     lua
     nix-info
     pdfsam-basic
+    pi-coding-agent
     pulseaudio
     python3
     ripgrep
@@ -90,6 +91,7 @@
   };
 
   home.file.".pi/agent/extensions/emoji-spinner".source = ./pi/agent/extensions/emoji-spinner;
+  home.file.".pi/docs".source = "${pkgs.pi-coding-agent}/lib/node_modules/pi-monorepo/docs";
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
     "claude-code"
