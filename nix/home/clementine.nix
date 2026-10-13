@@ -72,12 +72,13 @@
             "command": "${pkgs.bashInteractive}/bin/bash",
             "args": [
               "-c",
-              "clojure -Tmcp start :port 7888"
+              "mcp-repl"
             ]
           }
         }
       }
       EOF
+      ln -fs ~/.config/mcp/mcp.json ~/.pi/agent/mcp.json
 
       dotfiles_dir=~/dotfiles/nix/home
 

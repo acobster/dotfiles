@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+PORT=$(cat .nrepl-port 2>/dev/null)
+[[ -n $PORT ]] || PORT=7888
+
+clojure -Tmcp start :port $PORT
