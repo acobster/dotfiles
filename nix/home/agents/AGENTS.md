@@ -2,7 +2,7 @@
 
 ## Commands & tools
 
-- Start a Clojure nREPL server: `clojure -m:nrepl`
+- Start a Clojure nREPL server: `clojure -M:nrepl`
 - Use `clojure-mcp` tools for testing/evaluating Clojure code. Prefer the `clojure_eval` tool for evaluating Clojure code over the Bash tool.
 - Use `clj-kondo` for linting
 - Start a tmux session: `t <session_name> --detached -X "cmd 1" "cmd 2" ... "cmd X"`
