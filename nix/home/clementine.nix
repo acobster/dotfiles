@@ -37,7 +37,6 @@
     rpi-imager
     ruby
     signal-desktop
-    silver-searcher
     simple-scan
     transmission_4-gtk
     tree

@@ -15,7 +15,7 @@
     home-manager
     lm_sensors
     nettools
-    silver-searcher
+    silver-searcher-ng
     # Steam needs to run at the system level
     steam
     unzip
