@@ -68,6 +68,9 @@
     graphics.enable = true;
     nvidia = {
       open = true;
+      powerManagement = {
+        enable = true;
+      };
     };
   };
 
