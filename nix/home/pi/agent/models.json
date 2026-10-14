@@ -63,8 +63,7 @@
       "api": "openai-completions",
       "apiKey": "local",
       "compat": {
-        "supportsDeveloperRole": false,
-        "supportsReasoningEffort": false
+        "supportsDeveloperRole": false
       },
       "models": [
         {

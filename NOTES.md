@@ -328,3 +328,31 @@ ambient_f75303@4d → temp1_input  59.85°C  (chassis ambient)
 **RAM DIMMs** (`spd5118-i2c-22-50`/`51`): 74°C and 69°C respectively.
 
 **Note:** `cros_ec` and `framework_laptop` report the same fan RPMs from two different interfaces — pick one (I'd use `framework_laptop`). Also, Tctl on AMD is offset by up to +27°C from the actual die temp; `apu_f75303@4d` is closer to real junction temp. The system is clearly under load right now (~97°C Tctl).
+
+## Local LLM setup
+
+Local coding agents are enabled using [Pi](https://pi.dev) and [Strata](https://github.com/Niko1221/Strata).
+
+### Pi config
+
+Settings in `models.json` (or `modelOverrides` in settings):
+
+- `contextWindow`: the whole window, prompt plus output. Match it to the engine's `n_ctx`; Pi clamps each request to `contextWindow - estimated prompt - 4096`, so response room comes out of the same budget rather than a separate reservation.
+- `maxTokens`: cap on output tokens per response, sent as `max_tokens` or `max_completion_tokens`. Defaults to 16384, must be positive. Thinking lives inside this cap, so a thinking budget larger than it is unreachable.
+- `compat.maxTokensField`: which field the provider expects. Pi picks `max_completion_tokens` for unrecognized endpoints; most local servers accept either.
+- `compat.supportsReasoningEffort`: gates whether Pi sends a thinking level at all. Turning it off makes the thinking selector cosmetic, since `openai-completions` can't carry a thinking budget.
+- `compat.supportsDeveloperRole`: use `system` instead of `developer` for the system prompt.
+- `reasoning`: marks the model as a thinking model; affects how thinking blocks are handled, not how much it thinks.
+- `input`: accepted modalities. Only affects whether images are sent or replaced with a placeholder.
+- `cost`: pricing for the usage display. Zeros are fine for local models.
+- `samplingParams` (and `samplingParamsByThinkingLevel`): passed through to the provider.
+- `compaction.reserveTokens`: trigger threshold, `contextTokens > contextWindow - reserveTokens`. Also caps summarization output, so it isn't only a threshold.
+
+### Strata config
+
+> Should be fit to Pi settings.
+
+- `reasoning_budget_tokens`: hard cap on thinking per request. A request's own value wins; 0 means no cap. Subordinate to `max_tokens`, since thinking counts as output.
+- `fit_max_tokens`: shorten `max_tokens` to the room left instead of refusing with a 400. Pairs well with Pi's clamp. A prompt that alone exceeds the window is still refused.
+
+The practical rule: pick the thinking budget and the output cap together. The output cap has to cover thinking plus answer room, and the prompt gets whatever is left.
