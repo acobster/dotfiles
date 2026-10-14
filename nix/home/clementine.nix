@@ -24,6 +24,7 @@
     gnome-calculator
     gnumake
     jq
+    kdePackages.ghostwriter
     lolcat
     libreoffice-qt
     libsecret
