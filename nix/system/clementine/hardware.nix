@@ -66,7 +66,9 @@
 
     # Configure Nvidia GPU.
     graphics.enable = true;
-    nvidia.open = true;
+    nvidia = {
+      open = true;
+    };
   };
 
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -78,14 +80,6 @@
     HandleLidSwitchDocked = "ignore";
     HandleLidSwitchExternalPower = "ignore";
     IdleAction = "lock";
-    SleepOperation = "suspend-then-hibernate";
-  };
-
-  # Disable suspension entirely:
-  systemd.sleep.settings.Sleep = {
-    AllowSuspend = "no";
-    AllowHibernation = "no";
-    AllowHybridSleep = "no";
-    AllowSuspendThenHibernate = "no";
+    SleepOperation = "suspend";
   };
 }
