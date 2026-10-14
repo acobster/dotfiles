@@ -41,6 +41,7 @@
     simple-scan
     transmission_4-gtk
     tree
+    typora
     vlc
     wget
     xclip
