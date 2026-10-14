@@ -356,3 +356,30 @@ Settings in `models.json` (or `modelOverrides` in settings):
 - `fit_max_tokens`: shorten `max_tokens` to the room left instead of refusing with a 400. Pairs well with Pi's clamp. A prompt that alone exceeds the window is still refused.
 
 The practical rule: pick the thinking budget and the output cap together. The output cap has to cover thinking plus answer room, and the prompt gets whatever is left.
+
+## Suspend on Clementine (Framework 16 + RTX 5070)
+
+Symptom: laptop ran hot with the lid closed. It wasn't sleeping at all: suspend had been disabled (`AllowSuspend=no`) because resume used to hang.
+
+Root cause of the hang: BIOS 3.03 predates RTX 5070 support (added in 4.02). On resume the dGPU dropped off the bus: `nvidia 0000:02:00.0: Unable to change power state from D3hot to D0, device inaccessible`. Updating to BIOS 4.05 fixed it.
+
+What's needed:
+
+- `hardware.nvidia.powerManagement.enable = true`. On driver 595 this sets `NVreg_PreserveVideoMemoryAllocations=1` and `NVreg_UseKernelSuspendNotifiers=1` (no `nvidia-suspend.service`). Module params need a reboot; check `/proc/driver/nvidia/params`.
+- `SleepOperation = "suspend"` in logind, since hibernate isn't set up.
+- Stop Strata before sleeping: saving its ~11 GB of VRAM stalls suspend ~18 s.
+
+### fwupd / BIOS updates
+
+- fwupd writes Framework BIOS versions as `0.0.4.5` = BIOS 4.05. Check with `cat /sys/class/dmi/id/bios_version`.
+- fwupd only accepts a partition whose GPT type is EFI System (or MS basic data); `EspLocation` alone doesn't override that. The boot partition was created as type "Linux filesystem", fixed with:
+  `nix shell nixpkgs#gptfdisk -c sudo sgdisk --typecode=1:ef00 /dev/nvme1n1`.
+  When partitioning, set type `ef00`, not just the `EFI_BOOT` label.
+- Restart fwupd after changing its config (`sudo systemctl restart fwupd`); a rebuild doesn't.
+- `fwupdmgr refresh && fwupdmgr get-updates` stops early: `refresh` exits non-zero when metadata is already current.
+- Needs AC power. `fwupdmgr update` only stages the capsule; it flashes on the next reboot.
+
+### Debugging tips
+
+- `journalctl -b -1 -k` after a forced reboot shows how far suspend/resume got.
+- KWin CPU in `top` mostly reflects how often clients redraw; strace it and map busy fds to clients with `ls -l /proc/<pid>/fd/N` + `ss -xp | grep <inode>`.
