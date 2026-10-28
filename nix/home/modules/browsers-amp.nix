@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ lib, pkgs, inputs, ... }:
 
 let
   lock-false = { Value = false; Status = "locked"; };
@@ -31,7 +31,10 @@ in
         };
       in
       pkgs.firefox // {
-        override = args: wrapWithNixGL (pkgs.firefox.override args);
+        # Home-manager only calls override when its args include `cfg`.
+        override = lib.setFunctionArgs
+          (args: wrapWithNixGL (pkgs.firefox.override args))
+          (lib.functionArgs pkgs.firefox.override);
         overrideAttrs = f: wrapWithNixGL (pkgs.firefox.overrideAttrs f);
       };
 
