@@ -9,6 +9,7 @@
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (pkgs.lib.getName pkg) [
     "claude-code"
+    "slack"
     "vim-solarized8"
     "vim-trailing-whitespace"
     "vim-windowswap"
@@ -36,7 +37,8 @@
       virtualenv
     ]))
     ripgrep
-    silver-searcher
+    silver-searcher-ng
+    slack
     syncthing
     tree
     universal-ctags
